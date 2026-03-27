@@ -13,17 +13,20 @@ body {
   font-family: sans-serif;
 }
 
+/* 容器 */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 60px 30px;
 }
 
+/* 标题 */
 h1 {
   letter-spacing: 4px;
   margin-bottom: 40px;
 }
 
+/* 分类 */
 .section-title {
   margin: 60px 0 20px;
   opacity: 0.5;
@@ -31,6 +34,7 @@ h1 {
   letter-spacing: 2px;
 }
 
+/* 画廊 */
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -47,6 +51,7 @@ h1 {
   transform: scale(1.03);
 }
 
+/* viewer（重点） */
 .viewer {
   position: fixed;
   top: 0;
@@ -63,8 +68,29 @@ h1 {
 .viewer img {
   max-width: 90%;
   max-height: 90%;
+  opacity: 0;
+  transition: 0.3s;
 }
 
+.viewer.show img {
+  opacity: 1;
+}
+
+/* 左右按钮 */
+.arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 20px;
+}
+
+.left { left: 20px; }
+.right { right: 20px; }
+
+/* 价目表 */
 .price {
   margin-top: 100px;
   display: grid;
@@ -74,22 +100,35 @@ h1 {
 
 .price img {
   width: 100%;
+  cursor: pointer;
 }
 
+/* 悬浮logo */
+.home-logo {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1000;
+}
+
+.home-logo img {
+  width: 42px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.home-logo img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* 手机 */
 @media (max-width: 768px) {
-
-  .gallery {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .price {
-    grid-template-columns: 1fr;
-  }
-
+  .gallery { grid-template-columns: 1fr; }
+  .price { grid-template-columns: 1fr; }
 }
-</style>
 
+</style>
 </head>
 
 <body>
@@ -97,15 +136,6 @@ h1 {
 <div class="container">
 
 <h1>Commission</h1>
-
-<!-- 插图 / 漫画 -->
-<div class="section-title">Illustration / Comics</div>
-<div class="gallery">
-  <img src="ill1.png">
-  <img src="ill2.png">
-  <img src="ill3.png">
-  <img src="ill4.png">
-</div>
 
 <!-- 半身 -->
 <div class="section-title">Half Body</div>
@@ -123,6 +153,15 @@ h1 {
   <img src="head3.png">
 </div>
 
+<!-- 插图（放最后） -->
+<div class="section-title">Illustration / Comics</div>
+<div class="gallery">
+  <img src="ill1.png">
+  <img src="ill2.png">
+  <img src="ill4.png">
+  <img src="ill3.png">
+</div>
+
 <!-- 价目表 -->
 <div class="price">
   <img src="price-cn.png">
@@ -131,28 +170,77 @@ h1 {
 
 </div>
 
-<!-- 放大查看 -->
+<!-- viewer -->
 <div class="viewer" id="viewer">
+  <span class="arrow left" id="prev">&#10094;</span>
   <img id="viewer-img">
+  <span class="arrow right" id="next">&#10095;</span>
 </div>
 
+<!-- 悬浮logo -->
+<a href="index.html" class="home-logo">
+  <img src="logo.png">
+</a>
+
 <script>
-const images = document.querySelectorAll('.gallery img');
+const allImages = document.querySelectorAll('img');
 const viewer = document.getElementById('viewer');
 const viewerImg = document.getElementById('viewer-img');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
 
-images.forEach(img => {
-  img.addEventListener('click', () => {
-    viewer.style.display = 'flex';
-    viewerImg.src = img.src;
-  });
+let currentIndex = 0;
+let imageArray = [];
+
+/* 收集所有可点击图片 */
+allImages.forEach((img, index) => {
+  if (!img.closest('.home-logo')) {
+    imageArray.push(img);
+    img.addEventListener('click', () => {
+      currentIndex = imageArray.indexOf(img);
+      openViewer();
+    });
+  }
 });
 
-viewer.addEventListener('click', () => {
-  viewer.style.display = 'none';
+function openViewer() {
+  viewer.style.display = 'flex';
+  setTimeout(() => viewer.classList.add('show'), 10);
+  viewerImg.src = imageArray[currentIndex].src;
+}
+
+function closeViewer() {
+  viewer.classList.remove('show');
+  setTimeout(() => viewer.style.display = 'none', 200);
+}
+
+function showNext() {
+  currentIndex = (currentIndex + 1) % imageArray.length;
+  viewerImg.src = imageArray[currentIndex].src;
+}
+
+function showPrev() {
+  currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
+  viewerImg.src = imageArray[currentIndex].src;
+}
+
+/* 点击关闭 */
+viewer.addEventListener('click', (e) => {
+  if (e.target === viewer) closeViewer();
+});
+
+next.onclick = showNext;
+prev.onclick = showPrev;
+
+/* 键盘支持 */
+document.addEventListener('keydown', (e) => {
+  if (viewer.style.display === 'flex') {
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'Escape') closeViewer();
+  }
 });
 </script>
 
 </body>
-
 </html>
