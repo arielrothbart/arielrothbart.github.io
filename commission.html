@@ -194,11 +194,11 @@ function closeViewer() {
   viewer.style.display = 'none';
 }
 
-/* ⭐单图层滑动（无重影） */
+/* ⭐最终稳定动画（无闪 / 无回弹） */
 function change(direction) {
   const offset = 160;
 
-  // 先滑走当前图
+  // 当前图滑走
   viewerImg.style.transform =
     direction === 'next'
       ? `translateX(-${offset}px)`
@@ -213,7 +213,9 @@ function change(direction) {
         ? (currentIndex + 1) % list.length
         : (currentIndex - 1 + list.length) % list.length;
 
-    // 新图从反方向出现（但此时不可见）
+    // ⭐关键：先关闭动画，防止“闪回”
+    viewerImg.style.transition = 'none';
+
     viewerImg.src = list[currentIndex].src;
 
     viewerImg.style.transform =
@@ -221,10 +223,14 @@ function change(direction) {
         ? `translateX(${offset}px)`
         : `translateX(-${offset}px)`;
 
+    viewerImg.style.opacity = 0;
+
     // 强制刷新
     viewerImg.offsetHeight;
 
-    // 再滑回中间
+    // ⭐重新打开动画，只执行一次滑入
+    viewerImg.style.transition = 'transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.6s ease';
+
     viewerImg.style.transform = 'translateX(0)';
     viewerImg.style.opacity = 1;
 
