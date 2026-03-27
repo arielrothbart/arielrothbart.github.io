@@ -132,6 +132,18 @@ h1 {
   .gallery { grid-template-columns: 1fr; }
   .price { grid-template-columns: 1fr; }
 }
+  #viewer-img,
+#viewer-img-next {
+  position: absolute;
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.7s ease;
+}
+
+#viewer-img-next {
+  opacity: 0;
+}
 </style>
 </head>
 
@@ -173,7 +185,10 @@ h1 {
 <!-- viewer -->
 <div class="viewer" id="viewer">
   <span class="arrow left" id="prev">&#10094;</span>
+
   <img id="viewer-img">
+  <img id="viewer-img-next">
+
   <span class="arrow right" id="next">&#10095;</span>
 </div>
 
@@ -234,7 +249,143 @@ function closeViewer() {
 }
 
 /* ⭐改良滑动（远滑 + 停顿 + 慢进） */
+<script>
+const allImages = document.querySelectorAll('img');
+const viewer = document.getElementById('viewer');
+const viewerImg = document.getElementById('viewer-img');
+const nextImg = document.getElementById('viewer-img-next');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+
+let currentIndex = 0;
+let imageArray = [];
+let scrollCooldown = false;
+
+/* 防右键 */
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+/* 禁止拖拽 */
+document.querySelectorAll('img').forEach(img => {
+  img.setAttribute('draggable', false);
+});
+
+/* 收集图片 */
+allImages.forEach(img => {
+  if (!img.closest('.home-logo')) {
+    imageArray.push(img);
+    img.addEventListener('click', () => {
+      currentIndex = imageArray.indexOf(img);
+      openViewer();
+    });
+  }
+});
+
+/* 打开 */
+function openViewer() {
+  viewer.style.display = 'flex';
+  viewerImg.style.opacity = 0;
+
+  setTimeout(() => {
+    viewer.classList.add('show');
+    viewerImg.src = imageArray[currentIndex].src;
+
+    setTimeout(() => {
+      viewerImg.style.opacity = 1;
+    }, 100);
+
+  }, 10);
+}
+
+/* 关闭 */
+function closeViewer() {
+  viewer.classList.remove('show');
+  setTimeout(() => viewer.style.display = 'none', 200);
+}
+
+/* ⭐真正的交错滑动动画 */
 function animateChange(direction) {
+
+  const offset = 160;
+
+  // 下一张准备
+  nextImg.src = imageArray[currentIndex].src;
+
+  nextImg.style.transform =
+    direction === 'next'
+      ? `translateX(${offset}px)`
+      : `translateX(-${offset}px)`;
+
+  nextImg.style.opacity = 0;
+
+  nextImg.offsetHeight;
+
+  // 当前图滑走
+  viewerImg.style.transform =
+    direction === 'next'
+      ? `translateX(-${offset}px)`
+      : `translateX(${offset}px)`;
+
+  viewerImg.style.opacity = 0;
+
+  // 下一张进入
+  nextImg.style.transform = 'translateX(0)';
+  nextImg.style.opacity = 1;
+
+  // 交换
+  setTimeout(() => {
+    viewerImg.src = nextImg.src;
+    viewerImg.style.transform = 'translateX(0)';
+    viewerImg.style.opacity = 1;
+    nextImg.style.opacity = 0;
+  }, 700);
+}
+
+/* 下一张 */
+function showNext() {
+  currentIndex = (currentIndex + 1) % imageArray.length;
+  animateChange('next');
+}
+
+/* 上一张 */
+function showPrev() {
+  currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
+  animateChange('prev');
+}
+
+/* 点击关闭 */
+viewer.addEventListener('click', (e) => {
+  if (e.target === viewer) closeViewer();
+});
+
+next.onclick = showNext;
+prev.onclick = showPrev;
+
+/* 键盘 */
+document.addEventListener('keydown', (e) => {
+  if (viewer.style.display === 'flex') {
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'Escape') closeViewer();
+  }
+});
+
+/* 滚轮 */
+viewer.addEventListener('wheel', (e) => {
+  if (viewer.style.display !== 'flex') return;
+
+  e.preventDefault();
+
+  if (scrollCooldown) return;
+  scrollCooldown = true;
+
+  if (e.deltaY > 0) showNext();
+  else showPrev();
+
+  setTimeout(() => {
+    scrollCooldown = false;
+  }, 700);
+}, { passive: false });
+</script>
 
   // 第一段：当前图滑走（更远）
   viewerImg.style.transform =
