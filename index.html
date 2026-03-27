@@ -15,7 +15,6 @@
       font-family: 'Inter', sans-serif;
     }
 
-    /* 主视觉区域 */
     .hero {
       position: relative;
       display: flex;
@@ -30,7 +29,6 @@
       object-fit: contain;
     }
 
-    /* 右上标题 */
     .title {
       position: absolute;
       top: 80px;
@@ -53,7 +51,6 @@
       opacity: 0.7;
     }
 
-    /* 右侧导航 */
     .nav {
       position: absolute;
       top: 220px;
@@ -75,18 +72,15 @@
       opacity: 0.5;
     }
 
-    /* 左下角 logo */
+    /* 👇 logo 改到这里（和导航一组） */
     .logo {
-      position: absolute;
-      bottom: 10%;
-      left: 8%;
+      margin-top: 20px;
     }
 
-    .logo img {
-      width: 40px;
-      opacity: 0.5;
-      mix-blend-mode: screen;
-      transition: 0.3s;
+  .logo img {
+  width: 24px;
+  opacity: 0.4;
+ transition: 0.3s;
     }
 
     .logo img:hover {
@@ -94,7 +88,6 @@
       transform: scale(1.1);
     }
 
-    /* 淡入动画 */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -115,25 +108,26 @@
 
     <img src="1.gif">
 
-    <!-- 标题 -->
     <div class="title">
       <h1>Ariel RothbART</h1>
       <p>Illustration</p>
     </div>
 
-    <!-- 右侧目录 -->
     <div class="nav">
       <a href="#">About</a>
       <a href="#">Archive</a>
       <a href="#">Character</a>
       <a href="#">Story</a>
       <a href="#">Comics</a>
-    </div>
 
-    <!-- logo -->
-    <a href="index.html" class="logo">
-      <img src="logo.png">
-    </a>
+      <!-- 👇 logo 放这里 -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo.png">
+        </a>
+      </div>
+
+    </div>
 
   </div>
 
