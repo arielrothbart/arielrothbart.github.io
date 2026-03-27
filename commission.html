@@ -17,20 +17,17 @@ img {
   -webkit-user-drag: none;
 }
 
-/* 容器 */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 60px 30px;
 }
 
-/* 标题 */
 h1 {
   letter-spacing: 4px;
   margin-bottom: 40px;
 }
 
-/* 分类 */
 .section-title {
   margin: 60px 0 20px;
   opacity: 0.5;
@@ -38,7 +35,6 @@ h1 {
   letter-spacing: 2px;
 }
 
-/* 画廊 */
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -69,17 +65,17 @@ h1 {
   z-index: 999;
 }
 
-.viewer img {
+#viewer-img,
+#viewer-img-next {
+  position: absolute;
   max-width: 90%;
   max-height: 90%;
-  opacity: 0;
-  position: relative;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.6s ease;
+  transition: transform 0.7s cubic-bezier(0.22,1,0.36,1),
+              opacity 0.7s ease;
 }
 
-.viewer.show img {
-  opacity: 1;
+#viewer-img-next {
+  opacity: 0;
 }
 
 /* 箭头 */
@@ -90,6 +86,7 @@ h1 {
   color: white;
   cursor: pointer;
   padding: 20px;
+  z-index: 1000;
 }
 
 .left { left: 20px; }
@@ -108,41 +105,21 @@ h1 {
   cursor: pointer;
 }
 
-/* 悬浮logo */
+/* logo */
 .home-logo {
   position: fixed;
   bottom: 40px;
   right: 40px;
-  z-index: 1000;
 }
 
 .home-logo img {
   width: 42px;
   opacity: 0.7;
-  transition: 0.3s;
 }
 
-.home-logo img:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-/* 手机 */
 @media (max-width: 768px) {
   .gallery { grid-template-columns: 1fr; }
   .price { grid-template-columns: 1fr; }
-}
-  #viewer-img,
-#viewer-img-next {
-  position: absolute;
-  max-width: 90%;
-  max-height: 90%;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.7s ease;
-}
-
-#viewer-img-next {
-  opacity: 0;
 }
 </style>
 </head>
@@ -182,13 +159,10 @@ h1 {
 
 </div>
 
-<!-- viewer -->
 <div class="viewer" id="viewer">
   <span class="arrow left" id="prev">&#10094;</span>
-
   <img id="viewer-img">
   <img id="viewer-img-next">
-
   <span class="arrow right" id="next">&#10095;</span>
 </div>
 
@@ -197,118 +171,46 @@ h1 {
 </a>
 
 <script>
-const allImages = document.querySelectorAll('img');
-const viewer = document.getElementById('viewer');
-const viewerImg = document.getElementById('viewer-img');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
-
-let currentIndex = 0;
-let imageArray = [];
-let scrollCooldown = false;
-
-/* 防右键 */
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-/* 禁止拖拽 */
-document.querySelectorAll('img').forEach(img => {
-  img.setAttribute('draggable', false);
-});
-
-/* 收集图片 */
-allImages.forEach(img => {
-  if (!img.closest('.home-logo')) {
-    imageArray.push(img);
-    img.addEventListener('click', () => {
-      currentIndex = imageArray.indexOf(img);
-      openViewer();
-    });
-  }
-});
-
-/* 打开 */
-function openViewer() {
-  viewer.style.display = 'flex';
-  viewerImg.style.opacity = 0;
-
-  setTimeout(() => {
-    viewer.classList.add('show');
-    viewerImg.src = imageArray[currentIndex].src;
-
-    setTimeout(() => {
-      viewerImg.style.opacity = 1;
-    }, 100);
-
-  }, 10);
-}
-
-/* 关闭 */
-function closeViewer() {
-  viewer.classList.remove('show');
-  setTimeout(() => viewer.style.display = 'none', 200);
-}
-
-/* ⭐改良滑动（远滑 + 停顿 + 慢进） */
-<script>
-const allImages = document.querySelectorAll('img');
+const images = document.querySelectorAll('img');
 const viewer = document.getElementById('viewer');
 const viewerImg = document.getElementById('viewer-img');
 const nextImg = document.getElementById('viewer-img-next');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
 
 let currentIndex = 0;
-let imageArray = [];
-let scrollCooldown = false;
-
-/* 防右键 */
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-/* 禁止拖拽 */
-document.querySelectorAll('img').forEach(img => {
-  img.setAttribute('draggable', false);
-});
+let list = [];
+let scrollLock = false;
 
 /* 收集图片 */
-allImages.forEach(img => {
+images.forEach(img => {
   if (!img.closest('.home-logo')) {
-    imageArray.push(img);
-    img.addEventListener('click', () => {
-      currentIndex = imageArray.indexOf(img);
+    list.push(img);
+    img.onclick = () => {
+      currentIndex = list.indexOf(img);
       openViewer();
-    });
+    };
   }
 });
 
-/* 打开 */
 function openViewer() {
   viewer.style.display = 'flex';
-  viewerImg.style.opacity = 0;
-
-  setTimeout(() => {
-    viewer.classList.add('show');
-    viewerImg.src = imageArray[currentIndex].src;
-
-    setTimeout(() => {
-      viewerImg.style.opacity = 1;
-    }, 100);
-
-  }, 10);
+  viewerImg.src = list[currentIndex].src;
+  viewerImg.style.opacity = 1;
 }
 
-/* 关闭 */
 function closeViewer() {
-  viewer.classList.remove('show');
-  setTimeout(() => viewer.style.display = 'none', 200);
+  viewer.style.display = 'none';
 }
 
-/* ⭐真正的交错滑动动画 */
-function animateChange(direction) {
-
+/* ⭐交错动画 */
+function change(direction) {
   const offset = 160;
 
-  // 下一张准备
-  nextImg.src = imageArray[currentIndex].src;
+  currentIndex =
+    direction === 'next'
+      ? (currentIndex + 1) % list.length
+      : (currentIndex - 1 + list.length) % list.length;
+
+  nextImg.src = list[currentIndex].src;
 
   nextImg.style.transform =
     direction === 'next'
@@ -319,7 +221,6 @@ function animateChange(direction) {
 
   nextImg.offsetHeight;
 
-  // 当前图滑走
   viewerImg.style.transform =
     direction === 'next'
       ? `translateX(-${offset}px)`
@@ -327,11 +228,9 @@ function animateChange(direction) {
 
   viewerImg.style.opacity = 0;
 
-  // 下一张进入
   nextImg.style.transform = 'translateX(0)';
   nextImg.style.opacity = 1;
 
-  // 交换
   setTimeout(() => {
     viewerImg.src = nextImg.src;
     viewerImg.style.transform = 'translateX(0)';
@@ -340,127 +239,35 @@ function animateChange(direction) {
   }, 700);
 }
 
-/* 下一张 */
-function showNext() {
-  currentIndex = (currentIndex + 1) % imageArray.length;
-  animateChange('next');
-}
+/* 控制 */
+document.getElementById('next').onclick = () => change('next');
+document.getElementById('prev').onclick = () => change('prev');
 
-/* 上一张 */
-function showPrev() {
-  currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
-  animateChange('prev');
-}
-
-/* 点击关闭 */
-viewer.addEventListener('click', (e) => {
+viewer.onclick = (e) => {
   if (e.target === viewer) closeViewer();
-});
+};
 
-next.onclick = showNext;
-prev.onclick = showPrev;
-
-/* 键盘 */
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
   if (viewer.style.display === 'flex') {
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') change('next');
+    if (e.key === 'ArrowLeft') change('prev');
     if (e.key === 'Escape') closeViewer();
   }
 });
 
 /* 滚轮 */
-viewer.addEventListener('wheel', (e) => {
+viewer.addEventListener('wheel', e => {
   if (viewer.style.display !== 'flex') return;
-
   e.preventDefault();
 
-  if (scrollCooldown) return;
-  scrollCooldown = true;
+  if (scrollLock) return;
+  scrollLock = true;
 
-  if (e.deltaY > 0) showNext();
-  else showPrev();
+  if (e.deltaY > 0) change('next');
+  else change('prev');
 
-  setTimeout(() => {
-    scrollCooldown = false;
-  }, 700);
-}, { passive: false });
-</script>
-
-  // 第一段：当前图滑走（更远）
-  viewerImg.style.transform =
-    direction === 'next'
-      ? 'translateX(140px)'
-      : 'translateX(-140px)';
-
-  viewerImg.style.opacity = 0;
-
-  setTimeout(() => {
-
-    // 切换图片
-    viewerImg.src = imageArray[currentIndex].src;
-
-    // 从远处另一侧出现
-    viewerImg.style.transform =
-      direction === 'next'
-        ? 'translateX(-140px)'
-        : 'translateX(140px)';
-
-    viewerImg.style.opacity = 0;
-
-    setTimeout(() => {
-      viewerImg.style.transform = 'translateX(0)';
-      viewerImg.style.opacity = 1;
-    }, 120);
-
-  }, 350);
-}
-
-/* 下一张 */
-function showNext() {
-  currentIndex = (currentIndex + 1) % imageArray.length;
-  animateChange('next');
-}
-
-/* 上一张 */
-function showPrev() {
-  currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
-  animateChange('prev');
-}
-
-/* 点击关闭 */
-viewer.addEventListener('click', (e) => {
-  if (e.target === viewer) closeViewer();
-});
-
-next.onclick = showNext;
-prev.onclick = showPrev;
-
-/* 键盘 */
-document.addEventListener('keydown', (e) => {
-  if (viewer.style.display === 'flex') {
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-    if (e.key === 'Escape') closeViewer();
-  }
-});
-
-/* 滚轮切换 */
-viewer.addEventListener('wheel', (e) => {
-  if (viewer.style.display !== 'flex') return;
-
-  e.preventDefault();
-
-  if (scrollCooldown) return;
-  scrollCooldown = true;
-
-  if (e.deltaY > 0) showNext();
-  else showPrev();
-
-  setTimeout(() => {
-    scrollCooldown = false;
-  }, 700);
-}, { passive: false });
+  setTimeout(() => scrollLock = false, 600);
+}, { passive:false });
 
 </script>
 
