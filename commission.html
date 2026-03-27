@@ -108,7 +108,7 @@ h1 {
 }
 
 .home-logo img {
-  width: 80px; /* ⭐放大 */
+  width: 80px;
   opacity: 0.8;
   transition: 0.3s;
 }
@@ -118,18 +118,53 @@ h1 {
   transform: scale(1.08);
 }
 
+/* 📱 手机 */
 @media (max-width: 768px) {
   .home-logo {
-  top: 85px;      /* ⭐往上收一点，避开标题 */
-  right: 20px;    /* ⭐往右贴边一点（你说的“右上角移动”） */
-}
+    top: 85px;
+    right: 16px;
+  }
 
-.home-logo img {
-  width: 50px;    /* ⭐缩小 */
-}
+  .home-logo img {
+    width: 48px;
+  }
+
   .gallery { grid-template-columns: 1fr; }
   .price { grid-template-columns: 1fr; }
 }
+
+/* ⭐约稿区块 */
+.commission-block {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.commission-main a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 3px;
+  opacity: 0.95;
+  transition: 0.3s;
+}
+
+.commission-main a:hover {
+  opacity: 1;
+  letter-spacing: 4px;
+}
+
+.commission-sub {
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.commission-sub:hover {
+  opacity: 1;
+}
+
 </style>
 </head>
 
@@ -164,6 +199,22 @@ h1 {
 <div class="price">
   <img src="price-cn.png">
   <img src="price-en.png">
+</div>
+
+<div class="commission-block">
+
+  <div class="commission-main">
+    <a href="https://www.mihuashi.com/profiles/490991" target="_blank">
+      Commission Portal via Mihuashi
+    </a>
+  </div>
+
+  <div class="commission-sub">
+    <a href="mailto:arielrothbart@gmail.com" id="email-link">
+      E-mail: arielrothbart@gmail.com
+    </a>
+  </div>
+
 </div>
 
 </div>
@@ -209,11 +260,10 @@ function closeViewer() {
   viewer.style.display = 'none';
 }
 
-/* ⭐最终稳定动画（无闪 / 无回弹） */
+/* 切换动画 */
 function change(direction) {
   const offset = 160;
 
-  // 当前图滑走
   viewerImg.style.transform =
     direction === 'next'
       ? `translateX(-${offset}px)`
@@ -228,7 +278,6 @@ function change(direction) {
         ? (currentIndex + 1) % list.length
         : (currentIndex - 1 + list.length) % list.length;
 
-    // ⭐关键：先关闭动画，防止“闪回”
     viewerImg.style.transition = 'none';
 
     viewerImg.src = list[currentIndex].src;
@@ -238,12 +287,8 @@ function change(direction) {
         ? `translateX(${offset}px)`
         : `translateX(-${offset}px)`;
 
-    viewerImg.style.opacity = 0;
-
-    // 强制刷新
     viewerImg.offsetHeight;
 
-    // ⭐重新打开动画，只执行一次滑入
     viewerImg.style.transition = 'transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.6s ease';
 
     viewerImg.style.transform = 'translateX(0)';
@@ -252,7 +297,6 @@ function change(direction) {
   }, 300);
 }
 
-/* 控制 */
 document.getElementById('next').onclick = () => change('next');
 document.getElementById('prev').onclick = () => change('prev');
 
@@ -282,6 +326,16 @@ viewer.addEventListener('wheel', e => {
   setTimeout(() => scrollLock = false, 600);
 }, { passive:false });
 
+/* ⭐点击复制邮箱（同时保留 mailto） */
+const email = document.getElementById('email-link');
+
+email.addEventListener('click', () => {
+  const text = 'arielrothbart@gmail.com';
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text);
+  }
+});
 </script>
 
 </body>
