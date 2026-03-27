@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Captain Ariel</title>
+
+  <!-- 字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -9,71 +14,95 @@
       color: white;
       font-family: serif;
     }
-    .hero {
-      height: 100vh;
-      background: url('hero.png') center/cover no-repeat;
+
+    /* 动画 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .section {
-      padding: 60px;
+
+    .hero {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .hero img {
+      width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .title {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 28px;
+      letter-spacing: 6px;
       text-align: center;
+      font-family: 'Playfair Display', serif;
+      animation: fadeIn 2s ease;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 40px;
+      color: white;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav a:hover {
+      opacity: 0.6;
     }
   </style>
 </head>
 
 <body>
 
-<div class="hero" style="position:relative;">
+  <!-- 主视觉 -->
+  <div class="hero">
 
-<div class="hero" style="
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-">
+    <img src="1.gif">
 
-  <img src="1.gif" style="
-    width:100%;
-    max-height:100%;
-    object-fit:contain;
-  ">
+    <div class="title">
+      Ariel RothbART
+    </div>
 
-  <!-- 标题 -->
-  <div style="
-    position:absolute;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%);
-    color:white;
-    font-size:28px;
-    letter-spacing:6px;
-    text-align:center;
-  ">
-    Ariel RothbART
-  </div>
-<div style="@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-  display:flex;
-  justify-content:space-between;
-  padding:40px;
-  color:white;
-  font-size:14px;
-  letter-spacing:2px;
-">
-
-  <!-- 左侧 -->
-  <div>
-    About<br>
-    Archive
   </div>
 
-  <!-- 右侧 -->
-  <div style="text-align:right;">
-    Character<br>
-    Story<br>
-    Comics
+  <!-- 左右导航 -->
+  <div class="nav">
+
+    <div>
+      <a href="#">About</a><br>
+      <a href="#">Archive</a>
+    </div>
+
+    <div style="text-align:right;">
+      <a href="#">Character</a><br>
+      <a href="#">Story</a><br>
+      <a href="#">Comics</a>
+    </div>
+
   </div>
 
-</div>
+</body>
+
+</html>
