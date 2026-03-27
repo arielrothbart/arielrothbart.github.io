@@ -25,9 +25,28 @@ img {
 
 h1 {
   letter-spacing: 4px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
+/* ⭐标题下入口 */
+.quick-contact {
+  margin-bottom: 30px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+.quick-contact a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.quick-contact a:hover {
+  opacity: 1;
+}
+
+/* 原有内容 */
 .section-title {
   margin: 60px 0 20px;
   opacity: 0.5;
@@ -94,11 +113,6 @@ h1 {
   gap: 50px;
 }
 
-.price img {
-  width: 100%;
-  cursor: pointer;
-}
-
 /* logo */
 .home-logo {
   position: fixed;
@@ -118,6 +132,21 @@ h1 {
   transform: scale(1.08);
 }
 
+/* ⭐回到顶部 */
+.back-top {
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+  font-size: 18px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.back-top:hover {
+  opacity: 1;
+}
+
 /* 📱 手机 */
 @media (max-width: 768px) {
   .home-logo {
@@ -129,11 +158,15 @@ h1 {
     width: 48px;
   }
 
+  .back-top {
+    right: 16px;
+  }
+
   .gallery { grid-template-columns: 1fr; }
   .price { grid-template-columns: 1fr; }
 }
 
-/* ⭐约稿区块 */
+/* ⭐底部入口 */
 .commission-block {
   margin-top: 80px;
   text-align: center;
@@ -158,11 +191,6 @@ h1 {
   font-size: 13px;
   letter-spacing: 2px;
   opacity: 0.7;
-  cursor: pointer;
-}
-
-.commission-sub:hover {
-  opacity: 1;
 }
 
 </style>
@@ -173,6 +201,13 @@ h1 {
 <div class="container">
 
 <h1>Commission</h1>
+
+<!-- ⭐新加：顶部入口 -->
+<div class="quick-contact">
+  <a href="https://www.mihuashi.com/profiles/490991" target="_blank">Commission Portal</a>
+  <span> / </span>
+  <a href="mailto:arielrothbart@gmail.com">E-mail</a>
+</div>
 
 <div class="section-title">Half Body</div>
 <div class="gallery">
@@ -202,7 +237,6 @@ h1 {
 </div>
 
 <div class="commission-block">
-
   <div class="commission-main">
     <a href="https://www.mihuashi.com/profiles/490991" target="_blank">
       Commission Portal via Mihuashi
@@ -210,11 +244,10 @@ h1 {
   </div>
 
   <div class="commission-sub">
-    <a href="mailto:arielrothbart@gmail.com" id="email-link">
+    <a href="mailto:arielrothbart@gmail.com">
       E-mail: arielrothbart@gmail.com
     </a>
   </div>
-
 </div>
 
 </div>
@@ -229,6 +262,9 @@ h1 {
   <img src="logo.png">
 </a>
 
+<!-- ⭐回到顶部 -->
+<div class="back-top" id="backTop">↑</div>
+
 <script>
 const images = document.querySelectorAll('img');
 const viewer = document.getElementById('viewer');
@@ -238,7 +274,6 @@ let currentIndex = 0;
 let list = [];
 let scrollLock = false;
 
-/* 收集图片 */
 images.forEach(img => {
   if (!img.closest('.home-logo')) {
     list.push(img);
@@ -260,7 +295,6 @@ function closeViewer() {
   viewer.style.display = 'none';
 }
 
-/* 切换动画 */
 function change(direction) {
   const offset = 160;
 
@@ -326,16 +360,13 @@ viewer.addEventListener('wheel', e => {
   setTimeout(() => scrollLock = false, 600);
 }, { passive:false });
 
-/* ⭐点击复制邮箱（同时保留 mailto） */
-const email = document.getElementById('email-link');
-
-email.addEventListener('click', () => {
-  const text = 'arielrothbart@gmail.com';
-
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text);
-  }
-});
+/* ⭐回到顶部 */
+document.getElementById('backTop').onclick = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
 </script>
 
 </body>
