@@ -105,12 +105,20 @@ h1 {
 .left { left: 20px; }
 .right { right: 20px; }
 
-/* 价目表 */
+/* ⭐价目表（修复尺寸） */
 .price {
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
+  max-width: 900px;          /* ⭐限制整体宽度 */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
+}
+
+.price img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* logo */
