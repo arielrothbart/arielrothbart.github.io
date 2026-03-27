@@ -75,18 +75,20 @@
       opacity: 0.5;
     }
 
-    /* 左下角 logo */
+    /* 左下角 logo（现在会贴画面） */
     .logo {
-  position: fixed;
-  bottom: 80px;
-  left: 80px;
-}
-.logo img {
-  width: 40px;
-  opacity: 0.5;
-  mix-blend-mode: screen;
-  transition: 0.3s;
-}
+      position: absolute;
+      bottom: 80px;
+      left: 80px;
+    }
+
+    .logo img {
+      width: 40px;
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      transition: 0.3s;
+    }
+
     .logo img:hover {
       opacity: 1;
       transform: scale(1.1);
@@ -128,12 +130,12 @@
       <a href="#">Comics</a>
     </div>
 
-  </div>
+    <!-- 👇 关键：logo 放进 hero 里 -->
+    <a href="index.html" class="logo">
+      <img src="logo.png">
+    </a>
 
-  <!-- 左下角 Home 图标 -->
-  <a href="index.html" class="logo">
-    <img src="logo.png">
-  </a>
+  </div>
 
 </body>
 
