@@ -12,7 +12,10 @@ body {
   color: white;
   font-family: sans-serif;
 }
-
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
 /* 容器 */
 .container {
   max-width: 1200px;
@@ -191,7 +194,12 @@ const next = document.getElementById('next');
 
 let currentIndex = 0;
 let imageArray = [];
+document.addEventListener('contextmenu', e => e.preventDefault());
 
+document.querySelectorAll('img').forEach(img => {
+  img.setAttribute('draggable', false);
+});
+  
 /* 收集所有可点击图片 */
 allImages.forEach((img, index) => {
   if (!img.closest('.home-logo')) {
