@@ -102,13 +102,20 @@ h1 {
 /* logo */
 .home-logo {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  top: 40px;
+  right: 60px;
+  z-index: 1000;
 }
 
 .home-logo img {
-  width: 42px;
-  opacity: 0.7;
+  width: 80px; /* ⭐放大 */
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.home-logo img:hover {
+  opacity: 1;
+  transform: scale(1.08);
 }
 
 @media (max-width: 768px) {
