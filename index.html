@@ -98,7 +98,56 @@
         transform: translateY(0);
       }
     }
+@media (max-width: 768px) {
 
+  /* 主区域改为纵向 */
+  .hero {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    padding-top: 60px;
+  }
+
+  /* 视频大小 */
+  .hero video {
+    width: 100%;
+    max-height: 60vh;
+  }
+
+  /* 标题移到顶部居中 */
+  .title {
+    position: static;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .title h1 {
+    font-size: 22px;
+  }
+
+  .title p {
+    font-size: 12px;
+  }
+
+  /* 导航移到底部 */
+  .nav {
+    position: static;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .nav a {
+    display: inline-block;
+    margin: 8px 10px;
+  }
+
+  /* logo 也调整 */
+  .logo {
+    position: static;
+    margin-top: 20px;
+  }
+
+}
   </style>
 </head>
 
