@@ -16,6 +16,7 @@ img {
   user-select: none;
   -webkit-user-drag: none;
 }
+
 /* 容器 */
 .container {
   max-width: 1200px;
@@ -54,7 +55,7 @@ h1 {
   transform: scale(1.03);
 }
 
-/* viewer（重点） */
+/* viewer */
 .viewer {
   position: fixed;
   top: 0;
@@ -72,21 +73,22 @@ h1 {
   max-width: 90%;
   max-height: 90%;
   opacity: 0;
-  transition: 0.3s;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.6s ease;
 }
 
 .viewer.show img {
   opacity: 1;
 }
 
-/* 左右按钮 */
+/* 箭头 */
 .arrow {
   position: absolute;
   top: 50%;
   font-size: 30px;
   color: white;
   cursor: pointer;
-  user-select: none;
   padding: 20px;
 }
 
@@ -130,24 +132,6 @@ h1 {
   .gallery { grid-template-columns: 1fr; }
   .price { grid-template-columns: 1fr; }
 }
-.viewer img {
-  max-width: 90%;
-  max-height: 90%;
-  position: relative;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-/* 向左滑入 */
-.slide-in-right {
-  transform: translateX(60px);
-  opacity: 0;
-}
-
-/* 向右滑入 */
-.slide-in-left {
-  transform: translateX(-60px);
-  opacity: 0;
-}
 </style>
 </head>
 
@@ -157,7 +141,6 @@ h1 {
 
 <h1>Commission</h1>
 
-<!-- 半身 -->
 <div class="section-title">Half Body</div>
 <div class="gallery">
   <img src="half1.png">
@@ -165,7 +148,6 @@ h1 {
   <img src="half3.png">
 </div>
 
-<!-- 头像 -->
 <div class="section-title">Portrait</div>
 <div class="gallery">
   <img src="head1.png">
@@ -173,7 +155,6 @@ h1 {
   <img src="head3.png">
 </div>
 
-<!-- 插图（放最后） -->
 <div class="section-title">Illustration / Comics</div>
 <div class="gallery">
   <img src="ill1.png">
@@ -182,7 +163,6 @@ h1 {
   <img src="ill3.png">
 </div>
 
-<!-- 价目表 -->
 <div class="price">
   <img src="price-cn.png">
   <img src="price-en.png">
@@ -197,7 +177,6 @@ h1 {
   <span class="arrow right" id="next">&#10095;</span>
 </div>
 
-<!-- 悬浮logo -->
 <a href="index.html" class="home-logo">
   <img src="logo.png">
 </a>
@@ -211,6 +190,7 @@ const next = document.getElementById('next');
 
 let currentIndex = 0;
 let imageArray = [];
+let scrollCooldown = false;
 
 /* 防右键 */
 document.addEventListener('contextmenu', e => e.preventDefault());
@@ -242,7 +222,7 @@ function openViewer() {
 
     setTimeout(() => {
       viewerImg.style.opacity = 1;
-    }, 50);
+    }, 100);
 
   }, 10);
 }
@@ -253,14 +233,14 @@ function closeViewer() {
   setTimeout(() => viewer.style.display = 'none', 200);
 }
 
-/* ⭐核心：滑动动画（更克制版） */
+/* ⭐改良滑动（远滑 + 停顿 + 慢进） */
 function animateChange(direction) {
 
-  // 先往反方向轻微移动 + 透明
+  // 第一段：当前图滑走（更远）
   viewerImg.style.transform =
     direction === 'next'
-      ? 'translateX(30px)'
-      : 'translateX(-30px)';
+      ? 'translateX(140px)'
+      : 'translateX(-140px)';
 
   viewerImg.style.opacity = 0;
 
@@ -269,19 +249,20 @@ function animateChange(direction) {
     // 切换图片
     viewerImg.src = imageArray[currentIndex].src;
 
-    // 从另一侧进入
+    // 从远处另一侧出现
     viewerImg.style.transform =
       direction === 'next'
-        ? 'translateX(-30px)'
-        : 'translateX(30px)';
+        ? 'translateX(-140px)'
+        : 'translateX(140px)';
+
+    viewerImg.style.opacity = 0;
 
     setTimeout(() => {
-      // 回到中间
       viewerImg.style.transform = 'translateX(0)';
       viewerImg.style.opacity = 1;
-    }, 50);
+    }, 120);
 
-  }, 180);
+  }, 350);
 }
 
 /* 下一张 */
@@ -312,116 +293,24 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeViewer();
   }
 });
-</script><script>
-const allImages = document.querySelectorAll('img');
-const viewer = document.getElementById('viewer');
-const viewerImg = document.getElementById('viewer-img');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
 
-let currentIndex = 0;
-let imageArray = [];
+/* 滚轮切换 */
+viewer.addEventListener('wheel', (e) => {
+  if (viewer.style.display !== 'flex') return;
 
-/* 防右键 */
-document.addEventListener('contextmenu', e => e.preventDefault());
+  e.preventDefault();
 
-/* 禁止拖拽 */
-document.querySelectorAll('img').forEach(img => {
-  img.setAttribute('draggable', false);
-});
+  if (scrollCooldown) return;
+  scrollCooldown = true;
 
-/* 收集图片 */
-allImages.forEach(img => {
-  if (!img.closest('.home-logo')) {
-    imageArray.push(img);
-    img.addEventListener('click', () => {
-      currentIndex = imageArray.indexOf(img);
-      openViewer();
-    });
-  }
-});
-
-/* 打开 */
-function openViewer() {
-  viewer.style.display = 'flex';
-  viewerImg.style.opacity = 0;
+  if (e.deltaY > 0) showNext();
+  else showPrev();
 
   setTimeout(() => {
-    viewer.classList.add('show');
-    viewerImg.src = imageArray[currentIndex].src;
+    scrollCooldown = false;
+  }, 700);
+}, { passive: false });
 
-    setTimeout(() => {
-      viewerImg.style.opacity = 1;
-    }, 50);
-
-  }, 10);
-}
-
-/* 关闭 */
-function closeViewer() {
-  viewer.classList.remove('show');
-  setTimeout(() => viewer.style.display = 'none', 200);
-}
-
-/* ⭐核心：滑动动画（更克制版） */
-function animateChange(direction) {
-
-  // 先往反方向轻微移动 + 透明
-  viewerImg.style.transform =
-    direction === 'next'
-      ? 'translateX(30px)'
-      : 'translateX(-30px)';
-
-  viewerImg.style.opacity = 0;
-
-  setTimeout(() => {
-
-    // 切换图片
-    viewerImg.src = imageArray[currentIndex].src;
-
-    // 从另一侧进入
-    viewerImg.style.transform =
-      direction === 'next'
-        ? 'translateX(-30px)'
-        : 'translateX(30px)';
-
-    setTimeout(() => {
-      // 回到中间
-      viewerImg.style.transform = 'translateX(0)';
-      viewerImg.style.opacity = 1;
-    }, 50);
-
-  }, 180);
-}
-
-/* 下一张 */
-function showNext() {
-  currentIndex = (currentIndex + 1) % imageArray.length;
-  animateChange('next');
-}
-
-/* 上一张 */
-function showPrev() {
-  currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
-  animateChange('prev');
-}
-
-/* 点击关闭 */
-viewer.addEventListener('click', (e) => {
-  if (e.target === viewer) closeViewer();
-});
-
-next.onclick = showNext;
-prev.onclick = showPrev;
-
-/* 键盘 */
-document.addEventListener('keydown', (e) => {
-  if (viewer.style.display === 'flex') {
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-    if (e.key === 'Escape') closeViewer();
-  }
-});
 </script>
 
 </body>
