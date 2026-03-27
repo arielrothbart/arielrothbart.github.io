@@ -231,12 +231,16 @@ function change(direction) {
   nextImg.style.transform = 'translateX(0)';
   nextImg.style.opacity = 1;
 
-  setTimeout(() => {
-    viewerImg.src = nextImg.src;
-    viewerImg.style.transform = 'translateX(0)';
-    viewerImg.style.opacity = 1;
-    nextImg.style.opacity = 0;
-  }, 700);
+setTimeout(() => {
+  viewerImg.src = nextImg.src;
+
+  viewerImg.style.transform = 'translateX(0)';
+  viewerImg.style.opacity = 1;
+
+  nextImg.style.opacity = 0;
+  nextImg.style.transform = 'translateX(0)';
+  nextImg.src = '';
+}, 700);
 }
 
 /* 控制 */
