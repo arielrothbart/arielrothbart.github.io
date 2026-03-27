@@ -53,7 +53,7 @@
       opacity: 0.7;
     }
 
-    /* 右侧导航（蓝框） */
+    /* 右侧导航 */
     .nav {
       position: absolute;
       top: 220px;
@@ -73,6 +73,25 @@
 
     .nav a:hover {
       opacity: 0.5;
+    }
+
+    /* 左下角 logo */
+    .logo {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 10;
+    }
+
+    .logo img {
+      width: 40px;
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+
+    .logo img:hover {
+      opacity: 1;
+      transform: scale(1.1);
     }
 
     /* 淡入动画 */
@@ -112,6 +131,11 @@
     </div>
 
   </div>
+
+  <!-- 左下角 Home 图标 -->
+  <a href="index.html" class="logo">
+    <img src="logo.png">
+  </a>
 
 </body>
 
