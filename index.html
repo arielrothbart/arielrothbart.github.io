@@ -8,6 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300&display=swap" rel="stylesheet">
 
   <style>
+    a {
+  touch-action: manipulation;
+}
     body {
       margin: 0;
       background: black;
@@ -119,17 +122,48 @@
     /* 📱 手机 */
     @media (max-width: 768px) {
 
-      .hero {
-        flex-direction: column;
-        justify-content: flex-start;
-        height: auto;
-        padding-top: 40px;
-      }
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
 
-      video {
-        width: 100%;
-        max-height: 50vh;
-      }
+    /* ⭐关键：让画面往上裁，人物变大 */
+    object-position: center 30%;
+  }
+
+}@media (max-width: 768px) {
+
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+
+    /* ⭐关键：让画面往上裁，人物变大 */
+    object-position: center 30%;
+  }
+
+}@media (max-width: 768px) {
+
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+
+    /* ⭐关键：让画面往上裁，人物变大 */
+    object-position: center 30%;
+  }
+
+}@media (max-width: 768px) {
+
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+
+    /* ⭐关键：让画面往上裁，人物变大 */
+    object-position: center 30%;
+  }
+
 
       .title {
         position: static;
@@ -146,10 +180,15 @@
         margin-top: 10px;
       }
 
-      .nav a {
-        display: inline-block;
-        margin: 6px 10px;
-      }
+     .nav a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+
+  /* ⭐关键修复 */
+  -webkit-tap-highlight-color: transparent;
+}
 
       .logo {
         margin-top: 15px;
