@@ -28,16 +28,16 @@ body {
   object-fit: cover;
 }
 
-/* ⭐ 黑色区域（滑入） */
+/* ⭐ 黑色区域（变薄 + 提前） */
 .content-wrapper {
   background: black;
-  padding-top: 180px;
-  margin-top: -300px;
+  padding-top: 120px;
+  margin-top: -180px;
 
-  transform: translateY(80px);
+  transform: translateY(60px);
   opacity: 0;
 
-  animation: slideUp 1.2s ease forwards;
+  animation: slideUp 1s ease forwards;
 }
 
 @keyframes slideUp {
@@ -51,27 +51,26 @@ body {
 .content {
   max-width: 1000px;
   margin: auto;
-  padding: 80px 40px;
+  padding: 60px 40px;
   position: relative;
 }
 
-/* ⭐ 标题 */
+/* ⭐ 标题（上移） */
 .name {
   font-family: 'Orbitron', sans-serif;
-  font-size: 36px;
+  font-size: 42px;
   letter-spacing: 4px;
-  margin-bottom: 50px;
-  margin-top: 40px;
+  margin-bottom: 40px;
 
   color: #ff3b3b;
 
   text-shadow:
-    0 0 6px rgba(255,60,60,0.6),
-    0 0 12px rgba(255,60,60,0.4),
-    0 0 24px rgba(255,60,60,0.2);
+    0 0 8px rgba(255,60,60,0.8),
+    0 0 16px rgba(255,60,60,0.5),
+    0 0 30px rgba(255,60,60,0.3);
 }
 
-/* ⭐ 档案（扫描效果） */
+/* ⭐ 档案扫描 */
 .archive span {
   display: block;
   opacity: 0;
@@ -79,25 +78,24 @@ body {
 }
 
 .archive.active span {
-  animation: scanFade 0.6s forwards;
+  animation: scanFade 0.5s forwards;
 }
 
 .archive.active span:nth-child(1) { animation-delay: 0.1s; }
 .archive.active span:nth-child(2) { animation-delay: 0.2s; }
 .archive.active span:nth-child(3) { animation-delay: 0.3s; }
-.archive.active span:nth-child(4) { animation-delay: 0.5s; }
-.archive.active span:nth-child(5) { animation-delay: 0.6s; }
+.archive.active span:nth-child(4) { animation-delay: 0.4s; }
 
 .archive {
   font-family: 'Orbitron', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 2px;
   line-height: 1.8;
   opacity: 0.85;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
-/* ⭐ 正文（扫描） */
+/* ⭐ 正文扫描 */
 .text span {
   display: block;
   opacity: 0;
@@ -105,7 +103,7 @@ body {
 }
 
 .text.active span {
-  animation: scanFade 0.6s forwards;
+  animation: scanFade 0.5s forwards;
 }
 
 .text.active span:nth-child(1) { animation-delay: 0.1s; }
@@ -117,10 +115,9 @@ body {
 .text {
   font-size: 15px;
   line-height: 1.9;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
-/* ⭐ 扫描动画 */
 @keyframes scanFade {
   to {
     opacity: 1;
@@ -128,16 +125,16 @@ body {
   }
 }
 
-/* ⭐ 分隔线 */
+/* ⭐ 分割线 */
 .divider {
   height: 1px;
   background: rgba(255,255,255,0.2);
-  margin: 60px 0;
+  margin: 50px 0;
 }
 
 /* ⭐ 图片 */
 .photo {
-  margin: 60px 0;
+  margin: 50px 0;
 }
 
 .photo img {
@@ -149,21 +146,21 @@ body {
   font-size: 14px;
   opacity: 0.8;
   line-height: 1.8;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 /* ⭐ 结尾 */
 .end {
   font-size: 14px;
   opacity: 0.7;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 /* ⭐ 图标 */
 .social {
   display: flex;
   gap: 30px;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 .social img {
@@ -177,16 +174,16 @@ body {
   transform: scale(1.15);
 }
 
-/* ⭐ 右下动图 */
+/* ⭐ 动图（变成“画面元素”） */
 .corner-gif {
   position: absolute;
-  right: 40px;
-  bottom: 40px;
+  right: 120px;
+  bottom: 120px;
 }
 
 .corner-gif img {
-  width: 140px;
-  opacity: 0.85;
+  width: 200px;
+  opacity: 0.9;
 }
 
 /* ⭐ 返回 */
@@ -203,7 +200,23 @@ body {
 /* 📱 手机 */
 @media (max-width: 768px) {
 
-  .name { font-size: 26px; }
+  .content-wrapper {
+    padding-top: 80px;
+    margin-top: -120px;
+  }
+
+  .name {
+    font-size: 28px;
+  }
+
+  .corner-gif {
+    right: 30px;
+    bottom: 60px;
+  }
+
+  .corner-gif img {
+    width: 120px;
+  }
 
   .home-logo {
     right: 20px;
@@ -212,15 +225,6 @@ body {
 
   .home-logo img {
     width: 36px;
-  }
-
-  .corner-gif {
-    right: 20px;
-    bottom: 20px;
-  }
-
-  .corner-gif img {
-    width: 90px;
   }
 }
 
@@ -243,7 +247,6 @@ body {
       <span>Illustrator</span>
       <span>Graphic Novel Artist</span>
       <span>Storyboard Artist</span>
-      <span></span>
       <span>Focused on narrative-driven imagery</span>
     </div>
 
@@ -305,7 +308,6 @@ body {
 
 <script>
 
-/* ⭐ 滚动触发扫描效果 */
 function revealOnScroll() {
   const archive = document.querySelector('.archive');
   const text = document.querySelector('.text');
