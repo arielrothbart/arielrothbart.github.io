@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -15,7 +15,7 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* 头图 */
+/* ⭐ 头图 */
 .hero {
   height: 100vh;
   position: sticky;
@@ -29,18 +29,48 @@ body {
   object-fit: cover;
 }
 
-/* 内容 */
-.content {
-  position: relative;
-  z-index: 2;
+/* ⭐ 外层黑块（铺满） */
+.content-wrapper {
   background: black;
-  padding: 120px 80px;
-  max-width: 800px;
-  margin: auto;
-  margin-top: -120px;
+  margin-top: -220px;
+  padding-top: 120px;
+  animation: rise 1.2s ease;
 }
 
-/* 档案 */
+/* ⭐ 内部文字区域（限制宽度） */
+.content {
+  max-width: 800px;
+  margin: auto;
+  padding: 80px 30px;
+}
+
+/* ⭐ 上滑动画 */
+@keyframes rise {
+  from {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ⭐ 大标题（霓虹） */
+.name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 36px;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+  color: #ff3b3b;
+
+  text-shadow:
+    0 0 6px rgba(255,60,60,0.6),
+    0 0 12px rgba(255,60,60,0.4),
+    0 0 24px rgba(255,60,60,0.2);
+}
+
+/* ⭐ 档案 */
 .archive {
   font-family: 'Orbitron', sans-serif;
   font-size: 12px;
@@ -50,21 +80,21 @@ body {
   margin-bottom: 60px;
 }
 
-/* 正文 */
+/* ⭐ 正文 */
 .text {
   font-size: 15px;
   line-height: 1.9;
   margin-bottom: 60px;
 }
 
-/* 分隔线 */
+/* ⭐ 分隔线 */
 .divider {
   height: 1px;
   background: rgba(255,255,255,0.2);
   margin: 60px 0;
 }
 
-/* 信息 */
+/* ⭐ 信息 */
 .info {
   font-size: 14px;
   opacity: 0.8;
@@ -72,23 +102,18 @@ body {
   margin-bottom: 80px;
 }
 
-/* 结尾 */
+/* ⭐ 结尾 */
 .end {
   font-size: 14px;
   opacity: 0.7;
   margin-top: 80px;
 }
 
-/* ⭐ 图标按钮 */
+/* ⭐ 图标 */
 .social {
   display: flex;
   gap: 30px;
   margin-top: 50px;
-}
-
-.social a {
-  display: inline-block;
-  transition: 0.3s;
 }
 
 .social img {
@@ -102,7 +127,7 @@ body {
   transform: scale(1.15);
 }
 
-/* 返回 */
+/* ⭐ 返回按钮 */
 .home-logo {
   position: fixed;
   top: 80px;
@@ -114,15 +139,15 @@ body {
   width: 48px;
 }
 
-/* 手机 */
+/* 📱 手机 */
 @media (max-width: 768px) {
 
-  .content {
-    padding: 80px 30px;
+  .content-wrapper {
+    margin-top: -160px;
   }
 
-  .archive {
-    font-size: 11px;
+  .name {
+    font-size: 26px;
   }
 
   .home-logo {
@@ -140,66 +165,73 @@ body {
 <body>
 
 <div class="hero">
-  <img src="about.jpg">
+  <img src="./about.jpg">
 </div>
 
-<div class="content">
+<!-- ⭐ 黑色整体 -->
+<div class="content-wrapper">
 
-  <div class="archive">
-    Illustrator<br>
-    Graphic Novel Artist<br>
-    Storyboard Artist<br><br>
+  <div class="content">
 
-    Focused on narrative-driven imagery,<br>
-    character design, and sequential storytelling.
-  </div>
+    <!-- ⭐ 新增名字 -->
+    <div class="name">Ariel Rothbart</div>
 
-  <div class="text">
-    Art, and nothing but art.<br><br>
+    <div class="archive">
+      Illustrator<br>
+      Graphic Novel Artist<br>
+      Storyboard Artist<br><br>
 
-    Illustration, literature, music, films — to me, they are all forms of language.<br>
-    Different mediums, but connected ways of expression.<br><br>
+      Focused on narrative-driven imagery,<br>
+      character design, and sequential storytelling.
+    </div>
 
-    80% of me is made by live theater and music.<br><br>
+    <div class="text">
+      Art, and nothing but art.<br><br>
 
-    You may also know me as “Captain Ariel” from the Rhapsody.
-  </div>
+      Illustration, literature, music, films — to me, they are all forms of language.<br>
+      Different mediums, but connected ways of expression.<br><br>
 
-  <div class="divider"></div>
+      80% of me is made by live theater and music.<br><br>
 
-  <div class="info">
-    Based in China.<br><br>
+      You may also know me as “Captain Ariel” from the Rhapsody.
+    </div>
 
-    Working across illustration, comics, and visual development,<br>
-    both independently and in collaboration.<br><br>
+    <div class="divider"></div>
 
-    Academy of Art University (MFA)<br>
-    China University of Geosciences, Wuhan (BFA)
-  </div>
+    <div class="info">
+      Based in China.<br><br>
 
-  <div class="end">
-    Welcome to "The Rhapsody".<br>
-    I hope you will have a pleasant journey.
-  </div>
+      Working across illustration, comics, and visual development,<br>
+      both independently and in collaboration.<br><br>
 
-  <!-- ⭐ 图标链接 -->
-  <div class="social">
+      Academy of Art University (MFA)<br>
+      China University of Geosciences, Wuhan (BFA)
+    </div>
 
-    <a href="mailto:arielrothbart@gmail.com">
-      <img src="icon-email.png">
-    </a>
+    <div class="end">
+      Welcome to "The Rhapsody".<br>
+      I hope you will have a pleasant journey.
+    </div>
 
-    <a href="https://www.instagram.com/ariel_rothbart/" target="_blank">
-      <img src="icon-ins.png">
-    </a>
+    <div class="social">
 
-    <a href="https://x.com/arielrothbart" target="_blank">
-      <img src="icon-x.png">
-    </a>
+      <a href="mailto:arielrothbart@gmail.com">
+        <img src="icon-email.png">
+      </a>
 
-    <a href="https://ariellerocker.artstation.com/" target="_blank">
-      <img src="icon-art.png">
-    </a>
+      <a href="https://www.instagram.com/ariel_rothbart/" target="_blank">
+        <img src="icon-ins.png">
+      </a>
+
+      <a href="https://x.com/arielrothbart" target="_blank">
+        <img src="icon-x.png">
+      </a>
+
+      <a href="https://ariellerocker.artstation.com/" target="_blank">
+        <img src="icon-art.png">
+      </a>
+
+    </div>
 
   </div>
 
