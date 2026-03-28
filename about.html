@@ -18,8 +18,7 @@ body {
 /* ⭐ 头图 */
 .hero {
   height: 100vh;
-  position: sticky;
-  top: 0;
+  position: relative;
   overflow: hidden;
 }
 
@@ -29,34 +28,40 @@ body {
   object-fit: cover;
 }
 
-/* ⭐ 外层黑块（铺满） */
+/* ⭐ 黑色区域（稳定版本） */
 .content-wrapper {
   background: black;
-  margin-top: -220px;
   padding-top: 120px;
-  animation: rise 1.2s ease;
+  margin-top: -200px;
 }
 
-/* ⭐ 内部文字区域（限制宽度） */
+/* ⭐ 内容 */
 .content {
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
-  padding: 80px 30px;
+  padding: 80px 40px;
+  display: flex;
+  gap: 60px;
 }
 
-/* ⭐ 上滑动画 */
-@keyframes rise {
-  from {
-    transform: translateY(60px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* ⭐ 左侧文字 */
+.left {
+  flex: 1;
 }
 
-/* ⭐ 大标题（霓虹） */
+/* ⭐ 右侧动图 */
+.right {
+  width: 200px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.right img {
+  width: 100%;
+  opacity: 0.8;
+}
+
+/* ⭐ 标题 */
 .name {
   font-family: 'Orbitron', sans-serif;
   font-size: 36px;
@@ -94,6 +99,15 @@ body {
   margin: 60px 0;
 }
 
+/* ⭐ 插入图片 */
+.photo {
+  margin: 60px 0;
+}
+
+.photo img {
+  width: 100%;
+}
+
 /* ⭐ 信息 */
 .info {
   font-size: 14px;
@@ -127,7 +141,7 @@ body {
   transform: scale(1.15);
 }
 
-/* ⭐ 返回按钮 */
+/* ⭐ 返回 */
 .home-logo {
   position: fixed;
   top: 80px;
@@ -142,8 +156,12 @@ body {
 /* 📱 手机 */
 @media (max-width: 768px) {
 
-  .content-wrapper {
-    margin-top: -160px;
+  .content {
+    flex-direction: column;
+  }
+
+  .right {
+    width: 120px;
   }
 
   .name {
@@ -168,69 +186,82 @@ body {
   <img src="./about.jpg">
 </div>
 
-<!-- ⭐ 黑色整体 -->
 <div class="content-wrapper">
 
   <div class="content">
 
-    <!-- ⭐ 新增名字 -->
-    <div class="name">Ariel Rothbart</div>
+    <!-- ⭐ 左 -->
+    <div class="left">
 
-    <div class="archive">
-      Illustrator<br>
-      Graphic Novel Artist<br>
-      Storyboard Artist<br><br>
+      <div class="name">Ariel Rothbart</div>
 
-      Focused on narrative-driven imagery,<br>
-      character design, and sequential storytelling.
+      <div class="archive">
+        Illustrator<br>
+        Graphic Novel Artist<br>
+        Storyboard Artist<br><br>
+
+        Focused on narrative-driven imagery,<br>
+        character design, and sequential storytelling.
+      </div>
+
+      <div class="text">
+        Art, and nothing but art.<br><br>
+
+        Illustration, literature, music, films — to me, they are all forms of language.<br>
+        Different mediums, but connected ways of expression.<br><br>
+
+        80% of me is made by live theater and music.<br><br>
+
+        You may also know me as “Captain Ariel” from the Rhapsody.
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ⭐ 新插入图片 -->
+      <div class="photo">
+        <img src="photo.jpg">
+      </div>
+
+      <div class="info">
+        Based in China.<br><br>
+
+        Working across illustration, comics, and visual development,<br>
+        both independently and in collaboration.<br><br>
+
+        Academy of Art University (MFA)<br>
+        China University of Geosciences, Wuhan (BFA)
+      </div>
+
+      <div class="end">
+        Welcome to "The Rhapsody".<br>
+        I hope you will have a pleasant journey.
+      </div>
+
+      <div class="social">
+
+        <a href="mailto:arielrothbart@gmail.com">
+          <img src="icon-email.png">
+        </a>
+
+        <a href="https://www.instagram.com/ariel_rothbart/" target="_blank">
+          <img src="icon-ins.png">
+        </a>
+
+        <a href="https://x.com/arielrothbart" target="_blank">
+          <img src="icon-x.png">
+        </a>
+
+        <a href="https://ariellerocker.artstation.com/" target="_blank">
+          <img src="icon-art.png">
+        </a>
+
+      </div>
+
     </div>
 
-    <div class="text">
-      Art, and nothing but art.<br><br>
-
-      Illustration, literature, music, films — to me, they are all forms of language.<br>
-      Different mediums, but connected ways of expression.<br><br>
-
-      80% of me is made by live theater and music.<br><br>
-
-      You may also know me as “Captain Ariel” from the Rhapsody.
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="info">
-      Based in China.<br><br>
-
-      Working across illustration, comics, and visual development,<br>
-      both independently and in collaboration.<br><br>
-
-      Academy of Art University (MFA)<br>
-      China University of Geosciences, Wuhan (BFA)
-    </div>
-
-    <div class="end">
-      Welcome to "The Rhapsody".<br>
-      I hope you will have a pleasant journey.
-    </div>
-
-    <div class="social">
-
-      <a href="mailto:arielrothbart@gmail.com">
-        <img src="icon-email.png">
-      </a>
-
-      <a href="https://www.instagram.com/ariel_rothbart/" target="_blank">
-        <img src="icon-ins.png">
-      </a>
-
-      <a href="https://x.com/arielrothbart" target="_blank">
-        <img src="icon-x.png">
-      </a>
-
-      <a href="https://ariellerocker.artstation.com/" target="_blank">
-        <img src="icon-art.png">
-      </a>
-
+    <!-- ⭐ 右（动图） -->
+    <div class="right">
+      <img src="draw.gif">
     </div>
 
   </div>
