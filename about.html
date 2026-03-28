@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ⭐ 顶部封面 */
+.hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 淡字 */
+.hero-title {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  opacity: 0.4;
+}
+
+/* ⭐ 内容层 */
+.content {
+  background: black;
+  padding: 120px 80px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* 名字 */
+.name {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+}
+
+/* 段落 */
+.text {
+  line-height: 1.8;
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 60px;
+}
+
+/* 分段留白 */
+.block {
+  margin-bottom: 80px;
+}
+
+/* 最后一行 */
+.ending {
+  opacity: 0.5;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 返回按钮 */
+.home-logo {
+  position: fixed;
+  top: 80px;
+  right: 120px;
+}
+
+.home-logo img {
+  width: 50px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.home-logo img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* 📱 手机 */
+@media (max-width: 768px) {
+
+  .content {
+    padding: 80px 30px;
+  }
+
+  .name {
+    font-size: 24px;
+  }
+
+  .home-logo {
+    top: 60px;
+    right: 20px;
+  }
+
+  .home-logo img {
+    width: 36px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ⭐ 封面 -->
+<div class="hero">
+  <img src="about.jpg">
+  <div class="hero-title">About the Artist</div>
+</div>
+
+<!-- ⭐ 内容 -->
+<div class="content">
+
+  <div class="name">Ariel Rothbart</div>
+
+  <div class="text block">
+    Art, to me, is a form of language.<br><br>
+
+    Different mediums are connected ways of expression.<br>
+    Illustration, film, music — they all shape how I construct creations.<br><br>
+
+    A large part of how I think visually comes from live theater and music.<br>
+    Most of myself is built around that influence.
+  </div>
+
+  <div class="text block">
+    Illustrator<br>
+    Graphic Novel Artist<br>
+    Storyboard Artist
+  </div>
+
+  <div class="text block">
+    Focused on narrative-driven imagery,<br>
+    character design, and sequential storytelling.<br><br>
+
+    Experienced in illustration, comics, and visual development<br>
+    across both independent and collaborative projects.
+  </div>
+
+  <div class="text block">
+    Based in China<br><br>
+
+    Academy of Art University (MFA)<br>
+    China University of Geosciences, Wuhan (BFA)
+  </div>
+
+  <div class="ending">
+    Some pieces are designed as if they belong to a larger system,<br>
+    waiting to be connected.
+  </div>
+
+</div>
+
+<!-- ⭐ 返回首页 -->
+<a href="index.html" class="home-logo">
+  <img src="logo.png">
+</a>
+
+</body>
+</html>
