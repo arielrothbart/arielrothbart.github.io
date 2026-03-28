@@ -16,6 +16,27 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* ⭐ 扫描线（非常轻） */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+
+  pointer-events: none;
+  z-index: 999;
+}
+
 /* ⭐ 头图 */
 .hero {
   height: 100vh;
@@ -28,12 +49,11 @@ body {
   object-fit: cover;
 }
 
-/* ⭐ 黑色区域（稍微再往上） */
+/* ⭐ 黑色区域 */
 .content-wrapper {
   background: black;
-
-  padding-top: 80px;      /* ⭐原来120 → 上移 */
-  margin-top: -220px;     /* ⭐原来-180 → 更贴近头图 */
+  padding-top: 80px;
+  margin-top: -220px;
 
   transform: translateY(50px);
   opacity: 0;
@@ -56,13 +76,13 @@ body {
   position: relative;
 }
 
-/* ⭐ 标题（上移到你标的位置） */
+/* ⭐ 标题 */
 .name {
   font-family: 'Orbitron', sans-serif;
   font-size: 42px;
   letter-spacing: 4px;
 
-  margin-top: -40px;   /* ⭐关键：整体再往上推 */
+  margin-top: -40px;
   margin-bottom: 30px;
 
   color: #ff3b3b;
@@ -73,7 +93,7 @@ body {
     0 0 30px rgba(255,60,60,0.3);
 }
 
-/* ⭐ 档案扫描 */
+/* ⭐ 档案 */
 .archive span {
   display: block;
   opacity: 0;
@@ -84,11 +104,6 @@ body {
   animation: scanFade 0.5s forwards;
 }
 
-.archive.active span:nth-child(1) { animation-delay: 0.1s; }
-.archive.active span:nth-child(2) { animation-delay: 0.2s; }
-.archive.active span:nth-child(3) { animation-delay: 0.3s; }
-.archive.active span:nth-child(4) { animation-delay: 0.4s; }
-
 .archive {
   font-family: 'Orbitron', sans-serif;
   font-size: 13px;
@@ -98,7 +113,7 @@ body {
   margin-bottom: 40px;
 }
 
-/* ⭐ 正文扫描 */
+/* ⭐ 正文 */
 .text span {
   display: block;
   opacity: 0;
@@ -108,11 +123,6 @@ body {
 .text.active span {
   animation: scanFade 0.5s forwards;
 }
-
-.text.active span:nth-child(1) { animation-delay: 0.1s; }
-.text.active span:nth-child(2) { animation-delay: 0.2s; }
-.text.active span:nth-child(3) { animation-delay: 0.3s; }
-.text.active span:nth-child(4) { animation-delay: 0.4s; }
 
 .text {
   font-size: 15px;
@@ -135,10 +145,6 @@ body {
 }
 
 /* ⭐ 图片 */
-.photo {
-  margin: 40px 0;
-}
-
 .photo img {
   width: 100%;
 }
@@ -176,45 +182,36 @@ body {
   transform: scale(1.15);
 }
 
-/* ⭐ GIF（桌面端重新构图） */
+/* ⭐ GIF（桌面） */
 .corner-gif {
   position: absolute;
-
-  right: 80px;     /* ⭐往里收一点 */
-  bottom: 80px;    /* ⭐贴近底部 */
-
+  right: 100px;
+  bottom: 80px;
 }
 
 .corner-gif img {
-  width: 260px;    /* ⭐放大（原来200） */
-  opacity: 0.95;
+  width: 280px;
 }
 
-/* ⭐ 返回 */
+/* ⭐ 统一 logo（重点） */
 .home-logo {
   position: fixed;
   top: 80px;
   right: 120px;
+  z-index: 10;
 }
 
 .home-logo img {
-  width: 48px;
+  width: 42px;  /* ⭐统一尺寸 */
+  opacity: 0.8;
 }
 
-/* ================= */
-/* 📱 手机（保持你现在的好状态） */
-/* ================= */
-
+/* 📱 手机 */
 @media (max-width: 768px) {
-
-  .content-wrapper {
-    padding-top: 80px;
-    margin-top: -120px;
-  }
 
   .name {
     font-size: 28px;
-    margin-top: 0;   /* ⭐手机不再上移 */
+    margin-top: 0;
   }
 
   .corner-gif {
@@ -260,8 +257,8 @@ body {
     </div>
 
     <div class="text">
-      <span>Art, and nothing but art.</span>
-      <span>Illustration, literature, music, films are connected forms of language.</span>
+      <span>Illustration, literature, music, films —</span>
+      <span>they are all connected forms of language to me.</span>
       <span>80% of me is made by live theater and music.</span>
       <span>You may also know me as "Captain Ariel".</span>
     </div>
@@ -274,10 +271,8 @@ body {
 
     <div class="info">
       Based in China.<br><br>
-
       Working across illustration, comics, and visual development,<br>
       both independently and in collaboration.<br><br>
-
       Academy of Art University (MFA)<br>
       China University of Geosciences, Wuhan (BFA)
     </div>
@@ -288,18 +283,10 @@ body {
     </div>
 
     <div class="social">
-      <a href="mailto:arielrothbart@gmail.com">
-        <img src="icon-email.png">
-      </a>
-      <a href="https://www.instagram.com/ariel_rothbart/" target="_blank">
-        <img src="icon-ins.png">
-      </a>
-      <a href="https://x.com/arielrothbart" target="_blank">
-        <img src="icon-x.png">
-      </a>
-      <a href="https://ariellerocker.artstation.com/" target="_blank">
-        <img src="icon-art.png">
-      </a>
+      <a href="mailto:arielrothbart@gmail.com"><img src="icon-email.png"></a>
+      <a href="https://www.instagram.com/ariel_rothbart/" target="_blank"><img src="icon-ins.png"></a>
+      <a href="https://x.com/arielrothbart" target="_blank"><img src="icon-x.png"></a>
+      <a href="https://ariellerocker.artstation.com/" target="_blank"><img src="icon-art.png"></a>
     </div>
 
     <div class="corner-gif">
@@ -315,7 +302,6 @@ body {
 </a>
 
 <script>
-
 function revealOnScroll() {
   const archive = document.querySelector('.archive');
   const text = document.querySelector('.text');
@@ -333,7 +319,6 @@ function revealOnScroll() {
 
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
-
 </script>
 
 </body>
