@@ -193,17 +193,23 @@ body::after {
   width: 280px;
 }
 
-/* ⭐ 统一 logo（重点） */
+/* logo */
 .home-logo {
   position: fixed;
   top: 80px;
-  right: 120px;
-  z-index: 10;
+  right: 60px;
+  z-index: 1000;
 }
 
 .home-logo img {
-  width: 42px;  /* ⭐统一尺寸 */
+  width: 80px;
   opacity: 0.8;
+  transition: 0.3s;
+}
+
+.home-logo img:hover {
+  opacity: 1;
+  transform: scale(1.08);
 }
 
 /* 📱 手机 */
