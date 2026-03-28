@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300;400&family=Orbitron:wght@400&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -15,10 +15,11 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* ⭐ 顶部封面 */
+/* ⭐ 封面 */
 .hero {
   height: 100vh;
-  position: relative;
+  position: sticky;
+  top: 0;
   overflow: hidden;
 }
 
@@ -28,53 +29,83 @@ body {
   object-fit: cover;
 }
 
-/* 淡字 */
-.hero-title {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  font-size: 14px;
-  letter-spacing: 3px;
-  opacity: 0.4;
-}
-
 /* ⭐ 内容层 */
 .content {
   background: black;
   padding: 120px 80px;
   max-width: 900px;
   margin: auto;
+  margin-top: -120px;
 }
 
-/* 名字 */
-.name {
+/* ⭐ 开头身份（冷静专业） */
+.intro {
   font-family: 'Playfair Display', serif;
-  font-size: 36px;
+  font-size: 28px;
   letter-spacing: 4px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  line-height: 1.6;
 }
 
-/* 段落 */
-.text {
+/* ⭐ 档案文本（赛博感） */
+.archive {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
   line-height: 1.8;
-  font-size: 15px;
   color: rgba(255,255,255,0.85);
+}
+
+/* ⭐ 分隔线 */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 60px 0;
+}
+
+/* ⭐ 中段叙事 */
+.narrative {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.9);
   margin-bottom: 60px;
 }
 
-/* 分段留白 */
-.block {
+/* ⭐ 船图 */
+.ship img {
+  width: 100%;
+  margin: 40px 0 80px;
+  opacity: 0.9;
+}
+
+/* ⭐ 现实信息 */
+.info {
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.8;
   margin-bottom: 80px;
 }
 
-/* 最后一行 */
-.ending {
-  opacity: 0.5;
-  font-size: 14px;
-  line-height: 1.8;
+/* ⭐ 社交 */
+.social {
+  display: flex;
+  gap: 30px;
 }
 
-/* 返回按钮 */
+.social a {
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.social a:hover {
+  opacity: 1;
+}
+
+.social img {
+  width: 26px;
+}
+
+/* ⭐ 返回按钮 */
 .home-logo {
   position: fixed;
   top: 80px;
@@ -84,12 +115,6 @@ body {
 .home-logo img {
   width: 50px;
   opacity: 0.8;
-  transition: 0.3s;
-}
-
-.home-logo img:hover {
-  opacity: 1;
-  transform: scale(1.1);
 }
 
 /* 📱 手机 */
@@ -99,8 +124,12 @@ body {
     padding: 80px 30px;
   }
 
-  .name {
-    font-size: 24px;
+  .intro {
+    font-size: 22px;
+  }
+
+  .archive {
+    font-size: 11px;
   }
 
   .home-logo {
@@ -111,6 +140,10 @@ body {
   .home-logo img {
     width: 36px;
   }
+
+  .social {
+    justify-content: center;
+  }
 }
 </style>
 </head>
@@ -119,54 +152,513 @@ body {
 
 <!-- ⭐ 封面 -->
 <div class="hero">
-  <img src="about.jpg">
-  <div class="hero-title">About the Artist</div>
+  <img src="about.png">
 </div>
 
 <!-- ⭐ 内容 -->
 <div class="content">
 
-  <div class="name">Ariel Rothbart</div>
-
-  <div class="text block">
-    Art, to me, is a form of language.<br><br>
-
-    Different mediums are connected ways of expression.<br>
-    Illustration, film, music — they all shape how I construct creations.<br><br>
-
-    A large part of how I think visually comes from live theater and music.<br>
-    Most of myself is built around that influence.
-  </div>
-
-  <div class="text block">
+  <!-- ⭐ 身份 -->
+  <div class="intro">
     Illustrator<br>
     Graphic Novel Artist<br>
-    Storyboard Artist
-  </div>
+    Storyboard Artist<br><br>
 
-  <div class="text block">
     Focused on narrative-driven imagery,<br>
-    character design, and sequential storytelling.<br><br>
-
-    Experienced in illustration, comics, and visual development<br>
-    across both independent and collaborative projects.
+    character design, and sequential storytelling.
   </div>
 
-  <div class="text block">
-    Based in China<br><br>
+  <!-- ⭐ 档案文本 -->
+  <div class="archive">
+    Art, and nothing but art.<br><br>
+
+    Illustration, literature, music, films — different mediums, to me, are forms of language.<br>
+    They are connected ways of expression.<br><br>
+
+    80% of me is made by live theater and music.<br><br>
+
+    You may also know me as "Captain Ariel" from the Rhapsody.
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⭐ 叙事层 -->
+  <div class="narrative">
+    Welcome to "The Rhapsody".<br>
+    I hope you will have a pleasant journey.
+  </div>
+
+  <!-- ⭐ 船图（你之后替换） -->
+  <div class="ship">
+    <img src="ship.png">
+  </div>
+
+  <!-- ⭐ 现实信息 -->
+  <div class="info">
+    Based in China.<br><br>
+
+    Working across illustration, comics, and visual development,<br>
+    both independently and in collaboration.<br><br>
 
     Academy of Art University (MFA)<br>
     China University of Geosciences, Wuhan (BFA)
   </div>
 
-  <div class="ending">
-    Some pieces are designed as if they belong to a larger system,<br>
-    waiting to be connected.
+  <!-- ⭐ 社交 -->
+  <div class="social">
+    <a href="#"><img src="icon-instagram.png"></a>
+    <a href="#"><img src="icon-x.png"></a>
+    <a href="#"><img src="icon-artstation.png"></a>
+    <a href="#"><img src="icon-tumblr.png"></a>
   </div>
 
 </div>
 
-<!-- ⭐ 返回首页 -->
+<!-- 返回 -->
+<a href="index.html" class="home-logo">
+  <img src="logo.png">
+</a>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300;400&family=Orbitron:wght@400&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ⭐ 封面 */
+.hero {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ⭐ 内容层 */
+.content {
+  background: black;
+  padding: 120px 80px;
+  max-width: 900px;
+  margin: auto;
+  margin-top: -120px;
+}
+
+/* ⭐ 开头身份（冷静专业） */
+.intro {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  letter-spacing: 4px;
+  margin-bottom: 50px;
+  line-height: 1.6;
+}
+
+/* ⭐ 档案文本（赛博感） */
+.archive {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ⭐ 分隔线 */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 60px 0;
+}
+
+/* ⭐ 中段叙事 */
+.narrative {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 60px;
+}
+
+/* ⭐ 船图 */
+.ship img {
+  width: 100%;
+  margin: 40px 0 80px;
+  opacity: 0.9;
+}
+
+/* ⭐ 现实信息 */
+.info {
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.8;
+  margin-bottom: 80px;
+}
+
+/* ⭐ 社交 */
+.social {
+  display: flex;
+  gap: 30px;
+}
+
+.social a {
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.social a:hover {
+  opacity: 1;
+}
+
+.social img {
+  width: 26px;
+}
+
+/* ⭐ 返回按钮 */
+.home-logo {
+  position: fixed;
+  top: 80px;
+  right: 120px;
+}
+
+.home-logo img {
+  width: 50px;
+  opacity: 0.8;
+}
+
+/* 📱 手机 */
+@media (max-width: 768px) {
+
+  .content {
+    padding: 80px 30px;
+  }
+
+  .intro {
+    font-size: 22px;
+  }
+
+  .archive {
+    font-size: 11px;
+  }
+
+  .home-logo {
+    top: 60px;
+    right: 20px;
+  }
+
+  .home-logo img {
+    width: 36px;
+  }
+
+  .social {
+    justify-content: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ⭐ 封面 -->
+<div class="hero">
+  <img src="about.png">
+</div>
+
+<!-- ⭐ 内容 -->
+<div class="content">
+
+  <!-- ⭐ 身份 -->
+  <div class="intro">
+    Illustrator<br>
+    Graphic Novel Artist<br>
+    Storyboard Artist<br><br>
+
+    Focused on narrative-driven imagery,<br>
+    character design, and sequential storytelling.
+  </div>
+
+  <!-- ⭐ 档案文本 -->
+  <div class="archive">
+    Art, and nothing but art.<br><br>
+
+    Illustration, literature, music, films — different mediums, to me, are forms of language.<br>
+    They are connected ways of expression.<br><br>
+
+    80% of me is made by live theater and music.<br><br>
+
+    You may also know me as "Captain Ariel" from the Rhapsody.
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⭐ 叙事层 -->
+  <div class="narrative">
+    Welcome to "The Rhapsody".<br>
+    I hope you will have a pleasant journey.
+  </div>
+
+  <!-- ⭐ 船图（你之后替换） -->
+  <div class="ship">
+    <img src="ship.png">
+  </div>
+
+  <!-- ⭐ 现实信息 -->
+  <div class="info">
+    Based in China.<br><br>
+
+    Working across illustration, comics, and visual development,<br>
+    both independently and in collaboration.<br><br>
+
+    Academy of Art University (MFA)<br>
+    China University of Geosciences, Wuhan (BFA)
+  </div>
+
+  <!-- ⭐ 社交 -->
+  <div class="social">
+    <a href="#"><img src="icon-instagram.png"></a>
+    <a href="#"><img src="icon-x.png"></a>
+    <a href="#"><img src="icon-artstation.png"></a>
+    <a href="#"><img src="icon-tumblr.png"></a>
+  </div>
+
+</div>
+
+<!-- 返回 -->
+<a href="index.html" class="home-logo">
+  <img src="logo.png">
+</a>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300;400&family=Orbitron:wght@400&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ⭐ 封面 */
+.hero {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ⭐ 内容层 */
+.content {
+  background: black;
+  padding: 120px 80px;
+  max-width: 900px;
+  margin: auto;
+  margin-top: -120px;
+}
+
+/* ⭐ 开头身份（冷静专业） */
+.intro {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  letter-spacing: 4px;
+  margin-bottom: 50px;
+  line-height: 1.6;
+}
+
+/* ⭐ 档案文本（赛博感） */
+.archive {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ⭐ 分隔线 */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 60px 0;
+}
+
+/* ⭐ 中段叙事 */
+.narrative {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 60px;
+}
+
+/* ⭐ 船图 */
+.ship img {
+  width: 100%;
+  margin: 40px 0 80px;
+  opacity: 0.9;
+}
+
+/* ⭐ 现实信息 */
+.info {
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.8;
+  margin-bottom: 80px;
+}
+
+/* ⭐ 社交 */
+.social {
+  display: flex;
+  gap: 30px;
+}
+
+.social a {
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.social a:hover {
+  opacity: 1;
+}
+
+.social img {
+  width: 26px;
+}
+
+/* ⭐ 返回按钮 */
+.home-logo {
+  position: fixed;
+  top: 80px;
+  right: 120px;
+}
+
+.home-logo img {
+  width: 50px;
+  opacity: 0.8;
+}
+
+/* 📱 手机 */
+@media (max-width: 768px) {
+
+  .content {
+    padding: 80px 30px;
+  }
+
+  .intro {
+    font-size: 22px;
+  }
+
+  .archive {
+    font-size: 11px;
+  }
+
+  .home-logo {
+    top: 60px;
+    right: 20px;
+  }
+
+  .home-logo img {
+    width: 36px;
+  }
+
+  .social {
+    justify-content: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ⭐ 封面 -->
+<div class="hero">
+  <img src="about.png">
+</div>
+
+<!-- ⭐ 内容 -->
+<div class="content">
+
+  <!-- ⭐ 身份 -->
+  <div class="intro">
+    Illustrator<br>
+    Graphic Novel Artist<br>
+    Storyboard Artist<br><br>
+
+    Focused on narrative-driven imagery,<br>
+    character design, and sequential storytelling.
+  </div>
+
+  <!-- ⭐ 档案文本 -->
+  <div class="archive">
+    Art, and nothing but art.<br><br>
+
+    Illustration, literature, music, films — different mediums, to me, are forms of language.<br>
+    They are connected ways of expression.<br><br>
+
+    80% of me is made by live theater and music.<br><br>
+
+    You may also know me as "Captain Ariel" from the Rhapsody.
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⭐ 叙事层 -->
+  <div class="narrative">
+    Welcome to "The Rhapsody".<br>
+    I hope you will have a pleasant journey.
+  </div>
+
+  <!-- ⭐ 船图（你之后替换） -->
+  <div class="ship">
+    <img src="ship.png">
+  </div>
+
+  <!-- ⭐ 现实信息 -->
+  <div class="info">
+    Based in China.<br><br>
+
+    Working across illustration, comics, and visual development,<br>
+    both independently and in collaboration.<br><br>
+
+    Academy of Art University (MFA)<br>
+    China University of Geosciences, Wuhan (BFA)
+  </div>
+
+  <!-- ⭐ 社交 -->
+  <div class="social">
+    <a href="#"><img src="icon-instagram.png"></a>
+    <a href="#"><img src="icon-x.png"></a>
+    <a href="#"><img src="icon-artstation.png"></a>
+    <a href="#"><img src="icon-tumblr.png"></a>
+  </div>
+
+</div>
+
+<!-- 返回 -->
 <a href="index.html" class="home-logo">
   <img src="logo.png">
 </a>
