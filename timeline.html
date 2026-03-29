@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Timeline</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:'Special Elite',cursive;
+  overflow-x:hidden;
+}
+
+/* ===== 主容器 ===== */
+.timeline{
+  position:relative;
+  width:100%;
+  padding:100px 0;
+}
+
+/* 中轴线 */
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  width:1px;
+  height:100%;
+  background:rgba(255,255,255,0.2);
+  box-shadow:0 0 6px rgba(255,255,255,0.4);
+}
+
+/* ===== 事件 ===== */
+.event{
+  position:relative;
+  width:50%;
+  padding:20px 40px;
+  box-sizing:border-box;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+/* 出现 */
+.event.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 左 */
+.left{
+  left:0;
+  text-align:right;
+}
+
+/* 右 */
+.right{
+  left:50%;
+}
+
+/* 时间 */
+.year{
+  font-size:22px;
+  margin-bottom:6px;
+  text-shadow:0 0 6px rgba(255,255,255,0.6);
+}
+
+/* 内容 */
+.text{
+  font-size:14px;
+  color:rgba(255,255,255,0.7);
+}
+
+/* 横线连接 */
+.event::after{
+  content:"";
+  position:absolute;
+  top:30px;
+  width:40px;
+  height:1px;
+  background:rgba(255,255,255,0.4);
+}
+
+.left::after{
+  right:-40px;
+}
+
+.right::after{
+  left:-40px;
+}
+
+/* ===== 标题 ===== */
+.section-title{
+  text-align:center;
+  margin:80px 0 40px;
+  font-size:20px;
+  opacity:0.8;
+  letter-spacing:2px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="timeline">
+
+  <!-- ===== 历史线 ===== -->
+  <div class="section-title">Historical Timeline</div>
+
+  <div class="event left">
+    <div class="year">1465</div>
+    <div class="text">Osvaldo 出生</div>
+  </div>
+
+  <div class="event right">
+    <div class="year">1467</div>
+    <div class="text">Antonio 出生</div>
+  </div>
+
+  <div class="event left">
+    <div class="year">1476</div>
+    <div class="text">Lorenzo 出生 · 王储确立</div>
+  </div>
+
+  <div class="event right">
+    <div class="year">1484</div>
+    <div class="text">Osvaldo 继位 · Antonio 成为王储</div>
+  </div>
+
+  <div class="event left">
+    <div class="year">1498</div>
+    <div class="text">政治联姻 · Macarena</div>
+  </div>
+
+  <div class="event right">
+    <div class="year">1508</div>
+    <div class="text">王室遇刺 · Lorenzo 死亡</div>
+  </div>
+
+  <div class="event left">
+    <div class="year">1516</div>
+    <div class="text">Fernando 复辟王朝</div>
+  </div>
+
+
+  <!-- ===== 现代线 ===== -->
+  <div class="section-title">Ghost in Vermont</div>
+
+  <div class="event right">
+    <div class="year">1950</div>
+    <div class="text">八神伊织 出生</div>
+  </div>
+
+  <div class="event left">
+    <div class="year">1958</div>
+    <div class="text">菅原真 出生</div>
+  </div>
+
+  <div class="event right">
+    <div class="year">1976</div>
+    <div class="text">真与八神相遇</div>
+  </div>
+
+  <div class="event left">
+    <div class="year">1982</div>
+    <div class="text">诅咒事件 · 海斗失踪</div>
+  </div>
+
+  <div class="event right">
+    <div class="year">1986</div>
+    <div class="text">两人正式组队</div>
+  </div>
+
+  <div class="event left">
+    <div class="year">1999</div>
+    <div class="text">调查 Antonio 的过去</div>
+  </div>
+
+</div>
+
+<script>
+
+/* ===== 滚动浮现 ===== */
+const events = document.querySelectorAll(".event");
+
+window.addEventListener("scroll", ()=>{
+  const trigger = window.innerHeight * 0.85;
+
+  events.forEach(e=>{
+    const top = e.getBoundingClientRect().top;
+
+    if(top < trigger){
+      e.classList.add("show");
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
