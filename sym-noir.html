@@ -108,7 +108,6 @@ body{
   animation:ghostOut 1s forwards;
 }
 
-/* ENTER */
 .enter-btn{
   font-size:12px;
   cursor:pointer;
@@ -132,7 +131,6 @@ body{
 .network-inner{
   width:100%;
   height:100%;
-  cursor:grab;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -141,23 +139,69 @@ body{
 .network-inner img{
   max-width:90%;
   max-height:90%;
-  transition:0.1s;
 }
 
-/* ===== mobile ===== */
+/* ===== 📱 MOBILE ===== */
+
 .mobile-logo{
   display:none;
   position:fixed;
-  top:20px;
-  left:20px;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
   width:60px;
-  z-index:20;
+  opacity:0.7;
+  z-index:50;
+  transition:0.3s;
+}
+
+.mobile-logo:active{
+  transform:translateX(-50%) scale(1.1);
+  opacity:1;
 }
 
 @media (max-width:768px){
-  .sidebar{display:none;}
-  .main{margin-left:0;}
-  .mobile-logo{display:block;}
+
+  body{
+    overflow:auto;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+    height:auto;
+  }
+
+  .mobile-logo{
+    display:block;
+  }
+
+  .title-screen img{
+    width:85%;
+  }
+
+  .char img{
+    width:110px;
+  }
+
+  .network-screen{
+    position:relative;
+    overflow:auto;
+  }
+
+  .network-inner{
+    display:block;
+    text-align:center;
+  }
+
+  .network-inner img{
+    max-width:140%;
+    height:auto;
+  }
+
 }
 
 </style>
@@ -165,6 +209,7 @@ body{
 
 <body>
 
+<!-- 📱 mobile logo -->
 <img src="logo.png" class="mobile-logo" onclick="goHome()">
 
 <div class="sidebar">
@@ -189,8 +234,8 @@ body{
 </div>
 
 <div class="network-screen" id="network">
-  <div class="network-inner" id="viewer">
-    <img src="images/network.png" id="netImg">
+  <div class="network-inner">
+    <img src="images/network.png">
   </div>
 </div>
 
@@ -259,43 +304,6 @@ document.getElementById("enterBtn").onclick = ()=>{
   network.style.display="block";
   setNav(false,false,true);
 };
-
-/* ===== zoom & drag ===== */
-let scale = 1;
-let isDragging = false;
-let startX, startY;
-
-const img = document.getElementById("netImg");
-
-/* zoom */
-img.addEventListener("wheel", e=>{
-  e.preventDefault();
-  scale += e.deltaY * -0.001;
-  scale = Math.min(Math.max(0.5,scale),3);
-  img.style.transform = `scale(${scale})`;
-});
-
-/* drag */
-img.addEventListener("mousedown", e=>{
-  isDragging = true;
-  startX = e.clientX;
-  startY = e.clientY;
-  img.style.cursor = "grabbing";
-});
-
-window.addEventListener("mouseup", ()=>{
-  isDragging = false;
-  img.style.cursor = "grab";
-});
-
-window.addEventListener("mousemove", e=>{
-  if(!isDragging) return;
-
-  const dx = e.clientX - startX;
-  const dy = e.clientY - startY;
-
-  img.style.transform = `translate(${dx}px,${dy}px) scale(${scale})`;
-});
 
 </script>
 
