@@ -23,7 +23,7 @@
     }
 
     /* ========================= */
-    /* ⭐ HERO（保持你原来的） */
+    /* ⭐ HERO */
     /* ========================= */
 
     .hero {
@@ -38,7 +38,7 @@
       object-fit: cover;
     }
 
-    /* ⭐ 渐变上升层（核心） */
+    /* ⭐ 渐变上升 */
     .hero::before {
       content: "";
       position: absolute;
@@ -110,7 +110,7 @@
       opacity: 0.2;
     }
 
-    /* ⭐ 你原本喜欢的乱序 */
+    /* ⭐ 乱序亮起 */
     .nav a:nth-child(1) { animation: softBoot 1.2s forwards 0.6s; }
     .nav a:nth-child(2) { animation: softBoot 1.2s forwards 0.2s; }
     .nav a:nth-child(3) { animation: softBoot 1.2s forwards 1.0s; }
@@ -147,7 +147,42 @@
     }
 
     /* ========================= */
-    /* ⭐ PROJECT（保持你现在的） */
+    /* ⭐ 蓝色信号引导（核心） */
+    /* ========================= */
+
+    .signal {
+      width: 2px;
+      height: 120px;
+      margin: -40px auto 20px;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(0,200,255,0),
+        rgba(0,200,255,1),
+        rgba(0,200,255,0)
+      );
+
+      box-shadow: 0 0 14px rgba(0,200,255,0.9);
+
+      opacity: 0;
+
+      animation: signalFade 2s ease forwards,
+                 signalFlow 2.5s infinite;
+    }
+
+    @keyframes signalFade {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes signalFlow {
+      0% { opacity: 0.3; transform: translateY(-10px); }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; transform: translateY(20px); }
+    }
+
+    /* ========================= */
+    /* ⭐ PROJECT */
     /* ========================= */
 
     .projects {
@@ -268,6 +303,10 @@
 
 </div>
 
+<!-- ⭐ 蓝色信号 -->
+<div class="signal"></div>
+
+<!-- ⭐ PROJECT -->
 <div class="projects">
 
   <a href="#" class="project-card">
