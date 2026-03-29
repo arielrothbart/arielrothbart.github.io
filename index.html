@@ -23,7 +23,7 @@
     }
 
     /* ========================= */
-    /* ⭐ HERO（完全恢复原版） */
+    /* ⭐ HERO（不动） */
     /* ========================= */
 
     .hero {
@@ -69,9 +69,10 @@
       letter-spacing: 2px;
     }
 
-    /* ⭐ 顺序亮起（恢复） */
+    /* ⭐ 动画 */
     @keyframes softBoot {
       0% { opacity: 0.2; }
+      60% { opacity: 0.8; }
       100% { opacity: 1; }
     }
 
@@ -80,13 +81,13 @@
       opacity: 0.2;
     }
 
-    .nav a:nth-child(1) { animation: softBoot 1s forwards 0.3s; }
-    .nav a:nth-child(2) { animation: softBoot 1s forwards 0.5s; }
-    .nav a:nth-child(3) { animation: softBoot 1s forwards 0.7s; }
-    .nav a:nth-child(4) { animation: softBoot 1s forwards 0.9s; }
-    .nav a:nth-child(5) { animation: softBoot 1s forwards 1.1s; }
-    .nav a:nth-child(6) { animation: softBoot 1s forwards 1.3s; }
-
+    /* ⭐ 乱序亮起（重点） */
+    .nav a:nth-child(1) { animation: softBoot 1.2s forwards 0.6s; }
+    .nav a:nth-child(2) { animation: softBoot 1.2s forwards 0.2s; }
+    .nav a:nth-child(3) { animation: softBoot 1.2s forwards 1.0s; }
+    .nav a:nth-child(4) { animation: softBoot 1.2s forwards 0.4s; }
+    .nav a:nth-child(5) { animation: softBoot 1.2s forwards 1.2s; }
+    .nav a:nth-child(6) { animation: softBoot 1.2s forwards 0.8s; }
 
     .nav a:hover {
       opacity: 1;
@@ -94,7 +95,7 @@
       transition: 0.3s;
     }
 
-    /* ⭐ logo 恢复在目录下 */
+    /* ⭐ logo（保持你原来的） */
     .logo {
       margin-top: 20px;
     }
@@ -118,20 +119,13 @@
     }
 
     /* ========================= */
-    /* ⭐ 光流系统（连在一起） */
+    /* ⭐ 光流引导（替代蓝线） */
     /* ========================= */
 
-    .flow-system {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 40px;
-    }
-
-    /* ⭐ 主光束（从视频延续） */
     .beam {
       width: 2px;
       height: 140px;
+      margin: 40px auto;
 
       background: linear-gradient(
         to bottom,
@@ -140,79 +134,47 @@
         rgba(0,200,255,0)
       );
 
-      box-shadow: 0 0 12px rgba(0,200,255,0.9);
+      box-shadow: 0 0 14px rgba(0,200,255,0.9);
 
       animation: flow 2.5s infinite;
     }
 
-    /* ⭐ 分叉线（连成一体） */
-    .branch {
-      position: relative;
-      width: 300px;
-      height: 80px;
-    }
-
-    .branch::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 40px;
-      background: #00c8ff;
-      box-shadow: 0 0 10px #00c8ff;
-    }
-
-    .branch::after {
-      content: "";
-      position: absolute;
-      top: 40px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #00c8ff;
-      box-shadow: 0 0 10px #00c8ff;
-    }
-
-    /* ⭐ 光流动画 */
     @keyframes flow {
-      0% { opacity: 0.2; transform: translateY(-20px); }
+      0% { opacity: 0; transform: translateY(-20px); }
       50% { opacity: 1; }
-      100% { opacity: 0.2; transform: translateY(20px); }
+      100% { opacity: 0; transform: translateY(20px); }
     }
 
     /* ========================= */
-    /* ⭐ PROJECT（ticket风格） */
+    /* ⭐ PROJECT（保持你那种感觉） */
     /* ========================= */
 
     .projects {
       display: flex;
       justify-content: center;
       gap: 80px;
-      margin-top: 40px;
       margin-bottom: 120px;
     }
 
     .project-card {
       width: 260px;
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
       cursor: pointer;
     }
 
     .project-card img {
       width: 100%;
-      display: block;
       transition: 0.5s ease;
     }
 
-    /* ⭐ hover：才变暗 */
+    /* ⭐ 默认亮，hover 才暗 */
     .project-card:hover img {
       transform: scale(1.08);
       filter: brightness(0.7);
     }
 
-    /* ⭐ 标题 hover 才出现 */
+    /* ⭐ 标题 hover 出现 */
     .project-title {
       position: absolute;
       bottom: 20px;
@@ -228,7 +190,7 @@
     }
 
     /* ========================= */
-    /* 📱 手机（保持你之前满意的） */
+    /* 📱 手机（不动你逻辑） */
     /* ========================= */
 
     @media (max-width: 768px) {
@@ -307,11 +269,8 @@
 
 </div>
 
-<!-- ⭐ 光流 + 分叉（连贯） -->
-<div class="flow-system">
-  <div class="beam"></div>
-  <div class="branch"></div>
-</div>
+<!-- ⭐ 光流引导 -->
+<div class="beam"></div>
 
 <!-- ⭐ PROJECT -->
 <div class="projects">
