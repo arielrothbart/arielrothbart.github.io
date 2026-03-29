@@ -13,10 +13,9 @@ body{
   background:black;
   color:white;
   font-family:'Special Elite',cursive;
-  overflow-x:hidden;
 }
 
-/* ===== 左侧目录 ===== */
+/* ===== sidebar ===== */
 .sidebar{
   position:fixed;
   width:200px;
@@ -25,30 +24,31 @@ body{
   padding:30px;
 }
 
-.nav{
-  margin-top:40px;
-}
-
 .nav div{
   margin:12px 0;
   color:#666;
   cursor:pointer;
 }
 
-.nav .active{
-  color:white;
-}
+.nav .active{ color:white; }
 
-/* ===== 主体 ===== */
+/* 返回按钮 */
+.back{
+  margin-bottom:20px;
+  cursor:pointer;
+  opacity:0.6;
+}
+.back:hover{opacity:1;}
+
+/* ===== main ===== */
 .main{
   margin-left:200px;
   padding:100px 0;
 }
 
-/* 中轴线 */
+/* timeline */
 .timeline{
   position:relative;
-  width:100%;
 }
 
 .timeline::before{
@@ -58,470 +58,137 @@ body{
   width:1px;
   height:100%;
   background:rgba(255,255,255,0.2);
-  box-shadow:0 0 6px rgba(255,255,255,0.5);
 }
 
-/* ===== 事件 ===== */
+/* event */
 .event{
-  position:relative;
   width:50%;
   padding:30px 50px;
   box-sizing:border-box;
-
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
 }
 
-.event.show{
-  opacity:1;
-  transform:translateY(0);
-}
+.left{ left:0; text-align:right; position:relative;}
+.right{ left:50%; position:relative;}
 
-.left{
-  left:0;
-  text-align:right;
-}
+.year{ font-size:22px; }
+.text{ opacity:0.7; }
 
-.right{
-  left:50%;
-}
-
-.year{
-  font-size:22px;
-}
-
-/* 原文 */
-.text{
-  margin-top:8px;
-  font-size:14px;
-  opacity:0.7;
-}
-
-/* hover 完整内容 */
+/* detail */
 .detail{
-  margin-top:10px;
-  font-size:13px;
   opacity:0;
   transition:0.3s;
+  font-size:13px;
 }
+.event:hover .detail{opacity:1;}
 
-.event:hover .detail{
-  opacity:1;
-}
+/* color */
+.modern .year{ color:#d8e6ff; }
+.historical .year{ color:#f5e6c8; }
 
-/* 横线 */
-.event::after{
-  content:"";
-  position:absolute;
-  top:30px;
-  width:40px;
-  height:1px;
-  background:rgba(255,255,255,0.4);
-}
-
-.left::after{ right:-40px; }
-.right::after{ left:-40px; }
-
-/* ===== 颜色 ===== */
-.historical .year{
-  color:#f5e6c8;
-  text-shadow:0 0 6px rgba(255,220,150,0.4);
-}
-
-.modern .year{
-  color:#d8e6ff;
-  text-shadow:0 0 6px rgba(150,180,255,0.4);
-}
-
-/* ===== 区块 ===== */
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
-
-/* ===== 回顶 ===== */
-.top-btn{
-  position:fixed;
-  right:30px;
-  bottom:30px;
-  font-size:12px;
-  cursor:pointer;
-  opacity:0.5;
-}
-
-.top-btn:hover{
-  opacity:1;
-}
+/* section */
+.section{ display:none; }
+.section.active{ display:block; }
 
 </style>
 </head>
 
-<body onclick="goBack(event)">
+<body>
 
 <div class="sidebar">
-  <div style="font-size:18px;">Timeline</div>
+  <div class="back" onclick="goBack()">← Back</div>
 
   <div class="nav">
-    <div id="btn-his" class="active" onclick="showSection('his')">Historical</div>
-    <div id="btn-mod" onclick="showSection('mod')">Vermont</div>
+    <div id="btn-mod" class="active" onclick="showSection('mod')">Vermont</div>
+    <div id="btn-his" onclick="showSection('his')">Historical</div>
   </div>
 </div>
 
 <div class="main">
 
+<!-- ===== 现代线（在前） ===== -->
+<div id="mod" class="section active">
+<div class="timeline">
+
+<div class="event right modern">
+<div class="year">1950</div>
+<div class="text">八神伊织出生</div>
+<div class="detail">八神伊织 出生</div>
+</div>
+
+<div class="event left modern">
+<div class="year">1958</div>
+<div class="text">菅原真出生</div>
+<div class="detail">菅原真 出生</div>
+</div>
+
+<div class="event right modern">
+<div class="year">1982</div>
+<div class="text">诅咒事件</div>
+<div class="detail">
+钦悟去世<br>
+海斗失踪<br>
+真生命力遭到稀释
+</div>
+</div>
+
+<div class="event left modern">
+<div class="year">1999</div>
+<div class="text">调查Antonio</div>
+<div class="detail">
+前往意大利与马德里收集情报
+</div>
+</div>
+
+</div>
+</div>
+
 <!-- ===== 历史线 ===== -->
-<div id="his" class="section active">
+<div id="his" class="section">
 <div class="timeline">
 
-<!-- ⭐ 例子（你复制这个结构填你的原文） -->
-
 <div class="event left historical">
-  <div class="year">1465</div>
-  <div class="text">Osvaldo 出生</div>
-
- <div class="event left historical">
-  <div class="year">1465</div>
-  <div class="text">Osvaldo出生</div>
-  <div class="detail">1465年 Osvaldo出生</div>
+<div class="year">1465</div>
+<div class="text">Osvaldo出生</div>
+<div class="detail">1465年 Osvaldo出生</div>
 </div>
 
 <div class="event right historical">
-  <div class="year">1467</div>
-  <div class="text">Antonio出生</div>
-  <div class="detail">1467年 Antonio出生</div>
+<div class="year">1498</div>
+<div class="text">政治联姻</div>
+<div class="detail">
+Osvaldo同Cathetine Macarena政治联姻
+</div>
 </div>
 
 <div class="event left historical">
-  <div class="year">1469</div>
-  <div class="text">Mattias Garcia出生</div>
-  <div class="detail">1469年 Mattias Garcia出生</div>
+<div class="year">1508</div>
+<div class="text">王室暗杀</div>
+<div class="detail">
+国王与王储被暗杀<br>
+王后与王子逃离
+</div>
 </div>
 
-<div class="event right historical">
-  <div class="year">1476</div>
-  <div class="text">Lorenzo出生</div>
-  <div class="detail">
-    1476年 Lorenzo出生<br>
-    同年梅柳齐娜病逝，Alfonzo立Osvaldo为王储
-  </div>
+</div>
 </div>
 
-<div class="event left historical">
-  <div class="year">1476-1484</div>
-  <div class="text">维斯康蒂教学与外交</div>
-  <div class="detail">
-    维斯康蒂兄弟作为外教大使和教授<br>
-    到西班牙宫廷进行教学和外交<br>
-    （9年左右）<br>
-    朱塞佩因为身体原因回到佛罗伦萨任教
-  </div>
 </div>
-
-<div class="event right historical">
-  <div class="year">1484</div>
-  <div class="text">Osvaldo继位</div>
-  <div class="detail">
-    Alfonzo病逝，Osvaldo继承王位<br>
-    年轻的国王不顾反对册封自己的弟弟Antonio为王储<br>
-    将其留在了马德里<br>
-    其余的堂兄弟姐妹被各封属地，驱离首都
-  </div>
-</div>
-
-<div class="event left historical">
-  <div class="year">1487</div>
-  <div class="text">Lorenzo成为学生</div>
-  <div class="detail">
-    唐克雷迪回到佛罗伦萨<br>
-    Lorenzo成为朱塞佩的学生
-  </div>
-</div>
-
-<div class="event right historical">
-  <div class="year">1490</div>
-  <div class="text">唐克雷迪出差</div>
-  <div class="detail">
-    唐克雷迪去往那不勒斯公国出差
-  </div>
-</div>
-
-<div class="event left historical">
-  <div class="year">1497</div>
-  <div class="text">Lorenzo毕业</div>
-  <div class="detail">
-    Lorenzo于外交学院毕业，被派遣到西班牙
-  </div>
-</div>
-
-<div class="event right historical">
-  <div class="year">1498</div>
-  <div class="text">政治联姻</div>
-  <div class="detail">
-    Osvaldo同那不勒斯公国的Cathetine Macarena公主政治联姻
-  </div>
-</div>
-
-<div class="event left historical">
-  <div class="year">1499</div>
-  <div class="text">Fernando出生</div>
-  <div class="detail">
-    Osvaldo和Macarena的孩子Fernando王子出生
-  </div>
-</div>
-
-<div class="event right historical">
-  <div class="year">1501</div>
-  <div class="text">Vincenzo请求援助</div>
-  <div class="detail">
-    Macarena的哥哥Vincenzo来到马德里首次同国王女王见面<br>
-    请求Osvaldo出兵帮助公国击退法国统治<br>
-    Osvaldo拒绝，但同意在其他战线施压
-  </div>
-</div>
-
-<div class="event left historical">
-  <div class="year">1503-1504</div>
-  <div class="text">Lorenzo遇袭</div>
-  <div class="detail">
-    Lorenzo遭到袭击，短暂失声，在马德里皇宫养病<br>
-    Vincenzo再次求助并带来唐克雷迪·维斯康蒂<br>
-    建议Lorenzo回佛罗伦萨修养<br><br>
-    Antonio与Lorenzo走海路回佛罗伦萨<br>
-    Lorenzo留在家乡治疗，Antonio带兵前往那不勒斯作战<br>
-    西班牙占领那不勒斯公国和西西里
-  </div>
-</div>
-
-<div class="event right historical">
-  <div class="year">1505</div>
-  <div class="text">Lorenzo归来</div>
-  <div class="detail">
-    Antonio回到马德里等待<br>
-    Lorenzo治疗初见成效，被派回马德里
-  </div>
-</div>
-
-<div class="event left historical">
-  <div class="year">1508</div>
-  <div class="text">王室暗杀</div>
-  <div class="detail">
-    那不勒斯赋税问题爆发<br>
-    Vincenzo来到皇宫请示但目的不明<br>
-    Garcia被派往前线<br>
-    12月国王与王储被暗杀<br>
-    王后与王子逃离<br>
-    Lorenzo死于行宫房间
-  </div>
-</div>
-
-<div class="event right historical">
-  <div class="year">1509</div>
-  <div class="text">王位更替</div>
-  <div class="detail">
-    Vincenzo被处死<br>
-    维斯康蒂拥立新王位继承人
-  </div>
-</div>
-
-<div class="event left historical">
-  <div class="year">1516</div>
-  <div class="text">王朝复辟</div>
-  <div class="detail">
-    Fernando带兵起义复辟希门内斯王朝
-  </div>
-</div>
-
-<div class="event right historical">
-  <div class="year">1518</div>
-  <div class="text">重税政策</div>
-  <div class="detail">
-    Fernando夺回王位，对那不勒斯和西西里施行重税
-  </div>
-
-
-<!-- ===== 现代线 ===== -->
-<div id="mod" class="section">
-<div class="timeline">
-
-<div class="event right modern">
-  <div class="year">1508</div>
-  <div class="text">Antonio死亡</div>
-  <div class="detail">1508 Antonio passed away</div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1943</div>
-  <div class="text">安娜贝儿事件</div>
-  <div class="detail">1943 安娜贝儿事件</div>
-</div>
-
-<div class="event right modern">
-  <div class="year">1950</div>
-  <div class="text">八神伊织出生</div>
-  <div class="detail">八神伊织 出生</div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1954</div>
-  <div class="text">八神重英出生</div>
-  <div class="detail">八神重英 出生</div>
-</div>
-
-<div class="event right modern">
-  <div class="year">1957</div>
-  <div class="text">海斗 / 钦悟出生</div>
-  <div class="detail">
-    上杉海斗<br>
-    岩波钦悟 出生
-  </div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1958</div>
-  <div class="text">菅原真出生</div>
-  <div class="detail">菅原真 出生</div>
-</div>
-
-<div class="event right modern">
-  <div class="year">1964</div>
-  <div class="text">真进入孤儿院</div>
-  <div class="detail">
-    菅原真6岁<br>
-    母亲去世，被送往孤儿院<br>
-    后被带往研究所治疗
-  </div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1966</div>
-  <div class="text">恶灵附身起点</div>
-  <div class="detail">
-    八神重英触碰Antonio金币<br>
-    成为恶灵宿主
-  </div>
-</div>
-
-<div class="event right modern">
-  <div class="year">1971</div>
-  <div class="text">驱魔事件</div>
-  <div class="detail">
-    Frenchie事件<br>
-    沃伦夫妇封印音乐盒
-  </div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1974</div>
-  <div class="text">真被收养</div>
-  <div class="detail">
-    真与钦悟相识<br>
-    岩波鸣海收养真
-  </div>
-</div>
-
-<div class="event right modern">
-  <div class="year">1976</div>
-  <div class="text">初遇</div>
-  <div class="detail">
-    真进入大学<br>
-    与八神初遇
-  </div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1981</div>
-  <div class="text">灵异调查开始</div>
-  <div class="detail">
-    真与海斗相识<br>
-    两人开始调查灵异事件
-  </div>
-</div>
-
-<div class="event right modern">
-  <div class="year">1982</div>
-  <div class="text">诅咒事件</div>
-  <div class="detail">
-    钦悟死亡<br>
-    海斗失踪<br>
-    真失去60%行动能力
-  </div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1986</div>
-  <div class="text">重新组队</div>
-  <div class="detail">
-    八神说服真合作调查
-  </div>
-</div>
-
-<div class="event right modern">
-  <div class="year">1999</div>
-  <div class="text">调查Antonio</div>
-  <div class="detail">
-    前往意大利与马德里调查历史
-  </div>
-</div>
-
-<div class="event left modern">
-  <div class="year">2000-2001</div>
-  <div class="text">真相揭示</div>
-  <div class="detail">
-    向Antonio说明真相<br>
-    召唤Lorenzo灵魂
-  </div>
-
-
-<div class="top-btn" onclick="scrollTopSmooth()">TOP ↑</div>
 
 <script>
 
-/* ===== 切换 ===== */
+function goBack(){
+  window.location.href="sym-noir.html";
+}
+
 function showSection(type){
-
-  document.getElementById("his").classList.remove("active");
   document.getElementById("mod").classList.remove("active");
+  document.getElementById("his").classList.remove("active");
 
-  document.getElementById("btn-his").classList.remove("active");
   document.getElementById("btn-mod").classList.remove("active");
+  document.getElementById("btn-his").classList.remove("active");
 
-  if(type==="his"){
-    document.getElementById("his").classList.add("active");
-    document.getElementById("btn-his").classList.add("active");
-  }else{
-    document.getElementById("mod").classList.add("active");
-    document.getElementById("btn-mod").classList.add("active");
-  }
-
-}
-
-/* ===== 滚动显示 ===== */
-const events = document.querySelectorAll(".event");
-
-window.addEventListener("scroll", ()=>{
-  const trigger = window.innerHeight * 0.85;
-
-  events.forEach(e=>{
-    if(e.getBoundingClientRect().top < trigger){
-      e.classList.add("show");
-    }
-  });
-});
-
-/* ===== 点击空白返回 ===== */
-function goBack(e){
-  if(e.target === document.body){
-    window.location.href = "sym-noir.html";
-  }
-}
-
-/* ===== 回顶 ===== */
-function scrollTopSmooth(){
-  window.scrollTo({top:0,behavior:"smooth"});
+  document.getElementById(type).classList.add("active");
+  document.getElementById("btn-"+type).classList.add("active");
 }
 
 </script>
