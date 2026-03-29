@@ -37,7 +37,7 @@ body{
 }
 
 .title{
-  font-size:20px;
+  font-size:22px;
   margin:20px 0;
   cursor:pointer;
 }
@@ -71,7 +71,7 @@ body{
 }
 
 .title-screen img{
-  width:750px;
+  width:760px;
   opacity:0;
   transform:translateY(-40px);
   animation:titleIn 2.5s forwards;
@@ -107,10 +107,6 @@ body{
   gap:140px;
 }
 
-.char{
-  transition:1s;
-}
-
 .char img{
   width:160px;
   border-radius:50%;
@@ -137,7 +133,6 @@ body{
   opacity:0.7;
   transition:0.3s;
 }
-
 .enter-btn:hover{
   opacity:1;
   letter-spacing:5px;
@@ -167,26 +162,24 @@ body{
   object-fit:contain;
 }
 
-/* ===== 面板 ===== */
-.panel{
-  position:fixed;
-  right:-400px;
-  top:0;
-  width:400px;
-  height:100vh;
-  background:#111;
-  padding:30px;
-  transition:0.4s;
-}
+/* ===== 移动端 ===== */
+@media (max-width:768px){
 
-.panel.active{
-  right:0;
-}
+  .sidebar{
+    display:none;
+  }
 
-.panel button{
-  position:absolute;
-  top:20px;
-  right:20px;
+  .main{
+    margin-left:0;
+  }
+
+  .mobile-logo{
+    position:fixed;
+    top:20px;
+    left:20px;
+    width:60px;
+    z-index:10;
+  }
 }
 
 </style>
@@ -194,17 +187,21 @@ body{
 
 <body>
 
+<!-- PC侧栏 -->
 <div class="sidebar">
 
   <img src="logo.png" class="logo" onclick="goHome()">
 
   <div class="title" onclick="reloadPage()">Symphony Noir</div>
 
-  <div class="nav-item active" onclick="goTitle()">Title</div>
-  <div class="nav-item" onclick="goChar()">Characters</div>
-  <div class="nav-item" onclick="goNet()">Network</div>
+  <div class="nav-item active" id="nav-title" onclick="goTitle()">Title</div>
+  <div class="nav-item" id="nav-char" onclick="goChar()">Characters</div>
+  <div class="nav-item" id="nav-net" onclick="goNet()">Network</div>
 
 </div>
+
+<!-- 手机logo -->
+<img src="logo.png" class="mobile-logo" onclick="goHome()">
 
 <div class="main">
 
@@ -237,14 +234,15 @@ body{
 
 </div>
 
-<div class="panel" id="panel">
-  <h2 id="name"></h2>
-  <button onclick="closePanel()">Close</button>
-</div>
-
 <script>
 
 /* ===== 导航 ===== */
+function setNav(a,b,c){
+  document.getElementById("nav-title").classList.toggle("active",a);
+  document.getElementById("nav-char").classList.toggle("active",b);
+  document.getElementById("nav-net").classList.toggle("active",c);
+}
+
 function goHome(){
   window.location.href="index.html";
 }
@@ -272,6 +270,7 @@ function enterCharacters(){
   setTimeout(()=>{
     document.getElementById("title").style.display="none";
     document.getElementById("chars").style.display="flex";
+    setNav(0,1,0);
   },1200);
 }
 
@@ -286,47 +285,67 @@ function enterNetwork(){
 
     setTimeout(()=>{
       document.getElementById("network").classList.add("show");
+
+      focusModern();
+
     },50);
+
+    setNav(0,0,1);
 
   },800);
 }
 
-/* ===== 缩放拖动 ===== */
-let scale=1,x=0,y=0,drag=false;
+/* ===== 镜头系统 ===== */
+let scale=1.2, x=0, y=0, dragging=false;
 
+const inner=document.getElementById("inner");
+
+/* ⭐ 进入时对焦 Modern */
+function focusModern(){
+
+  scale=1.3;
+
+  x = -window.innerWidth * 0.15;
+  y = -window.innerHeight * 0.25;
+
+  update();
+}
+
+/* ⭐ 总览 */
+function resetView(){
+  scale=1;
+  x=0;
+  y=0;
+  update();
+}
+
+/* 滚轮 */
 document.addEventListener("wheel",e=>{
   scale+=e.deltaY*-0.001;
   scale=Math.min(Math.max(0.8,scale),2.5);
   update();
 });
 
-document.addEventListener("mousedown",()=>drag=true);
-document.addEventListener("mouseup",()=>drag=false);
+/* 拖动 */
+document.addEventListener("mousedown",()=>dragging=true);
+document.addEventListener("mouseup",()=>dragging=false);
 
 document.addEventListener("mousemove",e=>{
-  if(!drag)return;
+  if(!dragging)return;
   x+=e.movementX;
   y+=e.movementY;
   update();
 });
 
-/* ⭐ 点击恢复 */
+/* 点击复位 */
 document.addEventListener("click",e=>{
   if(e.target.classList.contains("network-bg")){
-    scale=1;
-    x=0;
-    y=0;
-    update();
+    resetView();
   }
 });
 
 function update(){
   inner.style.transform=`translate(${x}px,${y}px) scale(${scale})`;
-}
-
-/* ===== panel ===== */
-function closePanel(){
-  document.getElementById("panel").classList.remove("active");
 }
 
 </script>
