@@ -6,7 +6,6 @@
 
 <style>
 
-/* ===== 基础 ===== */
 body {
   margin: 0;
   background: black;
@@ -21,19 +20,19 @@ body {
   width: 220px;
   height: 100vh;
   background: rgba(10,10,10,0.95);
-  color: #aaa;
   padding: 30px;
-  z-index: 10;
 }
 
-.sidebar a {
-  display: block;
-  margin: 12px 0;
-  color: #888;
-  text-decoration: none;
+.sidebar h2 {
+  margin-bottom: 20px;
 }
 
-.sidebar a:hover {
+.nav-item {
+  color: #666;
+  margin: 10px 0;
+}
+
+.nav-item.active {
   color: #fff;
 }
 
@@ -45,7 +44,7 @@ body {
   overflow: hidden;
 }
 
-/* ===== 标题页 ===== */
+/* ===== 标题 ===== */
 .title-screen {
   position: absolute;
   width: 100%;
@@ -54,21 +53,16 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background: black;
-  z-index: 5;
 }
 
 .title-screen img {
   width: 420px;
   opacity: 0;
-  animation: titleFade 2s ease forwards;
+  animation: fade 2s forwards;
 }
 
-@keyframes titleFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fade {
+  to { opacity: 1; }
 }
 
 /* ===== 主角页 ===== */
@@ -82,19 +76,26 @@ body {
   gap: 120px;
 }
 
-.char {
-  text-align: center;
-  cursor: pointer;
-  transition: 0.4s;
-}
-
 .char img {
   width: 140px;
   border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.char:hover {
+.char img:hover {
   transform: scale(1.1);
+}
+
+/* 中间入口 */
+.enter-btn {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.enter-btn:hover {
+  opacity: 1;
 }
 
 /* ===== 关系图 ===== */
@@ -106,38 +107,25 @@ body {
 }
 
 .network-container {
-  position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+/* ⭐ 可移动层 */
+.network-inner {
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
 }
 
 .network-bg {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 0.4s;
-}
-
-/* 放大状态 */
-.zoomed {
-  transform: scale(1.8);
-  cursor: grab;
-}
-
-/* 放大按钮 */
-.zoom-btn {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  z-index: 2;
-}
-
-.zoom-btn button {
-  padding: 6px 10px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  border: none;
-  cursor: pointer;
+  user-select: none;
+  pointer-events: none;
 }
 
 /* ===== 人物点击点 ===== */
@@ -149,7 +137,7 @@ body {
   cursor: pointer;
 }
 
-/* ===== 面板 ===== */
+/* ===== 面板（修复跑出屏幕问题） ===== */
 .panel {
   position: fixed;
   right: -400px;
@@ -159,10 +147,15 @@ body {
   background: #111;
   padding: 30px;
   transition: 0.4s;
+  z-index: 20;
 }
 
 .panel.active {
   right: 0;
+}
+
+.panel button {
+  margin-top: 20px;
 }
 
 </style>
@@ -172,47 +165,52 @@ body {
 
 <div class="sidebar">
   <h2>Symphony Noir</h2>
-  <a href="index.html">← Back</a>
+
+  <div id="nav-title" class="nav-item active">Title</div>
+  <div id="nav-char" class="nav-item">Characters</div>
+  <div id="nav-net" class="nav-item">Network</div>
 </div>
 
 <div class="main">
 
-  <!-- ⭐ 标题 -->
+  <!-- 标题 -->
   <div class="title-screen" onclick="enterCharacters()">
     <img src="images/title.png">
   </div>
 
-  <!-- ⭐ 主角入口 -->
+  <!-- 主角 -->
   <div class="character-screen" id="chars">
 
-    <div class="char" onclick="enterNetwork()">
+    <div class="char" onclick="openPanel('Yagami')">
       <img src="images/yagami.png">
-      <p>Yagami</p>
     </div>
 
-    <div class="char" onclick="enterNetwork()">
+    <!-- ⭐ 中间入口 -->
+    <div class="enter-btn" onclick="enterNetwork()">
+      Enter Network
+    </div>
+
+    <div class="char" onclick="openPanel('Shin')">
       <img src="images/shin.png">
-      <p>Shin</p>
     </div>
 
   </div>
 
-  <!-- ⭐ 关系图 -->
+  <!-- 关系图 -->
   <div class="network-screen" id="network">
 
-    <div class="zoom-btn">
-      <button onclick="toggleZoom()">Zoom</button>
+    <div class="network-container" id="container">
+      <div class="network-inner" id="inner">
+
+        <img src="images/network.png" class="network-bg" id="net">
+
+        <!-- 示例节点 -->
+        <div class="node" style="top:65%; left:28%;" onclick="openPanel('Yagami')"></div>
+        <div class="node" style="top:65%; left:75%;" onclick="openPanel('Shin')"></div>
+
+      </div>
     </div>
 
-    <div class="network-container">
-
-      <img src="images/network.png" class="network-bg" id="net">
-
-      <!-- 示例点击点 -->
-      <div class="node" style="top:65%; left:28%;" onclick="openPanel('Yagami')"></div>
-      <div class="node" style="top:65%; left:75%;" onclick="openPanel('Shin')"></div>
-
-    </div>
   </div>
 
 </div>
@@ -224,27 +222,71 @@ body {
 
 <script>
 
-function enterCharacters() {
-  document.querySelector(".title-screen").style.display = "none";
-  document.getElementById("chars").style.display = "flex";
+/* ===== 状态切换 ===== */
+function setNav(a,b,c){
+  document.getElementById("nav-title").classList.toggle("active",a);
+  document.getElementById("nav-char").classList.toggle("active",b);
+  document.getElementById("nav-net").classList.toggle("active",c);
 }
 
-function enterNetwork() {
-  document.getElementById("chars").style.display = "none";
-  document.getElementById("network").style.display = "block";
+function enterCharacters(){
+  document.querySelector(".title-screen").style.display="none";
+  document.getElementById("chars").style.display="flex";
+  setNav(0,1,0);
 }
 
-function toggleZoom() {
-  document.getElementById("net").classList.toggle("zoomed");
+function enterNetwork(){
+  document.getElementById("chars").style.display="none";
+  document.getElementById("network").style.display="block";
+  setNav(0,0,1);
 }
 
-function openPanel(name) {
+/* ===== 面板 ===== */
+function openPanel(name){
   document.getElementById("panel").classList.add("active");
-  document.getElementById("name").innerText = name;
+  document.getElementById("name").innerText=name;
 }
 
-function closePanel() {
+function closePanel(){
   document.getElementById("panel").classList.remove("active");
+}
+
+/* ===== 缩放 + 拖动 ===== */
+let scale = 1;
+let isDragging = false;
+let startX, startY;
+let translateX = 0;
+let translateY = 0;
+
+const inner = document.getElementById("inner");
+
+/* 滚轮缩放 */
+document.getElementById("container").addEventListener("wheel", e=>{
+  e.preventDefault();
+  scale += e.deltaY * -0.001;
+  scale = Math.min(Math.max(1, scale), 3);
+  updateTransform();
+});
+
+/* 拖动 */
+document.getElementById("container").addEventListener("mousedown", e=>{
+  isDragging = true;
+  startX = e.clientX - translateX;
+  startY = e.clientY - translateY;
+});
+
+document.addEventListener("mousemove", e=>{
+  if(!isDragging) return;
+  translateX = e.clientX - startX;
+  translateY = e.clientY - startY;
+  updateTransform();
+});
+
+document.addEventListener("mouseup", ()=> isDragging=false);
+
+function updateTransform(){
+  inner.style.transform =
+    `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 }
 
 </script>
