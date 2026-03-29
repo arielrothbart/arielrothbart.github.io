@@ -42,32 +42,38 @@ body {
   position: relative;
 }
 
-/* ===== 图层系统 ===== */
+/* ===== 图层 ===== */
 .network-container {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-/* 背景人物图 */
+/* ⭐ 背景图淡入 */
 .network-bg {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  opacity: 0;
+  animation: bgFade 1.5s ease forwards;
 }
 
-/* 线条层（默认暗） */
+@keyframes bgFade {
+  to { opacity: 1; }
+}
+
+/* ⭐ 线条（基础） */
 .lines {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  opacity: 0.15;
+  opacity: 0.12;
   pointer-events: none;
 }
 
-/* 发光层 */
+/* ⭐ 发光线条（延迟出现） */
 .lines-glow {
   position: absolute;
   width: 100%;
@@ -75,17 +81,16 @@ body {
   object-fit: contain;
   opacity: 0;
   pointer-events: none;
-
   filter: blur(4px) brightness(1.8);
   transition: 0.4s;
+  animation: glowAppear 1s ease forwards 2.8s;
 }
 
-/* 激活发光 */
-.lines-glow.active {
-  opacity: 0.9;
+@keyframes glowAppear {
+  to { opacity: 0.7; }
 }
 
-/* ===== 人物点 ===== */
+/* ===== 人物 ===== */
 .node {
   position: absolute;
   width: 80px;
@@ -93,19 +98,53 @@ body {
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
+
+  opacity: 0;
 }
 
-/* hover 效果 */
+/* ⭐ 主角 */
+.node.main {
+  animation: mainAppear 1.2s ease forwards 0.6s;
+}
+
+@keyframes mainAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ⭐ 扩散人物 */
+.node.spread1 { animation: spread 1s ease forwards 1.4s; }
+.node.spread2 { animation: spread 1s ease forwards 1.8s; }
+.node.spread3 { animation: spread 1s ease forwards 2.2s; }
+
+@keyframes spread {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* hover */
 .node:hover {
   transform: scale(1.12);
 }
 
-/* 其他变暗 */
+/* dim */
 .dimmed {
-  opacity: 0.15;
+  opacity: 0.15 !important;
 }
 
-/* ===== 右侧人物卡 ===== */
+/* ===== 右侧卡 ===== */
 .panel {
   position: fixed;
   right: -400px;
@@ -122,7 +161,7 @@ body {
   right: 0;
 }
 
-/* ===== 顶部控制 ===== */
+/* ===== 控制 ===== */
 .controls {
   position: absolute;
   top: 20px;
@@ -159,30 +198,32 @@ body {
 
   <div class="network-container">
 
-    <!-- 人物图 -->
+    <!-- ⭐ 只保留这三个图（不会再破图） -->
     <img src="images/network.png" class="network-bg">
-
-    <!-- 线条 -->
     <img src="images/lines.png" class="lines">
     <img src="images/lines.png" class="lines-glow" id="glowLayer">
 
-    <!-- ===== 人物节点（示例几个，你继续补） ===== -->
-
-    <div class="node" style="top:65%; left:28%;"
-      data-name="Synon"
+    <!-- ⭐ 主角 -->
+    <div class="node main" style="top:65%; left:28%;"
+      data-name="Yagami"
       data-info="Consultant Detective"
       onmouseenter="highlight(this)"
       onmouseleave="resetHighlight()"
       onclick="openPanel(this)">
     </div>
 
-    <div class="node" style="top:65%; left:75%;"
-      data-name="Sugahara"
+    <div class="node main" style="top:65%; left:75%;"
+      data-name="Shin"
       data-info="Occultism Professor"
       onmouseenter="highlight(this)"
       onmouseleave="resetHighlight()"
       onclick="openPanel(this)">
     </div>
+
+    <!-- ⭐ 扩散人物（示例） -->
+    <div class="node spread1" style="top:75%; left:38%;"></div>
+    <div class="node spread2" style="top:75%; left:52%;"></div>
+    <div class="node spread3" style="top:90%; left:60%;"></div>
 
   </div>
 </div>
@@ -195,7 +236,7 @@ body {
 
 <script>
 
-/* ===== hover 人物 ===== */
+/* hover */
 function highlight(el) {
   document.querySelectorAll('.node').forEach(n=>{
     n.classList.add('dimmed');
@@ -214,7 +255,7 @@ function resetHighlight() {
   document.getElementById("glowLayer").classList.remove("active");
 }
 
-/* ===== panel ===== */
+/* panel */
 function openPanel(el) {
   document.getElementById("panel").classList.add("active");
   document.getElementById("name").innerText = el.dataset.name;
@@ -225,7 +266,7 @@ function closePanel() {
   document.getElementById("panel").classList.remove("active");
 }
 
-/* ===== 手动开关发光 ===== */
+/* glow */
 function toggleGlow() {
   document.getElementById("glowLayer").classList.toggle("active");
 }
