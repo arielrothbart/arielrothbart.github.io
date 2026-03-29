@@ -69,30 +69,26 @@ body{
 .title-screen img{
   width:760px;
   opacity:0;
-  transform:translateY(40px);
-  animation:titleIn 2s forwards;
+  animation:fadeIn 2s forwards;
 }
 
-@keyframes titleIn{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+@keyframes fadeIn{
+  to{opacity:1;}
 }
 
 .fade-out{
-  animation:ghostOut 1.4s forwards;
+  animation:ghostOut 1.2s forwards;
 }
 
 @keyframes ghostOut{
   to{
     opacity:0;
-    filter:blur(8px);
-    transform:translateY(-80px);
+    transform:translateY(-60px);
+    filter:blur(6px);
   }
 }
 
-/* ===== character ===== */
+/* ===== characters ===== */
 .character-screen{
   position:absolute;
   width:100%;
@@ -100,25 +96,23 @@ body{
   display:none;
   justify-content:center;
   align-items:center;
-  gap:140px;
+  gap:120px;
 }
 
 .char img{
-  width:160px;
+  width:150px;
   border-radius:50%;
 }
 
 .fade-char{
-  animation:ghostOut 1.2s forwards;
+  animation:ghostOut 1s forwards;
 }
 
 /* ENTER */
 .enter-btn{
   font-size:12px;
-  letter-spacing:2px;
   cursor:pointer;
   opacity:0.7;
-  transition:0.3s;
 }
 
 .enter-btn:hover{
@@ -136,12 +130,18 @@ body{
 }
 
 .network-inner{
-  position:absolute;
-  transform-origin:center;
+  width:100%;
+  height:100%;
+  cursor:grab;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.network-bg{
-  display:block;
+.network-inner img{
+  max-width:90%;
+  max-height:90%;
+  transition:0.1s;
 }
 
 /* ===== mobile ===== */
@@ -165,13 +165,11 @@ body{
 
 <body>
 
-<!-- mobile logo -->
 <img src="logo.png" class="mobile-logo" onclick="goHome()">
 
 <div class="sidebar">
   <img src="logo.png" class="logo" onclick="goHome()">
-
-  <div class="title" onclick="reloadPage()">Symphony Noir</div>
+  <div class="title" onclick="showTitle()">Symphony Noir</div>
 
   <div class="nav-item active" id="nav-title">Title</div>
   <div class="nav-item" id="nav-char">Characters</div>
@@ -185,14 +183,14 @@ body{
 </div>
 
 <div class="character-screen" id="chars">
-  <div class="char" id="yagami"><img src="images/yagami.png"></div>
+  <div class="char"><img src="images/yagami.png"></div>
   <div class="enter-btn" id="enterBtn">ENTER</div>
-  <div class="char" id="shin"><img src="images/shin.png"></div>
+  <div class="char"><img src="images/shin.png"></div>
 </div>
 
 <div class="network-screen" id="network">
-  <div class="network-inner" id="inner">
-    <img src="images/network.png" id="netImg" class="network-bg">
+  <div class="network-inner" id="viewer">
+    <img src="images/network.png" id="netImg">
   </div>
 </div>
 
@@ -205,25 +203,45 @@ const title = document.getElementById("title");
 const chars = document.getElementById("chars");
 const network = document.getElementById("network");
 
-const yagami = document.getElementById("yagami");
-const shin = document.getElementById("shin");
-
 const navTitle = document.getElementById("nav-title");
 const navChar = document.getElementById("nav-char");
 const navNet = document.getElementById("nav-net");
 
-const img = document.getElementById("netImg");
-const inner = document.getElementById("inner");
-
-/* ===== nav ===== */
+/* ===== nav state ===== */
 function setNav(t,c,n){
   navTitle.classList.toggle("active",t);
   navChar.classList.toggle("active",c);
   navNet.classList.toggle("active",n);
 }
 
-function goHome(){window.location.href="index.html";}
-function reloadPage(){location.reload();}
+/* ===== navigation ===== */
+function goHome(){
+  window.location.href="index.html";
+}
+
+function showTitle(){
+  title.style.display="flex";
+  chars.style.display="none";
+  network.style.display="none";
+  setNav(true,false,false);
+}
+
+/* sidebar click */
+navTitle.onclick = showTitle;
+
+navChar.onclick = ()=>{
+  title.style.display="none";
+  chars.style.display="flex";
+  network.style.display="none";
+  setNav(false,true,false);
+};
+
+navNet.onclick = ()=>{
+  title.style.display="none";
+  chars.style.display="none";
+  network.style.display="block";
+  setNav(false,false,true);
+};
 
 /* ===== flow ===== */
 title.onclick = ()=>{
@@ -233,52 +251,51 @@ title.onclick = ()=>{
     title.style.display="none";
     chars.style.display="flex";
     setNav(false,true,false);
-  },1200);
+  },1000);
 };
 
 document.getElementById("enterBtn").onclick = ()=>{
-  yagami.classList.add("fade-char");
-  shin.classList.add("fade-char");
-
-  setTimeout(()=>{
-    chars.style.display="none";
-    network.style.display="block";
-    setNav(false,false,true);
-  },900);
+  chars.style.display="none";
+  network.style.display="block";
+  setNav(false,false,true);
 };
 
-/* ===== camera ===== */
-let scale=1, x=0, y=0;
+/* ===== zoom & drag ===== */
+let scale = 1;
+let isDragging = false;
+let startX, startY;
 
-img.onload = ()=>{
-  resetView();
-};
+const img = document.getElementById("netImg");
 
-function resetView(){
+/* zoom */
+img.addEventListener("wheel", e=>{
+  e.preventDefault();
+  scale += e.deltaY * -0.001;
+  scale = Math.min(Math.max(0.5,scale),3);
+  img.style.transform = `scale(${scale})`;
+});
 
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
+/* drag */
+img.addEventListener("mousedown", e=>{
+  isDragging = true;
+  startX = e.clientX;
+  startY = e.clientY;
+  img.style.cursor = "grabbing";
+});
 
-  const iw = img.naturalWidth;
-  const ih = img.naturalHeight;
+window.addEventListener("mouseup", ()=>{
+  isDragging = false;
+  img.style.cursor = "grab";
+});
 
-  const s = Math.min(vw/iw, vh/ih);
+window.addEventListener("mousemove", e=>{
+  if(!isDragging) return;
 
-  scale = s;
+  const dx = e.clientX - startX;
+  const dy = e.clientY - startY;
 
-  x = (vw - iw*s)/2;
-  y = (vh - ih*s)/2;
-
-  // ⭐ 向下偏移（主角区）
-  y -= vh * 0.1;
-
-  update();
-}
-
-function update(){
-  inner.style.transform =
-    `translate(${x}px,${y}px) scale(${scale})`;
-}
+  img.style.transform = `translate(${dx}px,${dy}px) scale(${scale})`;
+});
 
 </script>
 
