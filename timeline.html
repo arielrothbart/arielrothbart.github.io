@@ -13,13 +13,42 @@ body{
   background:black;
   color:white;
   font-family:'Special Elite',cursive;
+  overflow-x:hidden;
 }
 
-/* ===== 主轴 ===== */
+/* ===== 左侧目录 ===== */
+.sidebar{
+  position:fixed;
+  width:200px;
+  height:100vh;
+  background:#0a0a0a;
+  padding:30px;
+}
+
+.nav{
+  margin-top:40px;
+}
+
+.nav div{
+  margin:12px 0;
+  color:#666;
+  cursor:pointer;
+}
+
+.nav .active{
+  color:white;
+}
+
+/* ===== 主体 ===== */
+.main{
+  margin-left:200px;
+  padding:100px 0;
+}
+
+/* 中轴线 */
 .timeline{
   position:relative;
   width:100%;
-  padding:100px 0;
 }
 
 .timeline::before{
@@ -29,14 +58,14 @@ body{
   width:1px;
   height:100%;
   background:rgba(255,255,255,0.2);
-  box-shadow:0 0 6px rgba(255,255,255,0.4);
+  box-shadow:0 0 6px rgba(255,255,255,0.5);
 }
 
 /* ===== 事件 ===== */
 .event{
   position:relative;
   width:50%;
-  padding:20px 40px;
+  padding:30px 50px;
   box-sizing:border-box;
 
   opacity:0;
@@ -58,16 +87,27 @@ body{
   left:50%;
 }
 
-/* 年份 */
 .year{
   font-size:22px;
-  margin-bottom:6px;
 }
 
-/* 内容 */
+/* 原文 */
 .text{
+  margin-top:8px;
   font-size:14px;
   opacity:0.7;
+}
+
+/* hover 完整内容 */
+.detail{
+  margin-top:10px;
+  font-size:13px;
+  opacity:0;
+  transition:0.3s;
+}
+
+.event:hover .detail{
+  opacity:1;
 }
 
 /* 横线 */
@@ -83,133 +123,317 @@ body{
 .left::after{ right:-40px; }
 .right::after{ left:-40px; }
 
-/* ===== 历史线颜色 ===== */
+/* ===== 颜色 ===== */
 .historical .year{
   color:#f5e6c8;
   text-shadow:0 0 6px rgba(255,220,150,0.4);
 }
 
-/* ===== 现代线颜色 ===== */
 .modern .year{
   color:#d8e6ff;
   text-shadow:0 0 6px rgba(150,180,255,0.4);
 }
 
-/* 标题 */
-.section-title{
-  text-align:center;
-  margin:80px 0 40px;
-  font-size:20px;
-  letter-spacing:2px;
-  opacity:0.8;
+/* ===== 区块 ===== */
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+/* ===== 回顶 ===== */
+.top-btn{
+  position:fixed;
+  right:30px;
+  bottom:30px;
+  font-size:12px;
+  cursor:pointer;
+  opacity:0.5;
+}
+
+.top-btn:hover{
+  opacity:1;
 }
 
 </style>
 </head>
 
-<body>
+<body onclick="goBack(event)">
 
-<div class="timeline">
+<div class="sidebar">
+  <div style="font-size:18px;">Timeline</div>
+
+  <div class="nav">
+    <div id="btn-his" class="active" onclick="showSection('his')">Historical</div>
+    <div id="btn-mod" onclick="showSection('mod')">Vermont</div>
+  </div>
+</div>
+
+<div class="main">
 
 <!-- ===== 历史线 ===== -->
-<div class="section-title">Historical Timeline</div>
+<div id="his" class="section active">
+<div class="timeline">
 
-<div class="event left historical" id="year-1465">
+<!-- ⭐ 例子（你复制这个结构填你的原文） -->
+
+<div class="event left historical">
   <div class="year">1465</div>
   <div class="text">Osvaldo 出生</div>
+
+  <div class="detail">
+    这里粘你原本写的完整事件内容  
+    一字不改  
+  </div>
 </div>
 
-<div class="event right historical" id="year-1467">
+<div class="event right historical">
   <div class="year">1467</div>
   <div class="text">Antonio 出生</div>
+
+  <div class="detail">
+1465年 Osvaldo出生
+1467年 Antonio出生
+1469年 Mattias Garcia出生
+
+1476年 Lorenzo出生
+同年梅柳齐娜病逝，Alfonzo立Osvaldo为王储
+
+维斯康蒂兄弟作为外教大使和教授
+到西班牙宫廷进行教学和外交
+（9年左右）
+
+朱塞佩因为身体原因回到佛罗伦萨任教
+
+1484年
+Alfonzo病逝，Osvaldo继承王位
+年轻的国王不顾反对册封自己的弟弟Antonio为王储
+将其留在了马德里
+其余的堂兄弟姐妹被各封属地，驱离首都
+
+1487年
+唐克雷迪回到佛罗伦萨
+Lorenzo成为朱塞佩的学生
+
+1490年
+唐克雷迪去往那不勒斯公国出差
+
+1497年
+Lorenzo于外交学院毕业，被派遣到西班牙
+
+1498年
+Osvaldo同那不勒斯公国的Cathetine Macarena公主政治联姻
+
+1499年
+Osvaldo和Macarena的孩子Fernando王子出生
+
+1501年
+Macarena的哥哥Vincenzo来到马德里首次同国王女王（自己的妹妹）见面
+请求Osvaldo出兵帮助公国击退法国统治
+Osvaldo拒绝了他的请求，但同意整理兵力在其他战线上向法国施压。
+
+1503年-1504年
+Lorenzo遭到袭击，短暂失声，在马德里皇宫养病
+Vincenzo再次来向西班牙方求助，这次他带来了唐克雷迪 维斯康蒂
+维斯康蒂建议Lorenzo回佛罗伦萨修养一段时间
+
+Antonio和Lorenzo走海路回到佛罗伦萨
+Lorenzo留在家乡接受治疗，Antonio带兵动身前往那不勒斯作战
+西班牙占领那不勒斯公国和西西里
+
+1505年
+Antonio回到马德里，等待Lorenzo归来
+Lorenzo治疗初见成效，因为当职期间外交局势稳定，被派回马德里
+
+1508年
+西班牙统治下的那不勒斯赋税问题出现，Vincenzo来到皇宫请示
+但他的目的并非同国王谈判
+Garcia代替Antonio被派往前线
+12月
+国王和王储被暗杀，Maccarena王后和年轻的王子逃离王宫
+Lorenzo被发现死于自己的行宫房间。
+
+1509年
+1月 Vincenzo被处死，维斯康蒂拥立西西里公国贵族与法国国王的子嗣继承西班牙王位
+... ...
+
+1516年
+Fernando带兵起义复辟希门内斯王朝
+
+1518年
+Fernando夺回王位，对那不勒斯和西西里施行重税
+... ... 
+
+  </div>
 </div>
 
-<div class="event left historical">
-  <div class="year">1484</div>
-  <div class="text">Osvaldo 继位</div>
 </div>
-
-<div class="event right historical">
-  <div class="year">1498</div>
-  <div class="text">政治联姻</div>
 </div>
-
-<div class="event left historical">
-  <div class="year">1508</div>
-  <div class="text">王室遇刺</div>
-</div>
-
-<div class="event right historical">
-  <div class="year">1516</div>
-  <div class="text">王朝复辟</div>
-</div>
-
 
 <!-- ===== 现代线 ===== -->
-<div class="section-title">Ghost in Vermont</div>
+<div id="mod" class="section">
+<div class="timeline">
 
-<div class="event right modern" id="year-1950">
+<div class="event right modern">
   <div class="year">1950</div>
-  <div class="text">八神伊织 出生</div>
+  <div class="text">八神出生</div>
+
+  <div class="detail"> 
+1943  安娜贝儿事件
+
+1950
+八神伊织 出生
+
+1954
+八神重英 出生
+
+1957
+上杉海斗
+岩波钦悟 出生
+
+1958
+菅原真 出生
+
+1964
+菅原真 6岁
+其母 Marla病逝，同年8月被送往孤儿院
+10月 真被带往研究所治疗
+
+1966
+八神重英12岁
+同家人前往洛杉矶的死亡博物馆参观，意外碰触到Antonio死亡时拿着的金币，成为恶灵的宿主。
+
+1971
+Frenchie 驱魔事件，沃伦夫妇 封印哈瑞斯维尔宅音乐盒
+
+1974
+真与钦悟相识
+同年12月 岩波鸣海正式收养真（16岁）
+菅原真没有改姓
+
+1976
+菅原真考上汉普顿大学，史学/神学系
+真（18岁）和八神（22岁）初遇
+密特维利屋事件 沃伦夫妇第二次遭遇鬼修女
+
+1977年 
+英国恩菲尔德，邪灵比尔大爷附身小女孩
+（霍奇森宅闹鬼事件）
+沃伦夫妇驱逐鬼修女Valak
+八神去往纽约，就职于NCPD
+
+1980
+朝生在奥地利出生
+
+1981
+阿尼判刑，恶魔附身案件审理结束
+钦悟举家回到波士顿，琉生出世
+经钦悟介绍，真 和 上杉海斗（24岁）相识
+真正就读于汉普顿神秘学系 研究生二年级
+海斗在法医部门就职 
+两人开始调查灵异事件
+
+1982
+诅咒事件发生
+钦悟去世，海斗失踪
+真生命力遭到稀释，丧失近60%自如行动能力
+
+1983
+真休学
+八神回到佛蒙特警局成为特聘detective（警局警衔，不是职业侦探）
+
+佛蒙特火灾
+
+1984
+真毕业，留校任教
+
+
+1985 年
+朝生失踪，真去解救的时候遇到了八神。两人合作救出了朝生。
+
+1986年 （Now）
+八神找到真
+说服他组队调查灵异事件。
+
+10月 已经死亡的海斗出现
+
+1987年
+真进入间隙位面，没有如期醒来
+Antonio消失
+真
+
+1988年
+八神担任警局的顾问，半退役
+……
+
+1998年 
+真从昏迷中醒来
+
+1999年
+真与信任的友人开始秘密调查Antonio的过去
+他们分别前往意大利和马德里收集古籍情报
+
+2000-2001年
+真和八神向Antonio阐明了当时的真相
+并召唤了Lorenzo本人的灵魂
+
+  </div>
 </div>
 
-<div class="event left modern" id="year-1958">
-  <div class="year">1958</div>
-  <div class="text">菅原真 出生</div>
 </div>
-
-<div class="event right modern">
-  <div class="year">1976</div>
-  <div class="text">初遇</div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1982</div>
-  <div class="text">诅咒事件</div>
-</div>
-
-<div class="event right modern">
-  <div class="year">1986</div>
-  <div class="text">组队调查</div>
-</div>
-
-<div class="event left modern">
-  <div class="year">1999</div>
-  <div class="text">调查Antonio</div>
 </div>
 
 </div>
+
+<div class="top-btn" onclick="scrollTopSmooth()">TOP ↑</div>
 
 <script>
 
-/* ===== 滚动出现 ===== */
+/* ===== 切换 ===== */
+function showSection(type){
+
+  document.getElementById("his").classList.remove("active");
+  document.getElementById("mod").classList.remove("active");
+
+  document.getElementById("btn-his").classList.remove("active");
+  document.getElementById("btn-mod").classList.remove("active");
+
+  if(type==="his"){
+    document.getElementById("his").classList.add("active");
+    document.getElementById("btn-his").classList.add("active");
+  }else{
+    document.getElementById("mod").classList.add("active");
+    document.getElementById("btn-mod").classList.add("active");
+  }
+
+}
+
+/* ===== 滚动显示 ===== */
 const events = document.querySelectorAll(".event");
 
 window.addEventListener("scroll", ()=>{
   const trigger = window.innerHeight * 0.85;
 
   events.forEach(e=>{
-    const top = e.getBoundingClientRect().top;
-    if(top < trigger){
+    if(e.getBoundingClientRect().top < trigger){
       e.classList.add("show");
     }
   });
 });
 
-/* ===== 跳转定位 ===== */
-window.onload = ()=>{
-  const hash = window.location.hash;
-
-  if(hash){
-    const el = document.querySelector(hash);
-
-    if(el){
-      setTimeout(()=>{
-        el.scrollIntoView({behavior:"smooth", block:"center"});
-      },300);
-    }
+/* ===== 点击空白返回 ===== */
+function goBack(e){
+  if(e.target === document.body){
+    window.location.href = "sym-noir.html";
   }
-};
+}
+
+/* ===== 回顶 ===== */
+function scrollTopSmooth(){
+  window.scrollTo({top:0,behavior:"smooth"});
+}
 
 </script>
 
