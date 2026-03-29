@@ -14,35 +14,31 @@ body{
   background:black;
   color:white;
   overflow:hidden;
-  font-family: serif;
 }
 
-/* ===== 左侧导航 ===== */
+/* ===== 左侧 ===== */
 .sidebar{
   position:fixed;
   width:220px;
   height:100vh;
   background:rgba(10,10,10,0.95);
   padding:30px;
-  z-index:10;
 }
 
 .logo{
-  width:80px;
+  width:90px;
+  cursor:pointer;
   opacity:0.8;
-  margin-bottom:20px;
 }
 
-.back{
-  display:block;
-  margin-bottom:20px;
+.title{
+  margin-top:20px;
   color:#aaa;
-  text-decoration:none;
 }
 
 .nav-item{
   margin:10px 0;
-  color:#666;
+  color:#555;
   cursor:pointer;
 }
 
@@ -58,35 +54,43 @@ body{
   overflow:hidden;
 }
 
-/* ===== 转场（暗化） ===== */
-.fade{
-  animation:fadeBlack 0.6s;
-}
-
-@keyframes fadeBlack{
-  from{opacity:0;}
-  to{opacity:1;}
-}
-
-/* ===== 标题 ===== */
+/* ===== 标题（电影感） ===== */
 .title-screen{
   position:absolute;
   width:100%;
   height:100%;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   cursor:pointer;
 }
 
 .title-screen img{
-  width:420px;
+  width:700px;
   opacity:0;
-  animation:titleFade 2s forwards;
+  transform:translateY(-30px);
+  animation:titleIn 2.5s ease forwards;
 }
 
-@keyframes titleFade{
-  to{opacity:1;}
+@keyframes titleIn{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* 消散 */
+.title-screen.fade-out{
+  animation:titleOut 1.5s forwards;
+}
+
+@keyframes titleOut{
+  0%{opacity:1; filter:blur(0);}
+  100%{
+    opacity:0;
+    filter:blur(6px);
+    transform:translateY(40px);
+  }
 }
 
 /* ===== 主角 ===== */
@@ -95,50 +99,38 @@ body{
   width:100%;
   height:100%;
   display:none;
-  align-items:center;
   justify-content:center;
-  gap:120px;
+  align-items:center;
+  gap:140px;
 }
 
 .char{
-  position:relative;
   transition:1.2s ease;
 }
 
 .char img{
-  width:140px;
+  width:160px;
   border-radius:50%;
-  cursor:pointer;
 }
 
-/* ===== 飞入动画 ===== */
-.move-yagami{
-  position:absolute;
-  top:62%;
-  left:32%;
-  transform:scale(0.4);
+/* 飞入 */
+.fly{
+  transform:translate(-50vw,20vh) scale(0.35);
 }
 
-.move-shin{
-  position:absolute;
-  top:62%;
-  left:72%;
-  transform:scale(0.4);
-}
-
-/* ===== Enter按钮（复古打字机） ===== */
+/* ===== ENTER ===== */
 .enter-btn{
-  font-family:'Special Elite', cursive;
-  font-size:14px;
+  font-family:'Special Elite',cursive;
+  font-size:12px;
   letter-spacing:2px;
-  cursor:pointer;
   opacity:0.7;
+  cursor:pointer;
   transition:0.3s;
 }
 
 .enter-btn:hover{
   opacity:1;
-  letter-spacing:4px;
+  letter-spacing:5px;
 }
 
 /* ===== 关系图 ===== */
@@ -155,24 +147,20 @@ body{
   opacity:1;
 }
 
-.network-container{
+.network-inner{
   width:100%;
   height:100%;
-  cursor:grab;
-}
-
-.network-inner{
   transform-origin:center;
-  transition:0.3s;
+  transition:0.1s;
 }
 
 .network-bg{
-  width:100%;
-  height:100%;
+  width:120%;
+  height:120%;
   object-fit:contain;
 }
 
-/* ===== 面板（修复按钮问题） ===== */
+/* ===== 面板 ===== */
 .panel{
   position:fixed;
   right:-400px;
@@ -195,47 +183,40 @@ body{
   right:20px;
 }
 
-/* ===== 点击点 ===== */
-.node{
-  position:absolute;
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  cursor:pointer;
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="sidebar">
-  <img src="logo.png" class="logo">
 
-  <a href="index.html" class="back">← Back</a>
+  <img src="logo.png" class="logo" onclick="location.reload()">
 
-  <div class="nav-item active" onclick="goTitle()">Title</div>
-  <div class="nav-item" onclick="goChar()">Characters</div>
-  <div class="nav-item" onclick="goNet()">Network</div>
+  <div class="title">Symphony Noir</div>
+
+  <div class="nav-item active">Title</div>
+  <div class="nav-item">Characters</div>
+  <div class="nav-item">Network</div>
+
 </div>
 
 <div class="main">
 
 <!-- 标题 -->
-<div class="title-screen" onclick="enterCharacters()">
+<div class="title-screen" onclick="enterCharacters()" id="title">
   <img src="images/title.png">
 </div>
 
 <!-- 主角 -->
 <div class="character-screen" id="chars">
 
-  <div class="char" id="yagami" onclick="openPanel('Yagami')">
+  <div class="char" id="yagami">
     <img src="images/yagami.png">
   </div>
 
   <div class="enter-btn" onclick="enterNetwork()">ENTER</div>
 
-  <div class="char" id="shin" onclick="openPanel('Shin')">
+  <div class="char" id="shin">
     <img src="images/shin.png">
   </div>
 
@@ -244,15 +225,8 @@ body{
 <!-- 关系图 -->
 <div class="network-screen" id="network">
 
-  <div class="network-container" id="container">
-    <div class="network-inner" id="inner">
-
-      <img src="images/network.png" class="network-bg">
-
-      <div class="node" style="top:65%; left:28%;" onclick="openPanel('Yagami')"></div>
-      <div class="node" style="top:65%; left:75%;" onclick="openPanel('Shin')"></div>
-
-    </div>
+  <div class="network-inner" id="inner">
+    <img src="images/network.png" class="network-bg">
   </div>
 
 </div>
@@ -266,40 +240,22 @@ body{
 
 <script>
 
-/* ===== 导航 ===== */
-function setNav(a,b,c){
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  if(a) document.querySelectorAll('.nav-item')[0].classList.add('active');
-  if(b) document.querySelectorAll('.nav-item')[1].classList.add('active');
-  if(c) document.querySelectorAll('.nav-item')[2].classList.add('active');
-}
-
-function goTitle(){
-  location.reload();
-}
-
-function goChar(){
-  enterCharacters();
-}
-
-function goNet(){
-  enterNetwork();
-}
-
-/* ===== 页面 ===== */
+/* ===== 标题 → 主角 ===== */
 function enterCharacters(){
-  document.querySelector(".title-screen").style.display="none";
-  document.getElementById("chars").style.display="flex";
-  setNav(0,1,0);
+  const t=document.getElementById("title");
+  t.classList.add("fade-out");
+
+  setTimeout(()=>{
+    t.style.display="none";
+    document.getElementById("chars").style.display="flex";
+  },1200);
 }
 
+/* ===== 主角 → 网络 ===== */
 function enterNetwork(){
 
-  const y = document.getElementById("yagami");
-  const s = document.getElementById("shin");
-
-  y.classList.add("move-yagami");
-  s.classList.add("move-shin");
+  document.getElementById("yagami").classList.add("fly");
+  document.getElementById("shin").classList.add("fly");
 
   setTimeout(()=>{
     document.getElementById("network").style.display="block";
@@ -307,58 +263,47 @@ function enterNetwork(){
       document.getElementById("network").classList.add("show");
     },50);
   },800);
-
-  document.querySelector(".enter-btn").style.opacity=0;
-
-  setNav(0,0,1);
 }
 
 /* ===== 面板 ===== */
-function openPanel(name){
-  document.getElementById("panel").classList.add("active");
-  document.getElementById("name").innerText=name;
-}
-
 function closePanel(){
   document.getElementById("panel").classList.remove("active");
 }
 
-/* ===== 缩放拖动 ===== */
-let scale=1, x=0, y=0, dragging=false, startX, startY;
+/* ===== 缩放拖动（重写稳定版） ===== */
+let scale=1, x=0, y=0, dragging=false;
 const inner=document.getElementById("inner");
 
-container.onwheel=e=>{
-  e.preventDefault();
+document.addEventListener("wheel",e=>{
   scale+=e.deltaY*-0.001;
-  scale=Math.min(Math.max(1,scale),3);
+  scale=Math.min(Math.max(0.8,scale),2.5);
   update();
-};
+});
 
-container.onmousedown=e=>{
+document.addEventListener("mousedown",e=>{
   dragging=true;
-  startX=e.clientX-x;
-  startY=e.clientY-y;
-};
+});
 
-document.onmousemove=e=>{
+document.addEventListener("mousemove",e=>{
   if(!dragging)return;
-  x=e.clientX-startX;
-  y=e.clientY-startY;
+  x+=e.movementX;
+  y+=e.movementY;
   update();
-};
+});
 
-document.onmouseup=()=>dragging=false;
+document.addEventListener("mouseup",()=>dragging=false);
 
-/* ⭐ 点击回归原位 */
-container.onclick=()=>{
+/* 点击回位 */
+document.addEventListener("dblclick",()=>{
   scale=1;
   x=0;
   y=0;
   update();
-};
+});
 
 function update(){
-  inner.style.transform=`translate(${x}px,${y}px) scale(${scale})`;
+  inner.style.transform=
+    `translate(${x}px,${y}px) scale(${scale})`;
 }
 
 </script>
