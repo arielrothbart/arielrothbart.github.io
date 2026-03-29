@@ -5,40 +5,30 @@
 <title>Symphony Noir</title>
 
 <style>
+
 /* ===== 基础 ===== */
 body {
   margin: 0;
-  font-family: "Times New Roman", serif;
-  background: #e9e9e9;
-  color: #222;
+  background: #000;
+  font-family: serif;
   overflow: hidden;
 }
 
-/* ===== 左侧导航 ===== */
+/* ===== 左侧 ===== */
 .sidebar {
   position: fixed;
-  left: 0;
-  top: 0;
   width: 220px;
   height: 100vh;
-  background: rgba(20,20,20,0.9);
-  color: #ccc;
-  padding: 30px 20px;
-  box-sizing: border-box;
-}
-
-.sidebar h1 {
-  font-size: 20px;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
+  background: rgba(10,10,10,0.95);
+  color: #aaa;
+  padding: 30px;
 }
 
 .sidebar a {
   display: block;
-  margin: 10px 0;
-  color: #aaa;
+  margin: 12px 0;
+  color: #888;
   text-decoration: none;
-  transition: 0.3s;
 }
 
 .sidebar a:hover {
@@ -50,26 +40,52 @@ body {
   margin-left: 220px;
   height: 100vh;
   position: relative;
-  overflow: hidden;
 }
 
-/* ===== 关系图容器 ===== */
+/* ===== 图层系统 ===== */
 .network-container {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-/* 背景图 */
+/* 背景人物图 */
 .network-bg {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  opacity: 0.9;
-  filter: contrast(1.05);
 }
 
-/* ===== 人物点击区域 ===== */
+/* 线条层（默认暗） */
+.lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* 发光层 */
+.lines-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+
+  filter: blur(4px) brightness(1.8);
+  transition: 0.4s;
+}
+
+/* 激活发光 */
+.lines-glow.active {
+  opacity: 0.9;
+}
+
+/* ===== 人物点 ===== */
 .node {
   position: absolute;
   width: 80px;
@@ -79,34 +95,18 @@ body {
   transition: 0.3s;
 }
 
+/* hover 效果 */
 .node:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(255,255,255,0.6);
+  transform: scale(1.12);
 }
 
-/* 非激活淡化 */
+/* 其他变暗 */
 .dimmed {
-  opacity: 0.2;
-}
-
-/* ===== 关系线（预留） ===== */
-.line {
-  position: absolute;
-  height: 2px;
-  background: rgba(0,0,0,0.3);
-}
-
-.line.love { background: rgba(200,80,80,0.6); }
-.line.family { background: rgba(80,120,200,0.6); }
-.line.power { background: rgba(0,0,0,0.5); }
-
-/* 高亮 */
-.line.active {
-  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+  opacity: 0.15;
 }
 
 /* ===== 右侧人物卡 ===== */
-.character-panel {
+.panel {
   position: fixed;
   right: -400px;
   top: 0;
@@ -115,145 +115,119 @@ body {
   background: #111;
   color: #eee;
   padding: 30px;
-  box-sizing: border-box;
   transition: 0.4s;
 }
 
-.character-panel.active {
+.panel.active {
   right: 0;
 }
 
-.character-panel h2 {
-  margin-top: 0;
-}
-
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-}
-
 /* ===== 顶部控制 ===== */
-.top-bar {
+.controls {
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 10;
 }
 
-.top-bar button {
+.controls button {
   margin-left: 10px;
-  padding: 6px 10px;
-  border: none;
   background: rgba(0,0,0,0.6);
-  color: #fff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
   cursor: pointer;
 }
 
-.top-bar button:hover {
-  background: #444;
-}
 </style>
 </head>
 
 <body>
 
-<!-- 左侧导航 -->
 <div class="sidebar">
-  <h1>Symphony Noir</h1>
+  <h2>Symphony Noir</h2>
   <a href="index.html">← Back</a>
-
   <a href="#">Overview</a>
   <a href="#">Timeline</a>
   <a href="#">Character Network</a>
-
-  <br>
-
-  <a href="#">Ghost in Vermont</a>
-  <a href="#">Fuocoammare</a>
 </div>
 
-<!-- 主区域 -->
 <div class="main">
 
-  <!-- 关系筛选 -->
-  <div class="top-bar">
-    <button onclick="filterLines('all')">All</button>
-    <button onclick="filterLines('love')">Love</button>
-    <button onclick="filterLines('family')">Family</button>
+  <div class="controls">
+    <button onclick="toggleGlow()">Highlight Relations</button>
   </div>
 
   <div class="network-container">
 
-    <!-- 替换成你的关系图 -->
+    <!-- 人物图 -->
     <img src="images/network.png" class="network-bg">
 
-    <!-- ===== 示例人物节点（你要根据图的位置调整） ===== -->
-    <div class="node" style="top:55%; left:35%;" 
-         data-name="Synon"
-         data-info="Consultant Detective. Connected to multiple timelines."
-         onmouseenter="highlight(this)"
-         onmouseleave="resetHighlight()"
-         onclick="openPanel(this)">
+    <!-- 线条 -->
+    <img src="images/lines.png" class="lines">
+    <img src="images/lines.png" class="lines-glow" id="glowLayer">
+
+    <!-- ===== 人物节点（示例几个，你继续补） ===== -->
+
+    <div class="node" style="top:65%; left:28%;"
+      data-name="Synon"
+      data-info="Consultant Detective"
+      onmouseenter="highlight(this)"
+      onmouseleave="resetHighlight()"
+      onclick="openPanel(this)">
     </div>
 
-    <div class="node" style="top:55%; left:70%;" 
-         data-name="Sugahara"
-         data-info="Occultism professor. Deep ties to past."
-         onmouseenter="highlight(this)"
-         onmouseleave="resetHighlight()"
-         onclick="openPanel(this)">
+    <div class="node" style="top:65%; left:75%;"
+      data-name="Sugahara"
+      data-info="Occultism Professor"
+      onmouseenter="highlight(this)"
+      onmouseleave="resetHighlight()"
+      onclick="openPanel(this)">
     </div>
 
   </div>
 </div>
 
-<!-- 右侧人物面板 -->
-<div class="character-panel" id="panel">
-  <div class="close-btn" onclick="closePanel()">✕</div>
-  <h2 id="charName">Name</h2>
-  <p id="charInfo">Info</p>
+<div class="panel" id="panel">
+  <h2 id="name"></h2>
+  <p id="info"></p>
+  <button onclick="closePanel()">Close</button>
 </div>
 
 <script>
 
-/* ===== hover 高亮 ===== */
+/* ===== hover 人物 ===== */
 function highlight(el) {
-  document.querySelectorAll('.node').forEach(n => {
+  document.querySelectorAll('.node').forEach(n=>{
     n.classList.add('dimmed');
   });
   el.classList.remove('dimmed');
+
+  document.getElementById("glowLayer").classList.add("active");
 }
 
 /* reset */
 function resetHighlight() {
-  document.querySelectorAll('.node').forEach(n => {
+  document.querySelectorAll('.node').forEach(n=>{
     n.classList.remove('dimmed');
   });
+
+  document.getElementById("glowLayer").classList.remove("active");
 }
 
-/* ===== 打开人物卡 ===== */
+/* ===== panel ===== */
 function openPanel(el) {
   document.getElementById("panel").classList.add("active");
-  document.getElementById("charName").innerText = el.dataset.name;
-  document.getElementById("charInfo").innerText = el.dataset.info;
+  document.getElementById("name").innerText = el.dataset.name;
+  document.getElementById("info").innerText = el.dataset.info;
 }
 
-/* 关闭 */
 function closePanel() {
   document.getElementById("panel").classList.remove("active");
 }
 
-/* ===== 关系筛选 ===== */
-function filterLines(type) {
-  document.querySelectorAll('.line').forEach(line => {
-    if (type === 'all') {
-      line.style.display = 'block';
-    } else {
-      line.style.display = line.classList.contains(type) ? 'block' : 'none';
-    }
-  });
+/* ===== 手动开关发光 ===== */
+function toggleGlow() {
+  document.getElementById("glowLayer").classList.toggle("active");
 }
 
 </script>
