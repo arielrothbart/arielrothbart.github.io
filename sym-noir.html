@@ -55,7 +55,7 @@ body{
   position:relative;
 }
 
-/* ===== 标题 ===== */
+/* ===== title ===== */
 .title-screen{
   position:absolute;
   width:100%;
@@ -80,7 +80,6 @@ body{
   }
 }
 
-/* ⭐ 向上消散 */
 .fade-out{
   animation:ghostOut 1.4s forwards;
 }
@@ -104,16 +103,11 @@ body{
   gap:140px;
 }
 
-.char{
-  transition:0.3s;
-}
-
 .char img{
   width:160px;
   border-radius:50%;
 }
 
-/* 同样的ghost动画 */
 .fade-char{
   animation:ghostOut 1.2s forwards;
 }
@@ -130,7 +124,6 @@ body{
 .enter-btn:hover{
   opacity:1;
   transform:scale(1.1);
-  letter-spacing:5px;
 }
 
 /* ===== network ===== */
@@ -152,9 +145,19 @@ body{
 }
 
 /* ===== mobile ===== */
+.mobile-logo{
+  display:none;
+  position:fixed;
+  top:20px;
+  left:20px;
+  width:60px;
+  z-index:20;
+}
+
 @media (max-width:768px){
   .sidebar{display:none;}
   .main{margin-left:0;}
+  .mobile-logo{display:block;}
 }
 
 </style>
@@ -162,33 +165,31 @@ body{
 
 <body>
 
-<div class="sidebar">
+<!-- mobile logo -->
+<img src="logo.png" class="mobile-logo" onclick="goHome()">
 
+<div class="sidebar">
   <img src="logo.png" class="logo" onclick="goHome()">
 
   <div class="title" onclick="reloadPage()">Symphony Noir</div>
 
-  <div class="nav-item active" id="nav-title" onclick="goTitle()">Title</div>
-  <div class="nav-item" id="nav-char" onclick="goChar()">Characters</div>
-  <div class="nav-item" id="nav-net" onclick="goNet()">Network</div>
-
+  <div class="nav-item active" id="nav-title">Title</div>
+  <div class="nav-item" id="nav-char">Characters</div>
+  <div class="nav-item" id="nav-net">Network</div>
 </div>
 
 <div class="main">
 
-<!-- title -->
-<div class="title-screen" id="title" onclick="enterCharacters()">
+<div class="title-screen" id="title">
   <img src="images/title.png">
 </div>
 
-<!-- character -->
 <div class="character-screen" id="chars">
   <div class="char" id="yagami"><img src="images/yagami.png"></div>
-  <div class="enter-btn" onclick="enterNetwork()">ENTER</div>
+  <div class="enter-btn" id="enterBtn">ENTER</div>
   <div class="char" id="shin"><img src="images/shin.png"></div>
 </div>
 
-<!-- network -->
 <div class="network-screen" id="network">
   <div class="network-inner" id="inner">
     <img src="images/network.png" id="netImg" class="network-bg">
@@ -199,6 +200,21 @@ body{
 
 <script>
 
+/* ===== elements ===== */
+const title = document.getElementById("title");
+const chars = document.getElementById("chars");
+const network = document.getElementById("network");
+
+const yagami = document.getElementById("yagami");
+const shin = document.getElementById("shin");
+
+const navTitle = document.getElementById("nav-title");
+const navChar = document.getElementById("nav-char");
+const navNet = document.getElementById("nav-net");
+
+const img = document.getElementById("netImg");
+const inner = document.getElementById("inner");
+
 /* ===== nav ===== */
 function setNav(t,c,n){
   navTitle.classList.toggle("active",t);
@@ -208,50 +224,36 @@ function setNav(t,c,n){
 
 function goHome(){window.location.href="index.html";}
 function reloadPage(){location.reload();}
-function goTitle(){location.reload();}
-function goChar(){enterCharacters();}
-function goNet(){enterNetwork();}
 
 /* ===== flow ===== */
-function enterCharacters(){
-
+title.onclick = ()=>{
   title.classList.add("fade-out");
 
   setTimeout(()=>{
     title.style.display="none";
     chars.style.display="flex";
-    setNav(0,1,0);
+    setNav(false,true,false);
   },1200);
-}
+};
 
-function enterNetwork(){
-
+document.getElementById("enterBtn").onclick = ()=>{
   yagami.classList.add("fade-char");
   shin.classList.add("fade-char");
 
   setTimeout(()=>{
-
-    chars.style.display="none";  // ⭐ 彻底隐藏
-
+    chars.style.display="none";
     network.style.display="block";
-    setNav(0,0,1);
-
-    setTimeout(()=>{
-      resetView();      // 先居中
-      focusModern();    // 再轻微偏下
-    },50);
-
-  },1000);
-}
+    setNav(false,false,true);
+  },900);
+};
 
 /* ===== camera ===== */
+let scale=1, x=0, y=0;
 
-let scale=1, x=0, y=0, dragging=false;
+img.onload = ()=>{
+  resetView();
+};
 
-const inner=document.getElementById("inner");
-const img=document.getElementById("netImg");
-
-/* ⭐ 居中适配 */
 function resetView(){
 
   const vw = window.innerWidth;
@@ -267,37 +269,11 @@ function resetView(){
   x = (vw - iw*s)/2;
   y = (vh - ih*s)/2;
 
+  // ⭐ 向下偏移（主角区）
+  y -= vh * 0.1;
+
   update();
 }
-
-/* ⭐ 向下聚焦主角区 */
-function focusModern(){
-  y -= window.innerHeight * 0.15;
-  update();
-}
-
-/* zoom */
-network.addEventListener("wheel",e=>{
-  e.preventDefault();
-  scale += e.deltaY * -0.001;
-  scale = Math.min(Math.max(0.5,scale),3);
-  update();
-});
-
-/* drag */
-network.addEventListener("mousedown",()=>dragging=true);
-network.addEventListener("mouseup",()=>dragging=false);
-network.addEventListener("mouseleave",()=>dragging=false);
-
-network.addEventListener("mousemove",e=>{
-  if(!dragging)return;
-  x += e.movementX;
-  y += e.movementY;
-  update();
-});
-
-/* click reset */
-img.addEventListener("click",resetView);
 
 function update(){
   inner.style.transform =
