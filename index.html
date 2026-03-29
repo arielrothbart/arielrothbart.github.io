@@ -23,7 +23,7 @@
     }
 
     /* ========================= */
-    /* ⭐ HERO（不动） */
+    /* ⭐ HERO（完全不动） */
     /* ========================= */
 
     .hero {
@@ -36,6 +36,35 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    /* ⭐ 光从视频溢出（关键） */
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 120px;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(0,200,255,0),
+        rgba(0,200,255,1),
+        rgba(0,200,255,0)
+      );
+
+      box-shadow: 0 0 18px rgba(0,200,255,1);
+
+      animation: beamFlow 2.5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes beamFlow {
+      0% { opacity: 0; transform: translate(-50%, -10px); }
+      50% { opacity: 1; }
+      100% { opacity: 0; transform: translate(-50%, 20px); }
     }
 
     .title {
@@ -69,10 +98,8 @@
       letter-spacing: 2px;
     }
 
-    /* ⭐ 动画 */
     @keyframes softBoot {
       0% { opacity: 0.2; }
-      60% { opacity: 0.8; }
       100% { opacity: 1; }
     }
 
@@ -81,7 +108,7 @@
       opacity: 0.2;
     }
 
-    /* ⭐ 乱序亮起（重点） */
+    /* ⭐ 乱序亮起 */
     .nav a:nth-child(1) { animation: softBoot 1.2s forwards 0.6s; }
     .nav a:nth-child(2) { animation: softBoot 1.2s forwards 0.2s; }
     .nav a:nth-child(3) { animation: softBoot 1.2s forwards 1.0s; }
@@ -95,7 +122,6 @@
       transition: 0.3s;
     }
 
-    /* ⭐ logo（保持你原来的） */
     .logo {
       margin-top: 20px;
     }
@@ -119,13 +145,13 @@
     }
 
     /* ========================= */
-    /* ⭐ 光流引导（替代蓝线） */
+    /* ⭐ 主光流（往下延续） */
     /* ========================= */
 
     .beam {
       width: 2px;
-      height: 140px;
-      margin: 40px auto;
+      height: 120px;
+      margin: 0 auto;
 
       background: linear-gradient(
         to bottom,
@@ -134,26 +160,26 @@
         rgba(0,200,255,0)
       );
 
-      box-shadow: 0 0 14px rgba(0,200,255,0.9);
+      box-shadow: 0 0 16px rgba(0,200,255,1);
 
       animation: flow 2.5s infinite;
     }
 
     @keyframes flow {
-      0% { opacity: 0; transform: translateY(-20px); }
+      0% { opacity: 0; transform: translateY(-10px); }
       50% { opacity: 1; }
       100% { opacity: 0; transform: translateY(20px); }
     }
 
     /* ========================= */
-    /* ⭐ PROJECT（保持你那种感觉） */
+    /* ⭐ PROJECT */
     /* ========================= */
 
     .projects {
       display: flex;
       justify-content: center;
       gap: 80px;
-      margin-bottom: 120px;
+      margin: 40px 0 120px;
     }
 
     .project-card {
@@ -168,13 +194,12 @@
       transition: 0.5s ease;
     }
 
-    /* ⭐ 默认亮，hover 才暗 */
+    /* ⭐ hover 才暗 */
     .project-card:hover img {
       transform: scale(1.08);
       filter: brightness(0.7);
     }
 
-    /* ⭐ 标题 hover 出现 */
     .project-title {
       position: absolute;
       bottom: 20px;
@@ -189,8 +214,13 @@
       opacity: 1;
     }
 
+    /* ⭐ 光与poster互动（核心） */
+    .projects:hover .beam {
+      box-shadow: 0 0 22px #00c8ff;
+    }
+
     /* ========================= */
-    /* 📱 手机（不动你逻辑） */
+    /* 📱 手机 */
     /* ========================= */
 
     @media (max-width: 768px) {
@@ -269,7 +299,7 @@
 
 </div>
 
-<!-- ⭐ 光流引导 -->
+<!-- ⭐ 光延续 -->
 <div class="beam"></div>
 
 <!-- ⭐ PROJECT -->
