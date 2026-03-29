@@ -29,12 +29,11 @@ body{
 .logo{
   width:80px;
   cursor:pointer;
-  margin-bottom:20px;
 }
 
 .title{
   font-size:24px;
-  margin-bottom:20px;
+  margin:20px 0;
   cursor:pointer;
 }
 
@@ -76,6 +75,7 @@ body{
   to{opacity:1;}
 }
 
+/* ⭐ ghost向上消散 */
 .fade-out{
   animation:ghostOut 1.2s forwards;
 }
@@ -108,6 +108,7 @@ body{
   animation:ghostOut 1s forwards;
 }
 
+/* ENTER */
 .enter-btn{
   font-size:12px;
   cursor:pointer;
@@ -128,21 +129,23 @@ body{
   overflow:hidden;
 }
 
-.network-inner{
+.viewer{
   width:100%;
   height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
+  cursor:grab;
 }
 
-.network-inner img{
+.viewer img{
   max-width:90%;
   max-height:90%;
+  user-select:none;
+  pointer-events:auto;
 }
 
-/* ===== 📱 MOBILE ===== */
-
+/* ===== mobile ===== */
 .mobile-logo{
   display:none;
   position:fixed;
@@ -152,54 +155,24 @@ body{
   width:60px;
   opacity:0.7;
   z-index:50;
-  transition:0.3s;
-}
-
-.mobile-logo:active{
-  transform:translateX(-50%) scale(1.1);
-  opacity:1;
 }
 
 @media (max-width:768px){
 
-  body{
+  body{overflow:auto;}
+
+  .sidebar{display:none;}
+  .main{margin-left:0;}
+
+  .mobile-logo{display:block;}
+
+  .viewer{
     overflow:auto;
+    cursor:default;
   }
 
-  .sidebar{
-    display:none;
-  }
-
-  .main{
-    margin-left:0;
-    height:auto;
-  }
-
-  .mobile-logo{
-    display:block;
-  }
-
-  .title-screen img{
-    width:85%;
-  }
-
-  .char img{
-    width:110px;
-  }
-
-  .network-screen{
-    position:relative;
-    overflow:auto;
-  }
-
-  .network-inner{
-    display:block;
-    text-align:center;
-  }
-
-  .network-inner img{
+  .viewer img{
     max-width:140%;
-    height:auto;
   }
 
 }
@@ -207,9 +180,8 @@ body{
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
-<!-- 📱 mobile logo -->
 <img src="logo.png" class="mobile-logo" onclick="goHome()">
 
 <div class="sidebar">
@@ -224,18 +196,18 @@ body{
 <div class="main">
 
 <div class="title-screen" id="title">
-  <img src="images/title.png">
+  <img src="images/title.png" draggable="false">
 </div>
 
 <div class="character-screen" id="chars">
-  <div class="char"><img src="images/yagami.png"></div>
+  <div class="char" id="yagami"><img src="images/yagami.png" draggable="false"></div>
   <div class="enter-btn" id="enterBtn">ENTER</div>
-  <div class="char"><img src="images/shin.png"></div>
+  <div class="char" id="shin"><img src="images/shin.png" draggable="false"></div>
 </div>
 
 <div class="network-screen" id="network">
-  <div class="network-inner">
-    <img src="images/network.png">
+  <div class="viewer" id="viewer">
+    <img src="images/network.png" id="netImg" draggable="false">
   </div>
 </div>
 
@@ -248,21 +220,24 @@ const title = document.getElementById("title");
 const chars = document.getElementById("chars");
 const network = document.getElementById("network");
 
+const yagami = document.getElementById("yagami");
+const shin = document.getElementById("shin");
+
 const navTitle = document.getElementById("nav-title");
 const navChar = document.getElementById("nav-char");
 const navNet = document.getElementById("nav-net");
 
-/* ===== nav state ===== */
+const viewer = document.getElementById("viewer");
+const img = document.getElementById("netImg");
+
+/* ===== nav ===== */
 function setNav(t,c,n){
   navTitle.classList.toggle("active",t);
   navChar.classList.toggle("active",c);
   navNet.classList.toggle("active",n);
 }
 
-/* ===== navigation ===== */
-function goHome(){
-  window.location.href="index.html";
-}
+function goHome(){window.location.href="index.html";}
 
 function showTitle(){
   title.style.display="flex";
@@ -271,7 +246,7 @@ function showTitle(){
   setNav(true,false,false);
 }
 
-/* sidebar click */
+/* sidebar */
 navTitle.onclick = showTitle;
 
 navChar.onclick = ()=>{
@@ -300,10 +275,52 @@ title.onclick = ()=>{
 };
 
 document.getElementById("enterBtn").onclick = ()=>{
-  chars.style.display="none";
-  network.style.display="block";
-  setNav(false,false,true);
+
+  yagami.classList.add("fade-char");
+  shin.classList.add("fade-char");
+
+  setTimeout(()=>{
+    chars.style.display="none";
+    network.style.display="block";
+    setNav(false,false,true);
+  },900);
 };
+
+/* ===== PC zoom & drag ===== */
+if(window.innerWidth > 768){
+
+  let scale = 1;
+  let x = 0, y = 0;
+  let dragging = false;
+
+  viewer.addEventListener("wheel", e=>{
+    e.preventDefault();
+    scale += e.deltaY * -0.001;
+    scale = Math.min(Math.max(0.5,scale),3);
+
+    img.style.transform =
+      `translate(${x}px,${y}px) scale(${scale})`;
+  });
+
+  viewer.addEventListener("mousedown", e=>{
+    dragging = true;
+  });
+
+  window.addEventListener("mouseup", ()=>{
+    dragging = false;
+  });
+
+  window.addEventListener("mousemove", e=>{
+    if(!dragging) return;
+
+    x += e.movementX;
+    y += e.movementY;
+
+    img.style.transform =
+      `translate(${x}px,${y}px) scale(${scale})`;
+  });
+
+}
 
 </script>
 
