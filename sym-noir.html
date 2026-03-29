@@ -16,35 +16,31 @@ body{
   overflow:hidden;
 }
 
-/* ===== 左侧 ===== */
+/* ===== sidebar ===== */
 .sidebar{
   position:fixed;
   width:220px;
   height:100vh;
-  background:rgba(10,10,10,0.95);
+  background:#0a0a0a;
   padding:30px;
+  z-index:10;
 }
 
 .logo{
-  width:90px;
+  width:80px;
   cursor:pointer;
-  opacity:0.8;
-  transition:0.3s;
-}
-.logo:hover{
-  opacity:1;
-  transform:scale(1.05);
+  margin-bottom:20px;
 }
 
 .title{
   font-size:22px;
-  margin:20px 0;
+  margin-bottom:20px;
   cursor:pointer;
 }
 
 .nav-item{
-  margin:12px 0;
-  color:#555;
+  margin:10px 0;
+  color:#666;
   cursor:pointer;
 }
 
@@ -52,51 +48,35 @@ body{
   color:white;
 }
 
-/* ===== 主区域 ===== */
+/* ===== main ===== */
 .main{
   margin-left:220px;
   height:100vh;
   position:relative;
 }
 
-/* ===== 标题 ===== */
+/* ===== title ===== */
 .title-screen{
   position:absolute;
   width:100%;
   height:100%;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   cursor:pointer;
 }
 
 .title-screen img{
-  width:760px;
+  width:700px;
   opacity:0;
-  transform:translateY(-40px);
-  animation:titleIn 2.5s forwards;
+  animation:fade 2s forwards;
 }
 
-@keyframes titleIn{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+@keyframes fade{
+  to{opacity:1;}
 }
 
-.fade-out{
-  animation:titleOut 1.5s forwards;
-}
-
-@keyframes titleOut{
-  to{
-    opacity:0;
-    filter:blur(6px);
-    transform:translateY(60px);
-  }
-}
-
-/* ===== 主角 ===== */
+/* ===== character ===== */
 .character-screen{
   position:absolute;
   width:100%;
@@ -104,56 +84,36 @@ body{
   display:none;
   justify-content:center;
   align-items:center;
-  gap:140px;
+  gap:120px;
 }
 
 .char img{
-  width:160px;
+  width:150px;
   border-radius:50%;
 }
 
-/* 消散 */
-.fade-char{
-  animation:fadeChar 1s forwards;
-}
-
-@keyframes fadeChar{
-  to{
-    opacity:0;
-    transform:scale(0.6);
-    filter:blur(6px);
-  }
-}
-
-/* ENTER */
 .enter-btn{
   font-size:12px;
-  letter-spacing:2px;
   cursor:pointer;
   opacity:0.7;
-  transition:0.3s;
 }
 .enter-btn:hover{
   opacity:1;
-  letter-spacing:5px;
 }
 
-/* ===== 关系图 ===== */
+/* ===== network ===== */
 .network-screen{
   position:absolute;
   width:100%;
   height:100%;
   display:none;
-  opacity:0;
-  transition:1s;
-}
-
-.network-screen.show{
-  opacity:1;
 }
 
 .network-inner{
+  width:100%;
+  height:100%;
   transform-origin:center;
+  transition:0.1s;
 }
 
 .network-bg{
@@ -162,24 +122,10 @@ body{
   object-fit:contain;
 }
 
-/* ===== 移动端 ===== */
+/* ===== mobile ===== */
 @media (max-width:768px){
-
-  .sidebar{
-    display:none;
-  }
-
-  .main{
-    margin-left:0;
-  }
-
-  .mobile-logo{
-    position:fixed;
-    top:20px;
-    left:20px;
-    width:60px;
-    z-index:10;
-  }
+  .sidebar{display:none;}
+  .main{margin-left:0;}
 }
 
 </style>
@@ -187,9 +133,7 @@ body{
 
 <body>
 
-<!-- PC侧栏 -->
 <div class="sidebar">
-
   <img src="logo.png" class="logo" onclick="goHome()">
 
   <div class="title" onclick="reloadPage()">Symphony Noir</div>
@@ -197,38 +141,26 @@ body{
   <div class="nav-item active" id="nav-title" onclick="goTitle()">Title</div>
   <div class="nav-item" id="nav-char" onclick="goChar()">Characters</div>
   <div class="nav-item" id="nav-net" onclick="goNet()">Network</div>
-
 </div>
-
-<!-- 手机logo -->
-<img src="logo.png" class="mobile-logo" onclick="goHome()">
 
 <div class="main">
 
-<!-- 标题 -->
+<!-- title -->
 <div class="title-screen" id="title" onclick="enterCharacters()">
   <img src="images/title.png">
 </div>
 
-<!-- 主角 -->
+<!-- characters -->
 <div class="character-screen" id="chars">
-
-  <div class="char" id="yagami">
-    <img src="images/yagami.png">
-  </div>
-
+  <div class="char"><img src="images/yagami.png"></div>
   <div class="enter-btn" onclick="enterNetwork()">ENTER</div>
-
-  <div class="char" id="shin">
-    <img src="images/shin.png">
-  </div>
-
+  <div class="char"><img src="images/shin.png"></div>
 </div>
 
-<!-- 关系图 -->
+<!-- network -->
 <div class="network-screen" id="network">
   <div class="network-inner" id="inner">
-    <img src="images/network.png" class="network-bg">
+    <img src="images/network.png" class="network-bg" id="networkImg">
   </div>
 </div>
 
@@ -236,82 +168,47 @@ body{
 
 <script>
 
-/* ===== 导航 ===== */
+/* ===== navigation ===== */
 function setNav(a,b,c){
-  document.getElementById("nav-title").classList.toggle("active",a);
-  document.getElementById("nav-char").classList.toggle("active",b);
-  document.getElementById("nav-net").classList.toggle("active",c);
+  navTitle.classList.toggle("active",a);
+  navChar.classList.toggle("active",b);
+  navNet.classList.toggle("active",c);
 }
 
 function goHome(){
   window.location.href="index.html";
 }
+function reloadPage(){location.reload();}
+function goTitle(){location.reload();}
+function goChar(){enterCharacters();}
+function goNet(){enterNetwork();}
 
-function reloadPage(){
-  location.reload();
-}
-
-function goTitle(){
-  location.reload();
-}
-
-function goChar(){
-  enterCharacters();
-}
-
-function goNet(){
-  enterNetwork();
-}
-
-/* ===== 页面 ===== */
+/* ===== pages ===== */
 function enterCharacters(){
-  document.getElementById("title").classList.add("fade-out");
-
-  setTimeout(()=>{
-    document.getElementById("title").style.display="none";
-    document.getElementById("chars").style.display="flex";
-    setNav(0,1,0);
-  },1200);
+  title.style.display="none";
+  chars.style.display="flex";
+  setNav(0,1,0);
 }
 
 function enterNetwork(){
+  chars.style.display="none";
+  network.style.display="block";
+  setNav(0,0,1);
 
-  document.getElementById("yagami").classList.add("fade-char");
-  document.getElementById("shin").classList.add("fade-char");
-
-  setTimeout(()=>{
-    document.getElementById("chars").style.display="none";
-    document.getElementById("network").style.display="block";
-
-    setTimeout(()=>{
-      document.getElementById("network").classList.add("show");
-
-      focusModern();
-
-    },50);
-
-    setNav(0,0,1);
-
-  },800);
+  focusModern();
 }
 
-/* ===== 镜头系统 ===== */
-let scale=1.2, x=0, y=0, dragging=false;
+/* ===== camera ===== */
+let scale=1.2, x=0, y=0;
+let dragging=false;
 
-const inner=document.getElementById("inner");
-
-/* ⭐ 进入时对焦 Modern */
 function focusModern(){
-
   scale=1.3;
-
-  x = -window.innerWidth * 0.15;
-  y = -window.innerHeight * 0.25;
-
+  x=-window.innerWidth*0.15;
+  y=-window.innerHeight*0.25;
   update();
 }
 
-/* ⭐ 总览 */
 function resetView(){
   scale=1;
   x=0;
@@ -319,34 +216,39 @@ function resetView(){
   update();
 }
 
-/* 滚轮 */
-document.addEventListener("wheel",e=>{
-  scale+=e.deltaY*-0.001;
-  scale=Math.min(Math.max(0.8,scale),2.5);
-  update();
-});
-
-/* 拖动 */
-document.addEventListener("mousedown",()=>dragging=true);
-document.addEventListener("mouseup",()=>dragging=false);
-
-document.addEventListener("mousemove",e=>{
-  if(!dragging)return;
-  x+=e.movementX;
-  y+=e.movementY;
-  update();
-});
-
-/* 点击复位 */
-document.addEventListener("click",e=>{
-  if(e.target.classList.contains("network-bg")){
-    resetView();
-  }
-});
-
 function update(){
-  inner.style.transform=`translate(${x}px,${y}px) scale(${scale})`;
+  inner.style.transform=
+    `translate(${x}px,${y}px) scale(${scale})`;
 }
+
+/* ===== ONLY network interaction ===== */
+
+const net = document.getElementById("network");
+
+/* zoom */
+net.addEventListener("wheel",e=>{
+  e.preventDefault();
+  scale += e.deltaY * -0.001;
+  scale = Math.min(Math.max(0.8,scale),2.5);
+  update();
+});
+
+/* drag */
+net.addEventListener("mousedown",()=>dragging=true);
+net.addEventListener("mouseup",()=>dragging=false);
+net.addEventListener("mouseleave",()=>dragging=false);
+
+net.addEventListener("mousemove",e=>{
+  if(!dragging)return;
+  x += e.movementX;
+  y += e.movementY;
+  update();
+});
+
+/* click reset ONLY when clicking image */
+document.getElementById("networkImg").addEventListener("click",()=>{
+  resetView();
+});
 
 </script>
 
