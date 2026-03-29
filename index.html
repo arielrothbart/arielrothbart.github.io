@@ -23,7 +23,7 @@
     }
 
     /* ========================= */
-    /* ⭐ HERO（完全不动结构） */
+    /* ⭐ HERO（完全恢复原版） */
     /* ========================= */
 
     .hero {
@@ -57,6 +57,7 @@
     .title p {
       margin-top: 6px;
       opacity: 0.7;
+      letter-spacing: 3px;
     }
 
     .nav {
@@ -64,37 +65,48 @@
       top: 220px;
       right: 120px;
       text-align: right;
+      font-size: 14px;
       letter-spacing: 2px;
+    }
+
+    /* ⭐ 顺序亮起（恢复） */
+    @keyframes softBoot {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
     }
 
     .nav a {
       display: block;
-      opacity: 0.3;
-      transition: 0.3s;
+      opacity: 0.2;
     }
+
+    .nav a:nth-child(1) { animation: softBoot 1s forwards 0.2s; }
+    .nav a:nth-child(2) { animation: softBoot 1s forwards 0.4s; }
+    .nav a:nth-child(3) { animation: softBoot 1s forwards 0.6s; }
+    .nav a:nth-child(4) { animation: softBoot 1s forwards 0.8s; }
+    .nav a:nth-child(5) { animation: softBoot 1s forwards 1s; }
+    .nav a:nth-child(6) { animation: softBoot 1s forwards 1.2s; }
 
     .nav a:hover {
       opacity: 1;
       letter-spacing: 4px;
-    }
-
-    /* ⭐ 你已经定好的 logo（完全保留） */
-    .home-logo {
-      position: fixed;
-      top: 80px;
-      right: 60px;
-      z-index: 1000;
-    }
-
-    .home-logo img {
-      width: 80px;
-      opacity: 0.8;
       transition: 0.3s;
     }
 
-    .home-logo img:hover {
+    /* ⭐ logo 恢复在目录下 */
+    .logo {
+      margin-top: 20px;
+    }
+
+    .logo img {
+      width: 42px;
+      opacity: 0.75;
+      transition: 0.3s;
+    }
+
+    .logo img:hover {
       opacity: 1;
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
 
     @keyframes fadeIn {
@@ -105,20 +117,20 @@
     }
 
     /* ========================= */
-    /* ⭐ 分叉引导线（重点） */
+    /* ⭐ 光流系统（连在一起） */
     /* ========================= */
 
-    .flow {
-      margin-top: 60px;
+    .flow-system {
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 40px;
     }
 
-    /* 竖线 */
-    .line-vertical {
+    /* ⭐ 主光束（从视频延续） */
+    .beam {
       width: 2px;
-      height: 80px;
+      height: 140px;
 
       background: linear-gradient(
         to bottom,
@@ -127,35 +139,49 @@
         rgba(0,200,255,0)
       );
 
-      box-shadow: 0 0 10px rgba(0,200,255,0.8);
+      box-shadow: 0 0 12px rgba(0,200,255,0.9);
 
-      animation: flowLight 2s infinite;
+      animation: flow 2.5s infinite;
     }
 
-    /* 横线 */
-    .line-horizontal {
-      width: 220px;
+    /* ⭐ 分叉线（连成一体） */
+    .branch {
+      position: relative;
+      width: 300px;
+      height: 80px;
+    }
+
+    .branch::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 40px;
+      background: #00c8ff;
+      box-shadow: 0 0 10px #00c8ff;
+    }
+
+    .branch::after {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
       height: 2px;
-      margin-top: 0;
-
-      background: linear-gradient(
-        to right,
-        rgba(0,200,255,0),
-        rgba(0,200,255,1),
-        rgba(0,200,255,0)
-      );
-
-      box-shadow: 0 0 10px rgba(0,200,255,0.8);
+      background: #00c8ff;
+      box-shadow: 0 0 10px #00c8ff;
     }
 
-    @keyframes flowLight {
-      0% { opacity: 0.2; }
+    /* ⭐ 光流动画 */
+    @keyframes flow {
+      0% { opacity: 0.2; transform: translateY(-20px); }
       50% { opacity: 1; }
-      100% { opacity: 0.2; }
+      100% { opacity: 0.2; transform: translateY(20px); }
     }
 
     /* ========================= */
-    /* ⭐ PROJECT（票据尺寸） */
+    /* ⭐ PROJECT（ticket风格） */
     /* ========================= */
 
     .projects {
@@ -167,10 +193,10 @@
     }
 
     .project-card {
-      width: 260px;   /* ⭐像 ticket */
-      cursor: pointer;
+      width: 260px;
       overflow: hidden;
       position: relative;
+      cursor: pointer;
     }
 
     .project-card img {
@@ -179,22 +205,21 @@
       transition: 0.5s ease;
     }
 
-    /* ⭐ hover：轻微放大 + 变暗 */
+    /* ⭐ hover：才变暗 */
     .project-card:hover img {
       transform: scale(1.08);
       filter: brightness(0.7);
     }
 
-    /* ⭐ 标题（默认不显示） */
+    /* ⭐ 标题 hover 才出现 */
     .project-title {
       position: absolute;
       bottom: 20px;
       left: 20px;
       font-family: 'Playfair Display', serif;
       letter-spacing: 2px;
-
       opacity: 0;
-      transition: 0.4s;
+      transition: 0.3s;
     }
 
     .project-card:hover .project-title {
@@ -202,7 +227,7 @@
     }
 
     /* ========================= */
-    /* 📱 手机（只做必要适配） */
+    /* 📱 手机（保持你之前满意的） */
     /* ========================= */
 
     @media (max-width: 768px) {
@@ -242,7 +267,6 @@
         width: 70%;
       }
 
-      /* 手机直接显示标题 */
       .project-title {
         opacity: 1;
       }
@@ -253,7 +277,6 @@
 
 <body>
 
-<!-- ⭐ HERO -->
 <div class="hero">
 
   <video autoplay muted loop playsinline>
@@ -273,19 +296,20 @@
     <a href="#">Comics</a>
     <a href="#">Story</a>
     <a href="#">Log</a>
+
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png">
+      </a>
+    </div>
   </div>
 
 </div>
 
-<!-- ⭐ LOGO（保留） -->
-<a href="index.html" class="home-logo">
-  <img src="logo.png">
-</a>
-
-<!-- ⭐ 引导线结构 -->
-<div class="flow">
-  <div class="line-vertical"></div>
-  <div class="line-horizontal"></div>
+<!-- ⭐ 光流 + 分叉（连贯） -->
+<div class="flow-system">
+  <div class="beam"></div>
+  <div class="branch"></div>
 </div>
 
 <!-- ⭐ PROJECT -->
