@@ -215,6 +215,7 @@ body{
   <div class="nav-item active" id="nav-title">Title</div>
   <div class="nav-item" id="nav-char">Characters</div>
   <div class="nav-item" id="nav-net">Network</div>
+  <div class="nav-item" onclick="goTimeline()">Timeline</div>
 </div>
 
 <div class="main">
@@ -242,7 +243,9 @@ body{
 </div>
 
 <script>
-
+function goTimeline(){
+  window.location.href = "timeline.html";
+}
 /* ===== elements ===== */
 const title = document.getElementById("title");
 const chars = document.getElementById("chars");
