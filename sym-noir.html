@@ -183,10 +183,55 @@ body{
 .mobile-nav{display:none;}
 
 @media (max-width:768px){
+ .overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
 
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(4px);
+
+  display:none;
+  z-index:100;
+}
+
+/* ✅ 单独写，不要嵌进去 */
+.main{
+  margin-left:0;
+}
+
+.overlay.show{
+  display:block;
+}
+.menu-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+
+  width:44px;
+  height:44px;
+
+  font-size:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+
+  border-radius:10px;
+  z-index:200;
+}
   body{overflow:auto;}
-  .sidebar{display:none;}
-  .main{margin-left:0;}
+  .sidebar{
+  transform:translateX(-100%);
+  transition:0.3s;
+}
+  .sidebar.open{
+  transform:translateX(0);
+}
 
   .mobile-nav{
     display:flex;
@@ -214,12 +259,8 @@ body{
 </head>
 
 <body>
-<div class="mobile-nav">
-  <div onclick="showTitle()">Title</div>
-  <div onclick="showStory()">Story</div>
-  <div onclick="showCharacters()">Chars</div>
-  <div onclick="showNetwork()">Net</div>
-</div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <div class="overlay" onclick="toggleMenu()"></div>
   
 <div class="sidebar">
   <img src="logo.png" class="logo" onclick="goHome()">
@@ -426,7 +467,13 @@ window.onmousemove=e=>{
 function update(){
   img.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`;
 }
+function toggleMenu(){
+  const sidebar = document.querySelector(".sidebar");
+  const overlay = document.querySelector(".overlay");
 
+  sidebar.classList.toggle("open");
+  overlay.classList.toggle("show");
+}
 </script>
 
 </body>
