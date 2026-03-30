@@ -14,7 +14,6 @@ body{
   background:black;
   color:white;
   font-family:'Special Elite',cursive;
-  overflow:hidden;
 }
 
 /* ===== sidebar ===== */
@@ -85,6 +84,7 @@ body{
 }
 
 .story-container{
+  position:relative;
   width:100%;
   max-width:760px;
   height:100%;
@@ -92,9 +92,8 @@ body{
 
   padding-top:120px;
   padding-bottom:120px;
-  
-  padding-left:20px;  
-  padding-right:20px; 
+  padding-left:20px;
+  padding-right:20px;
 }
   
 .story-text{
@@ -126,12 +125,20 @@ body{
   transform:rotateY(10deg);
   opacity:0.6;
 }
-  .lang-hint{
-  text-align:right;
+.lang-hint{
+  position:absolute;
+  top:40px;
+  right:40px;
+
   font-size:11px;
-  opacity:0.5;
-  margin-bottom:10px;
+  opacity:0;
   letter-spacing:1px;
+
+  transition:opacity 0.6s ease;
+  white-space:nowrap;
+}
+  .story-screen.show .lang-hint{
+  opacity:0.5;
 }
 
 /* ===== CHARACTERS ===== */
@@ -344,7 +351,9 @@ function showStory(){
   story.style.display="flex";
   chars.style.display="none";
   network.style.display="none";
-
+  
+ story.classList.add("show"); 
+  
   document.querySelector(".story-container").scrollTop = 0;
 }
 function showCharacters(){title.style.display="none";story.style.display="none";chars.style.display="flex";network.style.display="none";}
@@ -378,7 +387,7 @@ const _showStory = showStory;
 const _showCharacters = showCharacters;
 const _showNetwork = showNetwork;
 
-showTitle = function(){_showTitle();setActive(0);}
+showTitle = function(){_showTitle();setActive(0);story.classList.remove("show"); }
 showStory = function(){_showStory();setActive(1);}
 showCharacters = function(){_showCharacters();setActive(2);}
 showNetwork = function(){_showNetwork();setActive(3);}
@@ -473,18 +482,28 @@ storyText.onclick = ()=>{
 };
 
 /* ===== NETWORK ===== */
-
+let scale = 1;
+let pos = {x:0,y:0};
+let drag = false;
+let start = {};
 const viewer = document.getElementById("viewer");
 const img = document.getElementById("netImg");
 
-let scale=1,pos={x:0,y:0},drag=false,start={};
+let targetScale = 1;
 
-viewer.onwheel=e=>{
+viewer.onwheel = e=>{
   e.preventDefault();
-  scale*=e.deltaY>0?0.9:1.1;
-  scale=Math.max(0.6,Math.min(scale,3));
-  update();
+
+  targetScale *= e.deltaY>0 ? 0.9 : 1.1;
+  targetScale = Math.max(0.6, Math.min(targetScale, 3));
 };
+
+function animateZoom(){
+  scale += (targetScale - scale) * 0.15;
+  update();
+  requestAnimationFrame(animateZoom);
+}
+animateZoom();
 
 viewer.onmousedown=e=>{
   drag=true;
@@ -492,6 +511,11 @@ viewer.onmousedown=e=>{
   start.y=e.clientY-pos.y;
 };
 
+   viewer.ondblclick = ()=>{
+  scale = 1;
+  pos = {x:0,y:0};
+  update();
+};
 window.onmouseup=()=>drag=false;
 
 window.onmousemove=e=>{
@@ -502,6 +526,9 @@ window.onmousemove=e=>{
 };
 
 function update(){
+  pos.x = Math.max(-500, Math.min(500, pos.x));
+  pos.y = Math.max(-500, Math.min(500, pos.y));
+
   img.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`;
 }
 function toggleMenu(){
@@ -511,6 +538,7 @@ function toggleMenu(){
   sidebar.classList.toggle("open");
   overlay.classList.toggle("show");
 }
+
 </script>
 
 </body>
