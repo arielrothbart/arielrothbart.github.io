@@ -189,9 +189,12 @@ body{
   <img src="logo.png" class="logo" onclick="goHome()">
   <div class="title" onclick="goHome()">Symphony Noir</div>
 
-  <div class="nav-item" onclick="goHome()">Home</div>
-  <div class="nav-item" onclick="goHome()">Sym-Noir</div>
-  <div class="nav-item active">Gallery</div>
+ <div class="nav-item" onclick="goHome()">Title</div>
+<div class="nav-item" onclick="goHome()">Story</div>
+<div class="nav-item" onclick="goHome()">Characters</div>
+<div class="nav-item" onclick="goHome()">Network</div>
+<div class="nav-item" onclick="goTimeline()">Timeline</div>
+<div class="nav-item active">Gallery</div>
 </div>
 
 <div class="main">
@@ -280,7 +283,7 @@ document.onkeydown = e=>{
 
 /* ===== nav ===== */
 function goHome(){location.href="index.html";}
-
+function goTimeline(){location.href="timeline.html";}
 /* ===== menu ===== */
 function toggleMenu(){
   document.querySelector(".sidebar").classList.toggle("open");
