@@ -137,7 +137,11 @@ body{
 .menu-btn{display:none;}
 
 @media(max-width:768px){
-
+.floating-buttons{
+  left:20px;
+  right:auto;
+  bottom:20px;
+}
   .menu-btn{
     position:fixed;
     top:20px;
@@ -210,19 +214,12 @@ body{
   <div class="nav-btn next" onclick="nextImg()">›</div>
 </div>
 
-<div class="top-btn" onclick="scrollToTop()">TOP ↑</div>
 <div class="floating-buttons">
 
   <div class="gif-btn" onclick="scrollToTop()">
     <img src="images/top.gif">
     <div class="gif-label">Top</div>
   </div>
-
-  <div class="gif-btn" onclick="goHome()">
-    <img src="images/home.gif">
-    <div class="gif-label">Sym-Noir</div>
-  </div>
-
 </div>
 <script>
 
@@ -230,7 +227,7 @@ body{
 const gallery = document.getElementById("gallery");
 let images = [];
 
-for(let i=1;i<=12;i++){   // 👉 改这里数量
+for(let i=1;i<=13;i++){   // 👉 改这里数量
   let src = "images/sym"+i+".png";
   images.push(src);
 
@@ -294,7 +291,22 @@ function toggleMenu(){
 function scrollToTop(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
+let startX = 0;
 
+document.getElementById("lightbox").addEventListener("touchstart", e=>{
+  startX = e.touches[0].clientX;
+});
+
+document.getElementById("lightbox").addEventListener("touchend", e=>{
+  let endX = e.changedTouches[0].clientX;
+
+  if(endX - startX > 50){
+    prevImg();
+  }
+  else if(startX - endX > 50){
+    nextImg();
+  }
+});
 </script>
 
 </body>
