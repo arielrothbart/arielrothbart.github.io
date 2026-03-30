@@ -143,6 +143,30 @@ body{
   opacity:0.5;
 }
 .top-btn:hover{opacity:1;}
+.floating-top{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+
+  backdrop-filter:blur(6px);
+  background:rgba(255,255,255,0.05);
+  border-radius:12px;
+  padding:6px;
+
+  cursor:pointer;
+  z-index:200;
+  opacity:0.85;
+  transition:0.3s;
+}
+
+.floating-top img{
+  width:60px;
+}
+
+.floating-top:hover{
+  opacity:1;
+  transform:scale(1.1);
+}
 /* ===== MOBILE MENU ===== */
 @media (max-width:768px){
 
@@ -193,7 +217,9 @@ body{
   .main{
     margin-left:0;
   }
-
+.floating-top{
+  bottom:30px;
+}
 }
 </style>
 </head>
@@ -209,7 +235,7 @@ body{
     <div id="btn-mod" class="active" onclick="showSection('mod')">Vermont</div>
     <div id="btn-his" onclick="showSection('his')">Historical</div>
   </div>
-  <div class="nav-item" onclick="scrollTopSmooth()">Top ↑</div>
+ 
 </div>
 
 <div class="main">
@@ -627,9 +653,6 @@ document.querySelectorAll(".event").forEach(e=>{
   });
 });
 
-function scrollTopSmooth(){
-  window.scrollTo({top:0,behavior:"smooth"});
-}
 function toggleMenu(){
   const sidebar = document.querySelector(".sidebar");
   const overlay = document.querySelector(".overlay");
@@ -637,7 +660,15 @@ function toggleMenu(){
   sidebar.classList.toggle("open");
   overlay.classList.toggle("show");
 }
+  function scrollToTop(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
 </script>
-
+<div class="floating-top" onclick="scrollToTop()">
+  <img src="images/1.gif">
+</div>
 </body>
 </html>
