@@ -511,11 +511,15 @@ viewer.onmousedown=e=>{
   start.y=e.clientY-pos.y;
 };
 
-   viewer.ondblclick = ()=>{
+ viewer.ondblclick = (e)=>{
+  e.preventDefault();   // ⭐关键这一行
+
   scale = 1;
+  targetScale = 1;
   pos = {x:0,y:0};
   update();
 };
+  
 window.onmouseup=()=>drag=false;
 
 window.onmousemove=e=>{
