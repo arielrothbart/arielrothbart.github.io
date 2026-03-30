@@ -770,7 +770,145 @@ function update(){
 }
 
 img.oncontextmenu=e=>e.preventDefault();
+/* ================= 修复补丁（直接粘贴在 </script> 上面） ================= */
 
+/* ===== 1. 侧边栏高亮 ===== */
+const navItems = document.querySelectorAll(".nav-item");
+
+function setActive(index){
+  navItems.forEach((n,i)=>{
+    n.classList.toggle("active", i===index);
+  });
+}
+
+/* ===== 2. 接管原本页面切换（不删你原函数，只覆盖） ===== */
+
+const _showTitle = showTitle;
+const _showStory = showStory;
+const _showCharacters = showCharacters;
+const _showNetwork = showNetwork;
+
+showTitle = function(){
+  _showTitle();
+  setActive(0);
+};
+
+showStory = function(){
+  _showStory();
+  setActive(1);
+};
+
+showCharacters = function(){
+  _showCharacters();
+  setActive(2);
+};
+
+showNetwork = function(){
+  _showNetwork();
+  setActive(3);
+};
+
+/* ===== 3. Story → Characters flow（只点空白触发） ===== */
+
+const storyScreen = document.getElementById("story");
+
+storyScreen.addEventListener("click", (e)=>{
+
+  if(e.target.id === "storyText" || e.target.closest("#storyText")){
+    return;
+  }
+
+  showCharacters();
+});
+
+/* ===== 4. Characters → Network 动效恢复 ===== */
+
+function enterNetwork(){
+
+  const chars = document.getElementById("chars");
+
+  chars.style.animation = "ghostOut 1s forwards";
+
+  setTimeout(()=>{
+    showNetwork();
+    chars.style.animation = "";
+  },800);
+}
+
+/* 自动接管 ENTER 按钮（不用你去改HTML） */
+const enterBtn = document.querySelector(".enter-btn");
+if(enterBtn){
+  enterBtn.onclick = enterNetwork;
+}/* ================= 修复补丁（直接粘贴在 </script> 上面） ================= */
+
+/* ===== 1. 侧边栏高亮 ===== */
+const navItems = document.querySelectorAll(".nav-item");
+
+function setActive(index){
+  navItems.forEach((n,i)=>{
+    n.classList.toggle("active", i===index);
+  });
+}
+
+/* ===== 2. 接管原本页面切换（不删你原函数，只覆盖） ===== */
+
+const _showTitle = showTitle;
+const _showStory = showStory;
+const _showCharacters = showCharacters;
+const _showNetwork = showNetwork;
+
+showTitle = function(){
+  _showTitle();
+  setActive(0);
+};
+
+showStory = function(){
+  _showStory();
+  setActive(1);
+};
+
+showCharacters = function(){
+  _showCharacters();
+  setActive(2);
+};
+
+showNetwork = function(){
+  _showNetwork();
+  setActive(3);
+};
+
+/* ===== 3. Story → Characters flow（只点空白触发） ===== */
+
+const storyScreen = document.getElementById("story");
+
+storyScreen.addEventListener("click", (e)=>{
+
+  if(e.target.id === "storyText" || e.target.closest("#storyText")){
+    return;
+  }
+
+  showCharacters();
+});
+
+/* ===== 4. Characters → Network 动效恢复 ===== */
+
+function enterNetwork(){
+
+  const chars = document.getElementById("chars");
+
+  chars.style.animation = "ghostOut 1s forwards";
+
+  setTimeout(()=>{
+    showNetwork();
+    chars.style.animation = "";
+  },800);
+}
+
+/* 自动接管 ENTER 按钮（不用你去改HTML） */
+const enterBtn = document.querySelector(".enter-btn");
+if(enterBtn){
+  enterBtn.onclick = enterNetwork;
+}
 </script>
 
 </body>
