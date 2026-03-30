@@ -267,7 +267,15 @@ const story = document.getElementById("story");
 const chars = document.getElementById("chars");
 const network = document.getElementById("network");
 
-function showTitle(){title.style.display="flex";story.style.display="none";chars.style.display="none";network.style.display="none";}
+function showTitle(){
+  title.style.display="flex";
+  story.style.display="none";
+  chars.style.display="none";
+  network.style.display="none";
+
+  /* 🔧 重置动画状态 */
+  title.classList.remove("fade-out");
+}
 function showStory(){
   title.style.display="none";
   story.style.display="flex";
