@@ -15,7 +15,7 @@ body{
   font-family:'Special Elite',cursive;
 }
 
-/* ===== sidebar ===== */
+/* sidebar */
 .sidebar{
   position:fixed;
   width:200px;
@@ -24,15 +24,6 @@ body{
   padding:30px;
 }
 
-.nav div{
-  margin:12px 0;
-  color:#666;
-  cursor:pointer;
-}
-
-.nav .active{ color:white; }
-
-/* 返回按钮 */
 .back{
   margin-bottom:20px;
   cursor:pointer;
@@ -40,13 +31,18 @@ body{
 }
 .back:hover{opacity:1;}
 
-/* ===== main ===== */
+.nav div{
+  margin:12px 0;
+  color:#666;
+  cursor:pointer;
+}
+.nav .active{color:white;}
+
 .main{
   margin-left:200px;
   padding:100px 0;
 }
 
-/* timeline */
 .timeline{
   position:relative;
 }
@@ -65,29 +61,37 @@ body{
   width:50%;
   padding:30px 50px;
   box-sizing:border-box;
+  position:relative;
 }
 
-.left{ left:0; text-align:right; position:relative;}
-.right{ left:50%; position:relative;}
+.left{ left:0; text-align:right;}
+.right{ left:50%; }
 
 .year{ font-size:22px; }
 .text{ opacity:0.7; }
 
-/* detail */
 .detail{
   opacity:0;
   transition:0.3s;
   font-size:13px;
+  white-space:pre-line;
 }
 .event:hover .detail{opacity:1;}
 
-/* color */
-.modern .year{ color:#d8e6ff; }
-.historical .year{ color:#f5e6c8; }
+.modern .year{color:#d8e6ff;}
+.historical .year{color:#f5e6c8;}
 
-/* section */
-.section{ display:none; }
-.section.active{ display:block; }
+.section{display:none;}
+.section.active{display:block;}
+
+.top-btn{
+  position:fixed;
+  right:30px;
+  bottom:30px;
+  cursor:pointer;
+  opacity:0.5;
+}
+.top-btn:hover{opacity:1;}
 
 </style>
 </head>
@@ -105,44 +109,102 @@ body{
 
 <div class="main">
 
-<!-- ===== 现代线（在前） ===== -->
+<!-- ================= 现代 ================= -->
 <div id="mod" class="section active">
 <div class="timeline">
 
 <div class="event right modern">
-<div class="year">1950</div>
-<div class="text">八神伊织出生</div>
-<div class="detail">八神伊织 出生</div>
+<div class="year">1943</div>
+<div class="text">安娜贝儿事件</div>
+<div class="detail">1943  安娜贝儿事件</div>
 </div>
 
 <div class="event left modern">
-<div class="year">1958</div>
-<div class="text">菅原真出生</div>
-<div class="detail">菅原真 出生</div>
+<div class="year">1950</div>
+<div class="text">八神伊织 出生</div>
+<div class="detail">1950
+八神伊织 出生</div>
 </div>
 
 <div class="event right modern">
-<div class="year">1982</div>
-<div class="text">诅咒事件</div>
-<div class="detail">
-钦悟去世<br>
-海斗失踪<br>
-真生命力遭到稀释
-</div>
+<div class="year">1954</div>
+<div class="text">八神重英 出生</div>
+<div class="detail">1954
+八神重英 出生</div>
 </div>
 
 <div class="event left modern">
+<div class="year">1957</div>
+<div class="text">海斗 / 钦悟 出生</div>
+<div class="detail">1957
+上杉海斗
+岩波钦悟 出生</div>
+</div>
+
+<div class="event right modern">
+<div class="year">1958</div>
+<div class="text">菅原真 出生</div>
+<div class="detail">1958
+菅原真 出生</div>
+</div>
+
+<div class="event left modern">
+<div class="year">1964</div>
+<div class="text">进入孤儿院</div>
+<div class="detail">1964
+菅原真 6岁
+其母 Marla病逝
+同年8月被送往孤儿院
+10月 真被带往研究所治疗</div>
+</div>
+
+<div class="event right modern">
+<div class="year">1966</div>
+<div class="text">恶灵宿主形成</div>
+<div class="detail">1966
+八神重英12岁
+同家人前往洛杉矶死亡博物馆
+触碰Antonio金币
+成为恶灵宿主</div>
+</div>
+
+<div class="event left modern">
+<div class="year">1974</div>
+<div class="text">被收养</div>
+<div class="detail">1974
+真与钦悟相识
+12月 岩波鸣海收养真
+未改姓</div>
+</div>
+
+<div class="event right modern">
+<div class="year">1976</div>
+<div class="text">初遇</div>
+<div class="detail">1976
+真进入大学
+与八神相遇</div>
+</div>
+
+<div class="event left modern">
+<div class="year">1982</div>
+<div class="text">诅咒事件</div>
+<div class="detail">1982
+钦悟死亡
+海斗失踪
+真丧失60%行动能力</div>
+</div>
+
+<div class="event right modern">
 <div class="year">1999</div>
 <div class="text">调查Antonio</div>
-<div class="detail">
-前往意大利与马德里收集情报
+<div class="detail">1999
+前往意大利与马德里收集情报</div>
+</div>
+
 </div>
 </div>
 
-</div>
-</div>
-
-<!-- ===== 历史线 ===== -->
+<!-- ================= 历史 ================= -->
 <div id="his" class="section">
 <div class="timeline">
 
@@ -153,26 +215,39 @@ body{
 </div>
 
 <div class="event right historical">
+<div class="year">1467</div>
+<div class="text">Antonio出生</div>
+<div class="detail">1467年 Antonio出生</div>
+</div>
+
+<div class="event left historical">
+<div class="year">1469</div>
+<div class="text">Mattias Garcia出生</div>
+<div class="detail">1469年 Mattias Garcia出生</div>
+</div>
+
+<div class="event right historical">
 <div class="year">1498</div>
 <div class="text">政治联姻</div>
-<div class="detail">
-Osvaldo同Cathetine Macarena政治联姻
-</div>
+<div class="detail">1498年
+Osvaldo同Cathetine Macarena公主政治联姻</div>
 </div>
 
 <div class="event left historical">
 <div class="year">1508</div>
 <div class="text">王室暗杀</div>
-<div class="detail">
-国王与王储被暗杀<br>
+<div class="detail">1508年
+国王与王储被暗杀
 王后与王子逃离
+Lorenzo死亡</div>
+</div>
+
 </div>
 </div>
 
 </div>
-</div>
 
-</div>
+<div class="top-btn" onclick="scrollTopSmooth()">TOP ↑</div>
 
 <script>
 
@@ -189,6 +264,10 @@ function showSection(type){
 
   document.getElementById(type).classList.add("active");
   document.getElementById("btn-"+type).classList.add("active");
+}
+
+function scrollTopSmooth(){
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 </script>
