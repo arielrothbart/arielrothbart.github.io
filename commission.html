@@ -316,19 +316,29 @@ let currentIndex = 0;
 let list = [];
 let scrollLock = false;
 
+const images = document.querySelectorAll('.gallery img');
+
 images.forEach(img => {
-  if (!img.closest('.home-logo')) {
-    list.push(img);
-    img.onclick = () => {
-      currentIndex = list.indexOf(img);
-      openViewer();
-    };
-  }
+
+  // ⭐保存原图路径
+  const fullSrc = img.src;
+
+  // ⭐先不加载（类似 lazy）
+  img.dataset.full = fullSrc;
+  img.src = fullSrc;
+
+  list.push(img);
+
+  img.onclick = () => {
+    currentIndex = list.indexOf(img);
+    openViewer();
+  };
+
 });
 
 function openViewer() {
   viewer.style.display = 'flex';
-  viewerImg.src = list[currentIndex].src;
+ viewerImg.src = list[currentIndex].dataset.full;
   viewerImg.style.opacity = 1;
   viewerImg.style.transform = 'translateX(0)';
 }
