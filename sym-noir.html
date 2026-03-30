@@ -86,8 +86,11 @@ body{
   max-width:760px;
   height:100%;
   overflow-y:auto;
-}
 
+  padding-top:120px;
+  padding-bottom:120px;
+}
+  
 .story-text{
   line-height:2;
   font-size:15px;
@@ -100,6 +103,10 @@ body{
 
 .story-text p{
   margin:0 0 1.6em 0;
+}
+  
+  .story-text p:first-child{
+  margin-top:40px;
 }
 
 .flip{
@@ -257,7 +264,14 @@ const chars = document.getElementById("chars");
 const network = document.getElementById("network");
 
 function showTitle(){title.style.display="flex";story.style.display="none";chars.style.display="none";network.style.display="none";}
-function showStory(){title.style.display="none";story.style.display="flex";chars.style.display="none";network.style.display="none";}
+function showStory(){
+  title.style.display="none";
+  story.style.display="flex";
+  chars.style.display="none";
+  network.style.display="none";
+
+  document.querySelector(".story-container").scrollTop = 0;
+}
 function showCharacters(){title.style.display="none";story.style.display="none";chars.style.display="flex";network.style.display="none";}
 function showNetwork(){title.style.display="none";story.style.display="none";chars.style.display="none";network.style.display="block";}
 
