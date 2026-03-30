@@ -33,12 +33,20 @@ body{
 .nav-item.active{color:white;}
 
 /* ===== main ===== */
-.main{margin-left:220px;height:100vh;position:relative;}
+.main{
+  margin-left:220px;
+  height:100vh;
+  position:relative;
+}
 
 /* ===== title ===== */
 .title-screen{
-  position:absolute;width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   cursor:pointer;
 }
 
@@ -58,79 +66,98 @@ body{
 
 /* ===== story ===== */
 .story-screen{
-  position:absolute;width:100%;height:100%;
-  display:none;align-items:center;justify-content:center;
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
   padding:80px;
   perspective:1200px;
 }
 
-.story-text{
+.story-container{
+  width:100%;
   max-width:720px;
+  height:100%;
+  overflow-y:auto;
+}
+
+.story-text{
   line-height:2;
   font-size:15px;
   color:#ddd;
 }
 
 .story-text p{margin:0 0 1.6em 0;}
-.story-text h2{margin-bottom:1.2em;}
 
-.page-flip{animation:flipOut 0.5s ease;}
+/* 翻页 */
+.page-flip{animation:flipOut 0.4s ease;}
 @keyframes flipOut{
   to{transform:rotateY(90deg);opacity:0;}
 }
 
-.page-in{animation:flipIn 0.5s ease;}
+.page-in{animation:flipIn 0.4s ease;}
 @keyframes flipIn{
   from{transform:rotateY(-90deg);opacity:0;}
 }
 
-.cursor::after{
-  content:"|";
-  animation:blink 1s infinite;
-  margin-left:4px;
+/* ===== characters ===== */
+.character-screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  gap:120px;
 }
 
-@keyframes blink{
-  0%,100%{opacity:0;}
-  50%{opacity:1;}
+.char img{width:150px;border-radius:50%;}
+
+/* ===== network ===== */
+.network-screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
 }
 
 /* ===== mobile ===== */
 .mobile-nav{display:none;}
-.mobile-logo{
-  display:none;position:fixed;bottom:90px;left:50%;
-  transform:translateX(-50%);width:60px;z-index:50;
-}
 
 @media (max-width:768px){
 
-  body{overflow:auto !important;}
-  .sidebar{display:none !important;}
-  .main{margin-left:0 !important;}
+  body{overflow:auto;}
 
-  .mobile-logo{display:block;}
+  .sidebar{display:none;}
+  .main{margin-left:0;}
 
   .story-screen{
-    padding:30px 22px 100px 22px;
+    padding:20px 18px 90px 18px;
     align-items:flex-start;
   }
 
   .story-text{
     font-size:17px;
-    line-height:2.1;
+    line-height:2.2;
   }
 
   .mobile-nav{
     display:flex;
     position:fixed;
-    bottom:0;width:100%;height:70px;
+    bottom:0;
+    width:100%;
+    height:70px;
     background:#0a0a0a;
-    justify-content:space-around;align-items:center;
-    font-size:14px;z-index:100;
+    justify-content:space-around;
+    align-items:center;
+    font-size:14px;
+    z-index:100;
   }
 
   .mobile-nav div{
-    padding:10px 16px;
+    padding:12px 18px;
     color:#888;
   }
 
@@ -142,6 +169,22 @@ body{
 
 <body>
 
+<div class="mobile-nav">
+  <div onclick="showTitle()">Title</div>
+  <div onclick="navChar.onclick()">Chars</div>
+  <div onclick="navNet.onclick()">Net</div>
+</div>
+
+<div class="sidebar">
+  <img src="logo.png" class="logo" onclick="goHome()">
+  <div class="title" onclick="showTitle()">Symphony Noir</div>
+
+  <div class="nav-item active" id="nav-title">Title</div>
+  <div class="nav-item" id="nav-char">Characters</div>
+  <div class="nav-item" id="nav-net">Network</div>
+  <div class="nav-item" onclick="goTimeline()">Timeline</div>
+</div>
+
 <div class="main">
 
 <div class="title-screen" id="title">
@@ -149,22 +192,48 @@ body{
 </div>
 
 <div class="story-screen" id="story">
-  <div class="story-text cursor" id="storyText"></div>
+  <div class="story-container">
+    <div class="story-text" id="storyText"></div>
+  </div>
+</div>
+
+<div class="character-screen" id="chars">
+  <div class="char"><img src="images/yagami.png"></div>
+  <div class="char"><img src="images/shin.png"></div>
+</div>
+
+<div class="network-screen" id="network">
+  <img src="images/network.png" style="max-width:100%;">
 </div>
 
 </div>
 
 <script>
 
+function goTimeline(){window.location.href="timeline.html";}
+function goHome(){window.location.href="index.html";}
+
 const title = document.getElementById("title");
 const story = document.getElementById("story");
 const storyText = document.getElementById("storyText");
+const chars = document.getElementById("chars");
+const network = document.getElementById("network");
+
+const navTitle = document.getElementById("nav-title");
+const navChar = document.getElementById("nav-char");
+const navNet = document.getElementById("nav-net");
+
+function setNav(t,c,n){
+  navTitle.classList.toggle("active",t);
+  navChar.classList.toggle("active",c);
+  navNet.classList.toggle("active",n);
+}
 
 /* ===== 文本 ===== */
 const cnText = `黑色交响建立在两段半架空的历史之上。
 
 1980年代至千禧年前后的美国佛蒙特州。  
-八神重英与菅原真，作为第二代日本移民，在这片寂静而寒冷的土地上生活。  
+八神重英与 菅原真，作为第二代日本移民，在这片寂静而寒冷的土地上生活。  
 
 从小能够感知到鬼魂的菅原真在大学里教授神秘学，警官八神的身上则有一个古老又性格乖张的幽灵。
 他们组成了为他人排忧解难的驱魔搭档，在一次次案件中化险为夷。
@@ -175,104 +244,84 @@ const cnText = `黑色交响建立在两段半架空的历史之上。
 
 国王奥斯瓦尔多和其胞弟安东尼奥关系亲密。
 二人在政治与战争上强强联手，堪称一代枭雄。 
-但二人都在感情上是难言的弱者。
+但二人都在感情上却是难言的弱者。
 
 他们的王朝究竟为何在一夜之间覆灭？
 又是怎样强烈的感情，让安东尼奥愤怒至极，
 即便在死后也不愿离去，甘愿成为飘荡于世间500年的幽灵？
 
-菅原真和八神深入马德里，只为探寻身上恶灵的故事。`;
+菅原真和八神就深入马德里，只为探寻身上恶灵的故事。`;
 
-const enText = `Symphony Noir unfolds across two intertwined histories.
+const enText = `Symphony Noir unfolds within a semi-fictional historical frame.
 
-Vermont, United States. Late 20th century.  
-Yagami Shigefua and Sugahara Shin, second-generation Japanese immigrants, live in a quiet and unforgiving landscape.
+Vermont, United States, from the 1980s to the early 2000s.  
+Yagami Shigefua and Sugahara Shin, second-generation Japanese immigrants, live in a quiet and cold landscape.
 
-Shin, able to perceive spirits since childhood, becomes a lecturer in the occult.  
-Yagami, now a police officer, carries within him an ancient and temperamental presence.
+Shin, who has perceived spirits since childhood, becomes a lecturer in the occult.  
+Yagami, now a police officer, carries within him an ancient and temperamental entity.
 
-Together, they take on cases that defy explanation, resolving the unseen disturbances left behind.  
-With each case, they are drawn closer to the truth behind the entity inhabiting Yagami.
+Together, they form an exorcism partnership, resolving cases that defy explanation.  
+As each case unfolds, they are drawn closer to the truth behind the spirit inhabiting Yagami.
 
 Antonio.
 
-Centuries earlier.  
-At the height of a Spanish dynasty.
+Centuries earlier, during the height of a Spanish dynasty.  
+King Osvaldo and his brother Antonio stand side by side, shaping an era through power and war.
 
-King Osvaldo and his brother Antonio stand side by side, bound by power and ambition.  
-They dominate politics and warfare, shaping their era.
+Yet in matters of the heart, both remain fragile.
 
-Yet in matters of the heart, both remain vulnerable.
-
-What force could bring such a dynasty to collapse overnight?  
-What kind of emotion could drive Antonio into such fury  
-that even death could not sever his will to remain?
-
-Five hundred years later, he still lingers.
+What caused their kingdom to collapse overnight?  
+What kind of emotion drove Antonio into such fury  
+that even in death, he refuses to leave, lingering for five hundred years?
 
 And so, they travel to Madrid.`;
 
-/* ===== 打字机（按段） ===== */
-function typeParagraphs(text){
-
-  const paragraphs = text.split(/\n\s*\n/);
-  storyText.innerHTML = "";
-
-  let pIndex = 0;
-
-  function typeNext(){
-    if(pIndex >= paragraphs.length) return;
-
-    const p = document.createElement("p");
-    storyText.appendChild(p);
-
-    let i = 0;
-    const str = paragraphs[pIndex];
-
-    function typeChar(){
-      if(i < str.length){
-        p.textContent += str[i];
-        i++;
-        setTimeout(typeChar, 10);
-      }else{
-        pIndex++;
-        setTimeout(typeNext, 120);
-      }
-    }
-
-    typeChar();
-  }
-
-  typeNext();
+/* ===== 渲染 ===== */
+function render(text){
+  const parts = text.split(/\n\s*\n/);
+  storyText.innerHTML = parts.map(p=>`<p>${p}</p>`).join("");
 }
 
 /* ===== 翻页 ===== */
 let isEnglish = false;
 
-function switchText(){
+storyText.onclick = ()=>{
   storyText.classList.add("page-flip");
 
   setTimeout(()=>{
+    isEnglish = !isEnglish;
+    render(isEnglish ? enText : cnText);
     storyText.classList.remove("page-flip");
     storyText.classList.add("page-in");
+  },300);
+};
 
-    isEnglish = !isEnglish;
-    typeParagraphs(isEnglish ? enText : cnText);
+render(cnText);
 
-  },400);
+/* ===== navigation ===== */
+function showTitle(){
+  title.style.display="flex";
+  story.style.display="none";
+  chars.style.display="none";
+  network.style.display="none";
+  setNav(true,false,false);
 }
 
-storyText.onclick = switchText;
+navChar.onclick = ()=>{
+  title.style.display="none";
+  story.style.display="none";
+  chars.style.display="flex";
+};
 
-/* ===== flow ===== */
+navNet.onclick = ()=>{
+  title.style.display="none";
+  story.style.display="none";
+  network.style.display="block";
+};
+
 title.onclick = ()=>{
-  title.classList.add("fade-out");
-
-  setTimeout(()=>{
-    title.style.display="none";
-    story.style.display="flex";
-    typeParagraphs(cnText);
-  },1000);
+  title.style.display="none";
+  story.style.display="flex";
 };
 
 </script>
