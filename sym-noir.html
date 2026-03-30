@@ -85,6 +85,17 @@ body{
 }
 
 .story-container{
+  position:relative;
+  width:100%;
+  max-width:760px;
+  height:100%;
+  overflow-y:auto;
+
+  padding-top:120px;
+  padding-bottom:120px;
+  padding-left:20px;
+  padding-right:20px;
+}
   width:100%;
   max-width:760px;
   height:100%;
@@ -126,12 +137,16 @@ body{
   transform:rotateY(10deg);
   opacity:0.6;
 }
-  .lang-hint{
-  text-align:right;
+ .lang-hint{
+  position:absolute;
+  top:40px;
+  right:60px;
+
   font-size:11px;
   opacity:0.5;
-  margin-bottom:10px;
   letter-spacing:1px;
+
+  white-space:nowrap;
 }
 
 /* ===== CHARACTERS ===== */
@@ -491,7 +506,14 @@ viewer.onmousedown=e=>{
   start.x=e.clientX-pos.x;
   start.y=e.clientY-pos.y;
 };
-
+viewer.onclick = (e)=>{
+  // 只在点击空白时触发（不是点到图片）
+  if(e.target.id !== "netImg"){
+    scale = 1;
+    pos = {x:0,y:0};
+    update();
+  }
+};
 window.onmouseup=()=>drag=false;
 
 window.onmousemove=e=>{
@@ -502,6 +524,9 @@ window.onmousemove=e=>{
 };
 
 function update(){
+  pos.x = Math.max(-500, Math.min(500, pos.x));
+  pos.y = Math.max(-500, Math.min(500, pos.y));
+
   img.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`;
 }
 function toggleMenu(){
@@ -511,6 +536,7 @@ function toggleMenu(){
   sidebar.classList.toggle("open");
   overlay.classList.toggle("show");
 }
+
 </script>
 
 </body>
