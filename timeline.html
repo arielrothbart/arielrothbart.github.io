@@ -15,7 +15,7 @@ body{
   font-family:'Special Elite',cursive;
 }
 
-/* sidebar */
+/* ===== sidebar ===== */
 .sidebar{
   position:fixed;
   width:200px;
@@ -43,6 +43,7 @@ body{
   padding:100px 0;
 }
 
+/* ===== timeline ===== */
 .timeline{
   position:relative;
 }
@@ -56,25 +57,55 @@ body{
   background:rgba(255,255,255,0.2);
 }
 
+/* ===== event ===== */
 .event{
   width:50%;
   padding:30px 50px;
   box-sizing:border-box;
   position:relative;
+
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s ease;
+}
+
+.event.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .left{ left:0; text-align:right;}
 .right{ left:50%; }
 
 .year{ font-size:22px; }
-.text{ opacity:0.7; }
 
+/* ===== 标题切换 ===== */
+.text{
+  position:relative;
+  height:20px;
+}
+
+.text span{
+  position:absolute;
+  left:0;
+  right:0;
+  transition:0.4s;
+}
+
+.en{ opacity:1; }
+.cn{ opacity:0; }
+
+.event:hover .en{ opacity:0; transform:translateY(-6px); }
+.event:hover .cn{ opacity:1; transform:translateY(0); }
+
+/* ===== detail ===== */
 .detail{
   opacity:0;
-  transition:0.3s;
+  transition:0.4s;
   font-size:13px;
   white-space:pre-line;
 }
+
 .event:hover .detail{opacity:1;}
 
 .modern .year{color:#d8e6ff;}
@@ -108,224 +139,110 @@ body{
 
 <div class="main">
 
-<!-- ================= 现代 ================= -->
+<!-- ===== 现代线 ===== -->
 <div id="mod" class="section active">
 <div class="timeline">
 
 <div class="event right modern">
-<div class="year">1943</div>
-<div class="text">Annabelle Case</div>
-<div class="detail">1943  安娜贝儿事件</div>
-</div>
-
-<div class="event left modern">
 <div class="year">1950</div>
-<div class="text">Yagami Iori is born</div>
+<div class="text">
+<span class="en">Yagami Iori is born</span>
+<span class="cn">八神伊织 出生</span>
+</div>
 <div class="detail">1950
 八神伊织 出生</div>
 </div>
 
-<div class="event right modern">
-<div class="year">1954</div>
-<div class="text">Yagami Shigehide is born</div>
-<div class="detail">1954
-八神重英 出生</div>
-</div>
-
 <div class="event left modern">
-<div class="year">1957</div>
-<div class="text">Kaito & Kingo are born</div>
-<div class="detail">1957
-上杉海斗
-岩波钦悟 出生</div>
-</div>
-
-<div class="event right modern">
 <div class="year">1958</div>
-<div class="text">Sugahara Shin is born</div>
+<div class="text">
+<span class="en">Sugahara Shin is born</span>
+<span class="cn">菅原真 出生</span>
+</div>
 <div class="detail">1958
 菅原真 出生</div>
 </div>
 
-<div class="event left modern">
-<div class="year">1964</div>
-<div class="text">Sent to orphanage</div>
-<div class="detail">1964
-菅原真 6岁 其母 玛拉病逝
-
-同年8月被送往孤儿院
-  
-10月 真被带往研究所治疗</div>
+</div>
 </div>
 
-<div class="event right modern">
-<div class="year">1966</div>
-<div class="text">Becomes possessed host</div>
-<div class="detail">1966
-八神重英12岁
-同家人前往洛杉矶死亡博物馆
-意外触碰到安东尼奥的金币
-成为恶灵宿主</div>
+<!-- ===== 历史线 ===== -->
+<div id="his" class="section">
+<div class="timeline">
+
+<div class="event left historical">
+<div class="year">1465</div>
+<div class="text">
+<span class="en">Osvaldo is born</span>
+<span class="cn">Osvaldo出生</span>
+</div>
+<div class="detail">1465年 Osvaldo出生</div>
 </div>
 
-<div class="event left modern">
-<div class="year">1971</div>
-<div class="text">Frenchie Exorcism Case</div>
-<div class="detail">1971
-沃伦夫妇 封印哈瑞斯维尔宅音乐盒</div>
+<div class="event right historical">
+<div class="year">1498</div>
+<div class="text">
+<span class="en">Political Marriage</span>
+<span class="cn">政治联姻</span>
+</div>
+<div class="detail">1498年
+Osvaldo同那不勒斯公国的Cathetine Macarena公主政治联姻</div>
 </div>
 
-<div class="event left modern">
-<div class="year">1974</div>
-<div class="text">Adoption</div>
-<div class="detail">1974
-真与钦悟相识
-12月 岩波鸣海收养真
-未改姓</div>
+<div class="event left historical">
+<div class="year">1508</div>
+<div class="text">
+<span class="en">Royal Assassination</span>
+<span class="cn">王室暗杀</span>
 </div>
-
-<div class="event right modern">
-<div class="year">1976</div>
-<div class="text">First Encounter</div>
-<div class="detail">1976
-真进入汉普顿大学，史学/神学系
-与八神相遇
-  
-密特维利屋事件 
-沃伦夫妇第二次遭遇鬼修女</div>
-</div>
-
-<div class="event right modern">
-<div class="year">1977</div>
-<div class="text">Enfield Case</div>
-<div class="detail">1977年 
-八神去往纽约
-就职于NCPD
-  
-邪灵比尔大爷附身小女孩
-（霍奇森宅闹鬼事件）
-沃伦夫妇驱逐鬼修女Valak</div>
-</div>
-
-<div class="event left modern">
-<div class="year">1980</div>
-<div class="text">Asao is born</div>
-<div class="detail">1980
-朝生在奥地利出生</div>
-</div>
-
-<div class="event right modern">
-<div class="year">1981</div>
-<div class="text">Start of investigations</div>
-<div class="detail">1981
-阿尼判刑 恶魔附身案件审理结束
-  
-钦悟举家回到波士顿，琉生出世
-  
-经钦悟介绍，真与上杉海斗相识
-真就读于汉普顿神秘学系 研究生二年级
-海斗在法医部门就职 
-两人开始调查灵异事件</div>
-</div>
-
-<div class="event left modern">
-<div class="year">1982</div>
-<div class="text">Curse Incident</div>
-<div class="detail">1982
-钦悟死亡
-海斗失踪
-真丧失60%行动能力</div>
-</div>
-
-<div class="event right modern">
-<div class="year">1983</div>
-<div class="text">Leaves school</div>
-<div class="detail">1983
-八神回到佛蒙特警局成为特聘警探
-  
-佛蒙特火灾</div>
-</div>
-
-<div class="event left modern">
-<div class="year">1984</div>
-<div class="text">Graduation</div>
-<div class="detail">1984
-真毕业
-留校于汉普顿大学任教</div>
-</div>
-
-<div class="event right modern">
-<div class="year">1985</div>
-<div class="text">Asao disappears</div>
-<div class="detail">1985 年
-真前去解救时遇到了八神
-两人合作找回了朝生。</div>
-</div>
-
-<div class="event left modern">
-<div class="year">1986</div>
-<div class="text">Now</div>
-<div class="detail">1986年 （Now）
-八神找到真
-说服其组队调查灵异事件。
-  
-10月 已经死亡的海斗出现</div>
-</div>
-
-<div class="event right modern">
-<div class="year">1987</div>
-<div class="text">Liminal space incident</div>
-<div class="detail">1987年
-真进入间隙位面，没有如期醒来
-安东尼奥消失</div>
-</div>
-
-<div class="event left modern">
-<div class="year">1988</div>
-<div class="text">Semi-retirement</div>
-<div class="detail">1988年
-八神担任警局的顾问，半退役</div>
-</div>
-
-<div class="event right modern">
-<div class="year">1998</div>
-<div class="text">Awakening</div>
-<div class="detail">1998年 
-八神向友人求助
-真从昏迷中醒来</div>
-</div>
-
-<div class="event right modern">
-<div class="year">1999</div>
-<div class="text">Investigating Antonio</div>
-<div class="detail">1999
-前往意大利与马德里收集情报</div>
-</div>
-
-<div class="event right modern">
-<div class="year">2000-2001</div>
-<div class="text">Truth revealed</div>
-<div class="detail">2000-2001年
-真和八神向安东尼奥阐明其死亡真相
-并召唤了洛伦佐本人的灵魂</div>
+<div class="detail">1508年
+国王和王储被暗杀</div>
 </div>
 
 </div>
 </div>
 
-<!-- 历史线保持不变（未改动） -->
+</div>
+
+<div class="top-btn" onclick="scrollTopSmooth()">TOP ↑</div>
 
 <script>
-function goBack(){window.location.href="sym-noir.html";}
+
+function goBack(){
+  window.location.href="sym-noir.html";
+}
+
 function showSection(type){
   document.getElementById("mod").classList.remove("active");
   document.getElementById("his").classList.remove("active");
+
   document.getElementById("btn-mod").classList.remove("active");
   document.getElementById("btn-his").classList.remove("active");
+
   document.getElementById(type).classList.add("active");
   document.getElementById("btn-"+type).classList.add("active");
 }
-function scrollTopSmooth(){window.scrollTo({top:0,behavior:"smooth"});}
+
+/* ===== 滚动浮现 ===== */
+const events = document.querySelectorAll(".event");
+
+function reveal(){
+  const trigger = window.innerHeight * 0.85;
+
+  events.forEach(e=>{
+    if(e.getBoundingClientRect().top < trigger){
+      e.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", reveal);
+window.addEventListener("load", reveal);
+
+function scrollTopSmooth(){
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
 </script>
 
 </body>
