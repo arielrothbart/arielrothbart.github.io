@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Timeline</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
@@ -17,12 +18,14 @@ body{
 
 /* sidebar */
 .sidebar{
-  position:fixed;
+ position:fixed;
   width:200px;
   height:100vh;
   background:#0a0a0a;
   padding:30px;
-}
+
+  z-index:10;
+  }
 
 .back{
   margin-bottom:20px;
@@ -35,6 +38,15 @@ body{
   margin:12px 0;
   color:#666;
   cursor:pointer;
+}
+  .nav-item{
+  margin:12px 0;
+  color:#666;
+  cursor:pointer;
+}
+
+.nav-item:hover{
+  color:white;
 }
 .nav .active{color:white;}
 
@@ -131,12 +143,65 @@ body{
   opacity:0.5;
 }
 .top-btn:hover{opacity:1;}
+/* ===== MOBILE MENU ===== */
+@media (max-width:768px){
 
+  body{overflow:auto;}
+
+  .menu-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+    width:44px;
+    height:44px;
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border-radius:10px;
+    z-index:200;
+  }
+
+  .overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(4px);
+    display:none;
+    z-index:100;
+  }
+
+  .overlay.show{
+    display:block;
+  }
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:0.3s;
+    z-index:300;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+}
 </style>
 </head>
 
 <body>
-
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="overlay" onclick="toggleMenu()"></div>
+  
 <div class="sidebar">
   <div class="back" onclick="goBack()">← Back</div>
 
@@ -144,6 +209,7 @@ body{
     <div id="btn-mod" class="active" onclick="showSection('mod')">Vermont</div>
     <div id="btn-his" onclick="showSection('his')">Historical</div>
   </div>
+  <div class="nav-item" onclick="scrollTopSmooth()">Top ↑</div>
 </div>
 
 <div class="main">
@@ -517,7 +583,6 @@ body{
 
 </div>
 
-<div class="top-btn" onclick="scrollTopSmooth()">TOP ↑</div>
 
 <script>
 
@@ -565,7 +630,13 @@ document.querySelectorAll(".event").forEach(e=>{
 function scrollTopSmooth(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
+function toggleMenu(){
+  const sidebar = document.querySelector(".sidebar");
+  const overlay = document.querySelector(".overlay");
 
+  sidebar.classList.toggle("open");
+  overlay.classList.toggle("show");
+}
 </script>
 
 </body>
