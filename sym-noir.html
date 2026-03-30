@@ -105,6 +105,10 @@ body{
   margin:0 0 1.6em 0;
 }
   
+  .end-space{
+  height:120px;
+}
+  
   .story-text p:first-child{
   margin-top:40px;
 }
@@ -366,7 +370,8 @@ function render(text){
   storyText.innerHTML = text
     .split(/\n/)
     .map(line => line.trim() ? `<p>${line}</p>` : "")
-    .join("");
+    .join("")
+    + `<p class="end-space"></p>`;
 }
 
 let isEn=false;
