@@ -70,7 +70,7 @@ body{
   }
 }
 
-/* ===== ⭐ story（新增层，不影响原结构） ===== */
+/* ===== story ===== */
 .story-screen{
   position:absolute;
   width:100%;
@@ -99,13 +99,12 @@ body{
   margin:0 0 1.6em 0;
 }
 
-/* 翻页（很轻） */
 .flip{
   transform:rotateY(10deg);
   opacity:0.6;
 }
 
-/* ===== characters（完全保留） ===== */
+/* ===== characters ===== */
 .character-screen{
   position:absolute;
   width:100%;
@@ -125,7 +124,7 @@ body{
   animation:ghostOut 1s forwards;
 }
 
-/* ===== ENTER（保留） ===== */
+/* ===== ENTER ===== */
 .enter-btn{
   font-size:12px;
   cursor:pointer;
@@ -147,7 +146,7 @@ body{
   transition:0.5s;
 }
 
-/* ===== network（保留） ===== */
+/* ===== network ===== */
 .network-screen{
   position:absolute;
   width:100%;
@@ -168,6 +167,17 @@ body{
 .viewer img{
   max-width:90%;
   max-height:90%;
+  transition:none;
+}
+
+/* ⭐ zoom 提示 */
+.zoom-hint{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  font-size:12px;
+  opacity:0.5;
+  pointer-events:none;
 }
 
 /* ===== mobile ===== */
@@ -180,35 +190,27 @@ body{
   .sidebar{display:none;}
   .main{margin-left:0;}
 
-  .story-screen{
-    padding:20px 18px 100px 18px;
-    align-items:flex-start;
-  }
-
-  .story-text{
-    font-size:17px;
-    line-height:2.2;
-  }
-
   .mobile-nav{
     display:flex;
     position:fixed;
     bottom:0;
     width:100%;
-    height:70px;
+    height:90px;
     background:#0a0a0a;
     justify-content:space-around;
     align-items:center;
-    font-size:14px;
+    font-size:16px;
     z-index:100;
   }
 
   .mobile-nav div{
-    padding:12px 18px;
-    color:#888;
+    padding:18px 26px;
+    color:#aaa;
+    border-radius:10px;
   }
 
   .mobile-nav div:active{
+    background:#222;
     color:white;
   }
 }
@@ -240,7 +242,6 @@ body{
   <img src="images/title.png">
 </div>
 
-<!-- ⭐ 新增 story -->
 <div class="story-screen" id="story">
   <div class="story-container">
     <div class="story-text" id="storyText"></div>
@@ -257,13 +258,15 @@ body{
   <div class="viewer" id="viewer">
     <img src="images/network.png" id="netImg">
   </div>
+
+  <div class="zoom-hint">Scroll to zoom · 拖动滚轮放大</div>
 </div>
 
 </div>
 
 <script>
 
-/* ===== 原有变量（保留） ===== */
+/* ===== 原变量 ===== */
 const title = document.getElementById("title");
 const story = document.getElementById("story");
 const storyText = document.getElementById("storyText");
@@ -287,142 +290,416 @@ function setNav(t,c,n){
 function goHome(){window.location.href="index.html";}
 function goTimeline(){window.location.href="timeline.html";}
 
-/* ===== ⭐ 文本 ===== */
-const cnText = `黑色交响建立在两段半架空的历史之上。
+/* ===== ⭐ network交互恢复 ===== */
 
-1980年代至千禧年前后的美国佛蒙特州。  
-八神重英与菅原真，作为第二代日本移民生活在这里。  
-从小能够感知到鬼魂的菅原真在大学里教授神秘学，
-警官八神的身上则有一个古老又性格乖张的幽灵。
-他们组成了为他人排忧解难的驱魔搭档，在一次次案件中化险为夷。
-两人也逐渐发现，附身于八神身上的“恶灵”安东尼奥生前并不简单。
+const viewer = document.getElementById("viewer");
+const img = document.getElementById("netImg");
 
-更早的年代。  
-西班牙王朝正值鼎盛时。  
+let scale = 1;
+let pos = { x:0, y:0 };
+let isDragging = false;
+let start = { x:0, y:0 };
 
-国王奥斯瓦尔多和其胞弟安东尼奥关系亲密。
-二人在政治与战争上强强联手，堪称一代枭雄。 
-但二人都在感情上却是难言的弱者。
-他们的王朝究竟为何在一夜之间覆灭？
-又是怎样强烈的感情，让安东尼奥愤怒至极，
-即便在死后也不愿离去，甘愿成为飘荡于世间500年的幽灵？
+viewer.addEventListener("wheel", (e)=>{
+  e.preventDefault();
+  const delta = e.deltaY > 0 ? 0.9 : 1.1;
+  scale *= delta;
+  scale = Math.max(0.6, Math.min(scale, 3));
+  updateTransform();
+});
 
-菅原真和八神就深入马德里，只为探寻身上恶灵的故事。`;
+viewer.addEventListener("mousedown", (e)=>{
+  isDragging = true;
+  start.x = e.clientX - pos.x;
+  start.y = e.clientY - pos.y;
+  viewer.style.cursor = "grabbing";
+});
 
-const enText = `Symphony Noir unfolds within a semi-fictional historical frame.
+window.addEventListener("mouseup", ()=>{
+  isDragging = false;
+  viewer.style.cursor = "grab";
+});
 
-Vermont, United States, from the 1980s to the early 2000s.  
-Yagami Shigefua and Sugahara Shin,
-second-generation Japanese immigrants, 
-live in a quiet and cold landscape.
-Shin, who has perceived spirits since childhood, 
-becomes a lecturer in the occult.  
-Yagami, now a police officer, 
-carries within him an ancient and temperamental entity.
-Together, they form an exorcism partnership, 
-resolving cases that defy explanation.  
-As each case unfolds, they are drawn closer to the truth 
-behind the spirit inhabiting Yagami.
-Antonio.
+window.addEventListener("mousemove", (e)=>{
+  if(!isDragging) return;
+  pos.x = e.clientX - start.x;
+  pos.y = e.clientY - start.y;
+  updateTransform();
+});
 
-Centuries earlier, 
-during the height of a Spanish dynasty.  
-King Osvaldo and his brother Antonio stand side by side, 
-shaping an era through power and war.
-Yet in matters of the heart, both remain fragile.
-What caused their kingdom to collapse overnight?  
-What kind of emotion drove Antonio into such fury  
-that even in death, he refuses to leave,
-lingering for five hundred years?
+viewer.addEventListener("click", (e)=>{
+  if(e.target !== img){
+    resetView();
+  }
+});
 
-And so, they travel to Madrid.`;
-
-/* ===== 渲染 ===== */
-function render(text){
-  const parts = text.split(/\n\s*\n/);
-  storyText.innerHTML = parts.map(p=>`<p>${p}</p>`).join("");
+function updateTransform(){
+  img.style.transform =
+    "translate(" + pos.x + "px," + pos.y + "px) scale(" + scale + ")";
 }
 
-let isEnglish = false;
-render(cnText);
-
-/* 点击翻页 */
-storyText.onclick = ()=>{
-  storyText.classList.add("flip");
-
-  setTimeout(()=>{
-    isEnglish = !isEnglish;
-    render(isEnglish ? enText : cnText);
-    storyText.classList.remove("flip");
-  },200);
-};
-
-/* ===== ⭐ flow（只改这里） ===== */
-title.onclick = ()=>{
-  title.classList.add("fade-out");
-
-  setTimeout(()=>{
-    title.style.display="none";
-    story.style.display="flex";
-    setNav(false,false,false);
-  },1000);
-};
-
-/* ⭐ 从 story 进入 characters */
-story.onclick = (e)=>{
-  if(e.target !== story) return;
-
-  story.style.display="none";
-  chars.style.display="flex";
-  setNav(false,true,false);
-};
-
-/* ===== 原逻辑恢复 ===== */
-function resetCharacters(){
-  yagami.classList.remove("fade-char");
-  shin.classList.remove("fade-char");
-  enterBtn.classList.remove("active");
+function resetView(){
+  scale = 1;
+  pos = { x:0, y:0 };
+  img.style.transition = "0.4s";
+  updateTransform();
+  setTimeout(()=>{ img.style.transition="none"; },400);
 }
 
-function showTitle(){
-  resetCharacters();
-  title.classList.remove("fade-out");
-  title.style.display="flex";
-  story.style.display="none";
-  chars.style.display="none";
-  network.style.display="none";
-  setNav(true,false,false);
+img.addEventListener("contextmenu", e=>e.preventDefault());
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Symphony Noir</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:'Special Elite',cursive;
+  overflow:hidden;
 }
 
-navChar.onclick = ()=>{
-  resetCharacters();
-  title.style.display="none";
-  story.style.display="none";
-  chars.style.display="flex";
-  network.style.display="none";
-  setNav(false,true,false);
-};
+/* ===== sidebar ===== */
+.sidebar{
+  position:fixed;
+  width:220px;
+  height:100vh;
+  background:#0a0a0a;
+  padding:30px;
+  z-index:10;
+}
 
-navNet.onclick = ()=>{
-  title.style.display="none";
-  story.style.display="none";
-  chars.style.display="none";
-  network.style.display="block";
-  setNav(false,false,true);
-};
+.logo{width:80px;cursor:pointer;}
+.title{font-size:24px;margin:20px 0;cursor:pointer;}
 
-/* ENTER 保留 */
-enterBtn.onclick = ()=>{
-  enterBtn.classList.add("active");
-  yagami.classList.add("fade-char");
-  shin.classList.add("fade-char");
+.nav-item{margin:10px 0;color:#666;cursor:pointer;}
+.nav-item.active{color:white;}
 
-  setTimeout(()=>{
-    chars.style.display="none";
-    network.style.display="block";
-    setNav(false,false,true);
-  },700);
-};
+/* ===== main ===== */
+.main{
+  margin-left:220px;
+  height:100vh;
+  position:relative;
+}
+
+/* ===== title ===== */
+.title-screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.title-screen img{
+  width:760px;
+  opacity:0;
+  animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{to{opacity:1;}}
+
+.fade-out{
+  animation:ghostOut 1.2s forwards;
+}
+
+@keyframes ghostOut{
+  to{
+    opacity:0;
+    transform:translateY(-60px);
+    filter:blur(6px);
+  }
+}
+
+/* ===== story ===== */
+.story-screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:80px;
+}
+
+.story-container{
+  width:100%;
+  max-width:720px;
+  height:100%;
+  overflow-y:auto;
+}
+
+.story-text{
+  line-height:2;
+  font-size:15px;
+  color:#ddd;
+  transition:0.3s;
+}
+
+.story-text p{
+  margin:0 0 1.6em 0;
+}
+
+.flip{
+  transform:rotateY(10deg);
+  opacity:0.6;
+}
+
+/* ===== characters ===== */
+.character-screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  gap:120px;
+}
+
+.char img{
+  width:150px;
+  border-radius:50%;
+}
+
+.fade-char{
+  animation:ghostOut 1s forwards;
+}
+
+/* ===== ENTER ===== */
+.enter-btn{
+  font-size:12px;
+  cursor:pointer;
+  opacity:0.7;
+  letter-spacing:2px;
+  transition:0.3s;
+}
+
+.enter-btn:hover{
+  opacity:1;
+  letter-spacing:6px;
+  transform:scale(1.1);
+}
+
+.enter-btn.active{
+  letter-spacing:18px;
+  opacity:0;
+  transform:scale(1.3);
+  transition:0.5s;
+}
+
+/* ===== network ===== */
+.network-screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
+  overflow:hidden;
+}
+
+.viewer{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:grab;
+}
+
+.viewer img{
+  max-width:90%;
+  max-height:90%;
+  transition:none;
+}
+
+/* ⭐ zoom 提示 */
+.zoom-hint{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  font-size:12px;
+  opacity:0.5;
+  pointer-events:none;
+}
+
+/* ===== mobile ===== */
+.mobile-nav{display:none;}
+
+@media (max-width:768px){
+
+  body{overflow:auto !important;}
+
+  .sidebar{display:none;}
+  .main{margin-left:0;}
+
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:90px;
+    background:#0a0a0a;
+    justify-content:space-around;
+    align-items:center;
+    font-size:16px;
+    z-index:100;
+  }
+
+  .mobile-nav div{
+    padding:18px 26px;
+    color:#aaa;
+    border-radius:10px;
+  }
+
+  .mobile-nav div:active{
+    background:#222;
+    color:white;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="mobile-nav">
+  <div onclick="showTitle()">Title</div>
+  <div onclick="navChar.onclick()">Chars</div>
+  <div onclick="navNet.onclick()">Net</div>
+</div>
+
+<div class="sidebar">
+  <img src="logo.png" class="logo" onclick="goHome()">
+  <div class="title" onclick="showTitle()">Symphony Noir</div>
+
+  <div class="nav-item active" id="nav-title">Title</div>
+  <div class="nav-item" id="nav-char">Characters</div>
+  <div class="nav-item" id="nav-net">Network</div>
+  <div class="nav-item" onclick="goTimeline()">Timeline</div>
+</div>
+
+<div class="main">
+
+<div class="title-screen" id="title">
+  <img src="images/title.png">
+</div>
+
+<div class="story-screen" id="story">
+  <div class="story-container">
+    <div class="story-text" id="storyText"></div>
+  </div>
+</div>
+
+<div class="character-screen" id="chars">
+  <div class="char" id="yagami"><img src="images/yagami.png"></div>
+  <div class="enter-btn" id="enterBtn">ENTER</div>
+  <div class="char" id="shin"><img src="images/shin.png"></div>
+</div>
+
+<div class="network-screen" id="network">
+  <div class="viewer" id="viewer">
+    <img src="images/network.png" id="netImg">
+  </div>
+
+  <div class="zoom-hint">Scroll to zoom · 拖动滚轮放大</div>
+</div>
+
+</div>
+
+<script>
+
+/* ===== 原变量 ===== */
+const title = document.getElementById("title");
+const story = document.getElementById("story");
+const storyText = document.getElementById("storyText");
+const chars = document.getElementById("chars");
+const network = document.getElementById("network");
+
+const yagami = document.getElementById("yagami");
+const shin = document.getElementById("shin");
+const enterBtn = document.getElementById("enterBtn");
+
+const navTitle = document.getElementById("nav-title");
+const navChar = document.getElementById("nav-char");
+const navNet = document.getElementById("nav-net");
+
+function setNav(t,c,n){
+  navTitle.classList.toggle("active",t);
+  navChar.classList.toggle("active",c);
+  navNet.classList.toggle("active",n);
+}
+
+function goHome(){window.location.href="index.html";}
+function goTimeline(){window.location.href="timeline.html";}
+
+/* ===== ⭐ network交互恢复 ===== */
+
+const viewer = document.getElementById("viewer");
+const img = document.getElementById("netImg");
+
+let scale = 1;
+let pos = { x:0, y:0 };
+let isDragging = false;
+let start = { x:0, y:0 };
+
+viewer.addEventListener("wheel", (e)=>{
+  e.preventDefault();
+  const delta = e.deltaY > 0 ? 0.9 : 1.1;
+  scale *= delta;
+  scale = Math.max(0.6, Math.min(scale, 3));
+  updateTransform();
+});
+
+viewer.addEventListener("mousedown", (e)=>{
+  isDragging = true;
+  start.x = e.clientX - pos.x;
+  start.y = e.clientY - pos.y;
+  viewer.style.cursor = "grabbing";
+});
+
+window.addEventListener("mouseup", ()=>{
+  isDragging = false;
+  viewer.style.cursor = "grab";
+});
+
+window.addEventListener("mousemove", (e)=>{
+  if(!isDragging) return;
+  pos.x = e.clientX - start.x;
+  pos.y = e.clientY - start.y;
+  updateTransform();
+});
+
+viewer.addEventListener("click", (e)=>{
+  if(e.target !== img){
+    resetView();
+  }
+});
+
+function updateTransform(){
+  img.style.transform =
+    "translate(" + pos.x + "px," + pos.y + "px) scale(" + scale + ")";
+}
+
+function resetView(){
+  scale = 1;
+  pos = { x:0, y:0 };
+  img.style.transition = "0.4s";
+  updateTransform();
+  setTimeout(()=>{ img.style.transition="none"; },400);
+}
+
+img.addEventListener("contextmenu", e=>e.preventDefault());
 
 </script>
 
