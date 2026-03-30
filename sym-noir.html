@@ -93,6 +93,9 @@ body{
   font-size:15px;
   color:#ddd;
   transition:0.3s;
+
+  white-space: normal;
+  word-break: break-word;
 }
 
 .story-text p{
@@ -166,50 +169,10 @@ body{
   opacity:0.6;
 }
 
-/* ===== MOBILE ===== */
-.mobile-nav{display:none;}
-
-@media (max-width:768px){
-
-  body{overflow:auto;}
-  .sidebar{display:none;}
-  .main{margin-left:0;}
-
-  .mobile-nav{
-    display:flex;
-    position:fixed;
-    bottom:0;
-    width:100%;
-    height:90px;
-    background:#0a0a0a;
-    justify-content:space-around;
-    align-items:center;
-    font-size:16px;
-    z-index:100;
-  }
-
-  .mobile-nav div{
-    padding:18px 24px;
-    color:#aaa;
-  }
-
-  .mobile-nav div:active{
-    color:white;
-  }
-}
-
 </style>
 </head>
 
 <body>
-
-<!-- MOBILE NAV -->
-<div class="mobile-nav">
-  <div onclick="showTitle()">Title</div>
-  <div onclick="showStory()">Story</div>
-  <div onclick="showCharacters()">Chars</div>
-  <div onclick="showNetwork()">Net</div>
-</div>
 
 <div class="sidebar">
   <img src="logo.png" class="logo" onclick="goHome()">
@@ -224,26 +187,22 @@ body{
 
 <div class="main">
 
-<!-- TITLE -->
 <div class="title-screen" id="title" onclick="enterStory()">
   <img src="images/title.png">
 </div>
 
-<!-- STORY -->
 <div class="story-screen" id="story">
   <div class="story-container">
     <div class="story-text" id="storyText"></div>
   </div>
 </div>
 
-<!-- CHARACTERS -->
 <div class="character-screen" id="chars">
   <div class="char"><img src="images/yagami.png"></div>
-  <div class="enter-btn" onclick="showNetwork()">ENTER</div>
+  <div class="enter-btn" onclick="enterNetwork()">ENTER</div>
   <div class="char"><img src="images/shin.png"></div>
 </div>
 
-<!-- NETWORK -->
 <div class="network-screen" id="network">
   <div class="viewer" id="viewer">
     <img src="images/network.png" id="netImg">
@@ -268,398 +227,39 @@ function showNetwork(){title.style.display="none";story.style.display="none";cha
 
 function enterStory(){title.classList.add("fade-out");setTimeout(showStory,900);}
 
+function enterNetwork(){
+  chars.style.animation = "ghostOut 1s forwards";
+  setTimeout(()=>{
+    showNetwork();
+    chars.style.animation="";
+  },800);
+}
+
 function goHome(){location.href="index.html";}
 function goTimeline(){location.href="timeline.html";}
 
-/* ===== STORY 双语 ===== */
+/* ===== sidebar 高亮 ===== */
+const navItems = document.querySelectorAll(".nav-item");
 
-const cnText = `黑色交响建立在两段半架空的历史之上。
-
-1980年代至千禧年前后的美国佛蒙特州。  
-八神重英与菅原真，作为第二代日本移民生活在这里。  
-从小能够感知到鬼魂的菅原真在大学里教授神秘学，
-警官八神的身上则有一个古老又性格乖张的幽灵。
-他们组成了为他人排忧解难的驱魔搭档，在一次次案件中化险为夷。
-两人也逐渐发现，附身于八神身上的“恶灵”安东尼奥生前并不简单。
-
-更早的年代。  
-西班牙王朝正值鼎盛时。  
-
-国王奥斯瓦尔多和其胞弟安东尼奥关系亲密。
-二人在政治与战争上强强联手，堪称一代枭雄。 
-但二人都在感情上却是难言的弱者。
-他们的王朝究竟为何在一夜之间覆灭？
-又是怎样强烈的感情，让安东尼奥愤怒至极，
-即便在死后也不愿离去，甘愿成为飘荡于世间500年的幽灵？
-
-菅原真和八神就深入马德里，只为探寻身上恶灵的故事。`;
-
-const enText = `Symphony Noir unfolds across two timelines.
-
-Vermont, United States, from the 1980s to the early 2000s.  
-Yagami Shigefua and Sugahara Shin,
-second-generation Japanese immigrants, 
-live in a quiet and cold landscape.
-Shin, who has perceived spirits since childhood, 
-becomes a lecturer in the occult.  
-Yagami, now a police officer, 
-carries within him an ancient and temperamental entity.
-Together, they form an exorcism partnership, 
-resolving cases that defy explanation.  
-As each case unfolds, they are drawn closer to the truth 
-behind the spirit inhabiting Yagami.
-Antonio.
-
-Centuries earlier, 
-during the height of a Spanish dynasty.  
-King Osvaldo and his brother Antonio stand side by side, 
-shaping an era through power and war.
-Yet in matters of the heart, both remain fragile.
-What caused their kingdom to collapse overnight?  
-What kind of emotion drove Antonio into such fury  
-that even in death, he refuses to leave,
-lingering for five hundred years?
-
-And so, they travel to Madrid.`;
-
-
-const storyText = document.getElementById("storyText");
-
-function render(text){
-  storyText.innerHTML = text.split(/\n\s*\n/).map(p=>`<p>${p}</p>`).join("");
+function setActive(index){
+  navItems.forEach((n,i)=>{
+    n.classList.toggle("active", i===index);
+  });
 }
 
-let isEn=false;
-render(cnText);
+const _showTitle = showTitle;
+const _showStory = showStory;
+const _showCharacters = showCharacters;
+const _showNetwork = showNetwork;
 
-storyText.onclick = ()=>{
-  storyText.classList.add("flip");
-  setTimeout(()=>{
-    isEn=!isEn;
-    render(isEn?enText:cnText);
-    storyText.classList.remove("flip");
-  },200);
-};
+showTitle = function(){_showTitle();setActive(0);}
+showStory = function(){_showStory();setActive(1);}
+showCharacters = function(){_showCharacters();setActive(2);}
+showNetwork = function(){_showNetwork();setActive(3);}
 
-/* ===== NETWORK ===== */
-
-const viewer = document.getElementById("viewer");
-const img = document.getElementById("netImg");
-
-let scale=1,pos={x:0,y:0},drag=false,start={};
-
-viewer.onwheel=e=>{
-  e.preventDefault();
-  scale*=e.deltaY>0?0.9:1.1;
-  scale=Math.max(0.6,Math.min(scale,3));
-  update();
-};
-
-viewer.onmousedown=e=>{
-  drag=true;
-  start.x=e.clientX-pos.x;
-  start.y=e.clientY-pos.y;
-};
-
-window.onmouseup=()=>drag=false;
-
-window.onmousemove=e=>{
-  if(!drag)return;
-  pos.x=e.clientX-start.x;
-  pos.y=e.clientY-start.y;
-  update();
-};
-
-viewer.onclick=e=>{
-  if(e.target!==img){
-    scale=1;pos={x:0,y:0};
-    update();
-  }
-};
-
-function update(){
-  img.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`;
-}
-
-img.oncontextmenu=e=>e.preventDefault();
-
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Symphony Noir</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-
-<style>
-
-body{
-  margin:0;
-  background:black;
-  color:white;
-  font-family:'Special Elite',cursive;
-  overflow:hidden;
-}
-
-/* ===== sidebar ===== */
-.sidebar{
-  position:fixed;
-  width:220px;
-  height:100vh;
-  background:#0a0a0a;
-  padding:30px;
-  z-index:10;
-}
-
-.logo{width:80px;cursor:pointer;}
-.title{font-size:26px;margin:20px 0;cursor:pointer;}
-
-.nav-item{margin:12px 0;color:#666;cursor:pointer;}
-.nav-item.active{color:white;}
-
-/* ===== main ===== */
-.main{
-  margin-left:220px;
-  height:100vh;
-  position:relative;
-}
-
-/* ===== TITLE ===== */
-.title-screen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-}
-
-.title-screen img{
-  width:760px;
-  opacity:0;
-  animation:fadeIn 2s forwards;
-}
-
-@keyframes fadeIn{to{opacity:1;}}
-
-.fade-out{
-  animation:ghostOut 1.2s forwards;
-}
-
-@keyframes ghostOut{
-  to{
-    opacity:0;
-    transform:translateY(-60px);
-    filter:blur(6px);
-  }
-}
+setActive(0);
 
 /* ===== STORY ===== */
-.story-screen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  padding:80px;
-}
-
-.story-container{
-  width:100%;
-  max-width:760px;
-  height:100%;
-  overflow-y:auto;
-}
-
-.story-text{
-  line-height:2;
-  font-size:15px;
-  color:#ddd;
-  transition:0.3s;
-}
-
-.story-text p{
-  margin:0 0 1.6em 0;
-}
-
-.flip{
-  transform:rotateY(10deg);
-  opacity:0.6;
-}
-
-/* ===== CHARACTERS ===== */
-.character-screen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  gap:120px;
-}
-
-.char img{
-  width:150px;
-  border-radius:50%;
-}
-
-/* ===== ENTER ===== */
-.enter-btn{
-  font-size:12px;
-  cursor:pointer;
-  opacity:0.7;
-  letter-spacing:2px;
-  transition:0.3s;
-}
-
-.enter-btn:hover{
-  opacity:1;
-  letter-spacing:6px;
-  transform:scale(1.1);
-}
-
-/* ===== NETWORK ===== */
-.network-screen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:none;
-  overflow:hidden;
-}
-
-.viewer{
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:grab;
-}
-
-.viewer img{
-  max-width:90%;
-  max-height:90%;
-}
-
-.zoom-hint{
-  position:absolute;
-  right:20px;
-  bottom:20px;
-  font-size:12px;
-  opacity:0.6;
-}
-
-/* ===== MOBILE ===== */
-.mobile-nav{display:none;}
-
-@media (max-width:768px){
-
-  body{overflow:auto;}
-  .sidebar{display:none;}
-  .main{margin-left:0;}
-
-  .mobile-nav{
-    display:flex;
-    position:fixed;
-    bottom:0;
-    width:100%;
-    height:90px;
-    background:#0a0a0a;
-    justify-content:space-around;
-    align-items:center;
-    font-size:16px;
-    z-index:100;
-  }
-
-  .mobile-nav div{
-    padding:18px 24px;
-    color:#aaa;
-  }
-
-  .mobile-nav div:active{
-    color:white;
-  }
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- MOBILE NAV -->
-<div class="mobile-nav">
-  <div onclick="showTitle()">Title</div>
-  <div onclick="showStory()">Story</div>
-  <div onclick="showCharacters()">Chars</div>
-  <div onclick="showNetwork()">Net</div>
-</div>
-
-<div class="sidebar">
-  <img src="logo.png" class="logo" onclick="goHome()">
-  <div class="title" onclick="showTitle()">Symphony Noir</div>
-
-  <div class="nav-item" onclick="showTitle()">Title</div>
-  <div class="nav-item" onclick="showStory()">Story</div>
-  <div class="nav-item" onclick="showCharacters()">Characters</div>
-  <div class="nav-item" onclick="showNetwork()">Network</div>
-  <div class="nav-item" onclick="goTimeline()">Timeline</div>
-</div>
-
-<div class="main">
-
-<!-- TITLE -->
-<div class="title-screen" id="title" onclick="enterStory()">
-  <img src="images/title.png">
-</div>
-
-<!-- STORY -->
-<div class="story-screen" id="story">
-  <div class="story-container">
-    <div class="story-text" id="storyText"></div>
-  </div>
-</div>
-
-<!-- CHARACTERS -->
-<div class="character-screen" id="chars">
-  <div class="char"><img src="images/yagami.png"></div>
-  <div class="enter-btn" onclick="showNetwork()">ENTER</div>
-  <div class="char"><img src="images/shin.png"></div>
-</div>
-
-<!-- NETWORK -->
-<div class="network-screen" id="network">
-  <div class="viewer" id="viewer">
-    <img src="images/network.png" id="netImg">
-  </div>
-  <div class="zoom-hint">Scroll to zoom · 拖动滚轮放大</div>
-</div>
-
-</div>
-
-<script>
-
-/* 页面切换 */
-const title = document.getElementById("title");
-const story = document.getElementById("story");
-const chars = document.getElementById("chars");
-const network = document.getElementById("network");
-
-function showTitle(){title.style.display="flex";story.style.display="none";chars.style.display="none";network.style.display="none";}
-function showStory(){title.style.display="none";story.style.display="flex";chars.style.display="none";network.style.display="none";}
-function showCharacters(){title.style.display="none";story.style.display="none";chars.style.display="flex";network.style.display="none";}
-function showNetwork(){title.style.display="none";story.style.display="none";chars.style.display="none";network.style.display="block";}
-
-function enterStory(){title.classList.add("fade-out");setTimeout(showStory,900);}
-
-function goHome(){location.href="index.html";}
-function goTimeline(){location.href="timeline.html";}
-
-/* ===== STORY 双语 ===== */
 
 const cnText = `黑色交响建立在两段半架空的历史之上。
 
@@ -710,11 +310,13 @@ lingering for five hundred years?
 
 And so, they travel to Madrid.`;
 
-
 const storyText = document.getElementById("storyText");
 
 function render(text){
-  storyText.innerHTML = text.split(/\n\s*\n/).map(p=>`<p>${p}</p>`).join("");
+  storyText.innerHTML = text
+    .split(/\n/)
+    .map(line => line.trim() ? `<p>${line}</p>` : "")
+    .join("");
 }
 
 let isEn=false;
@@ -758,157 +360,10 @@ window.onmousemove=e=>{
   update();
 };
 
-viewer.onclick=e=>{
-  if(e.target!==img){
-    scale=1;pos={x:0,y:0};
-    update();
-  }
-};
-
 function update(){
   img.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`;
 }
 
-img.oncontextmenu=e=>e.preventDefault();
-/* ================= 修复补丁（直接粘贴在 </script> 上面） ================= */
-
-/* ===== 1. 侧边栏高亮 ===== */
-const navItems = document.querySelectorAll(".nav-item");
-
-function setActive(index){
-  navItems.forEach((n,i)=>{
-    n.classList.toggle("active", i===index);
-  });
-}
-
-/* ===== 2. 接管原本页面切换（不删你原函数，只覆盖） ===== */
-
-const _showTitle = showTitle;
-const _showStory = showStory;
-const _showCharacters = showCharacters;
-const _showNetwork = showNetwork;
-
-showTitle = function(){
-  _showTitle();
-  setActive(0);
-};
-
-showStory = function(){
-  _showStory();
-  setActive(1);
-};
-
-showCharacters = function(){
-  _showCharacters();
-  setActive(2);
-};
-
-showNetwork = function(){
-  _showNetwork();
-  setActive(3);
-};
-
-/* ===== 3. Story → Characters flow（只点空白触发） ===== */
-
-const storyScreen = document.getElementById("story");
-
-storyScreen.addEventListener("click", (e)=>{
-
-  if(e.target.id === "storyText" || e.target.closest("#storyText")){
-    return;
-  }
-
-  showCharacters();
-});
-
-/* ===== 4. Characters → Network 动效恢复 ===== */
-
-function enterNetwork(){
-
-  const chars = document.getElementById("chars");
-
-  chars.style.animation = "ghostOut 1s forwards";
-
-  setTimeout(()=>{
-    showNetwork();
-    chars.style.animation = "";
-  },800);
-}
-
-/* 自动接管 ENTER 按钮（不用你去改HTML） */
-const enterBtn = document.querySelector(".enter-btn");
-if(enterBtn){
-  enterBtn.onclick = enterNetwork;
-}/* ================= 修复补丁（直接粘贴在 </script> 上面） ================= */
-
-/* ===== 1. 侧边栏高亮 ===== */
-const navItems = document.querySelectorAll(".nav-item");
-
-function setActive(index){
-  navItems.forEach((n,i)=>{
-    n.classList.toggle("active", i===index);
-  });
-}
-
-/* ===== 2. 接管原本页面切换（不删你原函数，只覆盖） ===== */
-
-const _showTitle = showTitle;
-const _showStory = showStory;
-const _showCharacters = showCharacters;
-const _showNetwork = showNetwork;
-
-showTitle = function(){
-  _showTitle();
-  setActive(0);
-};
-
-showStory = function(){
-  _showStory();
-  setActive(1);
-};
-
-showCharacters = function(){
-  _showCharacters();
-  setActive(2);
-};
-
-showNetwork = function(){
-  _showNetwork();
-  setActive(3);
-};
-
-/* ===== 3. Story → Characters flow（只点空白触发） ===== */
-
-const storyScreen = document.getElementById("story");
-
-storyScreen.addEventListener("click", (e)=>{
-
-  if(e.target.id === "storyText" || e.target.closest("#storyText")){
-    return;
-  }
-
-  showCharacters();
-});
-
-/* ===== 4. Characters → Network 动效恢复 ===== */
-
-function enterNetwork(){
-
-  const chars = document.getElementById("chars");
-
-  chars.style.animation = "ghostOut 1s forwards";
-
-  setTimeout(()=>{
-    showNetwork();
-    chars.style.animation = "";
-  },800);
-}
-
-/* 自动接管 ENTER 按钮（不用你去改HTML） */
-const enterBtn = document.querySelector(".enter-btn");
-if(enterBtn){
-  enterBtn.onclick = enterNetwork;
-}
 </script>
 
 </body>
