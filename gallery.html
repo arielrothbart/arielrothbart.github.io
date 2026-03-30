@@ -101,6 +101,37 @@ body{
   opacity:0.6;
   cursor:pointer;
 }
+  .floating-buttons{
+  position:fixed;
+  right:20px;
+  bottom:80px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  z-index:200;
+}
+
+.gif-btn{
+  text-align:center;
+  cursor:pointer;
+  opacity:0.8;
+  transition:0.3s;
+}
+
+.gif-btn img{
+  width:60px;
+}
+
+.gif-btn:hover{
+  opacity:1;
+  transform:scale(1.1);
+}
+
+.gif-label{
+  font-size:10px;
+  margin-top:4px;
+  opacity:0.6;
+}
 
 /* ===== mobile ===== */
 .menu-btn{display:none;}
@@ -177,7 +208,19 @@ body{
 </div>
 
 <div class="top-btn" onclick="scrollToTop()">TOP ↑</div>
+<div class="floating-buttons">
 
+  <div class="gif-btn" onclick="scrollToTop()">
+    <img src="images/top.gif">
+    <div class="gif-label">Top</div>
+  </div>
+
+  <div class="gif-btn" onclick="goHome()">
+    <img src="images/home.gif">
+    <div class="gif-label">Sym-Noir</div>
+  </div>
+
+</div>
 <script>
 
 /* ===== 图片自动加载 ===== */
