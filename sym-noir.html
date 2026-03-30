@@ -58,13 +58,19 @@ body{
 
 @keyframes fadeIn{to{opacity:1;}}
 
-.fade-out{animation:ghostOut 1.2s forwards;}
-
-@keyframes ghostOut{
-  to{opacity:0;transform:translateY(-60px);filter:blur(6px);}
+.fade-out{
+  animation:ghostOut 1.2s forwards;
 }
 
-/* ===== story ===== */
+@keyframes ghostOut{
+  to{
+    opacity:0;
+    transform:translateY(-60px);
+    filter:blur(6px);
+  }
+}
+
+/* ===== ⭐ story（新增层，不影响原结构） ===== */
 .story-screen{
   position:absolute;
   width:100%;
@@ -73,7 +79,6 @@ body{
   justify-content:center;
   align-items:center;
   padding:80px;
-  perspective:1200px;
 }
 
 .story-container{
@@ -87,22 +92,20 @@ body{
   line-height:2;
   font-size:15px;
   color:#ddd;
+  transition:0.3s;
 }
 
-.story-text p{margin:0 0 1.6em 0;}
-
-/* 翻页 */
-.page-flip{animation:flipOut 0.4s ease;}
-@keyframes flipOut{
-  to{transform:rotateY(90deg);opacity:0;}
+.story-text p{
+  margin:0 0 1.6em 0;
 }
 
-.page-in{animation:flipIn 0.4s ease;}
-@keyframes flipIn{
-  from{transform:rotateY(-90deg);opacity:0;}
+/* 翻页（很轻） */
+.flip{
+  transform:rotateY(10deg);
+  opacity:0.6;
 }
 
-/* ===== characters ===== */
+/* ===== characters（完全保留） ===== */
 .character-screen{
   position:absolute;
   width:100%;
@@ -113,14 +116,58 @@ body{
   gap:120px;
 }
 
-.char img{width:150px;border-radius:50%;}
+.char img{
+  width:150px;
+  border-radius:50%;
+}
 
-/* ===== network ===== */
+.fade-char{
+  animation:ghostOut 1s forwards;
+}
+
+/* ===== ENTER（保留） ===== */
+.enter-btn{
+  font-size:12px;
+  cursor:pointer;
+  opacity:0.7;
+  letter-spacing:2px;
+  transition:0.3s;
+}
+
+.enter-btn:hover{
+  opacity:1;
+  letter-spacing:6px;
+  transform:scale(1.1);
+}
+
+.enter-btn.active{
+  letter-spacing:18px;
+  opacity:0;
+  transform:scale(1.3);
+  transition:0.5s;
+}
+
+/* ===== network（保留） ===== */
 .network-screen{
   position:absolute;
   width:100%;
   height:100%;
   display:none;
+  overflow:hidden;
+}
+
+.viewer{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:grab;
+}
+
+.viewer img{
+  max-width:90%;
+  max-height:90%;
 }
 
 /* ===== mobile ===== */
@@ -128,13 +175,13 @@ body{
 
 @media (max-width:768px){
 
-  body{overflow:auto;}
+  body{overflow:auto !important;}
 
   .sidebar{display:none;}
   .main{margin-left:0;}
 
   .story-screen{
-    padding:20px 18px 90px 18px;
+    padding:20px 18px 100px 18px;
     align-items:flex-start;
   }
 
@@ -161,7 +208,9 @@ body{
     color:#888;
   }
 
-  .mobile-nav div:active{color:white;}
+  .mobile-nav div:active{
+    color:white;
+  }
 }
 
 </style>
@@ -191,6 +240,7 @@ body{
   <img src="images/title.png">
 </div>
 
+<!-- ⭐ 新增 story -->
 <div class="story-screen" id="story">
   <div class="story-container">
     <div class="story-text" id="storyText"></div>
@@ -198,26 +248,31 @@ body{
 </div>
 
 <div class="character-screen" id="chars">
-  <div class="char"><img src="images/yagami.png"></div>
-  <div class="char"><img src="images/shin.png"></div>
+  <div class="char" id="yagami"><img src="images/yagami.png"></div>
+  <div class="enter-btn" id="enterBtn">ENTER</div>
+  <div class="char" id="shin"><img src="images/shin.png"></div>
 </div>
 
 <div class="network-screen" id="network">
-  <img src="images/network.png" style="max-width:100%;">
+  <div class="viewer" id="viewer">
+    <img src="images/network.png" id="netImg">
+  </div>
 </div>
 
 </div>
 
 <script>
 
-function goTimeline(){window.location.href="timeline.html";}
-function goHome(){window.location.href="index.html";}
-
+/* ===== 原有变量（保留） ===== */
 const title = document.getElementById("title");
 const story = document.getElementById("story");
 const storyText = document.getElementById("storyText");
 const chars = document.getElementById("chars");
 const network = document.getElementById("network");
+
+const yagami = document.getElementById("yagami");
+const shin = document.getElementById("shin");
+const enterBtn = document.getElementById("enterBtn");
 
 const navTitle = document.getElementById("nav-title");
 const navChar = document.getElementById("nav-char");
@@ -229,7 +284,10 @@ function setNav(t,c,n){
   navNet.classList.toggle("active",n);
 }
 
-/* ===== 文本 ===== */
+function goHome(){window.location.href="index.html";}
+function goTimeline(){window.location.href="timeline.html";}
+
+/* ===== ⭐ 文本 ===== */
 const cnText = `黑色交响建立在两段半架空的历史之上。
 
 1980年代至千禧年前后的美国佛蒙特州。  
@@ -285,24 +343,50 @@ function render(text){
   storyText.innerHTML = parts.map(p=>`<p>${p}</p>`).join("");
 }
 
-/* ===== 翻页 ===== */
 let isEnglish = false;
+render(cnText);
 
+/* 点击翻页 */
 storyText.onclick = ()=>{
-  storyText.classList.add("page-flip");
+  storyText.classList.add("flip");
 
   setTimeout(()=>{
     isEnglish = !isEnglish;
     render(isEnglish ? enText : cnText);
-    storyText.classList.remove("page-flip");
-    storyText.classList.add("page-in");
-  },300);
+    storyText.classList.remove("flip");
+  },200);
 };
 
-render(cnText);
+/* ===== ⭐ flow（只改这里） ===== */
+title.onclick = ()=>{
+  title.classList.add("fade-out");
 
-/* ===== navigation ===== */
+  setTimeout(()=>{
+    title.style.display="none";
+    story.style.display="flex";
+    setNav(false,false,false);
+  },1000);
+};
+
+/* ⭐ 从 story 进入 characters */
+story.onclick = (e)=>{
+  if(e.target !== story) return;
+
+  story.style.display="none";
+  chars.style.display="flex";
+  setNav(false,true,false);
+};
+
+/* ===== 原逻辑恢复 ===== */
+function resetCharacters(){
+  yagami.classList.remove("fade-char");
+  shin.classList.remove("fade-char");
+  enterBtn.classList.remove("active");
+}
+
 function showTitle(){
+  resetCharacters();
+  title.classList.remove("fade-out");
   title.style.display="flex";
   story.style.display="none";
   chars.style.display="none";
@@ -311,20 +395,33 @@ function showTitle(){
 }
 
 navChar.onclick = ()=>{
+  resetCharacters();
   title.style.display="none";
   story.style.display="none";
   chars.style.display="flex";
+  network.style.display="none";
+  setNav(false,true,false);
 };
 
 navNet.onclick = ()=>{
   title.style.display="none";
   story.style.display="none";
+  chars.style.display="none";
   network.style.display="block";
+  setNav(false,false,true);
 };
 
-title.onclick = ()=>{
-  title.style.display="none";
-  story.style.display="flex";
+/* ENTER 保留 */
+enterBtn.onclick = ()=>{
+  enterBtn.classList.add("active");
+  yagami.classList.add("fade-char");
+  shin.classList.add("fade-char");
+
+  setTimeout(()=>{
+    chars.style.display="none";
+    network.style.display="block";
+    setNav(false,false,true);
+  },700);
 };
 
 </script>
