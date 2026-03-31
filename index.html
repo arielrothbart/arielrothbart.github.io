@@ -158,12 +158,12 @@
     /* ========================= */
     /* ⭐ 主光流 */
     /* ========================= */
-
 .beam {
-  width: 2px;
-  height: 120px;
-  margin: 0 auto;
   position: relative;
+
+  width: 2px;
+  height: 180px;
+  margin: -60px auto 0;
 
   background: linear-gradient(
     to bottom,
@@ -173,31 +173,45 @@
   );
 
   box-shadow: 0 0 16px rgba(0,200,255,1);
-  animation: flow 2.5s infinite;
+
+  animation: beamFlow 2.5s infinite;
 }
 
-.beam::before {
+/* ⭐ 分叉光线（左右） */
+.beam::before,
+.beam::after {
   content: "";
   position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00c8ff;
-  box-shadow: 0 0 12px #00c8ff;
+  bottom: -30px;
+
+  width: 100px;
+  height: 2px;
+
+  background: linear-gradient(
+    to right,
+    rgba(0,200,255,0),
+    rgba(0,200,255,1),
+    rgba(0,200,255,0)
+  );
+
+  box-shadow: 0 0 12px rgba(0,200,255,1);
+
+  opacity: 0.9;
 }
-        to bottom,
-        rgba(0,200,255,0),
-        rgba(0,200,255,1),
-        rgba(0,200,255,0)
-      );
 
-      box-shadow: 0 0 16px rgba(0,200,255,1);
+/* 左 */
+.beam::before {
+  left: 50%;
+  transform-origin: right center;
+  transform: translateX(-100%) rotate(-28deg);
+}
 
-      animation: flow 2.5s infinite;
-    }
+/* 右 */
+.beam::after {
+  left: 50%;
+  transform-origin: left center;
+  transform: rotate(28deg);
+}
 
     @keyframes flow {
       0% { opacity: 0; transform: translateY(-10px); }
