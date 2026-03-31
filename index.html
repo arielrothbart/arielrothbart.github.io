@@ -71,7 +71,8 @@
   top: 80px;
   right: 120px;
   text-align: right;
-  font-family: 'Playfair Display', serif;
+ font-family: 'Playfair Display', serif;
+  font-weight: 400;
   letter-spacing: 6px;
 
   opacity: 0;
@@ -92,13 +93,19 @@
     }
 
     .nav {
-      position: absolute;
-      top: 220px;
-      right: 120px;
-      text-align: right;
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
+  position: absolute;
+  top: 240px;          /* 稍微往下，呼吸感更好 */
+  right: 140px;        /* 稍微往左一点，避免贴边 */
+
+  text-align: right;
+  font-size: 18px;     /* ⭐ 放大字体 */
+  letter-spacing: 3px; /* ⭐ 更有设计感 */
+  line-height: 1.8;    /* ⭐ 拉开行距 */
+  
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 0 6px rgba(255,255,255,0.15);
+      
+}
 
     @keyframes softBoot {
       0% { opacity: 0.2; }
@@ -106,9 +113,12 @@
     }
 
     .nav a {
-      display: block;
-      opacity: 0.2;
-    }
+  display: block;
+  opacity: 0.25;
+
+  margin: 6px 0;      /* ⭐ 每一项之间拉开 */
+  transition: 0.3s;
+}
 
     .nav a:nth-child(1) { animation: softBoot 1.2s forwards 0.6s; }
     .nav a:nth-child(2) { animation: softBoot 1.2s forwards 0.2s; }
@@ -117,26 +127,26 @@
     .nav a:nth-child(5) { animation: softBoot 1.2s forwards 1.2s; }
     .nav a:nth-child(6) { animation: softBoot 1.2s forwards 0.8s; }
 
-    .nav a:hover {
-      opacity: 1;
-      letter-spacing: 4px;
-      transition: 0.3s;
-    }
+  .nav a:hover {
+  opacity: 1;
+  letter-spacing: 5px;   /* ⭐ hover 更明显一点 */
+  transform: translateX(-4px); /* ⭐ 微微滑动，很有质感 */
+}
 
     .logo {
       margin-top: 20px;
     }
 
-    .logo img {
-      width: 42px;
-      opacity: 0.75;
-      transition: 0.3s;
-    }
+  .logo img {
+  width: 60px;       /* ⭐ 放大 */
+  opacity: 0.8;
+  transition: 0.3s;
+}
 
-    .logo img:hover {
-      opacity: 1;
-      transform: scale(1.1);
-    }
+  .logo img:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
 
     @keyframes fadeIn {
       to {
@@ -148,6 +158,23 @@
     /* ========================= */
     /* ⭐ 主光流 */
     /* ========================= */
+
+.beam {
+  width: 2px;
+  height: 120px;
+  margin: 0 auto;
+  position: relative;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,200,255,0),
+    rgba(0,200,255,1),
+    rgba(0,200,255,0)
+  );
+
+  box-shadow: 0 0 16px rgba(0,200,255,1);
+  animation: flow 2.5s infinite;
+}
 
 .beam::before {
   content: "";
@@ -161,13 +188,6 @@
   background: #00c8ff;
   box-shadow: 0 0 12px #00c8ff;
 }
-
-  box-shadow: 0 0 16px rgba(0,200,255,1);
-
-  animation: flow 2.5s infinite;
-}
-
-      background: linear-gradient(
         to bottom,
         rgba(0,200,255,0),
         rgba(0,200,255,1),
