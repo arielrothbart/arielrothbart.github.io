@@ -159,12 +159,51 @@
     /* ========================= */
     /* ⭐ 主光流 */
     /* ========================= */
- .beam {
-      width: 2px;
-      height: 120px;
-      margin: 0 auto;
+.beam {
+  position: relative; /* ⭐必须加 */
 
-      background: linear-gradient(
+  width: 2px;
+  height: 180px;
+  margin: -60px auto 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,200,255,0),
+    rgba(0,200,255,1),
+    rgba(0,200,255,0)
+  );
+
+  box-shadow: 0 0 16px rgba(0,200,255,1);
+
+  animation: beamFlow 2.5s infinite;
+}
+.beam::after,
+.beam::before {
+  content: "";
+  position: absolute;
+  bottom: -40px; /* ⭐从底部延伸 */
+  width: 80px;
+  height: 2px;
+
+  background: linear-gradient(
+    to right,
+    rgba(0,200,255,0),
+    rgba(0,200,255,1),
+    rgba(0,200,255,0)
+  );
+
+  box-shadow: 0 0 12px rgba(0,200,255,1);
+
+  opacity: 0.8;
+}
+    .beam::before {
+  left: 50%;
+  transform: translateX(-100%) rotate(-25deg);
+}
+    .beam::after {
+  left: 50%;
+  transform: rotate(25deg);
+}
         to bottom,
         rgba(0,200,255,0),
         rgba(0,200,255,1),
@@ -175,24 +214,12 @@
 
       animation: flow 2.5s infinite;
     }
-.beam::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00c8ff;
-  box-shadow: 0 0 12px #00c8ff;
-}
+
     @keyframes flow {
       0% { opacity: 0; transform: translateY(-10px); }
       50% { opacity: 1; }
       100% { opacity: 0; transform: translateY(20px); }
     }
-
 
     /* ========================= */
     /* ⭐ PROJECT */
