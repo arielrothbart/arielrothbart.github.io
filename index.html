@@ -175,7 +175,18 @@
 
       animation: flow 2.5s infinite;
     }
-
+.beam::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00c8ff;
+  box-shadow: 0 0 12px #00c8ff;
+}
     @keyframes flow {
       0% { opacity: 0; transform: translateY(-10px); }
       50% { opacity: 1; }
