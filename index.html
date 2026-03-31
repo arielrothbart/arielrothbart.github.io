@@ -111,12 +111,14 @@
       100% { opacity: 1; }
     }
 
-    .nav a {
+.nav a {
   display: block;
   opacity: 0.25;
 
-  margin: 6px 0;      /* ⭐ 每一项之间拉开 */
+  margin: 6px 0;
   transition: 0.3s;
+
+  text-shadow: 0 0 4px rgba(0,0,0,0.6);  /* ⭐关键 */
 }
 
     .nav a:nth-child(1) { animation: softBoot 1.2s forwards 0.6s; }
@@ -157,90 +159,29 @@
     /* ========================= */
     /* ⭐ 主光流 */
     /* ========================= */
-.beam {
-  position: relative;
-  width: 100%;
-  height: 40px;   /* ⭐只占一点空间 */
-  margin: 0 auto;
-}
+ .beam {
+      width: 2px;
+      height: 120px;
+      margin: 0 auto;
 
-/* ⭐ 中心光点（唯一主体） */
-.beam::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+      background: linear-gradient(
+        to bottom,
+        rgba(0,200,255,0),
+        rgba(0,200,255,1),
+        rgba(0,200,255,0)
+      );
 
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+      box-shadow: 0 0 16px rgba(0,200,255,1);
 
-  background: #00c8ff;
-  box-shadow: 0 0 14px #00c8ff;
-}
-.line {
-  position: absolute;
-  width: 140px;
-  height: 2px;
-overflow: hidden;
-  background: rgba(0,200,255,0.35);
+      animation: flow 2.5s infinite;
+    }
 
-  top: 0px;      /* ⭐从点的位置开始 */
-  left: 50%;
-}
+    @keyframes flow {
+      0% { opacity: 0; transform: translateY(-10px); }
+      50% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(20px); }
+    }
 
-/* 左：往左下 */
-.line.left {
-  transform-origin: left center;
-  transform: rotate(140deg);
-}
-
-/* 右：往右下 */
-.line.right {
-  transform-origin: left center;
-  transform: rotate(40deg);
-}
-/* ⭐ 光沿线流动（单独写！） */
-.line::after {
-  content: "";
-  position: absolute;
-
-  left: -40px;          /* ⭐从点开始 */
-  top: 0;
-
-  width: 40px;
-  height: 100%;         /* ⭐必须有高度 */
-
-  background: linear-gradient(
-    to right,
-    rgba(0,200,255,0),
-    rgba(0,200,255,1),
-    rgba(0,200,255,0)
-  );
-
-  opacity: 0;
-
-  animation: flowLine 2s infinite linear;
-}
-
-  animation: flowLine 2s infinite;
-}
-
-/* ⭐ 动画（只放动画） */
-@keyframes flowLine {
-  0% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(180px); /* ⭐要走完整条线 */
-    opacity: 0;
-  }
-}
 
     /* ========================= */
     /* ⭐ PROJECT */
