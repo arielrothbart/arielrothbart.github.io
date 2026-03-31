@@ -124,7 +124,7 @@ body{
   padding-top:120px;
   padding-bottom:120px;
   padding-left:20px;
-  padding-right:40px;
+  padding-right:20px;
 }
   
 .story-text{
@@ -159,23 +159,24 @@ body{
   opacity:0.6;
 }
 .lang-hint{
-  position:fixed;
+ position:fixed;
   top:40px;
-  right:40px;
+  left:100%;
+  transform:translateX(-50%);
 
-  width:auto;
-  max-width:none;
+  width:100%;
+  max-width:760px;
 
-  text-align:right;
+  text-align:left;
 
   font-size:11px;
   opacity:0;
   letter-spacing:1px;
 
   transition:opacity 0.6s ease;
-  white-space:nowrap;
+ white-space:normal;
 
-  z-index:999;
+  z-index:999;   /* ⭐防止被遮挡 */
 }
   .story-screen.show .lang-hint{
   opacity:0.5;
