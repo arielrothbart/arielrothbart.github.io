@@ -158,31 +158,18 @@
     /* ========================= */
     /* ⭐ 主光流 */
     /* ========================= */
-/* ⭐ 主竖线 */
 .beam {
   position: relative;
-
-  width: 2px;
-  height: 140px;
-  margin: -40px auto 0;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(0,200,255,0),
-    rgba(0,200,255,1),
-    rgba(0,200,255,0)
-  );
-
-  box-shadow: 0 0 16px rgba(0,200,255,1);
-
-  animation: beamFlow 2.5s infinite;
+  width: 100%;
+  height: 40px;   /* ⭐只占一点空间 */
+  margin: 0 auto;
 }
 
-/* ⭐ 固定光点（在底部） */
+/* ⭐ 中心光点（唯一主体） */
 .beam::after {
   content: "";
   position: absolute;
-  bottom: -6px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
 
@@ -193,61 +180,28 @@
   background: #00c8ff;
   box-shadow: 0 0 14px #00c8ff;
 }
-/* ⭐ 斜线（固定，不动） */
 .line {
   position: absolute;
   width: 140px;
   height: 2px;
 
-  background: rgba(0,200,255,0.3);
+  background: rgba(0,200,255,0.35);
+
+  top: 4px;      /* ⭐从点的位置开始 */
+  left: 50%;
 }
 
-/* 左线：从点往左下 */
+/* 左：往左下 */
 .line.left {
-  left: 50%;
-  bottom: -2px;
-
   transform-origin: left center;
-  transform: rotate(210deg);
+  transform: rotate(140deg);
 }
 
-/* 右线：从点往右下 */
+/* 右：往右下 */
 .line.right {
-  left: 50%;
-  bottom: -2px;
-
   transform-origin: left center;
-  transform: rotate(-30deg);
+  transform: rotate(40deg);
 }
-
-/* ⭐ 光沿线流动 */
-.line::after {
-  content: "";
-  position: absolute;
-
-  width: 40px;
-  height: 100%;
-
-  background: linear-gradient(
-    to right,
-    rgba(0,200,255,0),
-    rgba(0,200,255,1),
-    rgba(0,200,255,0)
-  );
-
-  animation: flowLine 2s infinite;
-}
-
-/* 左边流动方向 */
-.line.left::after {
-  animation-direction: normal;
-}
-
-/* 右边流动方向 */
-.line.right::after {
-  animation-direction: reverse;
-}
-
 /* 动画 */
 @keyframes flowLine {
   0% {
@@ -261,13 +215,22 @@
     transform: translateX(100px);
     opacity: 0;
   }
+  .line::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 100%;
+
+  background: linear-gradient(
+    to right,
+    rgba(0,200,255,0),
+    rgba(0,200,255,1),
+    rgba(0,200,255,0)
+  );
+
+  animation: flowLine 2s infinite;
 }
-/* ⭐ 动画 */
-    @keyframes flow {
-      0% { opacity: 0; transform: translateY(-10px); }
-      50% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(20px); }
-    }
+}
 
     /* ========================= */
     /* ⭐ PROJECT */
