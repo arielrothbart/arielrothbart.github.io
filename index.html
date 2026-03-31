@@ -158,6 +158,7 @@
     /* ========================= */
     /* ⭐ 主光流 */
     /* ========================= */
+/* ⭐ 主光束 */
 .beam {
   position: relative;
 
@@ -177,15 +178,63 @@
   animation: beamFlow 2.5s infinite;
 }
 
-/* ⭐ 分叉光线（左右） */
-.beam::before,
+/* ⭐ 中心光点（固定） */
 .beam::after {
   content: "";
   position: absolute;
-  bottom: -30px;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
 
-  width: 100px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: #00c8ff;
+  box-shadow: 0 0 14px #00c8ff;
+}
+
+/* ⭐ 分叉容器（用 before 承载） */
+.beam::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 0;
+  height: 0;
+}
+
+/* ⭐ 左右两条线（固定线条） */
+.branch {
+  position: absolute;
+  width: 120px;
   height: 2px;
+
+  background: rgba(0,200,255,0.25);
+}
+
+/* 左 */
+.branch.left {
+  left: calc(50% - 120px);
+  transform-origin: right center;
+  transform: rotate(-28deg);
+}
+
+/* 右 */
+.branch.right {
+  left: 50%;
+  transform-origin: left center;
+  transform: rotate(28deg);
+}
+
+/* ⭐ 流动光（关键） */
+.branch::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 100%;
 
   background: linear-gradient(
     to right,
@@ -194,23 +243,26 @@
     rgba(0,200,255,0)
   );
 
-  box-shadow: 0 0 12px rgba(0,200,255,1);
-
-  opacity: 0.9;
+  animation: flowBranch 2.2s infinite;
 }
 
-/* 左 */
-.beam::before {
-  left: 50%;
-  transform-origin: right center;
-  transform: translateX(-100%) rotate(-28deg);
+/* 左流动 */
+.branch.left::after {
+  left: 0;
+  animation-direction: normal;
 }
 
-/* 右 */
-.beam::after {
-  left: 50%;
-  transform-origin: left center;
-  transform: rotate(28deg);
+/* 右流动 */
+.branch.right::after {
+  right: 0;
+  animation-direction: reverse;
+}
+
+/* ⭐ 动画 */
+@keyframes flowBranch {
+  0% { transform: translateX(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateX(80px); opacity: 0; }
 }
 
     @keyframes flow {
@@ -348,7 +400,10 @@
 
 </div>
 
-<div class="beam"></div>
+<div class="beam">
+  <div class="branch left"></div>
+  <div class="branch right"></div>
+</div>
 
 <div class="projects">
 
