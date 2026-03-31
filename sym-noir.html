@@ -8,7 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
+.nav-item{
+  margin:12px 0;
+  color:#666;
+  cursor:pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.nav-item:hover{
+  color:#aaa;
+  transform: translateX(3px);
+}
+  
 body{
   margin:0;
   background:black;
@@ -28,10 +39,29 @@ body{
 .menu-btn{
   display:none;
 }
-.logo{width:80px;cursor:pointer;}
-.title{font-size:26px;margin:20px 0;cursor:pointer;}
+.logo{
+  width:80px;
+  cursor:pointer;
+  transition: all 0.3s ease;
+}
 
-.nav-item{margin:12px 0;color:#666;cursor:pointer;}
+.logo:hover{
+  transform: scale(1.08);
+  opacity:0.9;
+}
+
+.title{
+  font-size:26px;
+  margin:20px 0;
+  cursor:pointer;
+  transition: all 0.3s ease;
+}
+
+.title:hover{
+  letter-spacing:2px;
+  opacity:0.9;
+}
+
 .nav-item.active{color:white;}
 
 /* ===== main ===== */
