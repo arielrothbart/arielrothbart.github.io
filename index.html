@@ -188,6 +188,31 @@
   background: #00c8ff;
   box-shadow: 0 0 12px #00c8ff;
 }
+    .energy-dot {
+  position: absolute;
+  bottom: 40px;     /* 控制高度，想往上就改这个 */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: #00c8ff;
+
+  box-shadow:
+    0 0 6px #00c8ff,
+    0 0 14px #00c8ff,
+    0 0 28px rgba(0,200,255,0.8);
+
+  animation: dotPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes dotPulse {
+  0%   { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
+  50%  { opacity: 1;   transform: translateX(-50%) scale(1.2); }
+  100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
+}
     /* ========================= */
     /* ⭐ PROJECT */
     /* ========================= */
@@ -282,7 +307,7 @@
 <body>
 
 <div class="hero">
-
+<div class="energy-dot"></div>
 <video autoplay muted loop playsinline preload="metadata">
 
   <!-- 📱 手机优先 -->
@@ -315,11 +340,6 @@
     </div>
   </div>
 
-</div>
-
-<div class="beam">
-  <div class="line left"></div>
-  <div class="line right"></div>
 </div>
 
 <div class="projects">
