@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+  
 <head>
   <title>Captain Ariel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -187,7 +186,7 @@
 
   background: rgba(0,200,255,0.35);
 
-  top: 4px;      /* ⭐从点的位置开始 */
+  top: 0px;      /* ⭐从点的位置开始 */
   left: 50%;
 }
 
@@ -202,20 +201,8 @@
   transform-origin: left center;
   transform: rotate(40deg);
 }
-/* 动画 */
-@keyframes flowLine {
-  0% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100px);
-    opacity: 0;
-  }
-  .line::after {
+/* ⭐ 光沿线流动（单独写！） */
+.line::after {
   content: "";
   position: absolute;
   width: 40px;
@@ -230,7 +217,22 @@
 
   animation: flowLine 2s infinite;
 }
+
+/* ⭐ 动画（只放动画） */
+@keyframes flowLine {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
 }
+
 
     /* ========================= */
     /* ⭐ PROJECT */
