@@ -96,28 +96,6 @@ body {
   display: block;
 }
 
-/* ⭐ 图扫描 */
-.side-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(255,255,255,0.05),
-    transparent
-  );
-
-  animation: scan 4s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes scan {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
-}
-
 /* ⭐ 标题 */
 .name {
   font-family: 'Orbitron', sans-serif;
@@ -154,6 +132,9 @@ body {
   font-size: 15px;
   line-height: 2.6;
   letter-spacing: 1.5px;
+
+  margin-bottom: 40px;   /* ⭐关键：段落间距 */
+
   animation: flicker 6s infinite;
 }
 
@@ -168,6 +149,7 @@ body {
 }
 .text {
   font-family: 'Orbitron', sans-serif;
+    margin-top: 10px;
   font-size: 15px;
   line-height: 2.6;
   letter-spacing: 1.5px;
