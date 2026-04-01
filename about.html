@@ -10,8 +10,6 @@
 
 <style>
 
-/* ——（CSS完全保持不变，你原来的 그대로）—— */
-
 body {
   margin: 0;
   background: black;
@@ -90,8 +88,8 @@ body {
   width: 380px;
   flex-shrink: 0;
   margin-left: auto;
-  position: relative;
-  overflow: hidden;
+  position: relative; /* ⭐关键修复 */
+   overflow: hidden;   /* ⭐关键 */
 }
 
 .side-image img {
@@ -99,7 +97,6 @@ body {
   display: block;
   transition: 0.3s;
 }
-
 .side-image::after {
   content: "";
   position: absolute;
@@ -108,7 +105,7 @@ body {
   background: linear-gradient(
     to bottom,
     transparent,
-    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.08),  /* ⭐从0.12 → 0.08 */
     transparent
   );
 
@@ -120,7 +117,7 @@ body {
 .side-image:hover img {
   filter: brightness(1.2);
 }
-
+/* hover 才出现 */
 .side-image:hover::after {
   animation: scan 1.5s linear infinite;
   opacity: 1;
@@ -130,7 +127,6 @@ body {
   0%   { transform: translateY(-100%); }
   100% { transform: translateY(100%); }
 }
-
 /* ⭐ 标题 */
 .name {
   font-family: 'Orbitron', sans-serif;
@@ -145,7 +141,7 @@ body {
     0 0 30px rgba(255,60,60,0.3);
 }
 
-/* ⭐ flicker */
+/* ⭐ flicker（更自然） */
 @keyframes flicker {
   0%, 94%, 100% { opacity: 1; }
   95% { opacity: 0.85; }
@@ -167,7 +163,9 @@ body {
   font-size: 15px;
   line-height: 2.6;
   letter-spacing: 1.5px;
-  margin-bottom: 40px;
+
+  margin-bottom: 40px;   /* ⭐关键：段落间距 */
+
   animation: flicker 6s infinite;
 }
 
@@ -182,22 +180,24 @@ body {
 }
 .text {
   font-family: 'Orbitron', sans-serif;
-  margin-top: 10px;
+    margin-top: 10px;
   font-size: 15px;
   line-height: 2.6;
   letter-spacing: 1.5px;
-  animation: flicker 6.2s infinite;
+  animation: flicker 6.2s infinite; /* ⭐错开一点 */
 }
-
 .viewer {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.9);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   opacity: 0;
   pointer-events: none;
+
   transition: 0.3s;
   z-index: 2000;
 }
@@ -211,55 +211,109 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
-
+/* ⭐ 动画 */
 @keyframes scanFade {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ⭐ 下面内容保持不变 */
-.divider { height:1px; background:rgba(255,255,255,0.2); margin:40px 0; }
-.photo img { width:100%; }
+/* ⭐ 下面内容（完全没动） */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 40px 0;
+}
 
-.info { font-size:14px; opacity:0.8; line-height:1.8; margin-bottom:50px; }
-.end { font-size:14px; opacity:0.7; margin-top:50px; }
+.photo img { width: 100%; }
 
-.social { display:flex; gap:30px; margin-top:30px; }
-.social img { width:28px; opacity:0.6; transition:0.3s; }
-.social img:hover { opacity:1; transform:scale(1.15); }
+.info {
+  font-size: 14px;
+  opacity: 0.8;
+  line-height: 1.8;
+  margin-bottom: 50px;
+}
 
-.corner-gif { position:absolute; right:100px; bottom:80px; }
+.end {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 50px;
+}
+
+.social {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.social img {
+  width: 28px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+.social img:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* ⭐ GIF */
+.corner-gif {
+  position: absolute;
+  right: 100px;
+  bottom: 80px;
+}
 .corner-gif img {
-  width:280px;
-  transform:scale(0.66);
-  transform-origin:bottom right;
-  transition:0.3s;
+  width: 280px;
+  transform: scale(0.66);
+  transform-origin: bottom right;
+  transition: 0.3s;
 }
 .corner-gif img:hover {
-  transform:scale(0.7);
-  filter:brightness(1.2);
+  transform: scale(0.7);
+  filter: brightness(1.2);
 }
 
+/* ⭐ 返回 */
 .scroll-top {
   position: fixed;
   right: 60px;
   bottom: 60px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,60,60,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #ff3b3b;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.4s;
 }
 
+/* logo */
 .home-logo {
   position: fixed;
   top: 80px;
   right: 60px;
+}
+.home-logo img { width: 80px; }
+
+/* 📱 */
+@media (max-width: 768px) {
+  .layout { flex-direction: column; }
+  .side-image { width: 100%; }
 }
 
 </style>
 </head>
 
 <body>
-
+  
 <div class="viewer" id="viewer">
   <img src="fullsize-ari.png">
 </div>
-
+  
 <div class="hero">
   <img src="./about.jpg">
 </div>
@@ -362,6 +416,7 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+/* ⭐ viewer */
 function openViewer() {
   document.getElementById("viewer").classList.add("active");
 }
