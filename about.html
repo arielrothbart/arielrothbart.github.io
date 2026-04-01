@@ -81,17 +81,23 @@ body {
   z-index: 3;
 }
 
-/* ⭐ 新增：左右布局 */
+/* ⭐ 左右布局 */
 .layout {
   display: flex;
   align-items: flex-start;
   gap: 60px;
 }
 
-/* ⭐ 新增：右侧图片 */
+/* ⭐ 左侧整体控制（关键） */
+.text-block {
+  max-width: 520px;
+}
+
+/* ⭐ 右侧图片 */
 .side-image {
   width: 380px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .side-image img {
@@ -129,12 +135,12 @@ body {
 }
 
 .archive {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 13px;
-  letter-spacing: 2px;
-  line-height: 1.8;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 2.4;
+  letter-spacing: 1px;
   opacity: 0.85;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 /* ⭐ 正文 */
@@ -149,9 +155,9 @@ body {
 }
 
 .text {
-  font-size: 15px;
-  line-height: 1.9;
-  margin-bottom: 40px;
+  font-size: 16px;
+  line-height: 2.4;
+  margin-bottom: 0;
 }
 
 @keyframes scanFade {
@@ -206,7 +212,7 @@ body {
   transform: scale(1.15);
 }
 
-/* ⭐ GIF（桌面） */
+/* ⭐ GIF */
 .corner-gif {
   position: absolute;
   right: 100px;
@@ -226,7 +232,7 @@ body {
   filter: brightness(1.2);
 }
 
-/* ⭐ 回顶部按钮 */
+/* ⭐ 回顶部 */
 .scroll-top {
   position: fixed;
   right: 60px;
@@ -258,22 +264,6 @@ body {
   transition: 0.4s;
 
   z-index: 1000;
-
-  text-shadow:
-    0 0 6px rgba(255,60,60,0.8),
-    0 0 12px rgba(255,60,60,0.4);
-}
-
-.scroll-top.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-top:hover {
-  transform: scale(1.1);
-  box-shadow:
-    0 0 10px rgba(255,60,60,0.6),
-    0 0 20px rgba(255,60,60,0.3);
 }
 
 /* logo */
@@ -286,18 +276,10 @@ body {
 
 .home-logo img {
   width: 80px;
-  opacity: 0.8;
-  transition: 0.3s;
-}
-
-.home-logo img:hover {
-  opacity: 1;
-  transform: scale(1.08);
 }
 
 /* 📱 手机 */
 @media (max-width: 768px) {
-
   .layout {
     flex-direction: column;
   }
@@ -305,40 +287,9 @@ body {
   .side-image {
     width: 100%;
   }
-
-  .name {
-    font-size: 28px;
-    margin-top: 0;
-  }
-
-  .corner-gif {
-    position: static;
-    margin-top: 40px;
-    text-align: center;
-  }
-
-  .corner-gif img {
-    width: 140px;
-    transform: scale(1);
-  }
-
-  .home-logo {
-    right: 20px;
-    top: 60px;
-  }
-
-  .home-logo img {
-    width: 36px;
-  }
-
-  .scroll-top {
-    right: 20px;
-    bottom: 20px;
-  }
 }
 
 </style>
-
 </head>
 
 <body>
@@ -351,8 +302,9 @@ body {
 
   <div class="content layout">
 
-    <!-- 左边文字 -->
-    <div>
+    <!-- 左边 -->
+    <div class="text-block">
+
       <div class="name">Ariel Rothbart</div>
 
       <div class="archive">
@@ -368,16 +320,17 @@ body {
         <span>80% of me is made by live theater and music.</span>
         <span>You may also know me as "Captain Ariel".</span>
       </div>
+
     </div>
 
-    <!-- 右边图片 -->
+    <!-- 右边 -->
     <div class="side-image">
       <img src="ari.png" loading="lazy">
     </div>
 
   </div>
 
-  <!-- 原有内容保持不动 -->
+  <!-- 原内容 -->
   <div class="content">
 
     <div class="divider"></div>
