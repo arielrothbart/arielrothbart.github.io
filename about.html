@@ -17,14 +17,11 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* ⭐ 扫描线（非常轻） */
+/* ⭐ 扫描线（背景） */
 .content-wrapper::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
 
   background: repeating-linear-gradient(
     to bottom,
@@ -46,7 +43,6 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
 .hero img {
   width: 100%;
   height: 100%;
@@ -58,18 +54,12 @@ body {
   background: black;
   padding-top: 80px;
   margin-top: -220px;
-
   transform: translateY(50px);
   opacity: 0;
-
   animation: slideUp 1s ease forwards;
 }
-
 @keyframes slideUp {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* ⭐ 内容 */
@@ -81,29 +71,51 @@ body {
   z-index: 3;
 }
 
-/* ⭐ 左右布局 */
+/* ⭐ 布局 */
 .layout {
   display: flex;
   align-items: flex-start;
   gap: 60px;
 }
 
-/* ⭐ 左侧整体控制（关键） */
+/* ⭐ 左侧 */
 .text-block {
   max-width: 520px;
 }
 
-/* ⭐ 右侧图片 */
+/* ⭐ 右侧图 */
 .side-image {
   width: 380px;
   flex-shrink: 0;
   margin-left: auto;
+  position: relative; /* ⭐关键修复 */
 }
 
 .side-image img {
   width: 100%;
-  height: auto;
   display: block;
+}
+
+/* ⭐ 图扫描 */
+.side-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255,255,255,0.05),
+    transparent
+  );
+
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
 /* ⭐ 标题 */
@@ -111,16 +123,21 @@ body {
   font-family: 'Orbitron', sans-serif;
   font-size: 42px;
   letter-spacing: 4px;
-
   margin-top: -40px;
   margin-bottom: 30px;
-
   color: #ff3b3b;
-
   text-shadow:
     0 0 8px rgba(255,60,60,0.8),
     0 0 16px rgba(255,60,60,0.5),
     0 0 30px rgba(255,60,60,0.3);
+}
+
+/* ⭐ flicker（更自然） */
+@keyframes flicker {
+  0%, 94%, 100% { opacity: 1; }
+  95% { opacity: 0.85; }
+  96% { opacity: 1; }
+  97% { opacity: 0.9; }
 }
 
 /* ⭐ 档案 */
@@ -129,18 +146,15 @@ body {
   opacity: 0;
   transform: translateY(10px);
 }
-
 .archive.active span {
   animation: scanFade 0.5s forwards;
 }
-
 .archive {
-font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 15px;
-  line-height: 2.4;
-  letter-spacing: 1px;
-  opacity: 0.85;
-  margin-bottom: 50px;
+  line-height: 2.6;
+  letter-spacing: 1.5px;
+  animation: flicker 6s infinite;
 }
 
 /* ⭐ 正文 */
@@ -149,38 +163,31 @@ font-family: 'Space Grotesk', sans-serif;
   opacity: 0;
   transform: translateY(10px);
 }
-
 .text.active span {
   animation: scanFade 0.5s forwards;
 }
-
 .text {
-   font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px;
-  line-height: 2.4;
-  margin-bottom: 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  line-height: 2.6;
+  letter-spacing: 1.5px;
+  animation: flicker 6.2s infinite; /* ⭐错开一点 */
 }
 
+/* ⭐ 动画 */
 @keyframes scanFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ⭐ 分割线 */
+/* ⭐ 下面内容（完全没动） */
 .divider {
   height: 1px;
   background: rgba(255,255,255,0.2);
   margin: 40px 0;
 }
 
-/* ⭐ 图片 */
-.photo img {
-  width: 100%;
-}
+.photo img { width: 100%; }
 
-/* ⭐ 信息 */
 .info {
   font-size: 14px;
   opacity: 0.8;
@@ -188,14 +195,12 @@ font-family: 'Space Grotesk', sans-serif;
   margin-bottom: 50px;
 }
 
-/* ⭐ 结尾 */
 .end {
   font-size: 14px;
   opacity: 0.7;
   margin-top: 50px;
 }
 
-/* ⭐ 图标 */
 .social {
   display: flex;
   gap: 30px;
@@ -207,7 +212,6 @@ font-family: 'Space Grotesk', sans-serif;
   opacity: 0.6;
   transition: 0.3s;
 }
-
 .social img:hover {
   opacity: 1;
   transform: scale(1.15);
@@ -219,52 +223,35 @@ font-family: 'Space Grotesk', sans-serif;
   right: 100px;
   bottom: 80px;
 }
-
 .corner-gif img {
   width: 280px;
   transform: scale(0.66);
   transform-origin: bottom right;
   transition: 0.3s;
-  cursor: pointer;
 }
-
 .corner-gif img:hover {
   transform: scale(0.7);
   filter: brightness(1.2);
 }
 
-/* ⭐ 回顶部 */
+/* ⭐ 返回 */
 .scroll-top {
   position: fixed;
   right: 60px;
   bottom: 60px;
-
   width: 48px;
   height: 48px;
-
   border: 1px solid rgba(255,60,60,0.4);
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-family: 'Orbitron', sans-serif;
-  font-size: 18px;
-
   color: #ff3b3b;
-
   background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
-
-  cursor: pointer;
-
   opacity: 0;
   transform: translateY(20px);
-
   transition: 0.4s;
-
-  z-index: 1000;
 }
 
 /* logo */
@@ -272,22 +259,13 @@ font-family: 'Space Grotesk', sans-serif;
   position: fixed;
   top: 80px;
   right: 60px;
-  z-index: 1000;
 }
+.home-logo img { width: 80px; }
 
-.home-logo img {
-  width: 80px;
-}
-
-/* 📱 手机 */
+/* 📱 */
 @media (max-width: 768px) {
-  .layout {
-    flex-direction: column;
-  }
-
-  .side-image {
-    width: 100%;
-  }
+  .layout { flex-direction: column; }
+  .side-image { width: 100%; }
 }
 
 </style>
@@ -303,7 +281,6 @@ font-family: 'Space Grotesk', sans-serif;
 
   <div class="content layout">
 
-    <!-- 左边 -->
     <div class="text-block">
 
       <div class="name">Ariel Rothbart</div>
@@ -324,14 +301,12 @@ font-family: 'Space Grotesk', sans-serif;
 
     </div>
 
-    <!-- 右边 -->
     <div class="side-image">
       <img src="ari.png" loading="lazy">
     </div>
 
   </div>
 
-  <!-- 原内容 -->
   <div class="content">
 
     <div class="divider"></div>
@@ -397,10 +372,7 @@ function revealOnScroll() {
 }
 
 function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 window.addEventListener('scroll', revealOnScroll);
