@@ -20,7 +20,7 @@ body {
 /* ⭐ 扫描线（非常轻） */
 .content-wrapper::after {
   content: "";
-  position: absolute;   /* ⭐关键改动 */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -40,6 +40,7 @@ body {
 .content-wrapper {
   position: relative;
 }
+
 /* ⭐ 头图 */
 .hero {
   height: 100vh;
@@ -77,6 +78,26 @@ body {
   margin: auto;
   padding: 60px 40px;
   position: relative;
+  z-index: 3;
+}
+
+/* ⭐ 新增：左右布局 */
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+/* ⭐ 新增：右侧图片 */
+.side-image {
+  width: 380px;
+  flex-shrink: 0;
+}
+
+.side-image img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ⭐ 标题 */
@@ -255,7 +276,6 @@ body {
     0 0 20px rgba(255,60,60,0.3);
 }
 
-
 /* logo */
 .home-logo {
   position: fixed;
@@ -277,6 +297,14 @@ body {
 
 /* 📱 手机 */
 @media (max-width: 768px) {
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .side-image {
+    width: 100%;
+  }
 
   .name {
     font-size: 28px;
@@ -321,52 +349,65 @@ body {
 
 <div class="content-wrapper">
 
+  <div class="content layout">
+
+    <!-- 左边文字 -->
+    <div>
+      <div class="name">Ariel Rothbart</div>
+
+      <div class="archive">
+        <span>Illustrator</span>
+        <span>Graphic Novel Artist</span>
+        <span>Storyboard Artist</span>
+        <span>Focused on narrative-driven imagery</span>
+      </div>
+
+      <div class="text">
+        <span>Illustration, literature, music, films —</span>
+        <span>they are all connected forms of language to me.</span>
+        <span>80% of me is made by live theater and music.</span>
+        <span>You may also know me as "Captain Ariel".</span>
+      </div>
+    </div>
+
+    <!-- 右边图片 -->
+    <div class="side-image">
+      <img src="ari.png" loading="lazy">
+    </div>
+
+  </div>
+
+  <!-- 原有内容保持不动 -->
   <div class="content">
 
-<div class="name">Ariel Rothbart</div>
+    <div class="divider"></div>
 
-<div class="archive">
-  <span>Illustrator</span>
-  <span>Graphic Novel Artist</span>
-  <span>Storyboard Artist</span>
-  <span>Focused on narrative-driven imagery</span>
-</div>
+    <div class="photo">
+      <img src="photo.jpg">
+    </div>
 
-<div class="text">
-  <span>Illustration, literature, music, films —</span>
-  <span>they are all connected forms of language to me.</span>
-  <span>80% of me is made by live theater and music.</span>
-  <span>You may also know me as "Captain Ariel".</span>
-</div>
+    <div class="info">
+      Working across illustration, comics, and visual development,<br>
+      both independently and in collaboration.<br><br>
+      Academy of Art University (MFA)<br>
+      China University of Geosciences, Wuhan (BFA)
+    </div>
 
-<div class="divider"></div>
+    <div class="end">
+      Welcome to "The Rhapsody".<br>
+      I hope you will have a pleasant journey.
+    </div>
 
-<div class="photo">
-  <img src="photo.jpg">
-</div>
+    <div class="social">
+      <a href="mailto:arielrothbart@gmail.com"><img src="icon-email.png"></a>
+      <a href="https://www.instagram.com/ariel_rothbart/" target="_blank"><img src="icon-ins.png"></a>
+      <a href="https://x.com/arielrothbart" target="_blank"><img src="icon-x.png"></a>
+      <a href="https://ariellerocker.artstation.com/" target="_blank"><img src="icon-art.png"></a>
+    </div>
 
-<div class="info">
-  Working across illustration, comics, and visual development,<br>
-  both independently and in collaboration.<br><br>
-  Academy of Art University (MFA)<br>
-  China University of Geosciences, Wuhan (BFA)
-</div>
-
-<div class="end">
-  Welcome to "The Rhapsody".<br>
-  I hope you will have a pleasant journey.
-</div>
-
-<div class="social">
-  <a href="mailto:arielrothbart@gmail.com"><img src="icon-email.png"></a>
-  <a href="https://www.instagram.com/ariel_rothbart/" target="_blank"><img src="icon-ins.png"></a>
-  <a href="https://x.com/arielrothbart" target="_blank"><img src="icon-x.png"></a>
-  <a href="https://ariellerocker.artstation.com/" target="_blank"><img src="icon-art.png"></a>
-</div>
-
-<div class="corner-gif">
-  <img src="draw.gif">
-</div>
+    <div class="corner-gif">
+      <img src="draw.gif">
+    </div>
 
   </div>
 
