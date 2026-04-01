@@ -158,25 +158,25 @@ body{
   transform:rotateY(10deg);
   opacity:0.6;
 }
-.lang-hint{
- position:fixed;
-  top:40px;
-  left:100%;
-  transform:translateX(-50%);
+.lang-hint {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 11px;
+  opacity: 0;
+  letter-spacing: 1px;
+  transition: opacity 0.6s ease;
+  z-index: 10;
+  cursor: pointer;
+  white-space: nowrap;
+  background: rgba(0,0,0,0.5);
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: auto;
+}
 
-  width:100%;
-  max-width:760px;
-
-  text-align:left;
-
-  font-size:11px;
-  opacity:0;
-  letter-spacing:1px;
-
-  transition:opacity 0.6s ease;
- white-space:normal;
-
-  z-index:999;   /* ⭐防止被遮挡 */
+.story-screen.show .lang-hint {
+  opacity: 0.6;
 }
   .story-screen.show .lang-hint{
   opacity:0.5;
@@ -486,7 +486,7 @@ lingering for five hundred years?
 
 And so, they travel to Madrid.`;
 
-const storyText = document.getElementById("storyText");
+const hint = document.getElementById("langHint");
 
 function render(text){
   storyText.innerHTML = text
@@ -508,10 +508,20 @@ function updateHint(){
     ? "点击查看中文"
     : "Click to English version";
 }
-
+function toggleLanguage() {
+  storyText.classList.add("flip");
+  setTimeout(() => {
+    isEn = !isEn;
+    render(isEn ? enText : cnText);
+    updateHint();
 updateHint();
 render(cnText);
-
+    
+storyText.onclick = toggleLanguage;
+hint.onclick = (e) => {
+  e.stopPropagation();
+  toggleLanguage();
+};
 storyText.onclick = ()=>{
   storyText.classList.add("flip");
   setTimeout(()=>{
@@ -583,7 +593,12 @@ function toggleMenu(){
   sidebar.classList.toggle("open");
   overlay.classList.toggle("show");
 }
-
+<div class="story-screen" id="story">
+  <div class="story-container">
+    <div class="lang-hint" id="langHint">Click to English version</div>
+    <div class="story-text" id="storyText"></div>
+  </div>
+</div>
 </script>
 
 </body>
