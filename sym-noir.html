@@ -159,19 +159,24 @@ body{
   opacity:0.6;
 }
 .lang-hint{
-  position:absolute;
+ position:fixed;
   top:40px;
-  right:60px;
+  left:100%;
+  transform:translateX(-50%);
+
+  width:100%;
+  max-width:760px;
+
+  text-align:left;
 
   font-size:11px;
   opacity:0;
   letter-spacing:1px;
 
   transition:opacity 0.6s ease;
-  white-space:nowrap;
+ white-space:normal;
 
-  z-index:20;
-  pointer-events:none;
+  z-index:999;   /* ⭐防止被遮挡 */
 }
   .story-screen.show .lang-hint{
   opacity:0.5;
@@ -344,12 +349,10 @@ body{
 </div>
 
 <div class="story-screen" id="story">
-  <div class="lang-hint" id="langHint">Click to English version</div>
-
   <div class="story-container">
+    <div class="lang-hint" id="langHint">Click to English version</div>
     <div class="story-text" id="storyText"></div>
   </div>
-</div>
 </div>
 
 <div class="character-screen" id="chars">
