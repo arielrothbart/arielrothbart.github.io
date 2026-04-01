@@ -159,24 +159,20 @@ body{
   opacity:0.6;
 }
 .lang-hint{
- position:fixed;
-  top:40px;
-  left:100%;
-  transform:translateX(-50%);
-
-  width:100%;
-  max-width:760px;
-
-  text-align:left;
-
-  font-size:11px;
-  opacity:0;
-  letter-spacing:1px;
-
-  transition:opacity 0.6s ease;
- white-space:normal;
-
-  z-index:999;   /* ⭐防止被遮挡 */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 11px;
+  opacity: 0;
+  letter-spacing: 1px;
+  transition: opacity 0.6s ease;
+  z-index: 10;
+  cursor: pointer;
+  background: rgba(0,0,0,0.6);
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: auto;
 }
   .story-screen.show .lang-hint{
   opacity:0.5;
@@ -508,18 +504,22 @@ function updateHint(){
     ? "点击查看中文"
     : "Click to English version";
 }
-
+function toggleLanguage() {
+  storyText.classList.add("flip");
+  setTimeout(() => {
+    isEn = !isEn;
+    render(isEn ? enText : cnText);
+    updateHint();
+    storyText.classList.remove("flip");
+  }, 200);
+}
 updateHint();
 render(cnText);
 
-storyText.onclick = ()=>{
-  storyText.classList.add("flip");
-  setTimeout(()=>{
-    isEn=!isEn;
-    render(isEn?enText:cnText);
-     updateHint();  
-    storyText.classList.remove("flip");
-  },200);
+storyText.onclick = toggleLanguage;
+hint.onclick = function(e) {
+  e.stopPropagation();
+  toggleLanguage();
 };
 
 /* ===== NETWORK ===== */
