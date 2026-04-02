@@ -9,7 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
 <style>
-
+  
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
 body {
   margin: 0;
   background: black;
@@ -47,6 +51,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  aspect-ratio: 1920 / 1008;
 }
 
 /* ⭐ 黑色区域 */
@@ -360,7 +365,7 @@ line-height: 2.2;
 </div>
   
 <div class="hero">
-  <img src="./about.jpg">
+ <img src="./about.jpg" width="1920" height="1008">
 </div>
 
 <div class="content-wrapper">
@@ -472,6 +477,10 @@ document.getElementById("viewer").onclick = function() {
 
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
+  
+  document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+});
 </script>
 
 </body>
