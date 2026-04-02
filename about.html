@@ -47,7 +47,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 1920 / 1008;
 }
 
 /* ⭐ 黑色区域 */
@@ -160,9 +159,9 @@ body {
   animation: scanFade 0.5s forwards;
 }
 .archive {
-font-family: 'Share Tech', sans-serif;
+ font-family: 'Orbitron', sans-serif;
   font-size: 18px;
-  letter-spacing: 0.8px;
+ letter-spacing: 0.8px;
 line-height: 2.8;
 
   margin-bottom: 40px;   /* ⭐关键：段落间距 */
@@ -180,7 +179,7 @@ line-height: 2.8;
   animation: scanFade 0.5s forwards;
 }
 .text {
- font-family: 'Share Tech', sans-serif;
+  font-family: 'Orbitron', sans-serif;
     margin-top: 10px;
   font-size: 18px;
  letter-spacing: 0.8px;
@@ -227,7 +226,7 @@ line-height: 2.8;
 .photo img { width: 100%; }
 
 .info {
-  font-family: 'Share Tech', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 16px;
   opacity: 0.8;
  letter-spacing: 0.5px;
@@ -236,7 +235,7 @@ line-height: 2.2;
 }
 
 .end {
-  font-family: 'Share Tech', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 16px;
   opacity: 0.7;
   margin-top: 50px;
@@ -350,10 +349,7 @@ line-height: 2.2;
   transform: scale(1);
 }
 }
-  img {
-  user-select: none;
-  -webkit-user-drag: none;
-}
+
 </style>
 </head>
 
@@ -364,7 +360,7 @@ line-height: 2.2;
 </div>
   
 <div class="hero">
- <img src="./about.jpg" width="1920" height="1008">
+  <img src="./about.jpg">
 </div>
 
 <div class="content-wrapper">
@@ -414,7 +410,7 @@ line-height: 2.2;
 
     <div class="end">
       Welcome to "The Rhapsody".<br>
-      I hope you will have a pleasant journey！
+      I hope you will have a pleasant journey.
     </div>
 
     <div class="social">
@@ -476,10 +472,6 @@ document.getElementById("viewer").onclick = function() {
 
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
-  
-  document.addEventListener("contextmenu", function(e) {
-  e.preventDefault();
-});
 </script>
 
 </body>
