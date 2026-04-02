@@ -47,6 +47,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  aspect-ratio: 1920 / 1008;
 }
 
 /* ⭐ 黑色区域 */
@@ -160,7 +161,7 @@ body {
 }
 .archive {
 font-family: 'Share Tech', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.8px;
 line-height: 2.8;
 
@@ -181,7 +182,7 @@ line-height: 2.8;
 .text {
  font-family: 'Share Tech', sans-serif;
     margin-top: 10px;
-  font-size: 20px;
+  font-size: 18px;
  letter-spacing: 0.8px;
 line-height: 2.8;
   animation: flicker 6.2s infinite; /* ⭐错开一点 */
@@ -360,7 +361,7 @@ line-height: 2.2;
 </div>
   
 <div class="hero">
-  <img src="./about.jpg">
+ <img src="./about.jpg" width="1920" height="1008">
 </div>
 
 <div class="content-wrapper">
@@ -383,7 +384,6 @@ line-height: 2.2;
         <span>they are all connected forms of language to me.</span>
         <span>80% of me is made by live theater and music.</span>
         <span>You may also know me as "Captain Ariel".</span>
-        <span>来自中国的插画师、分镜师、珠宝设计师</span>
       </div>
 
     </div>
@@ -471,6 +471,10 @@ document.getElementById("viewer").onclick = function() {
 
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
+  
+  document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+});
 </script>
 
 </body>
