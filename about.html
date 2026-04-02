@@ -9,7 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
+@font-face {
+  font-family: 'Pixel';
+  src: url('./fronts/8-bitOperatorPlus8-Regular.woff2') format('woff2'),
+       url('./fronts/8-bitOperatorPlus8-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 body {
   margin: 0;
   background: black;
@@ -159,7 +166,7 @@ body {
   animation: scanFade 0.5s forwards;
 }
 .archive {
-  font-family: 'Orbitron', sans-serif;
+ font-family: 'Pixel', monospace;
   font-size: 15px;
   line-height: 2.6;
   letter-spacing: 1.5px;
@@ -179,7 +186,7 @@ body {
   animation: scanFade 0.5s forwards;
 }
 .text {
-  font-family: 'Orbitron', sans-serif;
+ font-family: 'Pixel', monospace;
     margin-top: 10px;
   font-size: 15px;
   line-height: 2.6;
@@ -226,6 +233,7 @@ body {
 .photo img { width: 100%; }
 
 .info {
+ font-family: 'Pixel', monospace;
   font-size: 14px;
   opacity: 0.8;
   line-height: 1.8;
@@ -233,6 +241,7 @@ body {
 }
 
 .end {
+  font-family: 'Pixel', monospace;
   font-size: 14px;
   opacity: 0.7;
   margin-top: 50px;
