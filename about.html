@@ -350,7 +350,10 @@ line-height: 2.2;
   transform: scale(1);
 }
 }
-
+  img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
 </style>
 </head>
 
@@ -408,8 +411,6 @@ line-height: 2.2;
       Academy of Art University (MFA)<br>
       China University of Geosciences, Wuhan (BFA)
     </div>
-    
-  </div>
 
     <div class="end">
       Welcome to "The Rhapsody".<br>
@@ -479,10 +480,6 @@ window.addEventListener('load', revealOnScroll);
   document.addEventListener("contextmenu", function(e) {
   e.preventDefault();
 });
-  img {
-  user-select: none;
-  -webkit-user-drag: none;
-}
 </script>
 
 </body>
