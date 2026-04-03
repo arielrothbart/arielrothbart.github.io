@@ -316,7 +316,7 @@ font-family: 'Poiret One', sans-serif;
 
 <div class="hero">
 <div class="energy-dot"></div>
-<video autoplay muted loop playsinline preload="auto" id="heroVideo">
+<video autoplay muted loop playsinline preload="auto">
   
   <!-- 📱 手机优先 -->
   <source src="2.mp4" media="(max-width: 768px)" type="video/mp4">
@@ -363,10 +363,7 @@ font-family: 'Poiret One', sans-serif;
   </a>
 
 </div>
-  if (window.innerWidth <= 768) {
-  const video = document.getElementById("heroVideo");
-  video.setAttribute("poster", "cover-mobile.jpg");
-}
+
 document.addEventListener("DOMContentLoaded", function () {
   const video = document.querySelector("video");
 
