@@ -363,16 +363,6 @@ font-family: 'Poiret One', sans-serif;
   </a>
 
 </div>
-
-document.addEventListener("DOMContentLoaded", function () {
-  const video = document.querySelector("video");
-
-  if (window.innerWidth <= 768) {
-    video.play().catch(() => {
-      video.muted = true;
-      video.play();
-    });
-  }
-});
+ 
 </body>
 </html>
