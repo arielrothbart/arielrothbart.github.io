@@ -316,7 +316,7 @@ font-family: 'Poiret One', sans-serif;
 
 <div class="hero">
 <div class="energy-dot"></div>
-<video autoplay muted loop playsinline preload="auto" id="heroVideo">
+<video autoplay muted loop playsinline preload="auto" webkit-playsinline id="heroVideo">
 
   <!-- 📱 手机 -->
   <source src="2.mp4" media="(max-width: 768px)" type="video/mp4">
@@ -363,13 +363,36 @@ font-family: 'Poiret One', sans-serif;
   </a>
 
 </div>
- <script>
-document.addEventListener("touchstart", function () {
-  const video = document.getElementById("heroVideo");
-  if (video && video.paused) {
-    video.play();
+<script>
+const video = document.getElementById("heroVideo");
+
+// ⭐ 1. 页面加载时就尝试播放
+function tryPlayVideo() {
+  if (video) {
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // 自动播放失败（iOS常见）
+        console.log("Autoplay blocked, waiting for interaction");
+      });
+    }
   }
-}, { once: true });
+}
+
+// ⭐ DOM加载完成就试
+document.addEventListener("DOMContentLoaded", tryPlayVideo);
+
+// ⭐ 页面真正显示时再试一次（关键！）
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    tryPlayVideo();
+  }
+});
+
+// ⭐ 2. 用户交互兜底（滑动 / 点屏）
+document.addEventListener("touchstart", tryPlayVideo, { once: true });
+document.addEventListener("scroll", tryPlayVideo, { once: true });
 </script>
 </body>
 </html>
