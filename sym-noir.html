@@ -144,9 +144,6 @@ body{
  .empty-line{
   height:1.2em;
 } 
-  .end-space{
-  height:40px;
-}
   
   .story-text p:first-child{
   margin-top:40px;
@@ -182,16 +179,19 @@ body{
   opacity:0.5;
 }
 .story-enter{
-  display:block;
+  position: fixed;
+  left: 260px;   /* ⭐对齐主内容左边（220 sidebar + 40间距） */
+  bottom: 40px;
 
-  margin-top:35px;
-  opacity:0.5;
   font-size:12px;
   letter-spacing:2px;
   opacity:0.4;
   cursor:pointer;
 
   transition:0.3s;
+  z-index:50;
+
+  display:none;   /* ⭐默认隐藏 */
 }
 
 .story-enter:hover{
@@ -463,8 +463,9 @@ function showStory(){
  story.classList.add("show"); 
   
   document.querySelector(".story-container").scrollTop = 0;
+  document.querySelector(".story-enter").style.display = "block";
 }
-function showCharacters(){title.style.display="none";story.style.display="none";chars.style.display="flex";network.style.display="none";}
+function showCharacters(){title.style.display="none";story.style.display="none";chars.style.display="flex";network.style.display="none";document.querySelector(".story-enter").style.display = "none";}
 function showNetwork(){title.style.display="none";story.style.display="none";chars.style.display="none";network.style.display="block";}
 
 function enterStory(){title.classList.add("fade-out");setTimeout(showStory,900);}
@@ -778,7 +779,6 @@ body{
  overflow-y:auto;   
 
   padding-top:120px;
-  padding-bottom:180px;
   padding-left:20px;
   padding-right:20px;
 }
