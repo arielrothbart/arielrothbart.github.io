@@ -308,7 +308,6 @@ h1 {
 <div class="scroll-top" id="scrollTop">↑</div>
 
 <script>
-const images = document.querySelectorAll('.gallery img, .price img');
 const viewer = document.getElementById('viewer');
 const viewerImg = document.getElementById('viewer-img');
 
@@ -316,7 +315,7 @@ let currentIndex = 0;
 let list = [];
 let scrollLock = false;
 
-const images = document.querySelectorAll('.gallery img');
+const images = document.querySelectorAll('.gallery img, .price img');
 
 images.forEach(img => {
 
