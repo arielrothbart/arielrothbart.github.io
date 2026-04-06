@@ -78,7 +78,7 @@ body{
 
   opacity:0;
   transform:translateY(60px);
-  transition:0.9s ease;
+  transition: transform 0.9s ease, opacity 0.9s ease;
 }
 
 .event.show{
@@ -94,7 +94,8 @@ body{
 /* 标题切换 */
 .text{
   position:relative;
-  height:20px;
+  min-height:20px;
+  line-height:20px;
 }
 
 .text span{
