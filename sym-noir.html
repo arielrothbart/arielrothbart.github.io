@@ -181,7 +181,24 @@ body{
   .story-screen.show .lang-hint{
   opacity:0.5;
 }
+.story-enter{
+  position:absolute;
+  right:40px;
+  bottom:40px;
 
+  font-size:12px;
+  letter-spacing:2px;
+  opacity:0.4;
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.story-enter:hover{
+  opacity:1;
+  letter-spacing:6px;
+  transform:scale(1.1);
+}
 /* ===== CHARACTERS ===== */
 .character-screen{
  position:relative; 
@@ -310,24 +327,7 @@ body{
   font-size:13px;
   line-height:1.8;
 }
-.story-enter{
-  position:absolute;
-  right:40px;
-  bottom:40px;
 
-  font-size:12px;
-  letter-spacing:2px;
-  opacity:0.4;
-  cursor:pointer;
-
-  transition:0.3s;
-}
-
-.story-enter:hover{
-  opacity:1;
-  letter-spacing:6px;
-  transform:scale(1.1);
-}
 .story-container{
   padding-top:80px;
   padding-bottom:100px;
