@@ -114,9 +114,11 @@ body{
 /* detail */
 .detail{
   opacity:0;
-  transition:0.3s;
+  transition:opacity 0.2s ease;
   font-size:13px;
   white-space:pre-line;
+
+  transform: translateZ(0);   /* ⭐关键 */
 }
 
 .event:hover .detail,
