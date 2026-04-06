@@ -197,8 +197,47 @@ body{
   width:150px;
   max-width:30vw;
   border-radius:50%;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+  .char a:active img{
+  transform: scale(0.92);
 }
 
+.char a:hover img{
+  transform: scale(1.05);
+}
+.ghost{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -80%);
+
+  opacity: 0.25;
+}
+
+.ghost img{
+  width:120px;
+  filter: blur(1px);
+  transition: 0.6s ease;
+  pointer-events: auto;
+}
+
+.ghost img:hover{
+  opacity: 0;
+  transform: scale(1.15);
+  filter: blur(8px);
+  transition: 0.8s ease;
+}
+@keyframes ghostFloat{
+  0% { transform: translate(-50%, -80%) translateY(0px); }
+  50% { transform: translate(-50%, -80%) translateY(-6px); }
+  100% { transform: translate(-50%, -80%) translateY(0px); }
+}
+
+.ghost{
+  animation: ghostFloat 4s ease-in-out infinite;
+}
 /* ===== ENTER ===== */
 .enter-btn{
   font-size:12px;
@@ -323,6 +362,7 @@ body{
 }
 
 }
+  
 </style>
 </head>
 
@@ -356,11 +396,23 @@ body{
 </div>
 
 <div class="character-screen" id="chars">
-  <div class="char"><img src="images/sym/yagami.png"></div>
-  <div class="enter-btn" onclick="enterNetwork()">ENTER</div>
-  <div class="char"><img src="images/sym/shin.png"></div>
+ <div class="char">
+  <a href="char-yagami.html">
+    <img src="images/sym/yagami.png">
+  </a>
 </div>
+  
+<div class="ghost">
+  <img src="images/sym/antonio.png">
+</div>
+<div class="enter-btn" onclick="enterNetwork()">ENTER</div>
 
+<div class="char">
+  <a href="char-shin.html">
+    <img src="images/sym/shin.png">
+  </a>
+</div>
+</div>
 <div class="network-screen" id="network">
   <div class="viewer" id="viewer">
     <img src="images/sym/network.png" id="netImg">
@@ -583,7 +635,6 @@ function toggleMenu(){
   sidebar.classList.toggle("open");
   overlay.classList.toggle("show");
 }
-
 </script>
 
 </body>
