@@ -310,7 +310,24 @@ body{
   font-size:13px;
   line-height:1.8;
 }
+.story-enter{
+  position:absolute;
+  right:40px;
+  bottom:40px;
 
+  font-size:12px;
+  letter-spacing:2px;
+  opacity:0.4;
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.story-enter:hover{
+  opacity:1;
+  letter-spacing:6px;
+  transform:scale(1.1);
+}
 .story-container{
   padding-top:80px;
   padding-bottom:100px;
@@ -390,6 +407,7 @@ body{
   <div class="story-container">
     <div class="lang-hint" id="langHint">Click to English version</div>
     <div class="story-text" id="storyText"></div>
+    <div class="story-enter" onclick="showCharacters()">ENTER</div>
   </div>
 </div>
 
