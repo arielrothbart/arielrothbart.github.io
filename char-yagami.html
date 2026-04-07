@@ -128,6 +128,7 @@ body{
   opacity:0.4;
   filter:grayscale(60%) contrast(90%);
   transform:scale(0.98);
+   animation: flicker 6s infinite;
 }
 
 
@@ -196,6 +197,10 @@ body{
   max-width:420px;
   border:1px solid rgba(255,255,255,0.2);
 }
+  #galleryImage{
+  max-width:75%;
+  max-height:85%;
+}
 </style>
 
 </head>
@@ -226,8 +231,6 @@ body{
   菅原真（Sugahara Shin），神秘学教授，任职于佛蒙特大学。同八神在大学时相识，目前八神居住在他的祖宅别墅内。<br><br>
   备注：主体个体存在未归档异常特征，需持续观察。
 </div>
-
-  </div>
 
   <div class="divider"></div>
 
@@ -306,11 +309,12 @@ function closeID(){
 </script>
 <script>
 let gallery = [
- "images/sym/character/sketch1.jpg",
+  "images/sym/character/sketch1.jpg",
   "images/sym/character/sketch2.jpg",
-  "images/sym/character/sketch3.jpg"
+  "images/sym/character/sketch3.jpg",
+  "images/sym/character/antonio1.jpg",
+  "images/sym/character/antonio2.jpg"
 ];
-
 let currentIndex = 0;
 
 function openGallery(index){
