@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Symon-Yagami Shigefusa</title>
+
+<style>
+body{
+  margin:0;
+  background:#0d0d0d;
+  color:#d9d9d9;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 整体容器 */
+.container{
+  width:80%;
+  max-width:1000px;
+  margin:80px auto;
+}
+
+/* 左上角档案标签 */
+.file-tag{
+  font-size:12px;
+  letter-spacing:2px;
+  opacity:0.4;
+  margin-bottom:20px;
+}
+
+/* 标题 */
+.title{
+  font-size:32px;
+  letter-spacing:1px;
+  margin-bottom:5px;
+}
+
+.subtitle{
+  font-size:18px;
+  opacity:0.6;
+  margin-bottom:40px;
+}
+
+/* 主体区 */
+.profile{
+  display:flex;
+  gap:40px;
+  align-items:flex-start;
+}
+
+/* 证件照 */
+.profile img{
+  width:180px;
+  filter:grayscale(100%) contrast(110%);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+/* 文本 */
+.description{
+  line-height:1.8;
+  font-size:14px;
+  max-width:500px;
+}
+
+/* 分隔线 */
+.divider{
+  margin:60px 0;
+  border-top:1px dashed rgba(255,255,255,0.1);
+}
+
+/* 速写图 */
+.sketches{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.sketches img{
+  width:200px;
+  opacity:0.9;
+}
+
+/* UI按钮 */
+.ui{
+  position:fixed;
+  right:40px;
+  bottom:40px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.ui a{
+  text-decoration:none;
+  color:#aaa;
+  font-size:12px;
+  letter-spacing:1px;
+  border:1px solid rgba(255,255,255,0.1);
+  padding:8px 12px;
+  transition:0.2s;
+}
+
+.ui a:hover{
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="file-tag">CASE FILE / SUBJECT</div>
+
+  <div class="title">Symon-Yagami Shigefusa</div>
+  <div class="subtitle">八神重英</div>
+
+  <div class="profile">
+    <img src="images/sym/character/yagami.jpg">
+
+    <div class="description">
+      男 10.25.1954 生于美国佛蒙特州 是家中的次子，长姐八神伊织是一位犯罪肖像与侧写专家。八神重英从佛蒙特汉普顿大学的法学院毕业。曾在纽约的警局任职。如今回到佛蒙特警局，与Sean Hope组成职业搭档。
+      据悉他经常接手离奇案件，许多案情涉及超自然现象。八神有一位非常可靠的顾问兼同居人（只是八神租住在他的别墅里）———菅原真。这位专攻神秘学的教授和八神在大学时就已经认识。
+      而八神自己身上也有许多不寻常之处。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="sketches">
+    <img src="sketch1.jpg">
+    <img src="sketch2.jpg">
+  </div>
+
+</div>
+
+<div class="ui">
+  <a href="sym-noir.html">CHARACTER</a>
+  <a href="#">TOP</a>
+  <a href="char-next.html">NEXT</a>
+</div>
+
+</body>
+</html>
