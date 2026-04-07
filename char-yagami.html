@@ -118,10 +118,23 @@ body{
   cursor:pointer;
   transition:0.2s;
 }
-
+  
 .sketches img:hover{
   transform:scale(1.03);
   opacity:1;
+}
+  
+ .memory{
+  opacity:0.4;
+  filter:grayscale(60%) contrast(90%);
+  transform:scale(0.98);
+}
+
+
+@keyframes flicker{
+  0%{ opacity:0.45; }
+  50%{ opacity:0.5; }
+  100%{ opacity:0.45; }
 }
 .nav{
   position:absolute;
@@ -221,9 +234,14 @@ body{
   <div class="section-label">ATTACHMENT / VISUAL RECORD</div>
 
   <div class="sketches">
+  <!-- 正常记录 -->
   <img src="images/sym/character/sketch1.jpg" onclick="openGallery(0)">
   <img src="images/sym/character/sketch2.jpg" onclick="openGallery(1)">
-  <img src="images/sym/character/sketch3.jpg" onclick="openGallery(2)">
+
+  <!-- 异常 / 记忆 -->
+  <img src="images/sym/character/antonio1.jpg" class="memory" onclick="openGallery(2)">
+  <img src="images/sym/character/antonio2.jpg" class="memory" onclick="openGallery(3)">
+</div>
    
   </div>
 <div class="divider"></div>
