@@ -219,7 +219,7 @@ body{
 <!-- 证件 + 夹角照片 -->
 <div class="card-wrapper">
   <img src="images/sym/character/card1.png" class="card" onclick="openID()">
-  <img src="images/sym/character/yagami-prof.jpg" class="clip-photo">
+  <img src="images/sym/character/yagami-prof.jpg" class="clip-photo" onclick="openPhoto()">
 </div>
 
 <div class="description">
@@ -294,6 +294,9 @@ body{
 <div id="idModal" class="modal" onclick="closeID()">
   <img src="images/sym/character/card1.png">
 </div>
+  <div id="photoModal" class="modal" onclick="closePhoto()">
+  <img src="images/sym/character/yagami-prof.jpg">
+</div>
 <div id="galleryModal" class="modal" onclick="closeGallery(event)">
 
   <span class="nav prev" onclick="prevImg(event)">‹</span>
@@ -310,6 +313,15 @@ function openID(){
 
 function closeID(){
   document.getElementById("idModal").style.display = "none";
+}
+</script>
+  <script>
+function openPhoto(){
+  document.getElementById("photoModal").style.display = "flex";
+}
+
+function closePhoto(){
+  document.getElementById("photoModal").style.display = "none";
 }
 </script>
 <script>
