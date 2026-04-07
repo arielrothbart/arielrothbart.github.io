@@ -148,9 +148,6 @@ body{
   height:120px;
 }
   
-  .story-text p:first-child{
-  margin-top:40px;
-}
 body{
   overflow:hidden;
 }
@@ -433,6 +430,7 @@ body{
 <script>
 
 /* 页面切换 */
+const storyEnter = document.querySelector(".story-enter");
 const title = document.getElementById("title");
 const story = document.getElementById("story");
 const chars = document.getElementById("chars");
@@ -488,13 +486,14 @@ const _showStory = showStory;
 const _showCharacters = showCharacters;
 const _showNetwork = showNetwork;
 
-showTitle = function(){_showTitle();setActive(0);story.classList.remove("show"); }
-showStory = function(){_showStory();setActive(1);}
-showCharacters = function(){_showCharacters();setActive(2);}
-showNetwork = function(){_showNetwork();setActive(3);}
+showTitle = function(){_showTitle();setActive(0);story.classList.remove("show"); storyEnter.style.display = "none"; }
+showStory = function(){_showStory();setActive(1); storyEnter.style.display = "block"; }
+showCharacters = function(){_showCharacters();setActive(2);storyEnter.style.display = "none"; }
+showNetwork = function(){_showNetwork();setActive(3);storyEnter.style.display = "none"; }
 
 setActive(0);
-
+storyEnter.style.display = "none";
+  
 /* ===== STORY ===== */
 
 const cnText = `黑色交响建立在两段半架空的历史之上。
