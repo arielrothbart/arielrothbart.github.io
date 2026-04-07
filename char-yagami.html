@@ -80,8 +80,20 @@ body{
   border:1px solid rgba(255,255,255,0.2);
   box-shadow:0 0 6px rgba(0,0,0,0.6);
   filter:grayscale(100%) contrast(120%);
+  cursor:pointer;
+  transition:0.15s;
 }
 
+/* hover（桌面） */
+.clip-photo:hover{
+  transform:rotate(6deg) scale(1.05);
+}
+
+/* 点击瞬间（最关键） */
+.clip-photo:active{
+  transform:rotate(6deg) scale(0.95);
+}
+  
 /* 文本 */
 .description{
   line-height:1.9;
