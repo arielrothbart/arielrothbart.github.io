@@ -170,22 +170,51 @@ body{
   max-width:90%;
   max-height:90%;
 }
+.bottom-nav{
+  position:fixed;
+  bottom:30px;
+  left:0;
+  width:100%;
 
+  display:flex;
+  justify-content:space-between;
+  padding:0 60px;
+
+  font-size:18px;
+  z-index:2000;
+}
+
+.bottom-nav a{
+  color:white;
+  text-decoration:none;
+  opacity:0.6;
+  transition:0.2s;
+}
+
+.bottom-nav a:hover{
+  opacity:1;
+}
 /* ===== TOP 按钮 ===== */
 .top-btn{
   position:fixed;
   right:60px;
   bottom:60px;
+
   width:48px;
   height:48px;
+
   border:1px solid rgba(255,255,255,0.3);
   border-radius:50%;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   cursor:pointer;
   opacity:0;
   transition:0.3s;
+
+  z-index:3000; /* 👈 关键 */
 }
 
 .top-btn.show{
@@ -302,6 +331,17 @@ topBtn.onclick = ()=>{
 };
 
 </script>
+<div class="bottom-nav">
 
+  <a href="comic-01.html" class="nav-left">
+    ‹ Valley of Gloom
+  </a>
+
+  <a href="comics.html" class="nav-right">
+    Comics ›
+  </a>
+
+</div>
+  
 </body>
 </html>
