@@ -12,6 +12,25 @@ body{
   color:white;
 }
 
+  /*home logo*/
+  .home-logo {
+  position: fixed;
+  top: 80px;
+  right: 60px;
+  z-index: 1000;
+}
+
+.home-logo img {
+  width: 80px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.home-logo img:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+  
 /* 页面标题 */
 .title{
   text-align:center;
@@ -94,7 +113,10 @@ body{
 </head>
 
 <body>
-
+  
+<a href="index.html" class="home-logo">
+  <img src="logo.png">
+</a>
 <div class="title">COMICS</div>
 
 <div class="bookshelf">
