@@ -13,23 +13,23 @@ body{
 }
 
 /* ===== HOME LOGO ===== */
-.home{
-  position:fixed;
-  top:30px;
-  left:40px;
-  z-index:10;
+.home-logo {
+  position: fixed;
+  top: 80px;
+  right: 60px;
+  z-index: 1000;
 }
 
-.home img{
-  width:28px;
-  opacity:0.8;
-  transition:0.2s;
+.home-logo img {
+  width: 80px;
+  opacity: 0.8;
+  transition: 0.3s;
 }
 
-.home img:hover{
-  opacity:1;
+.home-logo img:hover {
+  opacity: 1;
+  transform: scale(1.08);
 }
-
 /* ===== TITLE ===== */
 .header{
   text-align:center;
@@ -153,7 +153,7 @@ body{
 <body>
 
 <!-- HOME -->
-<a href="index.html" class="home">
+<a href="index.html" class="home-logo">
   <img src="logo.png">
 </a>
 
