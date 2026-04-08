@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Comics</title>
+
+<style>
+body{
+  margin:0;
+  background:#1a1a1a;
+  font-family:Arial, sans-serif;
+  color:white;
+}
+
+/* 页面标题 */
+.title{
+  text-align:center;
+  padding:40px 0 10px;
+  font-size:18px;
+  letter-spacing:3px;
+  opacity:0.6;
+}
+
+/* 书架背景 */
+.bookshelf{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:60px;
+  padding:60px;
+  position:relative;
+}
+
+/* 木板（视觉层） */
+.bookshelf::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:20px;
+  background:linear-gradient(#3a2a1f, #2a1e16);
+  box-shadow:0 -5px 15px rgba(0,0,0,0.5);
+}
+
+/* 每本书 */
+.book{
+  width:160px;
+  text-decoration:none;
+  color:white;
+  text-align:center;
+  perspective:800px;
+}
+
+/* 封面 */
+.book img{
+  width:100%;
+  border-radius:4px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.6);
+  transform:rotateY(-15deg);
+  transition:0.3s;
+}
+
+/* hover效果 */
+.book:hover img{
+  transform:rotateY(0deg) translateY(-10px) scale(1.05);
+}
+
+/* 标题 */
+.book-title{
+  margin-top:12px;
+  font-size:12px;
+  opacity:0.7;
+  letter-spacing:1px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="title">COMICS</div>
+
+<div class="bookshelf">
+
+  <!-- 漫画 01 -->
+  <a href="comic-01.html" class="book">
+    <img src="images/comic01-cover.jpg" alt="">
+    <div class="book-title">Comic One</div>
+  </a>
+
+  <!-- 漫画 02（可以删掉或替换） -->
+  <a href="comic-02.html" class="book">
+    <img src="images/comic02-cover.jpg" alt="">
+    <div class="book-title">Comic Two</div>
+  </a>
+
+</div>
+
+</body>
+</html>
