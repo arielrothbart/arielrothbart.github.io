@@ -73,10 +73,12 @@ body{
   text-align:center;
   perspective:800px;
 }
-
+  
 /* 封面 */
 .book img{
   width:100%;
+  height:220px;
+  object-fit:cover;
   border-radius:4px;
   box-shadow:0 15px 30px rgba(0,0,0,0.6);
   transform:rotateY(-15deg);
@@ -95,6 +97,13 @@ body{
   font-size:14px;
   letter-spacing:1px;
   opacity:0.7;
+}
+  .book-title .subtitle{
+  display:block;
+  font-size:12px;
+  opacity:0.4;
+  margin-top:4px;
+  letter-spacing:2px;
 }
 
 /* 第一部：阴郁手写感 */
@@ -163,7 +172,10 @@ body{
   <!-- 漫画 02 -->
  <a href="comic-02.html" class="book book-sci">
   <img src="images/comics/comic02-cover.jpg">
-  <div class="book-title">Rhapsody in Neon-overture</div>
+ <div class="book-title">
+  RHAPSODY IN NEON
+  <span class="subtitle">OVERTURE</span>
+</div>
 </a>
 
 </div>
