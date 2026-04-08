@@ -2,55 +2,149 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Comic 01</title>
-
+<title>Valley of Gloom</title>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body{
   margin:0;
-  background:#111;
+  background:#000;
+  color:white;
+  font-family:Arial, sans-serif;
+}
+
+/* ===== HOME LOGO ===== */
+.home{
+  position:fixed;
+  top:30px;
+  left:40px;
+  z-index:10;
+}
+
+.home img{
+  width:28px;
+  opacity:0.8;
+  transition:0.2s;
+}
+
+.home img:hover{
+  opacity:1;
+}
+
+/* ===== TITLE ===== */
+.header{
+  text-align:center;
+  margin-top:80px;
+}
+
+.title{
+  font-family: 'Amatic SC', cursive;
+  font-size:72px;
+  letter-spacing:4px;
+  opacity:0.9;
+}
+
+.subtitle{
+  font-family: 'Amatic SC', cursive;
+  font-size:18px;
+  opacity:0.6;
+  line-height:1.6;
+}
+
+
+/* ===== VIEWER ===== */
+.viewer{
+  margin-top:60px;
+  position:relative;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
-  overflow:hidden;
-}
-
-/* 阅读器容器 */
-.viewer{
-  position:relative;
 }
 
 /* 图片 */
 .viewer img{
-  max-width:80vw;
-  max-height:90vh;
-  box-shadow:0 20px 50px rgba(0,0,0,0.7);
+  max-width:500px;
+  max-height:80vh;
 }
 
-/* 翻页按钮 */
+/* 翻页按钮（大） */
 .nav{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  font-size:40px;
+  font-size:60px;
   color:white;
   background:none;
   border:none;
   cursor:pointer;
-  opacity:0.3;
+  opacity:0.25;
   transition:0.2s;
 }
 
 .nav:hover{
-  opacity:1;
+  opacity:0.8;
 }
 
 .prev{
-  left:-60px;
+  left:80px;
 }
 
 .next{
-  right:-60px;
+  right:80px;
+}
+
+/* ===== ABOUT ===== */
+.info{
+  margin-top:60px;
+  text-align:center;
+}
+
+.about-label{
+  color:#b33;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-right:20px;
+}
+
+.about-text{
+  display:inline-block;
+  font-size:13px;
+  opacity:0.7;
+  max-width:600px;
+}
+
+/* ===== DIVIDER ===== */
+.divider{
+  width:80%;
+  height:1px;
+  background:#333;
+  margin:80px auto 40px;
+}
+
+/* ===== NAV PROJECT ===== */
+.project-nav{
+  display:flex;
+  justify-content:space-between;
+  width:80%;
+  margin:0 auto 80px;
+  font-size:18px;
+}
+
+.project-nav a{
+  color:white;
+  text-decoration:none;
+  opacity:0.6;
+  transition:0.2s;
+}
+
+.project-nav a:hover{
+  opacity:1;
+}
+
+.small{
+  font-size:10px;
+  opacity:0.4;
+  display:block;
+  margin-bottom:6px;
 }
 </style>
 
@@ -58,6 +152,21 @@ body{
 
 <body>
 
+<!-- HOME -->
+<a href="index.html" class="home">
+  <img src="images/logo.png">
+</a>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="title">VALLEY OF GLOOM</div>
+  <div class="subtitle">
+    Original comic story (adaptation of Sherlock Holmes series)<br>
+    Cthulhu style based on Colonel Moran's perspective.
+  </div>
+</div>
+
+<!-- VIEWER -->
 <div class="viewer">
 
   <button class="nav prev" onclick="prevPage()">‹</button>
@@ -68,9 +177,35 @@ body{
 
 </div>
 
+<!-- ABOUT -->
+<div class="info">
+  <span class="about-label">ABOUT</span>
+  <span class="about-text">
+    Colonel Moran entering the wine cellar. He is about to talk to the head of the gangster — Lord McGinty.
+  </span>
+</div>
+
+<!-- DIVIDER -->
+<div class="divider"></div>
+
+<!-- PROJECT NAV -->
+<div class="project-nav">
+
+  <a href="comic-00.html">
+    <span class="small">PREV PROJECT</span>
+    ‹ Character Design
+  </a>
+
+  <a href="comic-02.html">
+    <span class="small">NEXT PROJECT</span>
+    Rhapsody in Neon ›
+  </a>
+
+</div>
+
 <script>
 let currentPage = 1;
-const totalPages = 5; // 改成你的页数
+const totalPages = 7; // 页数改这里
 
 function updatePage(){
   document.getElementById("page").src =
