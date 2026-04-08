@@ -231,6 +231,14 @@ body{
 </div>
 
 <script>
+  const images = [];
+
+for(let i = 1; i <= totalPages; i++){
+  const img = new Image();
+  img.src = "images/comics/comic-01/page" + i + ".jpg";
+  images.push(img);
+}
+  
 let currentPage = 1;
 const totalPages = 7; // 页数改这里
 let isZoomed = false;
@@ -250,8 +258,7 @@ function updatePage(direction = "next"){
 
     const newSrc = "images/comics/comic-01/page" + currentPage + ".jpg";
 
-    const newImg = new Image();
-    newImg.src = newSrc;
+   const newImg = images[currentPage - 1];
 
     newImg.onload = () => {
       img.src = newSrc;
