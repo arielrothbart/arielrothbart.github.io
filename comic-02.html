@@ -302,10 +302,10 @@ body{
 const zoom = document.getElementById("zoom");
 const zoomImg = document.getElementById("zoomImg");
 
-document.querySelectorAll(".page img").forEach(img=>{
-  img.onclick = ()=>{
+document.addEventListener("click", function(e){
+  if(e.target.closest(".page img")){
     zoom.style.display = "flex";
-    zoomImg.src = img.src;
+    zoomImg.src = e.target.src;
   }
 });
 
