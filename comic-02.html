@@ -310,6 +310,8 @@ const zoomImg = document.getElementById("zoomImg");
 
 document.addEventListener("click", function(e){
   if(e.target.closest(".page img")){
+     const clicked = e.target;
+    currentIndex = pages.indexOf(clicked);   // 👈 新增
     zoom.style.display = "flex";
     zoomImg.src = e.target.src;
 
@@ -320,9 +322,31 @@ zoomImg.style.transform = "translate(0px, 0px) scale(1)";
   }
 });
 
-zoom.onclick = ()=>{
-  zoom.style.display = "none";
-};
+zoom.addEventListener("click", (e)=>{
+
+  // 👉 点图片：左右切换
+  if(e.target === zoomImg){
+
+    const x = e.clientX;
+    const width = window.innerWidth;
+
+    if(x < width * 0.4){
+      currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+      switchImage();
+    }
+    else if(x > width * 0.6){
+      currentIndex = (currentIndex + 1) % pages.length;
+      switchImage();
+    }
+
+  }
+
+  // 👉 点黑背景：关闭
+  else{
+    zoom.style.display = "none";
+  }
+
+});
 
 /* top按钮 */
 const topBtn = document.getElementById("topBtn");
@@ -340,6 +364,8 @@ topBtn.onclick = ()=>{
 };
   
 let scale = 1;
+const pages = Array.from(document.querySelectorAll(".page img"));
+let currentIndex = 0;
 let isDragging = false;
 let startX = 0;
 let startY = 0;
@@ -390,6 +416,52 @@ window.addEventListener("mouseup", ()=>{
   zoomImg.style.transform =
     `translate(0px, 0px) scale(${scale})`;
 }); 
+  document.addEventListener("keydown", (e)=>{
+  if(zoom.style.display !== "flex") return;
+
+  if(e.key === "ArrowRight"){
+    currentIndex = (currentIndex + 1) % pages.length;
+    switchImage();
+  }
+
+  if(e.key === "ArrowLeft"){
+    currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+    switchImage();
+  }
+});
+
+function switchImage(){
+  zoomImg.src = pages[currentIndex].src;
+
+  translateX = 0;
+  translateY = 0;
+  scale = 1;
+
+  zoomImg.style.transform = "translate(0px, 0px) scale(1)";
+}
+ 
+  let touchStartX = 0;
+
+zoom.addEventListener("touchstart", (e)=>{
+  touchStartX = e.touches[0].clientX;
+});
+
+zoom.addEventListener("touchend", (e)=>{
+  let touchEndX = e.changedTouches[0].clientX;
+  let diff = touchStartX - touchEndX;
+
+  if(Math.abs(diff) < 50) return;
+
+  if(diff > 0){
+    // 向左滑 → 下一页
+    currentIndex = (currentIndex + 1) % pages.length;
+  }else{
+    // 向右滑 → 上一页
+    currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+  }
+
+  switchImage();
+});
 </script>
 
 </body>
