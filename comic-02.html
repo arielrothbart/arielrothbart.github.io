@@ -115,29 +115,6 @@ body{
   padding:120px 0 80px;
 }
 
-/* ===== 标题区 ===== */
-.intro{
-  width:90%;
-  max-width:1200px;
-  margin:0 auto 100px;
-}
-
-.intro h1{
-  font-family:'Francois One', sans-serif;
-  font-size:clamp(60px, 10vw, 140px);
-  color:#bfe9ff;
-
-  margin:0;
-  line-height:0.9;
-}
-
-.intro .sub{
-  font-family:'Francois One', sans-serif;
-  font-size:18px;
-  color:#bfe9ff;
-  opacity:0.6;
-  margin-top:10px;
-}
 
 /* ===== 漫画页 ===== */
 .page{
@@ -170,30 +147,37 @@ body{
   max-width:90%;
   max-height:90%;
 }
-.bottom-nav{
-  position:fixed;
-  bottom:30px;
-  left:0;
-  width:100%;
 
+
+/* ===== 底部nav 按钮 ===== */
+.project-nav{
   display:flex;
   justify-content:space-between;
-  padding:0 60px;
+
+  width:80%;
+  margin:80px auto;
 
   font-size:18px;
-  z-index:2000;
 }
 
-.bottom-nav a{
+.project-nav a{
   color:white;
   text-decoration:none;
   opacity:0.6;
   transition:0.2s;
 }
 
-.bottom-nav a:hover{
+.project-nav a:hover{
   opacity:1;
 }
+
+.small{
+  font-size:10px;
+  opacity:0.4;
+  display:block;
+  margin-bottom:6px;
+}
+  
 /* ===== TOP 按钮 ===== */
 .top-btn{
   position:fixed;
@@ -288,6 +272,20 @@ body{
     <img src="images/comics/comic-02/page10.jpg">
   </div>
   
+<div class="project-nav">
+
+  <a href="comic-01.html">
+    <span class="small">PREV PROJECT</span>
+    ‹ Valley of Gloom
+  </a>
+
+  <a href="comics.html">
+    <span class="small">BACK TO SHELF</span>
+    Comics ›
+  </a>
+
+</div>
+  
 </div>
 
 <!-- 放大 -->
@@ -330,18 +328,5 @@ topBtn.onclick = ()=>{
   window.scrollTo({top:0, behavior:"smooth"});
 };
 
-</script>
-<div class="bottom-nav">
-
-  <a href="comic-01.html" class="nav-left">
-    ‹ Valley of Gloom
-  </a>
-
-  <a href="comics.html" class="nav-right">
-    Comics ›
-  </a>
-
-</div>
-  
 </body>
 </html>
