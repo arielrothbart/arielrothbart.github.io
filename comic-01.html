@@ -171,7 +171,7 @@ body{
 
   <button class="nav prev" onclick="prevPage()">‹</button>
 
-  <img id="page" src="images/comic01/page1.jpg">
+ <img id="page" src="images/comics/comic-01/page1.jpg">
 
   <button class="nav next" onclick="nextPage()">›</button>
 
@@ -208,8 +208,7 @@ let currentPage = 1;
 const totalPages = 7; // 页数改这里
 
 function updatePage(){
-  document.getElementById("page").src =
-    "images/comics/comic-01/page" + currentPage + ".jpg";
+  document.getElementById("page").src = "images/comics/comic-01/page" + currentPage + ".jpg";
 }
 
 function nextPage(){
