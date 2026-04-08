@@ -111,6 +111,36 @@ body{
   letter-spacing:2px;
   text-transform:uppercase;
 }
+  /* 📱 Mobile 优化 */
+@media (max-width: 768px){
+
+  .title{
+    font-size:36px;
+    margin-top:40px;
+  }
+
+   .bookshelf{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .book{
+    width:160px;
+  }
+
+  .book img{
+    transform:none; /* 手机取消倾斜，更干净 */
+  }
+
+  .book:hover img{
+    transform:none; /* 手机没有hover，避免怪异 */
+  }
+
+  .book-title{
+    font-size:14px;
+  }
+
+}
 </style>
 
 </head>
