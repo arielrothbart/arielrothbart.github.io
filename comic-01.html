@@ -146,6 +146,31 @@ body{
   display:block;
   margin-bottom:6px;
 }
+  .zoom-viewer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+
+  display:none;
+  justify-content:center;
+  align-items:center;
+
+  z-index:2000;
+}
+
+.zoom-viewer img{
+  max-width:90%;
+  max-height:90%;
+  cursor:zoom-out;
+}
+  img{
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:auto;
+}
 </style>
 
 </head>
@@ -224,7 +249,26 @@ function prevPage(){
     updatePage();
   }
 }
+  document.addEventListener("contextmenu", e => e.preventDefault());
 </script>
+  <script>
+const zoomViewer = document.getElementById("zoomViewer");
+const zoomImg = document.getElementById("zoomImg");
+const pageImg = document.getElementById("page");
 
+/* 点击放大 */
+pageImg.onclick = () => {
+  zoomViewer.style.display = "flex";
+  zoomImg.src = pageImg.src;
+};
+
+/* 点击关闭 */
+zoomViewer.onclick = () => {
+  zoomViewer.style.display = "none";
+};
+</script>
+<div class="zoom-viewer" id="zoomViewer">
+  <img id="zoomImg">
+</div>
 </body>
 </html>
