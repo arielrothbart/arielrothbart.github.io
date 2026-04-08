@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Comic 01</title>
+
+<style>
+body{
+  margin:0;
+  background:#111;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* 阅读器容器 */
+.viewer{
+  position:relative;
+}
+
+/* 图片 */
+.viewer img{
+  max-width:80vw;
+  max-height:90vh;
+  box-shadow:0 20px 50px rgba(0,0,0,0.7);
+}
+
+/* 翻页按钮 */
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:white;
+  background:none;
+  border:none;
+  cursor:pointer;
+  opacity:0.3;
+  transition:0.2s;
+}
+
+.nav:hover{
+  opacity:1;
+}
+
+.prev{
+  left:-60px;
+}
+
+.next{
+  right:-60px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="viewer">
+
+  <button class="nav prev" onclick="prevPage()">‹</button>
+
+  <img id="page" src="images/comic01/page1.jpg">
+
+  <button class="nav next" onclick="nextPage()">›</button>
+
+</div>
+
+<script>
+let currentPage = 1;
+const totalPages = 5; // 改成你的页数
+
+function updatePage(){
+  document.getElementById("page").src =
+    "images/comic01/page" + currentPage + ".jpg";
+}
+
+function nextPage(){
+  if(currentPage < totalPages){
+    currentPage++;
+    updatePage();
+  }
+}
+
+function prevPage(){
+  if(currentPage > 1){
+    currentPage--;
+    updatePage();
+  }
+}
+</script>
+
+</body>
+</html>
