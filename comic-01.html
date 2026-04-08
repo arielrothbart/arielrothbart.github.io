@@ -80,10 +80,6 @@ body{
   transition:0.2s;
 }
 
-.nav:hover{
-  opacity:0.8;
-}
-
 .prev{
   left:80px;
 }
@@ -139,7 +135,13 @@ body{
 .project-nav a:hover{
   opacity:1;
 }
-
+.nav:hover{
+  opacity:0.8;
+  transform:translateY(-50%) scale(1.2);
+}
+  .nav:active{
+  transform:translateY(-50%) scale(0.95);
+}
 .small{
   font-size:10px;
   opacity:0.4;
@@ -231,44 +233,86 @@ body{
 <script>
 let currentPage = 1;
 const totalPages = 7; // 页数改这里
+let isZoomed = false;
+  
+function updatePage(direction = "next"){
+  const img = document.getElementById("page");
 
-function updatePage(){
-  document.getElementById("page").src = "images/comics/comic-01/page" + currentPage + ".jpg";
+  const offset = 120;
+
+  /* 第一段：滑出 */
+  img.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+  img.style.transform =
+    direction === "next"
+      ? `translateX(-${offset}px)`
+      : `translateX(${offset}px)`;
+  img.style.opacity = 0;
+
+  setTimeout(() => {
+
+    /* 换图 */
+    img.src = "images/comics/comic-01/page" + currentPage + ".jpg";
+
+    /* 瞬间跳到另一边 */
+    img.style.transition = "none";
+    img.style.transform =
+      direction === "next"
+        ? `translateX(${offset}px)`
+        : `translateX(-${offset}px)`;
+
+    img.offsetHeight; // 强制刷新
+
+    /* 第二段：滑入 */
+    img.style.transition = "transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease";
+    img.style.transform = "translateX(0)";
+    img.style.opacity = 1;
+
+  }, 200);
 }
 
 function nextPage(){
   if(currentPage < totalPages){
     currentPage++;
-    updatePage();
+    updatePage("next");
   }
 }
 
 function prevPage(){
   if(currentPage > 1){
     currentPage--;
-    updatePage();
+    updatePage("prev");
   }
 }
   document.addEventListener("contextmenu", e => e.preventDefault());
 </script>
-  <script>
+ 
+<div class="zoom-viewer" id="zoomViewer">
+  <img id="zoomImg">
+</div>
+   <script>
 const zoomViewer = document.getElementById("zoomViewer");
 const zoomImg = document.getElementById("zoomImg");
 const pageImg = document.getElementById("page");
 
+  document.addEventListener("keydown", e => {
+  if (isZoomed) return;
+
+  if (e.key === "ArrowRight") nextPage();
+  if (e.key === "ArrowLeft") prevPage();
+});
+     
 /* 点击放大 */
 pageImg.onclick = () => {
   zoomViewer.style.display = "flex";
   zoomImg.src = pageImg.src;
+  isZoomed = true;
 };
-
+     
 /* 点击关闭 */
 zoomViewer.onclick = () => {
   zoomViewer.style.display = "none";
+  isZoomed = false;
 };
 </script>
-<div class="zoom-viewer" id="zoomViewer">
-  <img id="zoomImg">
-</div>
 </body>
 </html>
