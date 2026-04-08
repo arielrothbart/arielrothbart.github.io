@@ -149,8 +149,11 @@ body{
  cursor: zoom-in;
   transform-origin:center;
   transition:transform 0.1s;
+  cursor: grab;
 }
-
+.zoom img:active{
+  cursor: grabbing;
+}
 
 /* ===== 底部nav 按钮 ===== */
 .project-nav{
@@ -311,7 +314,9 @@ document.addEventListener("click", function(e){
     zoomImg.src = e.target.src;
 
     scale = 1;
-    zoomImg.style.transform = "scale(1)";
+translateX = 0;
+translateY = 0;
+zoomImg.style.transform = "translate(0px, 0px) scale(1)";
   }
 });
 
@@ -335,7 +340,12 @@ topBtn.onclick = ()=>{
 };
   
 let scale = 1;
-
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let translateX = 0;
+let translateY = 0;
+  
 /* 滚轮缩放 */
 zoom.addEventListener("wheel", (e)=>{
   e.preventDefault();
@@ -349,8 +359,37 @@ zoom.addEventListener("wheel", (e)=>{
   /* 限制范围 */
   scale = Math.max(1, Math.min(scale, 3));
 
-  zoomImg.style.transform = `scale(${scale})`;
+ zoomImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 });
+  /* 拖动开始 */
+zoomImg.addEventListener("mousedown", (e)=>{
+  isDragging = true;
+  startX = e.clientX - translateX;
+  startY = e.clientY - translateY;
+});
+
+/* 拖动中 */
+window.addEventListener("mousemove", (e)=>{
+  if(!isDragging) return;
+
+  translateX = e.clientX - startX;
+  translateY = e.clientY - startY;
+
+  zoomImg.style.transform =
+    `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+});
+
+/* 拖动结束 */
+window.addEventListener("mouseup", ()=>{
+  isDragging = false;
+});
+ zoomImg.addEventListener("dblclick", ()=>{
+  translateX = 0;
+  translateY = 0;
+
+  zoomImg.style.transform =
+    `translate(0px, 0px) scale(${scale})`;
+}); 
 </script>
 
 </body>
