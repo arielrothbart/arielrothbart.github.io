@@ -239,10 +239,11 @@ for(let i = 1; i <= totalPages; i++){
   images.push(img);
 }
   
+<script>
 let currentPage = 1;
-const totalPages = 7; // 页数改这里
+const totalPages = 7;
 let isZoomed = false;
-  
+
 function updatePage(direction = "next"){
   const img = document.getElementById("page");
   const offset = 120;
@@ -255,29 +256,23 @@ function updatePage(direction = "next"){
   img.style.opacity = 0;
 
   setTimeout(() => {
+    img.src = "images/comics/comic-01/page" + currentPage + ".jpg";
 
-    const newSrc = "images/comics/comic-01/page" + currentPage + ".jpg";
+    img.style.transition = "none";
+    img.style.transform =
+      direction === "next"
+        ? `translateX(${offset}px)`
+        : `translateX(-${offset}px)`;
 
-   const newImg = images[currentPage - 1];
+    img.offsetHeight;
 
-    newImg.onload = () => {
-      img.src = newSrc;
-
-      img.style.transition = "none";
-      img.style.transform =
-        direction === "next"
-          ? `translateX(${offset}px)`
-          : `translateX(-${offset}px)`;
-
-      img.offsetHeight;
-
-      img.style.transition = "transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease";
-      img.style.transform = "translateX(0)";
-      img.style.opacity = 1;
-    };
+    img.style.transition = "transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease";
+    img.style.transform = "translateX(0)";
+    img.style.opacity = 1;
 
   }, 200);
 }
+
 function nextPage(){
   if(currentPage < totalPages){
     currentPage++;
@@ -291,7 +286,15 @@ function prevPage(){
     updatePage("prev");
   }
 }
-  document.addEventListener("contextmenu", e => e.preventDefault());
+
+document.addEventListener("keydown", e => {
+  if (isZoomed) return;
+
+  if (e.key === "ArrowRight") nextPage();
+  if (e.key === "ArrowLeft") prevPage();
+});
+
+document.addEventListener("contextmenu", e => e.preventDefault());
 </script>
  
 <div class="zoom-viewer" id="zoomViewer">
