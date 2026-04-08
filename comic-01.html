@@ -237,10 +237,8 @@ let isZoomed = false;
   
 function updatePage(direction = "next"){
   const img = document.getElementById("page");
-
   const offset = 120;
 
-  /* 第一段：滑出 */
   img.style.transition = "transform 0.3s ease, opacity 0.3s ease";
   img.style.transform =
     direction === "next"
@@ -250,26 +248,29 @@ function updatePage(direction = "next"){
 
   setTimeout(() => {
 
-    /* 换图 */
-    img.src = "images/comics/comic-01/page" + currentPage + ".jpg";
+    const newSrc = "images/comics/comic-01/page" + currentPage + ".jpg";
 
-    /* 瞬间跳到另一边 */
-    img.style.transition = "none";
-    img.style.transform =
-      direction === "next"
-        ? `translateX(${offset}px)`
-        : `translateX(-${offset}px)`;
+    const newImg = new Image();
+    newImg.src = newSrc;
 
-    img.offsetHeight; // 强制刷新
+    newImg.onload = () => {
+      img.src = newSrc;
 
-    /* 第二段：滑入 */
-    img.style.transition = "transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease";
-    img.style.transform = "translateX(0)";
-    img.style.opacity = 1;
+      img.style.transition = "none";
+      img.style.transform =
+        direction === "next"
+          ? `translateX(${offset}px)`
+          : `translateX(-${offset}px)`;
+
+      img.offsetHeight;
+
+      img.style.transition = "transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease";
+      img.style.transform = "translateX(0)";
+      img.style.opacity = 1;
+    };
 
   }, 200);
 }
-
 function nextPage(){
   if(currentPage < totalPages){
     currentPage++;
