@@ -18,55 +18,51 @@ body{
   transition:opacity 0.6s ease;
 }
 
-/* 字幕容器 */
+/* 容器 */
 .lines{
-  text-align:center;
   position:relative;
+  width:80%;
+  max-width:700px;
+  text-align:center;
 }
 
-/* 单行 */
+/* 每一句 */
 .line{
+  position:absolute;
+  width:100%;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  
   opacity:0;
   line-height:1.8;
-transition:opacity 1.2s ease;
-  font-size:18px;
+  font-size:20px;
   letter-spacing:1px;
-  position:absolute;
-  left:0;
-  right:0;
-  text-shadow: 0 0 8px rgba(255,255,255,0.15);
+
+  transition:opacity 1.2s ease;
+
+  /* 轻微质感 */
+  text-shadow:0 0 8px rgba(255,255,255,0.15);
 }
 
+/* 当前显示 */
 .line.active{
   opacity:1;
-  animation:powerOn 1.8s ease forwards;
+  animation:fadeIn 1.6s ease;
 }
 
-/* glitch层（复制文字） */
-.line::before,
-.line::after{
-  content:attr(data-text);
-  position:absolute;
-  left:0;
-  right:0;
-  opacity:0;
-}
-
-/* 红蓝轻微偏移 */
-.line::before{
-  color:#ff3c3c;
-  transform:translateX(-1px);
-}
-
-.line::after{
-  color:#3cbcff;
-  transform:translateX(1px);
-}
-
-/* 激活时偶尔闪一下 */
-.line.glitch::before,
-.line.glitch::after{
-  opacity:0.3;
+/* 出现动画（电影感） */
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    filter:brightness(0.6);
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    filter:brightness(1);
+    transform:translateY(-50%);
+  }
 }
 
 /* Skip */
@@ -78,12 +74,11 @@ transition:opacity 1.2s ease;
   opacity:0.4;
   cursor:pointer;
 }
-
 .skip:hover{
   opacity:0.8;
 }
 
-/* 扫描线 */
+/* 非破坏性“机械扰动” */
 body::after{
   content:"";
   position:absolute;
@@ -101,41 +96,6 @@ body::after{
   0%{transform:translateY(-100%);}
   100%{transform:translateY(100%);}
 }
-
-/* 整体轻微抖动（很小） */
-body.distort{
-  animation:distort 0.2s linear;
-}
-@keyframes powerOn{
-  0%{
-    opacity:0;
-    filter:brightness(0.2) blur(2px);
-    letter-spacing:6px;
-    transform:translateY(6px); 
-  }
-  40%{
-    opacity:0.6;
-    filter:brightness(1.2) blur(1px);
-    letter-spacing:3px;
-  }
-  70%{
-    opacity:0.9;
-    filter:brightness(1.4) blur(0.5px);
-  }
-  100%{
-    opacity:1;
-    filter:brightness(1) blur(0);
-    letter-spacing:1px;
-    transform:translateY(0);  
-  }
-}
-@keyframes distort{
-  0%{transform:translate(0,0);}
-  25%{transform:translate(1px,-1px);}
-  50%{transform:translate(-1px,1px);}
-  75%{transform:translate(1px,1px);}
-  100%{transform:translate(0,0);}
-}
 </style>
 </head>
 
@@ -145,20 +105,17 @@ body.distort{
 
 <div class="lines">
 
-  <p class="line active"
-     data-text="2020. This is the age of the Aetherial Tide.">
+  <p class="line">
     2020. This is the age of the Aetherial Tide.<br>
     AT 0年，世界进入『天空洋流』纪元
   </p>
 
-  <p class="line"
-     data-text="Magnetofluid currents above. Signals fracture.">
+  <p class="line">
     Magnetofluid currents above. Signals fracture.<br>
     磁海组成洋流，令通讯碎裂。
   </p>
 
-  <p class="line"
-     data-text="AT 66. Synthetic failures emerge in Kaamos City.">
+  <p class="line">
     AT 66. Synthetic failures emerge in Kaamos City.<br>
     AT 66年 义体失控的悲剧在极夜城中悄然酝酿。
   </p>
@@ -169,51 +126,34 @@ body.distort{
 let index = 0;
 const lines = document.querySelectorAll(".line");
 
-/* 随机轻微扰动 */
-setInterval(()=>{
-  if(Math.random() < 0.3){
-    document.body.classList.add("distort");
-    setTimeout(()=>{
-      document.body.classList.remove("distort");
-    },100);
-  }
-},800);
-
-/* glitch闪烁 */
-function glitch(line){
-  line.classList.add("glitch");
+/* 初始第一句 */
+window.onload = () => {
   setTimeout(()=>{
-    line.classList.remove("glitch");
-  },120);
-}
+    lines[0].classList.add("active");
+  }, 300);
+};
 
-/* 切换 */
+/* 点击推进（电影节奏） */
 function nextLine(){
 
-  // 当前句：开始淡出
-  glitch(lines[index]);
- lines[index].style.opacity = "0";
+  // 当前句淡出
+  lines[index].classList.remove("active");
 
-  // 等淡出完成（关键时间）
   setTimeout(()=>{
 
     if(index < lines.length - 1){
       index++;
 
-      // 再稍微等一点点（让画面“空一下”）
-      setTimeout(()=>{
-        lines[index].classList.add("active");
-        glitch(lines[index]);
-      }, 200);
+      // 下一句出现
+      lines[index].classList.add("active");
 
     }else{
       enterWorld();
     }
 
-  }, 1000); // 👈 这里控制“消失速度 + 呼吸感”
+  }, 1200);
 }
 
-/* 点击推进 */
 document.body.addEventListener("click", nextLine);
 
 /* 跳过 */
@@ -221,7 +161,7 @@ function skip(){
   enterWorld();
 }
 
-/* 进入主界面 */
+/* 进入世界 */
 function enterWorld(){
   document.body.style.opacity = 0;
   setTimeout(()=>{
