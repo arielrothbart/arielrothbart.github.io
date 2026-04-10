@@ -368,15 +368,18 @@ font-family: 'Poiret One', sans-serif;
     }
 /* 整体位置 */
 .coffee-icon{
-  position:absolute;      /* 👈 改成绝对定位 */
-  top:0;                  /* 👈 锁在容器顶部 */
+  position:absolute;
+
   left:50%;
   transform:translateX(-50%);
+
+  top:-50px;   /* 👈 往上“抬”到红框位置 */
 
   width:40px;
   height:40px;
 
   opacity:0.5;
+  pointer-events:none; /* 👈 防止挡住点击 */
 }
 
 /* 杯子 */
