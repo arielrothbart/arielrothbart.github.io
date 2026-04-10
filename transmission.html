@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Transmission</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  color:#eaeaea;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:sans-serif;
+  overflow:hidden;
+  transition:opacity 0.6s ease;
+}
+
+/* 字幕容器 */
+.lines{
+  text-align:center;
+  position:relative;
+}
+
+/* 单行 */
+.line{
+  opacity:0;
+  transition:opacity 0.8s ease;
+  font-size:18px;
+  letter-spacing:1px;
+  position:absolute;
+  left:0;
+  right:0;
+}
+
+.line.active{
+  opacity:1;
+  position:relative;
+}
+
+/* glitch层（复制文字） */
+.line::before,
+.line::after{
+  content:attr(data-text);
+  position:absolute;
+  left:0;
+  right:0;
+  opacity:0;
+}
+
+/* 红蓝轻微偏移 */
+.line::before{
+  color:#ff3c3c;
+  transform:translateX(-1px);
+}
+
+.line::after{
+  color:#3cbcff;
+  transform:translateX(1px);
+}
+
+/* 激活时偶尔闪一下 */
+.line.glitch::before,
+.line.glitch::after{
+  opacity:0.3;
+}
+
+/* Skip */
+.skip{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:12px;
+  opacity:0.4;
+  cursor:pointer;
+}
+
+.skip:hover{
+  opacity:0.8;
+}
+
+/* 扫描线 */
+body::after{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    transparent 96%,
+    rgba(255,255,255,0.04) 100%
+  );
+  animation:scan 6s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes scan{
+  0%{transform:translateY(-100%);}
+  100%{transform:translateY(100%);}
+}
+
+/* 整体轻微抖动（很小） */
+body.distort{
+  animation:distort 0.2s linear;
+}
+
+@keyframes distort{
+  0%{transform:translate(0,0);}
+  25%{transform:translate(1px,-1px);}
+  50%{transform:translate(-1px,1px);}
+  75%{transform:translate(1px,1px);}
+  100%{transform:translate(0,0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="skip" onclick="skip()">Skip Transmission</div>
+
+<div class="lines">
+  <p class="line active" data-text="2019. Humanity reached into the sky.">
+    2019. Humanity reached into the sky.
+  </p>
+
+  <p class="line" data-text="2020. The sky answered.">
+    2020. The sky answered.
+  </p>
+
+  <p class="line" data-text="AT 66. What remains of us?">
+    AT 66. What remains of us?
+  </p>
+</div>
+
+<script>
+let index = 0;
+const lines = document.querySelectorAll(".line");
+
+/* 随机轻微扰动 */
+setInterval(()=>{
+  if(Math.random() < 0.3){
+    document.body.classList.add("distort");
+    setTimeout(()=>{
+      document.body.classList.remove("distort");
+    },100);
+  }
+},800);
+
+/* glitch闪烁 */
+function glitch(line){
+  line.classList.add("glitch");
+  setTimeout(()=>{
+    line.classList.remove("glitch");
+  },120);
+}
+
+/* 切换 */
+function nextLine(){
+  glitch(lines[index]);
+
+  if(index < lines.length - 1){
+    lines[index].classList.remove("active");
+    index++;
+    lines[index].classList.add("active");
+
+    glitch(lines[index]);
+  }else{
+    enterWorld();
+  }
+}
+
+/* 点击推进 */
+document.body.addEventListener("click", nextLine);
+
+/* 跳过 */
+function skip(){
+  enterWorld();
+}
+
+/* 进入主界面 */
+function enterWorld(){
+  document.body.style.opacity = 0;
+  setTimeout(()=>{
+    window.location.href = "rhapsody.html";
+  }, 500);
+}
+</script>
+
+</body>
+</html>
