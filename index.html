@@ -266,7 +266,77 @@ font-family: 'Poiret One', sans-serif;
     .projects:hover .beam {
       box-shadow: 0 0 22px #00c8ff;
     }
+.airlock{
+  width:120px;
+  height:120px;
+  margin:80px auto 120px;
+  position:relative;
+  cursor:pointer;
+}
 
+/* 外框（细线舱门感） */
+.airlock::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(0,200,255,0.4);
+}
+
+/* 门 */
+.door{
+  position:absolute;
+  top:10%;
+  width:50%;
+  height:80%;
+
+  border:1px solid rgba(0,200,255,0.6);
+  transition:0.4s ease;
+
+  box-shadow:0 0 8px rgba(0,200,255,0.5);
+}
+
+/* 左门 */
+.door.left{
+  left:0;
+  border-right:none;
+}
+
+/* 右门 */
+.door.right{
+  right:0;
+  border-left:none;
+}
+
+/* hover 开门（关键） */
+.airlock:hover .left{
+  transform:translateX(-6px);
+}
+
+.airlock:hover .right{
+  transform:translateX(6px);
+}
+
+/* 轻微发光 */
+.airlock:hover .door{
+  box-shadow:0 0 12px rgba(0,200,255,0.9);
+}
+
+/* 中间缝（增强“门感”） */
+.airlock::after{
+  content:"";
+  position:absolute;
+  top:10%;
+  bottom:10%;
+  left:50%;
+  width:1px;
+  background:rgba(0,200,255,0.5);
+}
+    .airlock-label{
+  text-align:center;
+  font-size:11px;
+  letter-spacing:2px;
+  opacity:0.4;
+}
   @media (max-width: 768px) {
 
     .hero {
@@ -363,6 +433,11 @@ font-family: 'Poiret One', sans-serif;
   </a>
 
 </div>
+  <div class="airlock">
+  <div class="door left"></div>
+  <div class="door right"></div>
+</div>
+  <div class="airlock-label">Dock</div>
 <script>
 const video = document.getElementById("heroVideo");
 
