@@ -266,81 +266,57 @@ font-family: 'Poiret One', sans-serif;
     .projects:hover .beam {
       box-shadow: 0 0 22px #00c8ff;
     }
-.airlock{
-  width:120px;
-  height:120px;
-  margin:80px auto 120px;
+.lounge-entry{
   position:relative;
+  width:220px;
+  margin:100px auto;
   cursor:pointer;
-  position:relative;
 }
 
-/* 外框（细线舱门感） */
-.airlock::before{
-  content:"";
+/* 两层 */
+.chip{
   position:absolute;
-  inset:0;
-  border:1px solid rgba(0,200,255,0.4);
-}
+  width:100%;
+  padding:12px 0;
 
-/* 门 */
-.door{
-  position:absolute;
-  top:10%;
-  width:50%;
-  height:80%;
-
-  border:1px solid rgba(0,200,255,0.6);
-  transition:0.4s ease;
-
-  box-shadow:0 0 8px rgba(0,200,255,0.5);
-}
-
-/* 左门 */
-.door.left{
-  left:0;
-  border-right:none;
-}
-
-/* 右门 */
-.door.right{
-  right:0;
-  border-left:none;
-}
-
-/* hover 开门（关键） */
-.airlock:hover .left{
-  transform:translateX(-6px);
-}
-
-.airlock:hover .right{
-  transform:translateX(6px);
-}
-
-/* 轻微发光 */
-.airlock:hover .door{
-  box-shadow:0 0 12px rgba(0,200,255,0.9);
-}
-
-/* 中间缝（增强“门感”） */
-.airlock::after{
-  content:"";
-  position:absolute;
-  top:10%;
-  bottom:10%;
-  left:50%;
-  width:1px;
-  background:rgba(0,200,255,0.5);
-}
-    .airlock-label{
-  position:absolute;
-  top:130px;   /* 👈 控制和门的距离 */
-  left:50%;
-  transform:translateX(-50%);
-
-  font-size:11px;
+  text-align:center;
+  font-size:13px;
   letter-spacing:2px;
-  opacity:0.5;
+
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.02);
+
+  transition:0.3s ease;
+}
+
+/* 上层 */
+.chip.top{
+  top:0;
+  left:0;
+  z-index:2;
+}
+
+/* 下层 */
+.chip.bottom{
+  top:6px;
+  left:6px;
+  opacity:0.4;
+}
+
+/* hover 错位 */
+.lounge-entry:hover .top{
+  transform:translate(4px,4px);
+}
+
+.lounge-entry:hover .bottom{
+  transform:translate(-4px,-4px);
+  opacity:0.8;
+}
+
+/* hover 发光 */
+.lounge-entry:hover .chip{
+  border-color:#00c8ff;
+  box-shadow:0 0 10px rgba(0,200,255,0.6);
 }
   @media (max-width: 768px) {
 
@@ -436,13 +412,12 @@ font-family: 'Poiret One', sans-serif;
     <img src="images/index/poster2.jpg">
     <div class="project-title">Symphony Noir</div>
   </a>
+</div>
 
-</div>
-  <div class="airlock">
-  <div class="door left"></div>
-  <div class="door right"></div>
-</div>
-  <div class="airlock-label">Dock</div>
+<a href="lounge.html" class="lounge-entry">
+  <div class="chip top">CREW LOUNGE</div>
+  <div class="chip bottom">CREW LOUNGE</div>
+</div>  
 <script>
 const video = document.getElementById("heroVideo");
 
