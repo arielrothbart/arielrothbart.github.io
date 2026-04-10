@@ -267,11 +267,17 @@ font-family: 'Poiret One', sans-serif;
       box-shadow: 0 0 22px #00c8ff;
     }
 .lounge-entry{
-  position:relative;
-  width:220px;
-  height:50px;     
-  margin:100px auto;
-  cursor:pointer;
+  position: absolute;        /* 👈 改这里 */
+  left: 50%;
+  transform: translateX(-50%);
+
+  top: calc(100vh + 120px);  /* 👈 关键：在首屏下面 */
+
+  width: 220px;
+  height: 50px;
+
+  cursor: pointer;
+  z-index: 10;
 }
 
 /* 两层 */
