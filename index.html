@@ -325,6 +325,29 @@ font-family: 'Poiret One', sans-serif;
   border-color:#00c8ff;
   box-shadow:0 0 10px rgba(0,200,255,0.6);
 }
+/* 点击瞬间：整体轻微按下 */
+.lounge-entry{
+  transition: transform 0.15s ease;
+}
+/* 点击时：发光更强 */
+.lounge-entry:active .chip{
+  border-color:#00c8ff;
+  box-shadow:
+    0 0 8px rgba(0,200,255,0.8),
+    0 0 20px rgba(0,200,255,0.6);
+}
+.lounge-entry:active{
+  transform:translateX(-50%) scale(0.97);
+}
+    /* 咖啡：轮廓发光（不是方块） */
+.lounge-entry:hover .coffee-icon img{
+  filter: drop-shadow(0 0 6px rgba(0,200,255,0.6));
+}
+
+.lounge-entry:active .coffee-icon img{
+  filter: drop-shadow(0 0 10px rgba(0,200,255,0.9));
+}
+    
   @media (max-width: 768px) {
 
     .hero {
