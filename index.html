@@ -365,7 +365,74 @@ font-family: 'Poiret One', sans-serif;
         opacity: 1;
       }
     }
+/* 整体位置 */
+.coffee-icon{
+  width:40px;
+  height:40px;
+  margin:0 auto 12px;
+  position:relative;
+  opacity:0.5;
+}
 
+/* 杯子 */
+.cup{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:22px;
+  height:14px;
+  border:1px solid rgba(255,255,255,0.4);
+  border-top:none;
+  border-radius:0 0 6px 6px;
+}
+
+/* 把手 */
+.cup::after{
+  content:"";
+  position:absolute;
+  right:-6px;
+  top:2px;
+  width:6px;
+  height:6px;
+  border:1px solid rgba(255,255,255,0.4);
+  border-left:none;
+  border-radius:50%;
+}
+
+/* 蒸汽（重点） */
+.steam{
+  position:absolute;
+  top:2px;
+  left:50%;
+  width:1px;
+  height:10px;
+  background:rgba(255,255,255,0.4);
+
+  transform:translateX(-50%);
+  animation:steam 2s infinite ease-in-out;
+}
+
+/* 蒸汽动画 */
+@keyframes steam{
+  0%{
+    opacity:0.2;
+    transform:translate(-50%,2px);
+  }
+  50%{
+    opacity:0.8;
+    transform:translate(-50%,-2px);
+  }
+  100%{
+    opacity:0.2;
+    transform:translate(-50%,2px);
+  }
+}
+
+/* hover 联动 */
+.lounge-entry:hover .coffee-icon{
+  opacity:1;
+}
   </style>
 </head>
 
@@ -421,10 +488,16 @@ font-family: 'Poiret One', sans-serif;
 </div>
 
 <div class="lounge-wrapper">
-  <a href="lounge.html" class="lounge-entry">
-    <div class="chip top">CREW LOUNGE</div>
-    <div class="chip bottom">CREW LOUNGE</div>
-  </a>
+ <a href="lounge.html" class="lounge-entry">
+
+  <div class="coffee-icon">
+    <div class="cup"></div>
+    <div class="steam"></div>
+  </div>
+
+  <div class="chip top">CREW LOUNGE</div>
+  <div class="chip bottom">CREW LOUNGE</div>
+</a>
 </div>
 <script>
 const video = document.getElementById("heroVideo");
