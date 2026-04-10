@@ -28,7 +28,7 @@ body{
 .line{
   opacity:0;
   line-height:1.8;
-  transition:opacity 0.8s ease;
+transition:opacity 1.2s ease;
   font-size:18px;
   letter-spacing:1px;
   position:absolute;
@@ -166,17 +166,28 @@ function glitch(line){
 
 /* 切换 */
 function nextLine(){
+
+  // 当前句：开始淡出
   glitch(lines[index]);
+  lines[index].classList.remove("active");
 
-  if(index < lines.length - 1){
-    lines[index].classList.remove("active");
-    index++;
-    lines[index].classList.add("active");
+  // 等淡出完成（关键时间）
+  setTimeout(()=>{
 
-    glitch(lines[index]);
-  }else{
-    enterWorld();
-  }
+    if(index < lines.length - 1){
+      index++;
+
+      // 再稍微等一点点（让画面“空一下”）
+      setTimeout(()=>{
+        lines[index].classList.add("active");
+        glitch(lines[index]);
+      }, 200);
+
+    }else{
+      enterWorld();
+    }
+
+  }, 1000); // 👈 这里控制“消失速度 + 呼吸感”
 }
 
 /* 点击推进 */
