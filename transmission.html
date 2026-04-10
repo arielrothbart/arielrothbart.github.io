@@ -34,11 +34,12 @@ transition:opacity 1.2s ease;
   position:absolute;
   left:0;
   right:0;
+  text-shadow: 0 0 8px rgba(255,255,255,0.15);
 }
 
 .line.active{
   opacity:1;
-  position:relative;
+  animation:powerOn 1.8s ease forwards;
 }
 
 /* glitch层（复制文字） */
@@ -105,7 +106,29 @@ body::after{
 body.distort{
   animation:distort 0.2s linear;
 }
-
+@keyframes powerOn{
+  0%{
+    opacity:0;
+    filter:brightness(0.2) blur(2px);
+    letter-spacing:6px;
+    transform:translateY(6px); 
+  }
+  40%{
+    opacity:0.6;
+    filter:brightness(1.2) blur(1px);
+    letter-spacing:3px;
+  }
+  70%{
+    opacity:0.9;
+    filter:brightness(1.4) blur(0.5px);
+  }
+  100%{
+    opacity:1;
+    filter:brightness(1) blur(0);
+    letter-spacing:1px;
+    transform:translateY(0);  
+  }
+}
 @keyframes distort{
   0%{transform:translate(0,0);}
   25%{transform:translate(1px,-1px);}
@@ -169,7 +192,7 @@ function nextLine(){
 
   // 当前句：开始淡出
   glitch(lines[index]);
-  lines[index].classList.remove("active");
+ lines[index].style.opacity = "0";
 
   // 等淡出完成（关键时间）
   setTimeout(()=>{
