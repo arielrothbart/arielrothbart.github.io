@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rhapsody in Neon</title>
+
+<style>
+body{
+  margin:0;
+  background:#0a0a0a;
+  color:#eaeaea;
+  font-family:sans-serif;
+}
+
+/* 主容器 */
+.world-bridge{
+  padding:120px 20px;
+  text-align:center;
+}
+
+/* 三句总纲 */
+.bridge-intro p{
+  margin:6px 0;
+  font-size:14px;
+  letter-spacing:1px;
+  opacity:0.6;
+}
+
+/* 网格 */
+.bridge-grid{
+  margin-top:80px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:40px;
+}
+
+/* 卡片 */
+.bridge-node{
+  position:relative;
+  padding:24px;
+  border:1px solid rgba(255,255,255,0.1);
+  text-decoration:none;
+  color:inherit;
+  transition:all 0.3s ease;
+}
+
+/* 主入口 */
+.bridge-node.primary{
+  border-color:rgba(255,255,255,0.3);
+}
+
+/* 标题 */
+.bridge-node h3{
+  font-size:16px;
+  margin-bottom:10px;
+  letter-spacing:1px;
+}
+
+/* 描述 */
+.node-desc{
+  font-size:12px;
+  opacity:0.6;
+  line-height:1.6;
+}
+
+/* hover */
+.bridge-node:hover{
+  border-color:rgba(255,255,255,0.5);
+  transform:translateY(-2px);
+}
+
+/* hint */
+.node-hint{
+  position:absolute;
+  bottom:10px;
+  right:12px;
+  font-size:10px;
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+
+.bridge-node:hover .node-hint{
+  opacity:0.4;
+}
+
+/* 锁定 */
+.bridge-node.locked{
+  opacity:0.4;
+}
+
+.bridge-node.locked:hover{
+  transform:none;
+  border-color:rgba(255,255,255,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<section class="world-bridge">
+
+  <!-- 总纲 -->
+  <div class="bridge-intro">
+    <p>The sky carries currents.</p>
+    <p>Signals arrive in fragments.</p>
+    <p>Distance returns.</p>
+  </div>
+
+  <!-- 入口 -->
+  <div class="bridge-grid">
+
+    <a href="#" class="bridge-node primary">
+      <h3>Rhapsody in Neon</h3>
+      <p class="node-desc">A single year. Failures begin to surface.</p>
+    </a>
+
+    <a href="#" class="bridge-node">
+      <h3>The Celestial Chronicle</h3>
+      <p class="node-desc">
+        The only vessel that crosses the tide.<br>
+        Its records were never meant to exist.
+      </p>
+      <span class="node-hint">Route stability: unknown</span>
+    </a>
+
+    <a href="#" class="bridge-node">
+      <h3>Personnel Files</h3>
+      <p class="node-desc">Identities reconstructed from unstable transmissions.</p>
+    </a>
+
+    <a href="construction.html" class="bridge-node locked">
+      <h3>Polyphony: Castling</h3>
+      <p class="node-desc">This node is still assembling.</p>
+    </a>
+
+  </div>
+
+</section>
+
+</body>
+</html>
