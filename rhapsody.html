@@ -5,226 +5,219 @@
 <title>Rhapsody in Neon</title>
 
 <style>
+body{
+  margin:0;
+  background:#050505;
+  color:#eaeaea;
+  font-family:sans-serif;
+  overflow:hidden;
+}
+
+/* ===== Home 按钮 ===== */
 .home-logo{
   position:fixed;
   top:30px;
   left:30px;
-  z-index:100;
+  z-index:10;
   opacity:0.6;
   transition:0.3s;
 }
-
 .home-logo img{
   width:50px;
 }
-
 .home-logo:hover{
   opacity:1;
   transform:scale(1.1);
 }
-  
-body{
-  margin:0;
-  background:#0a0a0a;
-  color:#eaeaea;
-  font-family:sans-serif;
-}
 
-/* 主容器 */
-.world-bridge{
-  padding:120px 20px;
+/* ===== 标题（你可以换成图片）===== */
+.title{
+  position:absolute;
+  top:60px;
+  left:50%;
+  transform:translateX(-50%);
   text-align:center;
+  opacity:0.8;
+  letter-spacing:3px;
 }
 
-/* 三句总纲 */
-.bridge-intro p{
-  margin:6px 0;
-  font-size:14px;
-  letter-spacing:1px;
-  opacity:0.6;
-}
-
-/* 网格 */
-.bridge-grid{
-  margin-top:80px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-  gap:40px;
-}
-
-/* 卡片 */
-.bridge-node{
+/* ===== 世界地图容器 ===== */
+.world-map{
   position:relative;
-  padding:24px;
-  border:1px solid rgba(255,255,255,0.1);
-  text-decoration:none;
-  color:inherit;
-  transition:all 0.3s ease;
+  width:100%;
+  height:100vh;
 }
 
-/* 主入口 */
-.bridge-node.primary{
-  border-color:rgba(255,255,255,0.3);
+/* ===== 节点 ===== */
+.node{
+  position:absolute;
+  width:260px;
+  text-align:center;
+  cursor:pointer;
+}
+
+/* 海报 */
+.node img{
+  width:100%;
+  display:block;
+  opacity:0.5;
+  transition:0.4s ease;
+  filter:brightness(0.6);
+}
+
+/* hover */
+.node:hover img{
+  opacity:1;
+  transform:scale(1.05);
+  filter:brightness(1.1);
 }
 
 /* 标题 */
-.bridge-node h3{
-  font-size:16px;
-  margin-bottom:10px;
+.node-title{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  pointer-events:none;
+}
+
+.node-title h3{
+  margin:0;
+  font-size:18px;
   letter-spacing:1px;
 }
 
-/* 描述 */
-.node-desc{
-  font-size:12px;
-  opacity:0.6;
-  line-height:1.6;
+.node-title p{
+  margin-top:6px;
+  font-size:13px;
+  opacity:0.7;
 }
 
-/* hover */
-.bridge-node:hover{
-  border-color:rgba(255,255,255,0.5);
-  transform:translateY(-2px);
-}
-
-/* hint */
-.node-hint{
-  position:absolute;
-  bottom:10px;
-  right:12px;
-  font-size:10px;
-  opacity:0;
-  transition:opacity 0.3s ease;
-}
-
-.bridge-node:hover .node-hint{
-  opacity:0.4;
-}
-.bridge-system{
-  position:relative;
-  margin-top:100px;
-  height:400px;
-}
-
-/* 所有节点 */
-.node{
-  position:absolute;
-  width:220px;
-  text-align:center;
-  padding:20px;
-  border:1px solid rgba(255,255,255,0.1);
-  text-decoration:none;
-  color:#eaeaea;
-  transition:0.3s;
-}
-
-/* 中心节点 */
-.node.center{
+/* ===== 中心 ===== */
+.rin{
   left:50%;
   top:50%;
-  transform:translate(-50%, -50%);
-  border-color:rgba(255,255,255,0.4);
+  transform:translate(-50%,-50%);
 }
 
-/* 左支线 */
-.node.left{
-  left:10%;
-  top:50%;
-  transform:translateY(-50%);
+/* 左 */
+.chronicle{
+  left:15%;
+  top:45%;
 }
 
-/* 右支线 */
-.node.right{
-  right:10%;
-  top:50%;
-  transform:translateY(-50%);
+/* 右 */
+.files{
+  right:15%;
+  top:45%;
 }
 
-/* 下方 */
-.node.bottom{
+/* 下 */
+.polyphony{
   left:50%;
-  bottom:0;
+  bottom:10%;
   transform:translateX(-50%);
+  opacity:0.6;
 }
 
-/* hover */
-.node:hover{
-  border-color:rgba(255,255,255,0.6);
-  transform:translate(-50%, -50%) scale(1.05);
-}
-
-/* 锁定 */
-.node.locked{
-  opacity:0.4;
-}
-.bridge-system::before{
-  content:"";
+/* ===== 连接线 ===== */
+.line{
   position:absolute;
-  top:50%;
-  left:50%;
-  width:60%;
+  background:rgba(255,255,255,0.1);
+}
+
+/* 横线 */
+.line-h{
   height:1px;
-  background:rgba(255,255,255,0.1);
-  transform:translate(-50%, -50%);
 }
 
-.bridge-system::after{
+/* 竖线 */
+.line-v{
+  width:1px;
+}
+
+/* 中心十字 */
+.line.center-h{
+  top:50%;
+  left:20%;
+  width:60%;
+}
+
+.line.center-v{
+  left:50%;
+  top:30%;
+  height:50%;
+}
+
+/* glow（很轻） */
+.line::after{
   content:"";
   position:absolute;
-  left:50%;
-  top:50%;
-  width:1px;
-  height:60%;
-  background:rgba(255,255,255,0.1);
-  transform:translate(-50%, -50%);
+  width:100%;
+  height:100%;
+  background:rgba(0,200,255,0.15);
+  filter:blur(4px);
+  opacity:0.5;
 }
 </style>
 </head>
 
 <body>
+
+<!-- Home -->
 <a href="index.html" class="home-logo">
   <img src="logo.png">
 </a>
-  
-<section class="world-bridge">
 
-  <!-- 总纲 -->
-  <div class="bridge-intro">
-    <p>The sky carries currents.</p>
-    <p>Signals arrive in fragments.</p>
-    <p>Distance returns.</p>
-  </div>
+<!-- 标题（你可以换成图片） -->
+<div class="title">
+  <h2>Rhapsody in Neon</h2>
+</div>
 
-  <!-- 入口 -->
- <div class="bridge-system">
+<div class="world-map">
 
-  <!-- 中心：RIN -->
-  <a href="#" class="node center">
-    <h3>Rhapsody in Neon</h3>
-    <p>A single year. Failures begin to surface.</p>
+  <!-- 连接线 -->
+  <div class="line line-h center-h"></div>
+  <div class="line line-v center-v"></div>
+
+  <!-- 中心 -->
+  <a href="#" class="node rin">
+    <img src="images/rin.jpg">
+    <div class="node-title">
+      <h3>Rhapsody in Neon</h3>
+      <p>霓虹狂想曲</p>
+    </div>
   </a>
 
-  <!-- 左：Chronicle -->
-  <a href="#" class="node left">
-    <h3>The Celestial Chronicle</h3>
-    <p>The only vessel that crosses the tide.</p>
+  <!-- 左 -->
+  <a href="#" class="node chronicle">
+    <img src="images/tcc.jpg">
+    <div class="node-title">
+      <h3>The Celestial Chronicle</h3>
+      <p>苍穹列记</p>
+    </div>
   </a>
 
-  <!-- 右：Characters -->
-  <a href="#" class="node right">
-    <h3>Personnel Files</h3>
-    <p>Identities reconstructed from unstable signals.</p>
+  <!-- 右 -->
+  <a href="#" class="node files">
+    <img src="images/files.jpg">
+    <div class="node-title">
+      <h3>Personnel Files</h3>
+      <p>人物档案</p>
+    </div>
   </a>
 
-  <!-- 下：Polyphony -->
-  <a href="construction.html" class="node bottom locked">
-    <h3>Polifonía: Enroque</h3>
-    <p>This node is still assembling.</p>
+  <!-- 下 -->
+  <a href="construction.html" class="node polyphony">
+    <img src="images/poly.jpg">
+    <div class="node-title">
+      <h3>Polifonía: Enroque</h3>
+      <p>复调：王车易位</p>
+    </div>
   </a>
 
 </div>
-
-</section>
 
 </body>
 </html>
