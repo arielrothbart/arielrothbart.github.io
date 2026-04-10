@@ -5,6 +5,24 @@
 <title>Rhapsody in Neon</title>
 
 <style>
+.home-logo{
+  position:fixed;
+  top:30px;
+  left:30px;
+  z-index:100;
+  opacity:0.6;
+  transition:0.3s;
+}
+
+.home-logo img{
+  width:50px;
+}
+
+.home-logo:hover{
+  opacity:1;
+  transform:scale(1.1);
+}
+  
 body{
   margin:0;
   background:#0a0a0a;
@@ -82,21 +100,92 @@ body{
 .bridge-node:hover .node-hint{
   opacity:0.4;
 }
-
-/* 锁定 */
-.bridge-node.locked{
-  opacity:0.4;
+.bridge-system{
+  position:relative;
+  margin-top:100px;
+  height:400px;
 }
 
-.bridge-node.locked:hover{
-  transform:none;
-  border-color:rgba(255,255,255,0.2);
+/* 所有节点 */
+.node{
+  position:absolute;
+  width:220px;
+  text-align:center;
+  padding:20px;
+  border:1px solid rgba(255,255,255,0.1);
+  text-decoration:none;
+  color:#eaeaea;
+  transition:0.3s;
+}
+
+/* 中心节点 */
+.node.center{
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  border-color:rgba(255,255,255,0.4);
+}
+
+/* 左支线 */
+.node.left{
+  left:10%;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+/* 右支线 */
+.node.right{
+  right:10%;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+/* 下方 */
+.node.bottom{
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+}
+
+/* hover */
+.node:hover{
+  border-color:rgba(255,255,255,0.6);
+  transform:translate(-50%, -50%) scale(1.05);
+}
+
+/* 锁定 */
+.node.locked{
+  opacity:0.4;
+}
+.bridge-system::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:60%;
+  height:1px;
+  background:rgba(255,255,255,0.1);
+  transform:translate(-50%, -50%);
+}
+
+.bridge-system::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:1px;
+  height:60%;
+  background:rgba(255,255,255,0.1);
+  transform:translate(-50%, -50%);
 }
 </style>
 </head>
 
 <body>
-
+<a href="index.html" class="home-logo">
+  <img src="logo.png">
+</a>
+  
 <section class="world-bridge">
 
   <!-- 总纲 -->
@@ -107,33 +196,33 @@ body{
   </div>
 
   <!-- 入口 -->
-  <div class="bridge-grid">
+ <div class="bridge-system">
 
-    <a href="#" class="bridge-node primary">
-      <h3>Rhapsody in Neon</h3>
-      <p class="node-desc">A single year. Failures begin to surface.</p>
-    </a>
+  <!-- 中心：RIN -->
+  <a href="#" class="node center">
+    <h3>Rhapsody in Neon</h3>
+    <p>A single year. Failures begin to surface.</p>
+  </a>
 
-    <a href="#" class="bridge-node">
-      <h3>The Celestial Chronicle</h3>
-      <p class="node-desc">
-        The only vessel that crosses the tide.<br>
-        Its records were never meant to exist.
-      </p>
-      <span class="node-hint">Route stability: unknown</span>
-    </a>
+  <!-- 左：Chronicle -->
+  <a href="#" class="node left">
+    <h3>The Celestial Chronicle</h3>
+    <p>The only vessel that crosses the tide.</p>
+  </a>
 
-    <a href="#" class="bridge-node">
-      <h3>Personnel Files</h3>
-      <p class="node-desc">Identities reconstructed from unstable transmissions.</p>
-    </a>
+  <!-- 右：Characters -->
+  <a href="#" class="node right">
+    <h3>Personnel Files</h3>
+    <p>Identities reconstructed from unstable signals.</p>
+  </a>
 
-    <a href="construction.html" class="bridge-node locked">
-      <h3>Polyphony: Castling</h3>
-      <p class="node-desc">This node is still assembling.</p>
-    </a>
+  <!-- 下：Polyphony -->
+  <a href="construction.html" class="node bottom locked">
+    <h3>Polifonía: Enroque</h3>
+    <p>This node is still assembling.</p>
+  </a>
 
-  </div>
+</div>
 
 </section>
 
