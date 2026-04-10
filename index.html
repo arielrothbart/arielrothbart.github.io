@@ -267,19 +267,18 @@ font-family: 'Poiret One', sans-serif;
       box-shadow: 0 0 22px #00c8ff;
     }
 .lounge-entry{
-  position: absolute;        /* 👈 改这里 */
-  left: 50%;
-  transform: translateX(-50%);
+  width:220px;
+  height:50px;
 
-  top: calc(100vh + 120px);  /* 👈 关键：在首屏下面 */
+  margin:60px auto 120px;  /* 👈 控制上下间距 */
 
-  width: 220px;
-  height: 50px;
-
-  cursor: pointer;
-  z-index: 10;
+  position:relative;
+  cursor:pointer;
 }
-
+.lounge-wrapper{
+  display:flex;
+  justify-content:center;
+}
 /* 两层 */
 .chip{
   position:absolute;
@@ -421,10 +420,12 @@ font-family: 'Poiret One', sans-serif;
   </a>
 </div>
 
-<a href="lounge.html" class="lounge-entry">
-  <div class="chip top">CREW LOUNGE</div>
-  <div class="chip bottom">CREW LOUNGE</div>
-</div>  
+<div class="lounge-wrapper">
+  <a href="lounge.html" class="lounge-entry">
+    <div class="chip top">CREW LOUNGE</div>
+    <div class="chip bottom">CREW LOUNGE</div>
+  </a>
+</div>
 <script>
 const video = document.getElementById("heroVideo");
 
