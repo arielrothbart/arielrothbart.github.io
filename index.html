@@ -272,6 +272,7 @@ font-family: 'Poiret One', sans-serif;
   margin:80px auto 120px;
   position:relative;
   cursor:pointer;
+  position:relative;
 }
 
 /* 外框（细线舱门感） */
@@ -332,10 +333,14 @@ font-family: 'Poiret One', sans-serif;
   background:rgba(0,200,255,0.5);
 }
     .airlock-label{
-  text-align:center;
+  position:absolute;
+  top:130px;   /* 👈 控制和门的距离 */
+  left:50%;
+  transform:translateX(-50%);
+
   font-size:11px;
   letter-spacing:2px;
-  opacity:0.4;
+  opacity:0.5;
 }
   @media (max-width: 768px) {
 
