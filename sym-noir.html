@@ -644,6 +644,12 @@ function toggleMenu(){
   sidebar.classList.toggle("open");
   overlay.classList.toggle("show");
 }
+  // 根据URL跳转到对应页面
+window.onload = function(){
+  if(window.location.hash === "#characters"){
+    showCharacters();
+  }
+}
 </script>
 
 </body>
