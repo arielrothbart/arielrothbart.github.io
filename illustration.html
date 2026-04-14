@@ -173,7 +173,16 @@ h1 {
 .scroll-top:hover {
   transform: scale(1.1);
 }
+.viewer-content{
+  text-align:center;
+}
 
+#viewer-caption{
+  margin-top:20px;
+  font-size:13px;
+  opacity:0.7;
+  line-height:1.6;
+}
 /* 📱手机 */
 @media (max-width: 768px) {
   .home-logo {
@@ -190,6 +199,7 @@ h1 {
     bottom: 20px;
   }
 }
+  
 </style>
 
 </head>
@@ -209,45 +219,57 @@ h1 {
     <div class="caption">
       Achron Nocturne<br>
       Digital by Procreate<br>
-     In a assassin universe like 《John Wick》.
+     In a assassin universe like 《John Wick》. 
     </div>
-     
+      </figure>
+  
+   <figure class="item">
     <img src="images/illustration/ill2.jpg">
     <div class="caption">
      Hell Hound<br>
       Digital by Procreate<br>
      The childhood of a hellhound——Sanada Tetsu.
     </div>
+ </figure>
 
+   <figure class="item">
     <img src="images/illustration/ill3.jpg">
     <div class="caption">
      人之怒 兽之哀<br>
       Digital by Clip Studio Paint<br>
     Yagami as Yamata no Orochi, Shin as Sugahara no Michizane，in Fate au.
     </div>
-    
-    <img src="images/illustration/ill4jpg">
+  </figure>
+
+   <figure class="item">
+    <img src="images/illustration/ill4.jpg">
     <div class="caption">
      The Meeting<br>
      Digital by Clip Studio Paint<br>
     In the Achron Nocturne, this is the London Continantal group.
     </div>
-    
-    <img src="images/illustration/ill5jpg">
+     </figure>
+
+   <figure class="item">
+    <img src="images/illustration/ill5.jpg">
     <div class="caption">
   Batman and Two Face<br>
      Digital by Clip Studio Paint<br>
     Fan art for batman.
     </div>
-    
-    <img src="images/illustration/ill6jpg">
+     </figure>
+
+   <figure class="item">
+    <img src="images/illustration/ill6.jpg">
     <div class="caption">
     Gotham Nocturne<br>
      Digital by Procreate<br>
     Fan art for batman.
     </div>
-    
-     <img src="images/illustration/ill7jpg">
+     </figure>
+
+   <figure class="item">
+     <img src="images/illustration/ill7.jpg">
     <div class="caption">
    The Light<br>
      Digital byClip Studio Paint<br>
@@ -263,7 +285,12 @@ h1 {
 
 <div class="viewer" id="viewer">
   <span class="arrow left" id="prev">&#10094;</span>
-  <img id="viewer-img">
+
+  <div class="viewer-content">
+    <img id="viewer-img">
+    <div id="viewer-caption"></div>
+  </div>
+
   <span class="arrow right" id="next">&#10095;</span>
 </div>
 
@@ -285,17 +312,21 @@ let currentIndex = 0;
 let list = [];
 let scrollLock = false;
 
-const images = document.querySelectorAll('.item img');
+const items = document.querySelectorAll('.item');
 
-images.forEach(img => {
+items.forEach(item => {
 
-  const fullSrc = img.src;
-  img.dataset.full = fullSrc;
+  const img = item.querySelector("img");
+  const caption = item.querySelector(".caption").innerHTML;
 
-  list.push(img);
+  list.push({
+    src: img.src,
+    caption: caption
+  });
 
   img.onclick = () => {
-    currentIndex = list.indexOf(img);
+    currentIndex = list.length - 1;
+    document.getElementById("viewer-caption").innerHTML = caption;
     openViewer();
   };
 
@@ -303,11 +334,11 @@ images.forEach(img => {
 
 function openViewer() {
   viewer.style.display = 'flex';
-  viewerImg.src = list[currentIndex].dataset.full;
-  viewerImg.style.opacity = 1;
-  viewerImg.style.transform = 'translateX(0)';
+  viewerImg.src = list[currentIndex].src;
+  document.getElementById("viewer-caption").innerHTML =
+    list[currentIndex].caption;
 }
-
+  
 function closeViewer() {
   viewer.style.display = 'none';
 }
@@ -331,7 +362,7 @@ function change(direction) {
 
     viewerImg.style.transition = 'none';
 
-    viewerImg.src = list[currentIndex].dataset.full;
+   viewerImg.src = list[currentIndex].src;
 
     viewerImg.style.transform =
       direction === 'next'
