@@ -367,7 +367,10 @@ function change(direction) {
     viewerImg.style.transition = 'none';
 
    viewerImg.src = list[currentIndex].src;
-
+    
+document.getElementById("viewer-caption").innerHTML =
+  list[currentIndex].caption;
+    
     viewerImg.style.transform =
       direction === 'next'
         ? `translateX(${offset}px)`
