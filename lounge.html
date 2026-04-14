@@ -14,11 +14,12 @@
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
+            /* 修正：改用最小高度，允许滚动 */
+            min-height: 100vh;
             background: #0d0d15;
             color: #e0e0e0;
             font-family: 'Vladivostok', 'Courier New', serif;
-            overflow: hidden;
+            /* 修正：移除 overflow: hidden */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -51,6 +52,8 @@
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 180, 100, 0.2);
+            /* 修正：增加上下 Margin，防止手机端顶头顶尾 */
+            margin: 40px 0;
             padding: 40px;
             border-radius: 4px;
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 180, 100, 0.05);
@@ -101,7 +104,6 @@
             border: 1px dashed rgba(255, 180, 100, 0.2);
         }
 
-        /* 提示词在动图上方 */
         .action-hint {
             font-size: 11px;
             color: #ffb464;
@@ -151,6 +153,7 @@
         .back-link {
             display: block;
             margin-top: 30px;
+            padding-bottom: 10px; /* 增加一点底部保护空间 */
             font-size: 11px;
             text-decoration: none;
             color: #555;
@@ -163,9 +166,12 @@
             text-shadow: 0 0 8px rgba(255, 180, 100, 0.4);
         }
 
+        /* 针对小屏幕的微调 */
         @media (max-width: 600px) {
-            .lounge-panel { padding: 25px; }
+            .lounge-panel { padding: 25px; margin: 20px 0; }
             .avatar-click-zone { width: 140px; height: 140px; }
+            h1 { font-size: 1.2rem; }
+            .message-content { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -191,11 +197,9 @@
 
         <div class="bunny-station">
             <div class="action-hint" id="actionHint">Click image for direct replenishment mode...</div>
-            
             <div class="avatar-click-zone" onclick="toggleQR()">
                 <img id="displayImg" src="images/about/draw.gif" alt="Captain & Ryutaro">
             </div>
-
             <div class="bunny-status" id="bunnyMsg">Ryutaro is currently: Waiting for a carrot...</div>
         </div>
 
@@ -217,13 +221,11 @@
             const hintElement = document.getElementById('actionHint');
             
             if (!isQR) {
-                // 变成二维码时
                 imgElement.src = qrImg;
                 hintElement.innerText = "Click to return: Back to drawing mode.";
                 statusBox.innerText = "Switching to direct replenishment mode...";
                 statusBox.style.color = "#ffb464";
             } else {
-                // 变回画画时
                 imgElement.src = mainImg;
                 hintElement.innerText = "Click image for direct replenishment mode...";
                 statusBox.innerText = "Back to drawing mode.";
