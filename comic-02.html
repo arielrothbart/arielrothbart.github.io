@@ -239,8 +239,6 @@ body{
   <!-- 漫画页容器 -->
   <div id="pages-container"></div>
 
-  const container = document.getElementById("pages-container");
-
 <div class="project-nav">
 
   <a href="comic-01.html">
@@ -266,6 +264,8 @@ body{
 <div class="top-btn" id="topBtn">↑</div>
 
 <script>
+ const container = document.getElementById("pages-container");
+  
 /* 👇 改这里就能控制页数 */
 const totalPages = 11;
 
