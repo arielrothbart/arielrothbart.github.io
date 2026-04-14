@@ -144,6 +144,11 @@ body{
 
   white-space: normal;
   word-break: break-word;
+  
+    user-select: none;
+  -webkit-user-select: none; /* 兼容 Safari/Chrome */
+  -moz-user-select: none;    /* 兼容 Firefox */
+  -ms-user-select: none;     /* 兼容 IE10+ */
 }
 
 .story-text p{
@@ -437,6 +442,12 @@ margin-right:35px;
 </div>
 
 </div>
+// 专门针对故事文本区域禁用右键菜单
+const storyArea = document.getElementById("storyText");
+
+storyArea.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+}, false);
 
 <script>
 
