@@ -331,7 +331,6 @@ items.forEach(item => {
 
   img.onclick = () => {
    currentIndex = list.findIndex(item => item.src === img.src);
-    document.getElementById("viewer-caption").innerHTML = caption;
     openViewer();
   };
 
