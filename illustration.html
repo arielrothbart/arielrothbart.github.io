@@ -6,6 +6,13 @@
     <title>Illustration | Symphony Noir</title>
 
     <style>
+        /* 禁用所有图片的拖拽和长按选中 */
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: auto; /* 确保点击查看功能依然可用 */
+}
+
         /* 1. 基础全局样式 */
         body {
             margin: 0;
@@ -394,6 +401,20 @@
                 if (e.key === 'Escape') closeViewer();
             }
         });
+        // 禁止全页面的右键点击
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+}, false);
+
+// 额外保护：禁止某些快捷键（如 Ctrl+S 保存页面）
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+    e.preventDefault();
+    // 可选：弹出一个优雅的提示
+    // alert("Gallery content is protected.");
+  }
+}, false);
+
     </script>
 </body>
 </html>
