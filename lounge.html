@@ -14,12 +14,10 @@
         body, html {
             margin: 0;
             padding: 0;
-            /* 修正：改用最小高度，允许滚动 */
             min-height: 100vh;
             background: #0d0d15;
             color: #e0e0e0;
             font-family: 'Vladivostok', 'Courier New', serif;
-            /* 修正：移除 overflow: hidden */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -52,7 +50,6 @@
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 180, 100, 0.2);
-            /* 修正：增加上下 Margin，防止手机端顶头顶尾 */
             margin: 40px 0;
             padding: 40px;
             border-radius: 4px;
@@ -153,7 +150,7 @@
         .back-link {
             display: block;
             margin-top: 30px;
-            padding-bottom: 10px; /* 增加一点底部保护空间 */
+            padding-bottom: 10px;
             font-size: 11px;
             text-decoration: none;
             color: #555;
@@ -161,17 +158,11 @@
             letter-spacing: 2px;
         }
 
-        .back-link:hover { 
-            color: #ffb464; 
-            text-shadow: 0 0 8px rgba(255, 180, 100, 0.4);
-        }
+        .back-link:hover { color: #ffb464; text-shadow: 0 0 8px rgba(255, 180, 100, 0.4); }
 
-        /* 针对小屏幕的微调 */
         @media (max-width: 600px) {
             .lounge-panel { padding: 25px; margin: 20px 0; }
             .avatar-click-zone { width: 140px; height: 140px; }
-            h1 { font-size: 1.2rem; }
-            .message-content { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -180,7 +171,7 @@
     <div class="stars-bg"></div>
 
     <div class="lounge-panel">
-        <span class="status-tag">LOCATION: CREW LOUNGE // ENERGY LEVEL: LOW</span>
+        <span class="status-tag">LOCATION: CREW LOUNGE // STATUS: RECOVERY MODE</span>
         
         <h1>REPLENISHMENT STATION</h1>
 
@@ -197,9 +188,11 @@
 
         <div class="bunny-station">
             <div class="action-hint" id="actionHint">Click image for direct replenishment mode...</div>
+            
             <div class="avatar-click-zone" onclick="toggleQR()">
-                <img id="displayImg" src="images/about/draw.gif" alt="Captain & Ryutaro">
+                <img id="displayImg" src="images/about/draw.gif" alt="Captain Drawing">
             </div>
+
             <div class="bunny-status" id="bunnyMsg">Ryutaro is currently: Waiting for a carrot...</div>
         </div>
 
@@ -215,17 +208,20 @@
         const mainImg = "images/about/draw.gif"; 
         const qrImg = "images/about/alipay.jpg"; 
 
+        // 切换图片时的逻辑：修正提示语方向
         function toggleQR() {
             const imgElement = document.getElementById('displayImg');
             const statusBox = document.getElementById('bunnyMsg');
             const hintElement = document.getElementById('actionHint');
             
             if (!isQR) {
+                // 当前是画画图 -> 点击切到二维码
                 imgElement.src = qrImg;
                 hintElement.innerText = "Click to return: Back to drawing mode.";
                 statusBox.innerText = "Switching to direct replenishment mode...";
                 statusBox.style.color = "#ffb464";
             } else {
+                // 当前是二维码 -> 点击切回画画图
                 imgElement.src = mainImg;
                 hintElement.innerText = "Click image for direct replenishment mode...";
                 statusBox.innerText = "Back to drawing mode.";
@@ -234,6 +230,7 @@
             isQR = !isQR;
         }
 
+        // 点击支持按钮时的逻辑：显示趣味互动
         function feedBunny() {
             const msgs = [
                 "Ryutaro: (Crunch crunch) Captain is eating too!",
