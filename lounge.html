@@ -24,7 +24,6 @@
             justify-content: center;
         }
 
-        /* 🌌 动态星空背景 */
         .stars-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -46,24 +45,16 @@
             to { background-position: 1000px 500px; }
         }
 
-        /* 🛸 休息舱主面板 */
         .lounge-panel {
             width: 90%;
-            max-width: 650px;
+            max-width: 600px;
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 180, 100, 0.2);
-            padding: 30px 40px;
+            padding: 25px 40px; /* 稍微压缩垂直内边距 */
             border-radius: 4px;
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-            position: relative;
             text-align: center;
-            animation: panelFade 1.5s ease;
-        }
-
-        @keyframes panelFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .status-tag {
@@ -71,91 +62,91 @@
             letter-spacing: 3px;
             color: #ffb464;
             opacity: 0.7;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: block;
         }
 
         .message-content {
-            line-height: 1.8;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
             text-align: left;
             border-left: 2px solid rgba(255, 180, 100, 0.3);
-            padding-left: 20px;
+            padding-left: 15px;
         }
 
-        .message-content p { margin: 12px 0; opacity: 0.8; }
+        .message-content p { margin: 8px 0; opacity: 0.8; }
         .highlight { color: #ffb464; font-weight: bold; }
 
-        /* 互动区 */
         .bunny-station {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 25px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px dashed rgba(255, 180, 100, 0.2);
         }
 
-        /* 操作提示文字 - 放在动图上方 */
         .action-hint {
-            font-size: 11px;
+            font-size: 10px;
             color: #ffb464;
-            margin-bottom: 12px;
-            opacity: 0.8;
-            letter-spacing: 1px;
+            margin-bottom: 8px;
+            opacity: 0.7;
         }
 
+        /* 🖼️ 动图缩放核心控制 */
         .avatar-click-zone {
             width: 100%;
-            max-width: 400px; /* 限制最大显示宽度，防止超出边框 */
+            max-width: 260px; /* 调回较小的宽度 */
+            max-height: 180px; /* 强制限制高度，防止顶住边缘 */
             margin: 0 auto;
             cursor: pointer;
-            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
         
         .avatar-click-zone img {
-            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
             height: auto;
-            display: block;
-            border-radius: 2px;
+            width: auto;
+            object-fit: contain;
         }
 
-        /* 互动状态文字 - 留在动图下方 */
         .bunny-status {
-            font-size: 12px;
+            font-size: 11px;
             color: #888;
-            margin-top: 12px;
+            margin-top: 10px;
             min-height: 1.2em;
         }
 
         .kofi-button {
             display: inline-block;
-            padding: 14px 40px;
+            padding: 12px 35px;
             border: 1px solid #ffb464;
             color: #ffb464;
             text-decoration: none;
-            letter-spacing: 4px;
-            font-size: 13px;
+            letter-spacing: 3px;
+            font-size: 12px;
             transition: all 0.3s;
-            background: transparent;
         }
 
         .kofi-button:hover {
             background: #ffb464;
             color: #000;
-            box-shadow: 0 0 20px rgba(255, 180, 100, 0.4);
         }
 
         .back-link {
             display: block;
-            margin-top: 25px;
-            font-size: 11px;
+            margin-top: 20px;
+            font-size: 10px;
             text-decoration: none;
             color: #555;
             transition: 0.3s;
         }
 
-        .back-link:hover { color: #ffb464; text-shadow: 0 0 8px rgba(255, 180, 100, 0.4); }
+        .back-link:hover { color: #ffb464; }
 
     </style>
 </head>
@@ -204,11 +195,9 @@
             const hintElement = document.getElementById('actionHint');
             
             if (!isQR) {
-                // 变成二维码时
                 imgElement.src = qrImg;
                 hintElement.innerText = "Click to return: Back to drawing mode.";
             } else {
-                // 变回画画时
                 imgElement.src = mainImg;
                 hintElement.innerText = "Click image for direct replenishment mode...";
             }
