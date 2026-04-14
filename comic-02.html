@@ -236,52 +236,11 @@ body{
 <!-- 内容 -->
 <div class="content">
 
+  <!-- 漫画页容器 -->
+  <div id="pages-container"></div>
 
-  <!-- 漫画页 -->
-  <div class="page">
-    <img src="images/comics/comic-02/page1.jpg">
-  </div>
+  const container = document.getElementById("pages-container");
 
-  <div class="page">
-    <img src="images/comics/comic-02/page2.jpg">
-  </div>
-
-  <div class="page">
-    <img src="images/comics/comic-02/page3.jpg">
-  </div>
-  
- <div class="page">
-    <img src="images/comics/comic-02/page4.jpg">
-  </div>
-   
- <div class="page">
-    <img src="images/comics/comic-02/page5.jpg">
-  </div>
-   
- <div class="page">
-    <img src="images/comics/comic-02/page6.jpg">
-  </div>
-   
- <div class="page">
-    <img src="images/comics/comic-02/page7.jpg">
-  </div>
-   
- <div class="page">
-    <img src="images/comics/comic-02/page8.jpg">
-  </div>
-   
- <div class="page">
-    <img src="images/comics/comic-02/page9.jpg">
-  </div>
-   
- <div class="page">
-    <img src="images/comics/comic-02/page10.jpg">
-   </div>
-  
-  <div class="page">
-    <img src="images/comics/comic-02/page11.jpg">
-  </div>
-  
 <div class="project-nav">
 
   <a href="comic-01.html">
@@ -307,6 +266,19 @@ body{
 <div class="top-btn" id="topBtn">↑</div>
 
 <script>
+/* 👇 改这里就能控制页数 */
+const totalPages = 11;
+
+for(let i = 1; i <= totalPages; i++){
+  const page = document.createElement("div");
+  page.className = "page";
+
+  const img = document.createElement("img");
+  img.src = `images/comics/comic-02/page${i}.jpg`;
+
+  page.appendChild(img);
+  container.appendChild(page);
+}
 
 /* 放大 */
 const zoom = document.getElementById("zoom");
@@ -367,8 +339,11 @@ topBtn.onclick = ()=>{
   window.scrollTo({top:0, behavior:"smooth"});
 };
   
-let scale = 1;
-const pages = Array.from(document.querySelectorAll(".page img"));
+let pages = [];
+
+window.addEventListener("load", ()=>{
+  pages = Array.from(document.querySelectorAll(".page img"));
+});
 let currentIndex = 0;
 let isDragging = false;
 let startX = 0;
