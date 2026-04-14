@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Captain's Lounge | Support</title>
     <style>
-        /* 1. 引入你仓库里的科幻字体 */
         @font-face {
             font-family: 'Vladivostok';
             src: url('fonts/Vladivostok-Bold.woff') format('woff');
             font-weight: bold;
-            font-style: normal;
         }
 
         body, html {
@@ -19,15 +17,14 @@
             height: 100%;
             background: #0d0d15;
             color: #e0e0e0;
-            /* 优先使用你的 Vladivostok，中文自动回退到系统黑体 */
-            font-family: 'Vladivostok', 'Microsoft YaHei', sans-serif;
+            font-family: 'Vladivostok', sans-serif;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* 🌌 会动的动态星空背景 */
+        /* 🌌 动态星空背景（第一版效果） */
         .stars-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -41,7 +38,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
             opacity: 0.3;
-            animation: drift 60s linear infinite; /* 确保它动起来 */
+            animation: drift 60s linear infinite;
         }
 
         @keyframes drift {
@@ -49,92 +46,82 @@
             to { background-position: 1000px 500px; }
         }
 
-        /* 🛸 休息舱主面板 */
+        /* 🛸 休息舱主面板（缩小边距，更透气） */
         .lounge-panel {
-            width: 90%;
-            max-width: 650px;
+            width: 85%;
+            max-width: 500px; /* 进一步缩小宽度，显得更精致 */
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 180, 100, 0.2);
-            padding: 40px;
+            padding: 30px;
             border-radius: 4px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             text-align: center;
-            animation: panelFade 1.5s ease;
-        }
-
-        @keyframes panelFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .status-tag {
-            font-size: 10px;
-            letter-spacing: 3px;
+            font-size: 9px;
+            letter-spacing: 2px;
             color: #ffb464;
-            opacity: 0.7;
-            margin-bottom: 20px;
+            opacity: 0.6;
+            margin-bottom: 15px;
             display: block;
         }
 
-        h1 {
-            font-size: 1.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 30px;
-            color: #ffb464;
-            text-shadow: 0 0 10px rgba(255, 180, 100, 0.3);
+        /* 🖼️ 动图/二维码点击切换区 */
+        .avatar-box {
+            width: 120px; /* 缩小摆放 */
+            height: 120px;
+            margin: 0 auto 15px;
+            border: 1px solid rgba(255, 180, 100, 0.3);
+            padding: 5px;
+            background: rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s;
         }
 
-        /* 🖼️ 动图展示区 */
-        .gif-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto 30px;
-            border: 1px solid rgba(255, 180, 100, 0.1);
+        .avatar-box:hover {
+            transform: scale(1.05);
+            border-color: #ffb464;
         }
 
-        .gif-container img {
+        .avatar-box img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* 状态文字放在动图下方 */
+        .bunny-status {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 25px;
+            height: 14px; /* 固定高度防止抖动 */
         }
 
         .message-content {
-            line-height: 1.8;
-            font-size: 15px;
-            margin-bottom: 40px;
+            line-height: 1.6;
+            font-size: 13px;
             text-align: left;
             border-left: 2px solid rgba(255, 180, 100, 0.3);
-            padding-left: 20px;
-        }
-
-        .message-content p { margin: 15px 0; opacity: 0.8; }
-
-        /* 名字高亮还原 */
-        .highlight { 
-            color: #ffb464; 
-            font-weight: bold;
-            text-shadow: 0 0 8px rgba(255, 180, 100, 0.4);
-        }
-
-        .bunny-station {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
+            padding-left: 15px;
             margin-bottom: 30px;
-            border: 1px dashed rgba(255, 180, 100, 0.2);
         }
 
-        .bunny-status { font-size: 12px; color: #888; }
+        .message-content p { margin: 10px 0; opacity: 0.8; }
+
+        .highlight { color: #ffb464; font-weight: bold; }
 
         /* ☕ Ko-fi 按钮 */
         .kofi-button {
             display: inline-block;
-            padding: 18px 45px;
+            padding: 12px 35px;
             border: 1px solid #ffb464;
             color: #ffb464;
             text-decoration: none;
-            letter-spacing: 4px;
-            font-size: 13px;
+            letter-spacing: 2px;
+            font-size: 12px;
             transition: 0.3s;
             background: transparent;
         }
@@ -142,18 +129,15 @@
         .kofi-button:hover {
             background: #ffb464;
             color: #000;
-            box-shadow: 0 0 20px rgba(255, 180, 100, 0.4);
         }
 
         .back-link {
             display: block;
-            margin-top: 30px;
-            font-size: 11px;
+            margin-top: 25px;
+            font-size: 10px;
             text-decoration: none;
-            color: #555;
+            color: #444;
         }
-
-        .back-link:hover { color: #ffb464; }
     </style>
 </head>
 <body>
@@ -161,13 +145,13 @@
     <div class="stars-bg"></div>
 
     <div class="lounge-panel">
-        <span class="status-tag">LOCATION: CAPTAIN'S LOUNGE // REPLENISHMENT STATION</span>
+        <span class="status-tag">CAPTAIN'S LOUNGE // REPLENISHMENT</span>
         
-        <h1>ENERGY RECOVERY</h1>
-
-        <div class="gif-container">
-            <img src="images/about/draw.gif" alt="Captain at work">
+        <div class="avatar-box" onclick="toggleQR()" title="Click to show Alipay QR">
+            <img id="displayImg" src="images/about/draw.gif" alt="Captain Avatar">
         </div>
+
+        <div class="bunny-status" id="bunnyMsg">Captain is on standby...</div>
 
         <div class="message-content">
             <p>
@@ -180,29 +164,37 @@
             </p>
         </div>
 
-        <div class="bunny-station">
-            <div class="bunny-status" id="bunnyMsg">Ryutaro Status: Watching the Captain draw...</div>
-        </div>
-
-        <a href="https://ko-fi.com/YOUR_USERNAME" target="_blank" class="kofi-button" onclick="feedBunny()">
+        <a href="https://ko-fi.com/captainariel" target="_blank" class="kofi-button" onclick="showThanks()">
             SUPPORT ON KO-FI
         </a>
 
-        <a href="index.html" class="back-link">BACK TO DECK / 返回主舱</a>
+        <a href="index.html" class="back-link">RETURN / 返回舱口</a>
     </div>
 
     <script>
-        function feedBunny() {
-            const msgs = [
-                "Ryutaro: (Crunch crunch) Captain is eating too!",
-                "Energy Restored! Navigation systems online.",
-                "Ryutaro performed a 'Binky'! He says thanks!",
-                "Coffee beans acquired. Drawing speed +50%."
-            ];
-            const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
+        let isQR = false;
+        const mainImg = "images/about/draw.gif"; // 你的动图
+        const qrImg = "images/about/alipay.jpg"; // 你的支付宝二维码路径
+
+        function toggleQR() {
+            const imgElement = document.getElementById('displayImg');
             const statusBox = document.getElementById('bunnyMsg');
-            statusBox.innerText = randomMsg;
-            statusBox.style.color = "#ffb464";
+            
+            if (!isQR) {
+                imgElement.src = qrImg;
+                statusBox.innerText = "Switching to direct replenishment mode...";
+                statusBox.style.color = "#ffb464";
+            } else {
+                imgElement.src = mainImg;
+                statusBox.innerText = "Captain is back to drawing mode.";
+                statusBox.style.color = "#888";
+            }
+            isQR = !isQR;
+        }
+
+        function showThanks() {
+            document.getElementById('bunnyMsg').innerText = "Ryutaro: (Blink) Thank you for the coffee!";
+            document.getElementById('bunnyMsg').style.color = "#ffb464";
         }
     </script>
 </body>
