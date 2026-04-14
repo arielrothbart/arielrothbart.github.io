@@ -241,6 +241,17 @@ img {
     0 0 6px rgba(255,60,60,0.8),
     0 0 12px rgba(255,60,60,0.4);
 }
+        .scroll-top.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 0 10px rgba(255,60,60,0.6),
+    0 0 20px rgba(255,60,60,0.3);
+}
         .scroll-top.show { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 1000px) { .gallery { column-count: 2; } }
