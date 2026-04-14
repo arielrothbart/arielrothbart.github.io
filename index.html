@@ -135,12 +135,16 @@ font-family: 'Poiret One', sans-serif;
     .nav a:nth-child(5) { animation: softBoot 1.2s forwards 1.2s; }
     .nav a:nth-child(6) { animation: softBoot 1.2s forwards 0.8s; }
 
-  .nav a:hover {
+.nav a:hover {
   opacity: 1;
-  letter-spacing: 5px;   /* ⭐ hover 更明显一点 */
-  transform: translateX(-4px); /* ⭐ 微微滑动，很有质感 */
+  letter-spacing: 5px;
 }
-
+.nav a:nth-child(1){ transform: translateX(0px); }
+.nav a:nth-child(2){ transform: translateX(-6px); }
+.nav a:nth-child(3){ transform: translateX(-2px); }
+.nav a:nth-child(4){ transform: translateX(-10px); }
+.nav a:nth-child(5){ transform: translateX(-4px); }
+.nav a:nth-child(6){ transform: translateX(-12px); }
     .logo {
       margin-top: 20px;
     }
@@ -444,7 +448,7 @@ font-family: 'Poiret One', sans-serif;
   <div class="nav">
     <a href="about.html">About</a>
     <a href="commission.html">Commission</a>
-    <a href="character.html">Character</a>
+    <a href="character.html">Character Art</a>
    <a href="comics.html">Comics</a>
     <a href="illustration.html">Illustration</a>
     <a href="#">Log</a>
