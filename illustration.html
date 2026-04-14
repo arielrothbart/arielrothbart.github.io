@@ -1,543 +1,388 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Illustration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Illustration | Symphony Noir</title>
 
-<style>
-body {
-  margin: 0;
-  /* 使用深灰色的径向渐变，模拟展厅灯光打在墙面上的阴影感 */
-  background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
-  color: white;
-  font-family: 'Special Elite', serif; /* 沿用你 Story 页面的字体更有统一感 */
-}
+    <style>
+        /* 1. 基础全局样式 */
+        body {
+            margin: 0;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+            color: white;
+            font-family: 'Special Elite', serif;
+            overflow-x: hidden;
+        }
 
-/* 增加一个非常细微的噪点层，让背景像纸张或老胶片 */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  opacity: 0.03;
-  pointer-events: none;
-  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
-  z-index: 1;
-}
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            z-index: 1;
+        }
 
-img {
-  user-select: none;
-  -webkit-user-drag: none;
-}
+        img {
+            user-select: none;
+            -webkit-user-drag: none;
+        }
 
-/* 容器 */
-.container {
-  max-width: 1400px;
-  margin: auto;
-  padding: 80px 40px;
-}
+        /* 2. 全屏 Banner (移出 Container 确保全宽) */
+        .gallery-header {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: #000;
+        }
 
-h1 {
-  letter-spacing: 4px;
-  margin-bottom: 60px;
-  font-weight: 400;
-  opacity: 0.8;
-}
+        .banner-bg-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            filter: grayscale(100%) contrast(120%) brightness(40%);
+            opacity: 0.6;
+            z-index: 1;
+        }
 
-/* ⭐瀑布流 */
-.gallery {
-  column-count: 3;
-  column-gap: 40px;
-}
+        .banner-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 50%, rgba(0,0,0,0.9) 100%);
+            z-index: 2;
+        }
 
-/* 单个作品 */
-.item {
-  break-inside: avoid;
-  margin-bottom: 50px;
-  cursor: pointer;
-  background: #111; /* 图片下方的底色 */
-  padding: 15px;    /* 留白模仿画框的卡纸（Mat Board） */
-  border: 1px solid rgba(255,255,255,0.05);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
+        .header-content {
+            position: relative;
+            z-index: 3;
+        }
 
-.item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.15);
-}
+        .main-title {
+            font-size: clamp(32px, 7vw, 70px);
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin: 15px 0;
+            font-weight: 300;
+            animation: titleFadeIn 1.8s ease-out forwards;
+        }
 
-.item img {
-  width: 100%;
-  filter: grayscale(0.2); /* 稍微降低饱和度，hover时恢复 */
-  transition: 0.4s;
-}
+        .subtitle {
+            font-size: 11px;
+            letter-spacing: 5px;
+            opacity: 0.6;
+        }
 
-.item:hover img {
-  filter: grayscale(0);
-  opacity: 1;
-}
+        .header-line {
+            width: 60px; height: 1px;
+            background: rgba(255,255,255,0.3);
+            margin: 25px auto 0;
+            transition: 0.8s;
+        }
 
-.caption {
-  margin-top: 15px;
-  font-family: 'Special Elite', cursive; /* 使用打字机字体 */
-  border-left: 2px solid rgba(255,60,60,0.3); /* 侧边加一条暗红色的细线 */
-  padding-left: 10px;
-}
-/* 图片 */
-.item img {
-  width: 100%;
-  display: block;
-  transition: 0.3s;
-}
+        .gallery-header:hover .header-line { width: 120px; }
 
-/* hover（非常克制） */
-.item:hover img {
-  opacity: 0.85;
-}
+        @keyframes titleFadeIn {
+            0% { opacity: 0; transform: translateY(20px); letter-spacing: 25px; filter: blur(5px); }
+            100% { opacity: 0.9; transform: translateY(0); letter-spacing: 12px; filter: blur(0); }
+        }
 
-/* 文字 */
-.caption {
-  margin-top: 10px;
-  font-size: 12px;
-  opacity: 0.6;
-  line-height: 1.5;
-}
-.gallery-header {
-  height: 60vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background: #000;
-}
+        /* 3. 瀑布流容器 */
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 80px 40px;
+        }
 
-/* 如果你有张大图，可以作为 Banner 背景 */
-.banner-overlay {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: url('your-banner-image.jpg') center/cover no-repeat;
-  opacity: 0.4;
-  filter: grayscale(1) contrast(1.2); /* 保持 Noir 风格 */
-}
+        .gallery {
+            column-count: 3;
+            column-gap: 40px;
+        }
 
-.header-content {
-  position: relative;
-  z-index: 2;
-}
+        .item {
+            break-inside: avoid;
+            margin-bottom: 50px;
+            cursor: pointer;
+            background: #111;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+        }
 
-.main-title {
-  font-size: clamp(40px, 8vw, 80px);
-  letter-spacing: 15px; /* 极宽的间距，更有现代艺术感 */
-  text-transform: uppercase;
-  margin: 10px 0;
-  font-weight: 300;
-  animation: titleFade 2s ease-out forwards;
-}
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,60,60,0.2);
+        }
 
-.subtitle {
-  font-size: 12px;
-  letter-spacing: 6px;
-  opacity: 0.5;
-}
+        .item img {
+            width: 100%;
+            display: block;
+            filter: grayscale(0.2);
+            transition: 0.4s;
+        }
 
-.header-line {
-  width: 50px;
-  height: 1px;
-  background: rgba(255,255,255,0.3);
-  margin: 20px auto;
-  transition: width 1s ease;
-}
+        .item:hover img {
+            filter: grayscale(0);
+            opacity: 0.9;
+        }
 
-.gallery-header:hover .header-line {
-  width: 100px;
-}
+        .caption {
+            margin-top: 15px;
+            font-size: 12px;
+            opacity: 0.6;
+            line-height: 1.6;
+            border-left: 2px solid rgba(255,60,60,0.3);
+            padding-left: 10px;
+        }
 
-@keyframes titleFade {
-  from { opacity: 0; letter-spacing: 30px; filter: blur(10px); }
-  to { opacity: 0.8; letter-spacing: 15px; filter: blur(0); }
-}
-/* 📱响应 */
-@media (max-width: 1000px) {
-  .gallery { column-count: 2; }
-}
+        /* 4. 图片查看器 (Viewer) */
+        .viewer {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
 
-@media (max-width: 600px) {
-  .gallery { column-count: 1; }
-}
+        .viewer-content { text-align: center; }
 
-/* ⭐viewer（完全沿用你原来的逻辑） */
-.viewer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
+        #viewer-img {
+            max-width: 90vw;
+            max-height: 70vh;
+            object-fit: contain;
+            transition: 0.6s cubic-bezier(0.22,1,0.36,1);
+        }
 
-#viewer-img {
-  max-width: 90vw;
-  max-height: 70vh;
-  object-fit: contain;
-  transition: transform 0.6s cubic-bezier(0.22,1,0.36,1),
-              opacity 0.6s ease;
-}
+        #viewer-caption {
+            margin-top: 25px;
+            font-size: 14px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-/* 箭头 */
-.arrow {
-  position: absolute;
-  top: 50%;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  padding: 20px;
-  z-index: 1000;
-}
+        .arrow {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            opacity: 0.4;
+            transition: 0.3s;
+        }
 
-.left { left: 20px; }
-.right { right: 20px; }
+        .arrow:hover { opacity: 1; }
+        .left { left: 20px; }
+        .right { right: 20px; }
 
-/* ⭐home按钮（完全复用你原来的） */
-.home-logo {
-  position: fixed;
-  top: 80px;
-  right: 60px;
-  z-index: 1000;
-}
+        /* 5. UI 元素 */
+        .home-logo {
+            position: fixed;
+            top: 40px; right: 40px;
+            z-index: 1000;
+        }
+        .home-logo img { width: 60px; opacity: 0.7; transition: 0.3s; }
+        .home-logo img:hover { opacity: 1; transform: scale(1.1); }
 
-.home-logo img {
-  width: 80px;
-  opacity: 0.8;
-  transition: 0.3s;
-}
+        .scroll-top {
+            position: fixed;
+            right: 40px; bottom: 40px;
+            width: 48px; height: 48px;
+            border: 1px solid rgba(255,60,60,0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff3b3b;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.4s;
+            z-index: 1000;
+        }
 
-.home-logo img:hover {
-  opacity: 1;
-  transform: scale(1.08);
-}
+        .scroll-top.show { opacity: 1; transform: translateY(0); }
 
-/* ⭐回顶部 */
-.scroll-top {
-  position: fixed;
-  right: 60px;
-  bottom: 60px;
-
-  width: 48px;
-  height: 48px;
-
-  border: 1px solid rgba(255,60,60,0.4);
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 18px;
-  color: #ff3b3b;
-
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
-
-  cursor: pointer;
-
-  opacity: 0;
-  transform: translateY(20px);
-
-  transition: 0.4s;
-
-  z-index: 1000;
-
-  text-shadow:
-    0 0 6px rgba(255,60,60,0.8),
-    0 0 12px rgba(255,60,60,0.4);
-}
-
-.scroll-top.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-top:hover {
-  transform: scale(1.1);
-}
-.viewer-content{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-}
-
-#viewer-caption{
-  margin-top:20px;
-  font-size:13px;
-  opacity:0.7;
-  line-height:1.6;
-   max-width: 60%;
-}
-/* 📱手机 */
-@media (max-width: 768px) {
-  .home-logo {
-    top: 85px;
-    right: 16px;
-  }
-
-  .home-logo img {
-    width: 48px;
-  }
-
-  .scroll-top {
-    right: 20px;
-    bottom: 20px;
-  }
-}
-  
-</style>
-
+        /* 响应式适配 */
+        @media (max-width: 1000px) { .gallery { column-count: 2; } }
+        @media (max-width: 768px) {
+            .gallery-header { height: 60vh; }
+            .home-logo { top: 20px; right: 20px; }
+            .scroll-top { right: 20px; bottom: 20px; }
+        }
+        @media (max-width: 600px) { .gallery { column-count: 1; } }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <header class="gallery-header">
+        <img src="images/illustration/ill-banner.jpg" class="banner-bg-img" alt="Banner">
+        <div class="banner-overlay"></div>
+        <div class="header-content">
+            <p class="subtitle">SELECTED WORKS</p>
+            <h1 class="main-title">ILLUSTRATIONS</h1>
+            <div class="header-line"></div>
+        </div>
+    </header>
 
-<header class="gallery-header">
-  <div class="banner-overlay"></div>
-  <div class="header-content">
-    <p class="subtitle">SELECTED WORKS</p>
-    <h1 class="main-title">ILLUSTRATIONS</h1>
-    <div class="header-line"></div>
-  </div>
-</header>
+    <div class="container">
+        <div class="gallery">
+            <figure class="item">
+                <img src="images/illustration/ill1.jpg">
+                <div class="caption">
+                    Achron Nocturne<br>
+                    Digital<br>
+                    In an assassin universe like 《John Wick》.
+                </div>
+            </figure>
+            
+            <figure class="item">
+                <img src="images/illustration/ill2.jpg">
+                <div class="caption">
+                    Hell Hound<br>
+                   Digital<br>
+                    The childhood of a hellhound——Sanada Tetsu.
+                </div>
+            </figure>
 
-<div class="gallery">
+            <figure class="item">
+                <img src="images/illustration/ill3.jpg">
+                <div class="caption">
+                    人之怒 兽之哀<br>
+                  Digital<br>
+                    Yagami as Yamata no Orochi, Shin as Sugahara no Michizane in Fate au.
+                </div>
+            </figure>
 
-  <!-- ⭐只需要复制这一块加图 -->
+            <figure class="item">
+                <img src="images/illustration/ill4.jpg">
+                <div class="caption">The Meeting<br>
+                  Digital<br>
+                  London Continental group.</div>
+            </figure>
 
-  <figure class="item">
-    <img src="images/illustration/ill1.jpg">
-    <div class="caption">
-      Achron Nocturne<br>
-      Digital by Procreate<br>
-     In a assassin universe like 《John Wick》. 
+            <figure class="item">
+                <img src="images/illustration/ill5.jpg">
+                <div class="caption">Batman and Two Face<br>
+                  Digital<br>
+                  Batman Fan art.</div>
+            </figure>
+
+            <figure class="item">
+                <img src="images/illustration/ill6.jpg">
+                <div class="caption">Gotham Nocturne<br>
+                  Digital<br>
+                  Fan art for Batman.</div>
+            </figure>
+
+            <figure class="item">
+                <img src="images/illustration/ill7.jpg">
+                <div class="caption">The Light<br>
+                  Digital<br>
+                  Fan art for Harvey Dent.</div>
+            </figure>
+        </div>
     </div>
-      </figure>
-  
-   <figure class="item">
-    <img src="images/illustration/ill2.jpg">
-    <div class="caption">
-     Hell Hound<br>
-      Digital by Procreate<br>
-     The childhood of a hellhound——Sanada Tetsu.
+
+    <div class="viewer" id="viewer">
+        <span class="arrow left" id="prev">&#10094;</span>
+        <div class="viewer-content">
+            <img id="viewer-img">
+            <div id="viewer-caption"></div>
+        </div>
+        <span class="arrow right" id="next">&#10095;</span>
     </div>
- </figure>
 
-   <figure class="item">
-    <img src="images/illustration/ill3.jpg">
-    <div class="caption">
-     人之怒 兽之哀<br>
-      Digital by Clip Studio Paint<br>
-    Yagami as Yamata no Orochi, Shin as Sugahara no Michizane，in Fate au.
-    </div>
-  </figure>
+    <a href="index.html" class="home-logo"><img src="logo.png"></a>
+    <div class="scroll-top" id="scrollTop">↑</div>
 
-   <figure class="item">
-    <img src="images/illustration/ill4.jpg">
-    <div class="caption">
-     The Meeting<br>
-     Digital by Clip Studio Paint<br>
-    In the Achron Nocturne, this is the London Continantal group.
-    </div>
-     </figure>
+    <script>
+        // 逻辑保持不变，确保与上面的 HTML 元素 ID 对应
+        const viewer = document.getElementById('viewer');
+        const viewerImg = document.getElementById('viewer-img');
+        const viewerCaption = document.getElementById('viewer-caption');
+        let currentIndex = 0;
+        let list = [];
+        let scrollLock = false;
 
-   <figure class="item">
-    <img src="images/illustration/ill5.jpg">
-    <div class="caption">
-  Batman and Two Face<br>
-     Digital by Clip Studio Paint<br>
-    Fan art for batman.
-    </div>
-     </figure>
+        const items = document.querySelectorAll('.item');
+        items.forEach(item => {
+            const img = item.querySelector("img");
+            const caption = item.querySelector(".caption").innerHTML;
+            list.push({ src: img.src, caption: caption });
+            img.onclick = () => {
+                currentIndex = list.findIndex(i => i.src === img.src);
+                openViewer();
+            };
+        });
 
-   <figure class="item">
-    <img src="images/illustration/ill6.jpg">
-    <div class="caption">
-    Gotham Nocturne<br>
-     Digital by Procreate<br>
-    Fan art for batman.
-    </div>
-     </figure>
+        function openViewer() {
+            viewer.style.display = 'flex';
+            viewerImg.src = list[currentIndex].src;
+            viewerCaption.innerHTML = list[currentIndex].caption;
+            document.body.style.overflow = 'hidden'; // 禁止背景滚动
+        }
 
-   <figure class="item">
-     <img src="images/illustration/ill7.jpg">
-    <div class="caption">
-   The Light<br>
-     Digital byClip Studio Paint<br>
-    Fan art for Harvey Dent.
-    </div>
-  </figure>
+        function closeViewer() {
+            viewer.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
-</div>
+        function change(direction) {
+            const offset = 100;
+            viewerImg.style.opacity = 0;
+            viewerImg.style.transform = direction === 'next' ? `translateX(-${offset}px)` : `translateX(${offset}px)`;
 
-</div>
+            setTimeout(() => {
+                currentIndex = direction === 'next' 
+                    ? (currentIndex + 1) % list.length 
+                    : (currentIndex - 1 + list.length) % list.length;
+                
+                viewerImg.src = list[currentIndex].src;
+                viewerCaption.innerHTML = list[currentIndex].caption;
+                
+                viewerImg.style.transition = 'none';
+                viewerImg.style.transform = direction === 'next' ? `translateX(${offset}px)` : `translateX(-${offset}px)`;
+                
+                viewerImg.offsetHeight; // 强制重绘
+                viewerImg.style.transition = '0.6s cubic-bezier(0.22,1,0.36,1)';
+                viewerImg.style.transform = 'translateX(0)';
+                viewerImg.style.opacity = 1;
+            }, 300);
+        }
 
-<!-- viewer -->
+        document.getElementById('next').onclick = () => change('next');
+        document.getElementById('prev').onclick = () => change('prev');
+        viewer.onclick = (e) => { if (e.target === viewer) closeViewer(); };
+        
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('scrollTop');
+            if (window.scrollY > 300) btn.classList.add('show');
+            else btn.classList.remove('show');
+        });
 
-<div class="viewer" id="viewer">
-  <span class="arrow left" id="prev">&#10094;</span>
-
-  <div class="viewer-content">
-    <img id="viewer-img">
-    <div id="viewer-caption"></div>
-  </div>
-
-  <span class="arrow right" id="next">&#10095;</span>
-</div>
-
-<!-- home -->
-
-<a href="index.html" class="home-logo">
-  <img src="logo.png">
-</a>
-
-<!-- top -->
-
-<div class="scroll-top" id="scrollTop">↑</div>
-
-<script>
-const viewer = document.getElementById('viewer');
-const viewerImg = document.getElementById('viewer-img');
-
-let currentIndex = 0;
-let list = [];
-let scrollLock = false;
-
-const items = document.querySelectorAll('.item');
-
-items.forEach(item => {
-
-  const img = item.querySelector("img");
-  const caption = item.querySelector(".caption").innerHTML;
-
-  list.push({
-    src: img.src,
-    caption: caption
-  });
-
-  img.onclick = () => {
-   currentIndex = list.findIndex(item => item.src === img.src);
-    openViewer();
-  };
-
-});
-
-function openViewer() {
-  viewer.style.display = 'flex';
-  viewerImg.src = list[currentIndex].src;
-  document.getElementById("viewer-caption").innerHTML =
-    list[currentIndex].caption;
-}
-  
-function closeViewer() {
-  viewer.style.display = 'none';
-}
-
-function change(direction) {
-  const offset = 160;
-
-  viewerImg.style.transform =
-    direction === 'next'
-      ? `translateX(-${offset}px)`
-      : `translateX(${offset}px)`;
-
-  viewerImg.style.opacity = 0;
-
-  setTimeout(() => {
-
-    currentIndex =
-      direction === 'next'
-        ? (currentIndex + 1) % list.length
-        : (currentIndex - 1 + list.length) % list.length;
-
-    viewerImg.style.transition = 'none';
-
-   viewerImg.src = list[currentIndex].src;
-    
-document.getElementById("viewer-caption").innerHTML =
-  list[currentIndex].caption;
-    
-    viewerImg.style.transform =
-      direction === 'next'
-        ? `translateX(${offset}px)`
-        : `translateX(-${offset}px)`;
-
-    viewerImg.offsetHeight;
-
-    viewerImg.style.transition = 'transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.6s ease';
-
-    viewerImg.style.transform = 'translateX(0)';
-    viewerImg.style.opacity = 1;
-
-  }, 300);
-}
-
-document.getElementById('next').onclick = () => change('next');
-document.getElementById('prev').onclick = () => change('prev');
-
-viewer.onclick = (e) => {
-  if (e.target === viewer) {
-    closeViewer();
-  }
-};
-
-document.addEventListener('keydown', e => {
-  if (viewer.style.display === 'flex') {
-    if (e.key === 'ArrowRight') change('next');
-    if (e.key === 'ArrowLeft') change('prev');
-    if (e.key === 'Escape') closeViewer();
-  }
-});
-
-/* 滚轮切换 */
-viewer.addEventListener('wheel', e => {
-  if (viewer.style.display !== 'flex') return;
-  e.preventDefault();
-
-  if (scrollLock) return;
-  scrollLock = true;
-
-  if (e.deltaY > 0) change('next');
-  else change('prev');
-
-  setTimeout(() => scrollLock = false, 600);
-}, { passive:false });
-
-/* 回顶部 */
-const scrollBtn = document.getElementById('scrollTop');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    scrollBtn.classList.add('show');
-  } else {
-    scrollBtn.classList.remove('show');
-  }
-});
-
-scrollBtn.onclick = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-};
-</script>
+        document.getElementById('scrollTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+    </script>
 
 </body>
 </html>
