@@ -3,24 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captain's Lounge | Replenish</title>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-    
+    <title>Captain's Lounge | Support</title>
     <style>
+        /* 1. 引入你仓库里的科幻字体 */
+        @font-face {
+            font-family: 'Vladivostok';
+            src: url('fonts/Vladivostok-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             background: #0d0d15;
             color: #e0e0e0;
-            font-family: 'DotGothic16', sans-serif;
+            /* 优先使用你的 Vladivostok，中文自动回退到系统黑体 */
+            font-family: 'Vladivostok', 'Microsoft YaHei', sans-serif;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* 🌌 动态星空背景 */
+        /* 🌌 会动的动态星空背景 */
         .stars-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -34,6 +41,12 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
             opacity: 0.3;
+            animation: drift 60s linear infinite; /* 确保它动起来 */
+        }
+
+        @keyframes drift {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 500px; }
         }
 
         /* 🛸 休息舱主面板 */
@@ -47,73 +60,82 @@
             border-radius: 4px;
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
             text-align: center;
+            animation: panelFade 1.5s ease;
         }
 
-        /* 🖼️ Captain & 龙太郎的动图区 */
-        .monitor-area {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto 30px;
-            border: 1px solid rgba(255, 180, 100, 0.3);
-            padding: 8px;
-            background: rgba(0, 0, 0, 0.4);
-            position: relative;
+        @keyframes panelFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .monitor-area img {
-            width: 100%;
-            height: auto;
-            display: block;
-            opacity: 0.9;
-        }
-
-        /* 🏷️ 标题与文案 */
         .status-tag {
-            font-size: 11px;
-            letter-spacing: 2px;
+            font-size: 10px;
+            letter-spacing: 3px;
             color: #ffb464;
             opacity: 0.7;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: block;
         }
 
         h1 {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
             color: #ffb464;
             text-shadow: 0 0 10px rgba(255, 180, 100, 0.3);
         }
 
+        /* 🖼️ 动图展示区 */
+        .gif-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 30px;
+            border: 1px solid rgba(255, 180, 100, 0.1);
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .message-content {
             line-height: 1.8;
-            font-size: 14px;
-            margin-bottom: 35px;
+            font-size: 15px;
+            margin-bottom: 40px;
             text-align: left;
             border-left: 2px solid rgba(255, 180, 100, 0.3);
             padding-left: 20px;
         }
 
-        .message-content p {
-            margin: 12px 0;
-            opacity: 0.8;
-        }
+        .message-content p { margin: 15px 0; opacity: 0.8; }
 
-        /* 龙太郎高亮 */
+        /* 名字高亮还原 */
         .highlight { 
             color: #ffb464; 
-            text-shadow: 0 0 8px rgba(255, 180, 100, 0.5);
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 180, 100, 0.4);
         }
 
-        /* ☕ Ko-fi 按钮：保持上一版的温暖琥珀色 */
+        .bunny-station {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            margin-bottom: 30px;
+            border: 1px dashed rgba(255, 180, 100, 0.2);
+        }
+
+        .bunny-status { font-size: 12px; color: #888; }
+
+        /* ☕ Ko-fi 按钮 */
         .kofi-button {
             display: inline-block;
-            padding: 16px 45px;
+            padding: 18px 45px;
             border: 1px solid #ffb464;
             color: #ffb464;
             text-decoration: none;
             letter-spacing: 4px;
-            font-size: 12px;
-            transition: all 0.3s;
+            font-size: 13px;
+            transition: 0.3s;
             background: transparent;
         }
 
@@ -121,7 +143,6 @@
             background: #ffb464;
             color: #000;
             box-shadow: 0 0 20px rgba(255, 180, 100, 0.4);
-            transform: translateY(-2px);
         }
 
         .back-link {
@@ -129,7 +150,7 @@
             margin-top: 30px;
             font-size: 11px;
             text-decoration: none;
-            color: #666;
+            color: #555;
         }
 
         .back-link:hover { color: #ffb464; }
@@ -142,8 +163,10 @@
     <div class="lounge-panel">
         <span class="status-tag">LOCATION: CAPTAIN'S LOUNGE // REPLENISHMENT STATION</span>
         
-        <div class="monitor-area">
-            <img src="images/about/draw.gif" alt="Drawing Session">
+        <h1>ENERGY RECOVERY</h1>
+
+        <div class="gif-container">
+            <img src="images/about/draw.gif" alt="Captain at work">
         </div>
 
         <div class="message-content">
@@ -153,16 +176,34 @@
             </p>
             <p>
                 舰船需要能源，艺术工作者需要咖啡！<br>
-                您所投资的每一笔费用将用于我家小兔<span class="highlight">龙太郎</span>的食物补给————也许不会，我也说不好！总之，欢迎请船长喝咖啡！
+                您所投资的每一笔费用将用于我家小兔<span class="highlight">龙太郎</span>的食物补给——也许不会，我也说不好！总之，欢迎请船长喝咖啡！
             </p>
         </div>
 
-        <a href="https://ko-fi.com/YOUR_USERNAME" target="_blank" class="kofi-button">
+        <div class="bunny-station">
+            <div class="bunny-status" id="bunnyMsg">Ryutaro Status: Watching the Captain draw...</div>
+        </div>
+
+        <a href="https://ko-fi.com/YOUR_USERNAME" target="_blank" class="kofi-button" onclick="feedBunny()">
             SUPPORT ON KO-FI
         </a>
 
         <a href="index.html" class="back-link">BACK TO DECK / 返回主舱</a>
     </div>
 
+    <script>
+        function feedBunny() {
+            const msgs = [
+                "Ryutaro: (Crunch crunch) Captain is eating too!",
+                "Energy Restored! Navigation systems online.",
+                "Ryutaro performed a 'Binky'! He says thanks!",
+                "Coffee beans acquired. Drawing speed +50%."
+            ];
+            const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
+            const statusBox = document.getElementById('bunnyMsg');
+            statusBox.innerText = randomMsg;
+            statusBox.style.color = "#ffb464";
+        }
+    </script>
 </body>
 </html>
