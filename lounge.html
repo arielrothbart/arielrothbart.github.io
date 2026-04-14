@@ -3,158 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captain's Lounge | Support</title>
+    <title>Captain's Lounge | Replenish</title>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
-
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            background: #0d0d15;
-            color: #e0e0e0;
-            font-family: 'Special Elite', 'Courier New', serif;
+            background: #0a0a0f;
+            color: #00ffcc; /* 典型的赛博青绿，比之前的琥珀色更具科技感 */
+            font-family: 'DotGothic16', sans-serif; /* 像素感十足的科幻字体 */
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* 🌌 动态星空背景 */
+        /* 🌌 背景：深空动态效果 */
         .stars-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #1b1b2f 0%, #050508 100%);
+            background: radial-gradient(circle at center, #11112b 0%, #050508 100%);
             z-index: -1;
         }
 
-        .stars-bg::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.3;
-            animation: drift 60s linear infinite;
-        }
-
-        @keyframes drift {
-            from { background-position: 0 0; }
-            to { background-position: 1000px 500px; }
-        }
-
-        /* 🛸 休息舱主面板 */
+        /* 🛸 全息投影容器 */
         .lounge-panel {
-            width: 90%;
-            max-width: 650px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 180, 100, 0.2);
-            padding: 40px;
+            width: 95%;
+            max-width: 700px;
+            background: rgba(0, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid #00ffcc;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2), inset 0 0 15px rgba(0, 255, 204, 0.1);
+            padding: 30px;
             border-radius: 4px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 180, 100, 0.05);
-            position: relative;
             text-align: center;
-            animation: panelFade 1.5s ease;
+            position: relative;
+            /* 模拟屏幕微弱的闪烁动画 */
+            animation: monitorFlicker 4s infinite;
         }
 
-        @keyframes panelFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes monitorFlicker {
+            0%, 100% { opacity: 1; }
+            95% { opacity: 0.98; }
+            97% { opacity: 0.99; }
+        }
+
+        /* 🖼️ 动图监视器部分 */
+        .monitor-frame {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(0, 255, 204, 0.5);
+            padding: 10px;
+            background: #000;
+        }
+
+        .monitor-frame::before {
+            content: "LIVE FEED: SECTOR-07";
+            position: absolute;
+            top: -10px; left: 10px;
+            background: #0a0a0f;
+            padding: 0 5px;
+            font-size: 10px;
+            color: #00ffcc;
+        }
+
+        .monitor-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        /* 模拟扫描线效果 */
+        .scanlines {
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            z-index: 5;
         }
 
         /* 🏷️ 标题与文案 */
-        .status-tag {
-            font-size: 10px;
-            letter-spacing: 3px;
-            color: #ffb464;
-            opacity: 0.7;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            color: #ffb464;
-            text-shadow: 0 0 10px rgba(255, 180, 100, 0.3);
+        .status-header {
+            font-family: 'Press Start 2P', cursive; /* 更像素化的标题 */
+            font-size: 14px;
+            margin-bottom: 25px;
+            color: #00ffcc;
+            text-shadow: 2px 2px #ff0055; /* 复古色散效果 */
         }
 
         .message-content {
+            font-size: 14px;
             line-height: 1.8;
-            font-size: 0.95rem;
-            margin-bottom: 40px;
-            text-align: left;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            padding-left: 20px;
-        }
-
-        .message-content p {
-            margin: 15px 0;
-            opacity: 0.8;
-        }
-
-        .highlight { color: #ffb464; }
-
-        /* 🥕 互动区：龙太郎的状态 */
-        .bunny-station {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 20px;
+            text-align: center;
             margin-bottom: 30px;
-            border: 1px dashed rgba(255, 180, 100, 0.2);
+            color: #a0ffe0;
         }
 
-        .bunny-status {
-            font-size: 12px;
-            color: #888;
-            margin-top: 10px;
-        }
+        .message-content p { margin: 10px 0; }
 
-        /* ☕ Ko-fi 按钮样式 */
+        /* ☕ Ko-fi 按钮：小游戏风格 */
         .kofi-button {
             display: inline-block;
-            padding: 15px 40px;
-            border: 1px solid #ffb464;
-            color: #ffb464;
-            text-decoration: none;
-            letter-spacing: 4px;
-            font-size: 13px;
-            transition: all 0.3s;
+            font-family: 'Press Start 2P', cursive;
+            padding: 18px 30px;
             background: transparent;
-            position: relative;
-            overflow: hidden;
+            border: 2px solid #00ffcc;
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: 10px;
+            transition: 0.2s;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #008877;
         }
 
         .kofi-button:hover {
-            background: #ffb464;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #008877;
+            background: #00ffcc;
             color: #000;
-            box-shadow: 0 0 20px rgba(255, 180, 100, 0.4);
         }
 
-        .kofi-button::before {
-            content: "☕";
-            margin-right: 10px;
+        .kofi-button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px #008877;
         }
 
-        /* 🔙 返回按钮 */
         .back-link {
             display: block;
             margin-top: 30px;
-            font-size: 11px;
+            font-size: 12px;
             text-decoration: none;
-            color: #555;
-            transition: 0.3s;
+            color: rgba(0, 255, 204, 0.4);
         }
 
-        .back-link:hover { color: #ffb464; }
+        .back-link:hover { color: #ff0055; }
 
-        /* 响应式样式 */
-        @media (max-width: 600px) {
-            .lounge-panel { padding: 25px; }
-            h1 { font-size: 1.2rem; }
-            .message-content { font-size: 0.85rem; }
-        }
     </style>
 </head>
 <body>
@@ -162,46 +152,28 @@
     <div class="stars-bg"></div>
 
     <div class="lounge-panel">
-        <span class="status-tag">LOCATION: CAPTAIN'S LOUNGE // ENERGY LEVEL: LOW</span>
-        
-        <h1>REPLENISHMENT STATION</h1>
+        <div class="status-header">LOUNGE TERMINAL v1.0</div>
+
+        <div class="monitor-frame">
+            <img src="images/about/draw.gif" alt="Captain & Ryutaro">
+            <div class="scanlines"></div>
+        </div>
 
         <div class="message-content">
-            <p>
-                A vessel runs on energy, an artist runs on coffee...<br>
-                All support will go toward food supplies for my bunny <span class="highlight">Ryutaro</span> …or the Captain herself! 😉
-            </p>
-            <p>
-                舰船需要能源，艺术工作者需要咖啡！<br>
-                您所投资的每一笔费用将用于我家小兔<span class="highlight">龙太郎</span>的食物——也许不会，我也说不好！总之，欢迎请船长喝咖啡！
+            <p>A vessel runs on energy, an artist runs on coffee~</p>
+            <p>舰船需要能源，艺术工作者需要咖啡！</p>
+            <p style="font-size: 12px; opacity: 0.7;">
+                All support goes toward food for Ryutaro... or the Captain! 😉<br>
+                您投资的每一笔费用将用于我家小兔龙太郎的食物——或者请船长喝咖啡！
             </p>
         </div>
 
-        <div class="bunny-station">
-            <div style="font-size: 40px; margin-bottom: 10px;">🐇</div>
-            <div class="bunny-status" id="bunnyMsg">Ryutaro is currently: Waiting for a carrot...</div>
-        </div>
-
-        <a href="https://ko-fi.com/captainariel" target="_blank" class="kofi-button" onclick="feedBunny()">
-            SUPPORT ON KO-FI
+        <a href="https://ko-fi.com/YOUR_USERNAME" target="_blank" class="kofi-button">
+            INSERT COFFEE [OK]
         </a>
 
-        <a href="index.html" class="back-link">BACK TO DECK / 返回主舱</a>
+        <a href="index.html" class="back-link">&lt; RETURN TO SHIP</a>
     </div>
 
-    <script>
-        // 一个简单的小互动，点击按钮后龙太郎的文案会变
-        function feedBunny() {
-            const msgs = [
-                "Ryutaro: (Crunch crunch) Captain is eating too!",
-                "Energy Restored! Captain is drawing faster now.",
-                "Ryutaro performed a 'Binky'! He says thanks!",
-                "Coffee beans acquired. Navigation systems online."
-            ];
-            const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
-            document.getElementById('bunnyMsg').innerText = randomMsg;
-            document.getElementById('bunnyMsg').style.color = "#ffb464";
-        }
-    </script>
 </body>
 </html>
