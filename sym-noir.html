@@ -114,18 +114,27 @@ body{
   overflow:hidden;
 }
 
-.story-container{
-  position:relative;
-  width:100%;
-  max-width:760px;
-  height:100%;
- overflow-y:auto;   
+.story-container {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  height: 100%;
+  overflow-y: auto;   
+  padding-top: 120px;
+  padding-bottom: 120px;
+  padding-left: 20px;
+  padding-right: 20px;
 
-  padding-top:120px;
-  padding-bottom:120px;
-  padding-left:20px;
-  padding-right:20px;
+  /* === 新增：隐藏滚动条视觉效果 === */
+  scrollbar-width: none;       /* 对 Firefox 隐藏 */
+  -ms-overflow-style: none;    /* 对 IE/Edge 隐藏 */
 }
+
+/* 对 Chrome, Safari, 以及移动端浏览器隐藏 */
+.story-container::-webkit-scrollbar {
+  display: none;
+}
+
   
 .story-text{
   line-height:2;
