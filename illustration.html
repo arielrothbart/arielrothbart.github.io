@@ -386,8 +386,10 @@ function change(direction) {
 document.getElementById('next').onclick = () => change('next');
 document.getElementById('prev').onclick = () => change('prev');
 
-viewer.onclick = () => {
-  closeViewer();
+viewer.onclick = (e) => {
+  if (e.target === viewer) {
+    closeViewer();
+  }
 };
 
 document.addEventListener('keydown', e => {
