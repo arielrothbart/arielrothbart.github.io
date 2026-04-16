@@ -245,10 +245,17 @@
 <body>
 
     <div class="stars-bg"></div>
-<audio id="bgm" loop>
-    <source src="music/your-space-lofi.mp3" type="audio/mpeg">
-</audio>
+
+    <audio id="bgm" loop>
+        <source src="music/lounge-bgm.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="lounge-panel">
+        <div class="audio-control-container status-paused" onclick="toggleMusic()" id="musicController">
+            <div class="play-icon"></div>
+            <div class="audio-label" id="musicLabel">AUDIO: OFF</div>
+        </div>
+
         <span class="status-tag">LOCATION: CREW LOUNGE // STATUS: RECOVERY MODE</span>
         
         <h1>REPLENISHMENT STATION</h1>
@@ -279,15 +286,11 @@
         </a>
 
         <a href="index.html" class="back-link">BACK TO DECK / 返回主舱</a>
-    </div>
-    <div style="font-size: 8px; color: #444; margin-top: 20px; letter-spacing: 0.5px;">
-    MUSIC BY FSM TEAM FEAT. &lt; E S C P &gt; / CC BY 4.0
-</div>
-<div class="audio-control-container status-paused" onclick="toggleMusic()" id="musicController">
-    <div class="play-icon"></div>
-    <div class="audio-label" id="musicLabel">AUDIO: OFF</div>
-</div>
 
+        <div style="font-size: 8px; color: #444; margin-top: 20px; letter-spacing: 0.5px; text-align: center;">
+            MUSIC BY FSM TEAM FEAT. &lt; E S C P &gt; / CC BY 4.0
+        </div>
+    </div> 
     <script>
         let isQR = false;
         const mainImg = "images/about/lounge.gif"; 
