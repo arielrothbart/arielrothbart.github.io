@@ -58,6 +58,16 @@
             text-align: center;
             animation: panelFade 1.5s ease;
         }
+.audio-control {
+    font-size: 10px;
+    color: #ffb464;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    margin-top: 15px; /* 如果放在底部 */
+}
+.audio-control:hover { opacity: 1; }
 
         @keyframes panelFade {
             from { opacity: 0; transform: translateY(20px); }
@@ -181,7 +191,9 @@
 <body>
 
     <div class="stars-bg"></div>
-
+<audio id="bgm" loop>
+    <source src="music/your-space-lofi.mp3" type="audio/mpeg">
+</audio>
     <div class="lounge-panel">
         <span class="status-tag">LOCATION: CREW LOUNGE // STATUS: RECOVERY MODE</span>
         
@@ -214,6 +226,9 @@
 
         <a href="index.html" class="back-link">BACK TO DECK / 返回主舱</a>
     </div>
+<div class="audio-control" onclick="toggleMusic()" id="musicBtn">
+    [ SYSTEM AUDIO: OFF ]
+</div>
 
     <script>
         let isQR = false;
@@ -250,6 +265,21 @@
             statusBox.innerText = randomMsg;
             statusBox.style.color = "#ffb464";
         }
+        const bgm = document.getElementById('bgm');
+const musicBtn = document.getElementById('musicBtn');
+
+function toggleMusic() {
+    if (bgm.paused) {
+        bgm.play();
+        musicBtn.innerText = "[ SYSTEM AUDIO: ON - PLAYING COSMIC_LOFI.MP3 ]";
+        musicBtn.style.color = "#ffb464";
+    } else {
+        bgm.pause();
+        musicBtn.innerText = "[ SYSTEM AUDIO: OFF ]";
+        musicBtn.style.color = "#555";
+    }
+}
+
     </script>
 </body>
 </html>
