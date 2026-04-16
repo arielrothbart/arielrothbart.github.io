@@ -58,14 +58,68 @@
             text-align: center;
             animation: panelFade 1.5s ease;
         }
-.audio-control {
+.audio-control-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+/* 播放图标：和你的边框颜色一致 */
+.play-icon {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 180, 100, 0.5); /* 匹配你原本的橙色边框 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    position: relative;
+}
+
+/* 这里的伪元素用来画播放的小三角或暂停线 */
+.play-icon::after {
+    content: "";
+    display: block;
+}
+
+/* 默认状态：小三角 */
+.status-paused .play-icon::after {
+    border-left: 6px solid #ffb464;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    margin-left: 2px;
+}
+
+/* 播放状态：两条竖线 */
+.status-playing .play-icon::after {
+    width: 6px;
+    height: 8px;
+    border-left: 2px solid #ffb464;
+    border-right: 2px solid #ffb464;
+}
+
+/* 文字标签：在手机端可以隐藏，只留图标 */
+.audio-label {
     font-size: 10px;
     color: #ffb464;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: 0.3s;
     letter-spacing: 1px;
-    margin-top: 15px; /* 如果放在底部 */
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.audio-control-container:hover .audio-label {
+    opacity: 1;
+}
+
+/* 移动端优化：为了不挤占标题，可以只显示图标 */
+@media (max-width: 600px) {
+    .audio-label { display: none; }
+    .audio-control-container { top: 10px; right: 10px; }
 }
 .audio-control:hover { opacity: 1; }
 
@@ -226,8 +280,9 @@
 
         <a href="index.html" class="back-link">BACK TO DECK / 返回主舱</a>
     </div>
-<div class="audio-control" onclick="toggleMusic()" id="musicBtn">
-    [ SYSTEM AUDIO: OFF ]
+<div class="audio-control-container status-paused" onclick="toggleMusic()" id="musicController">
+    <div class="play-icon"></div>
+    <div class="audio-label" id="musicLabel">AUDIO: OFF</div>
 </div>
 
     <script>
@@ -269,14 +324,20 @@
 const musicBtn = document.getElementById('musicBtn');
 
 function toggleMusic() {
+    const bgm = document.getElementById('bgm');
+    const controller = document.getElementById('musicController');
+    const label = document.getElementById('musicLabel');
+
     if (bgm.paused) {
         bgm.play();
-        musicBtn.innerText = "[ SYSTEM AUDIO: ON - PLAYING COSMIC_LOFI.MP3 ]";
-        musicBtn.style.color = "#ffb464";
+        controller.classList.remove('status-paused');
+        controller.classList.add('status-playing');
+        label.innerText = "AUDIO: ON";
     } else {
         bgm.pause();
-        musicBtn.innerText = "[ SYSTEM AUDIO: OFF ]";
-        musicBtn.style.color = "#555";
+        controller.classList.remove('status-playing');
+        controller.classList.add('status-paused');
+        label.innerText = "AUDIO: OFF";
     }
 }
 
