@@ -183,16 +183,16 @@
 }
 
 .avatar-click-zone img {
-    /* 保持原有的 */
-    width: 100%;
+    width: 100%;       /* 默认占满 */
     height: auto;
     display: block;
-    margin: 0 auto; 
-    max-width: 220px; 
-    border-radius: 10px;
-    /* 增加一个平滑的过渡效果，切换时不会太生硬 */
-    transition: 0.3s ease-in-out;
-    box-shadow: 0 0 15px rgba(255, 180, 100, 0.1);
+    margin: 0 auto;
+    transition: all 0.3s ease; /* 增加平滑过渡，缩放时不生硬 */
+}
+
+/* 增加一个专门给二维码用的类 */
+.qr-size {
+    max-width: 250px;  /* 只有二维码会缩到这个尺寸 */
 }
 
        .bunny-status {
@@ -305,21 +305,27 @@
         const qrImg = "images/about/alipay.jpg"; 
 
         // 切换图片时的逻辑：修正提示语方向
-        function toggleQR() {
-            const imgElement = document.getElementById('displayImg');
-            const hintElement = document.getElementById('actionHint');
-            
-            if (!isQR) {
-                // 当前是画画图 -> 点击切到二维码
-                imgElement.src = qrImg;
-                hintElement.innerText = "Click to return: Back to drawing mode.";
-            } else {
-                // 当前是二维码 -> 点击切回画画图
-                imgElement.src = mainImg;
-                hintElement.innerText = "Click image for direct replenishment mode...";
-            }
-            isQR = !isQR;
-        }
+      function toggleQR() {
+    const imgElement = document.getElementById('displayImg');
+    const hintElement = document.getElementById('actionHint');
+    
+    if (!isQR) {
+        // --- 切换到二维码状态 ---
+        imgElement.src = qrImg;
+        hintElement.innerText = "Click to return: Back to drawing mode.";
+        
+        // 关键：给图片加上缩小的样式
+        imgElement.classList.add('qr-size'); 
+    } else {
+        // --- 切换回动图状态 ---
+        imgElement.src = mainImg;
+        hintElement.innerText = "Click image for direct replenishment mode...";
+        
+        // 关键：去掉缩小的样式，动图恢复大尺寸显示
+        imgElement.classList.remove('qr-size');
+    }
+    isQR = !isQR;
+}
 
         // 点击支持按钮时的逻辑：显示趣味互动
         function feedBunny() {
