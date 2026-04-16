@@ -183,9 +183,16 @@
 }
 
 .avatar-click-zone img {
+    /* 保持原有的 */
     width: 100%;
-    height: auto;      /* 确保图片按比例缩放 */
-    display: block;    /* 消除图片底部的微小空隙 */
+    height: auto;
+    display: block;
+    margin: 0 auto; 
+    max-width: 220px; 
+    border-radius: 10px;
+    /* 增加一个平滑的过渡效果，切换时不会太生硬 */
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 15px rgba(255, 180, 100, 0.1);
 }
 
        .bunny-status {
