@@ -160,10 +160,22 @@
 
         .back-link:hover { color: #ffb464; text-shadow: 0 0 8px rgba(255, 180, 100, 0.4); }
 
-        @media (max-width: 600px) {
-            .lounge-panel { padding: 25px; margin: 20px 0; }
-            .avatar-click-zone { width: 140px; height: 140px; }
-        }
+       @media (max-width: 600px) {
+    .lounge-panel {
+        padding: 15px; [span_0](start_span)/* 减少面板内边距[span_0](end_span) */
+        width: 95%;    /* 让面板占满屏幕宽度 */
+    }
+
+    .bunny-station {
+        padding: 5px;  /* 极力压榨容器边距，让图片变大 */
+        border-radius: 4px;
+    }
+
+    .message-content {
+        padding-left: 10px; [span_1](start_span)/* 缩小装饰线的间距[span_1](end_span) */
+        font-size: 0.85rem;  [span_2](start_span)/* 稍微缩小文字，腾出视觉空间[span_2](end_span) */
+    }
+}
     </style>
 </head>
 <body>
