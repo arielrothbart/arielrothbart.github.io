@@ -53,6 +53,9 @@
             background: black;
             z-index: 100;
             transition: transform 0.3s ease;
+
+            display: flex;
+            flex-direction: column;
         }
 
         .nav-title {
@@ -76,6 +79,146 @@
         #nav-links a:hover {
             color: var(--accent-color);
             transform: translateX(5px);
+        }
+
+        /* --- 1. 头像样式 --- */
+        /* --- 1. 头像+气泡容器样式 --- */
+        .avatar-wrapper {
+            position: relative;
+            /* 关键：作为气泡定位的基准 */
+            display: inline-block;
+            /* 保持左对齐 */
+            width: 90px;
+            height: 90px;
+            margin: 0 0 25px 0;
+            /* 与下方标题留出间距 */
+            cursor: default;
+            /* 既然不是功能按钮，鼠标默认即可 */
+        }
+
+        /* 头像本身 */
+        .user-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: none;
+            /* 严厉禁止灰色滤镜，默认原彩 */
+            transition: transform 0.2s ease;
+        }
+
+        /* 当鼠标悬停在容器上时，头像极轻微放大反馈 */
+        .avatar-wrapper:hover .user-avatar {
+            transform: scale(1.02);
+        }
+
+        /* --- 2. 漫画气泡样式 (默认隐藏) --- */
+        .chat-bubble {
+            position: absolute;
+            /* 定位到头像的右上方 */
+            top: -10px;
+            left: 80px;
+
+            /* 赛博感气泡：黑底蓝字，带点透明度 */
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 6px 12px;
+            font-size: 11px;
+            font-family: monospace;
+            /* 模拟终端字体 */
+            letter-spacing: 1px;
+            white-space: nowrap;
+            /* 防止文字换行 */
+            z-index: 10;
+
+            /* 核心过渡：默认隐藏，设置透明度和位移 */
+            opacity: 0;
+            visibility: hidden;
+            /* 彻底隐藏 */
+            transform: translateY(10px);
+            /* 默认往下偏移一点，准备滑入 */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+
+            /* 赛博感小装饰：呼吸灯发光 */
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+        }
+
+        /* 气泡的小三角 (赛博风格) */
+        .chat-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            /* 贴在底部 */
+            left: 10px;
+            /* 靠左一点 */
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--accent-color);
+            /* 用硬边描边做三角 */
+        }
+
+        /* --- 3. 悬停互动逻辑 --- */
+        /* 当鼠标悬停在容器上时，气泡淡入并滑入归位 */
+        .avatar-wrapper:hover .chat-bubble {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            /* 滑回原位 */
+        }
+
+        .user-avatar-btn:hover {
+            transform: scale(1.02);
+            /* 极轻微的缩放，不浮夸 */
+
+            /* 按照要求：8px 无扩散外发光描边 (模拟描边效果) */
+            /* 使用 box-shadow 的第四个参数（扩张半径）来实现无扩散的硬边感 */
+            box-shadow: 0 0 0 2px var(--accent-color);
+            /* 或者如果你喜欢柔和一点的 8px 硬边： */
+            /* filter: drop-shadow(0 0 4px var(--accent-color)); */
+        }
+
+        /* --- 2. 标题 --- */
+        .nav-title {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            opacity: 0.6;
+            margin-bottom: 20px;
+        }
+
+        /* --- 3. 链接区域（这是负责滚动的地方） --- */
+        #nav-links {
+            flex: 1;
+            /* 占用剩余的所有空间 */
+            overflow-y: auto;
+            /* 数量多时自动出现滚动条 */
+            padding-right: 10px;
+            /* 给滚动条留点空隙 */
+        }
+
+        /* 链接区域的滚动条美化（变得细细的，不晃眼） */
+        #nav-links::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #nav-links::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+        }
+
+        #nav-links::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- 4. 底部装饰 --- */
+        .nav-footer {
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 10px;
+            color: var(--accent-color);
+            opacity: 0.3;
+            line-height: 1.5;
         }
 
         /* --- 主内容 --- */
@@ -168,30 +311,31 @@
             cursor: zoom-out;
         }
 
-    
+
         /* 查看器里的图片：基础样式 */
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    /* 缩短一点时间，0.3s 显得更干脆不拖沓 */
-    transition: all 0.3s ease-in-out; 
-    opacity: 1;
-    transform: translateX(0);
-}
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            /* 缩短一点时间，0.3s 显得更干脆不拖沓 */
+            transition: all 0.3s ease-in-out;
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-/* 状态 A：离开时的状态（向左滑出并消失） */
-.img-leave {
-    opacity: 0 !important;
-    transform: translateX(-30px) !important;
-}
+        /* 状态 A：离开时的状态（向左滑出并消失） */
+        .img-leave {
+            opacity: 0 !important;
+            transform: translateX(-30px) !important;
+        }
 
-/* 状态 B：进入前的瞬间状态（先瞬移到右边，准备滑入） */
-.img-enter {
-    transition: none !important; /* 瞬移时不需要动画 */
-    opacity: 0 !important;
-    transform: translateX(30px) !important;
-}
+        /* 状态 B：进入前的瞬间状态（先瞬移到右边，准备滑入） */
+        .img-enter {
+            transition: none !important;
+            /* 瞬移时不需要动画 */
+            opacity: 0 !important;
+            transform: translateX(30px) !important;
+        }
 
         /* 切换时的低调状态：只有轻微的淡出和平移 */
         .img-switching {
@@ -357,8 +501,18 @@
     <button id="menu-toggle" onclick="toggleMenu()">MENU</button>
 
     <nav id="nav-container">
+        <div class="avatar-wrapper">
+            <img src="images/log/avatar.png" alt="Avatar" class="user-avatar">
+
+            <div class="chat-bubble">Hi!</div>
+        </div>
         <div class="nav-title">LOG_DATABASE</div>
         <div id="nav-links"></div>
+
+        <div class="nav-footer">
+            STATUS: SYSTEM_ACTIVE<br>
+            LOC: ORBITAL_STATION_04
+        </div>
     </nav>
 
     <main id="log-content"></main>
@@ -419,28 +573,28 @@
 
         // --- 4. Lightbox 核心逻辑 (修复点击无反应看这里) ---
         function changeImage(step) {
-    const lbImg = document.getElementById('lightbox-img');
-    
-    // 1. 先触发“离开”动画
-    lbImg.classList.add('img-leave');
+            const lbImg = document.getElementById('lightbox-img');
 
-    // 2. 等离开动画做完 (300ms)
-    setTimeout(() => {
-        // 换图
-        currentImgIndex = (currentImgIndex + step + allImages.length) % allImages.length;
-        lbImg.src = allImages[currentImgIndex];
+            // 1. 先触发“离开”动画
+            lbImg.classList.add('img-leave');
 
-        // 3. 换图后，立刻切换到“进入前”的状态 (瞬移到右侧 30px 处)
-        lbImg.classList.remove('img-leave');
-        lbImg.classList.add('img-enter');
+            // 2. 等离开动画做完 (300ms)
+            setTimeout(() => {
+                // 换图
+                currentImgIndex = (currentImgIndex + step + allImages.length) % allImages.length;
+                lbImg.src = allImages[currentImgIndex];
 
-        // 4. 强行让浏览器刷新一下状态 (Reflow)
-        lbImg.offsetWidth; 
+                // 3. 换图后，立刻切换到“进入前”的状态 (瞬移到右侧 30px 处)
+                lbImg.classList.remove('img-leave');
+                lbImg.classList.add('img-enter');
 
-        // 5. 移除“进入”类，图片会自动根据 transition 效果平滑回到 translateX(0)
-        lbImg.classList.remove('img-enter');
-    }, 300); 
-}
+                // 4. 强行让浏览器刷新一下状态 (Reflow)
+                lbImg.offsetWidth;
+
+                // 5. 移除“进入”类，图片会自动根据 transition 效果平滑回到 translateX(0)
+                lbImg.classList.remove('img-enter');
+            }, 300);
+        }
 
         function openLightbox(index) {
             currentImgIndex = index;
