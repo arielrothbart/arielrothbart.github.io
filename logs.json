@@ -1,0 +1,25 @@
+[
+    {
+        "id": "intro",
+        "type": "pinned",
+        "date": "SYSTEM_INFO",
+        "title": "CAPTAIN'S LOGBOOK",
+        "content": "Welcome to the Captain's Log / Sketch Repository. <br>This is where I keep my daily creative musings and sketches. <br>In here, you will see the 'Captain' working strictly as a creator—this is a record of the very moments when stories come to life.<br><br>欢迎来到船长的日志/速写存放处。<br>这里主要存放平时的创作随想以及灵感草图。<br>在这里,你将看到完全作为创作者而工作的船长——记录着那些故事诞生的瞬间。"
+    },
+    {
+        "id": "log-02",
+        "type": "normal",
+        "date": "2026.04.16",
+        "title": "MEET THE ARTIST",
+        "content": "虽然是我2024年画的老图了 不过现在仍然试用！",
+        "images": "images/log/sketch1.png"
+    },
+ {
+        "id": "log-03",
+        "type": "normal",
+        "date": "2026.04.16",
+        "title": "test 123",
+        "content": "anything but that...",
+        "images": "images/log/sketch3.png"
+    }
+]
