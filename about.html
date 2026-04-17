@@ -336,7 +336,22 @@ line-height: 2.2;
   top: 80px;
   right: 60px;
 }
-.home-logo img { width: 80px; }
+.home-logo img {
+  width: 80px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+/* hover 反馈 */
+.home-logo img:hover {
+  transform: scale(1.08);
+  filter: brightness(1.2);
+}
+
+/* 点击瞬间反馈（重点） */
+.home-logo img:active {
+  transform: scale(0.92);
+}
 
 /* 📱 */
 @media (max-width: 768px) {
