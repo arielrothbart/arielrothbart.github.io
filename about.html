@@ -280,7 +280,35 @@ line-height: 2.2;
   transform: scale(0.7);
   filter: brightness(1.2);
 }
+.log-entry {
+  position: relative;
+  display: inline-block;
+}
 
+/* 提示文字 */
+.log-label {
+  position: absolute;
+  bottom: -28px;
+  right: 0;
+
+  font-family: 'Share Tech', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+
+  color: rgba(255,255,255,0.7);
+
+  opacity: 0;
+  transform: translateY(5px);
+
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+/* hover 时出现 */
+.log-entry:hover .log-label {
+  opacity: 1;
+  transform: translateY(0);
+}
 /* ⭐ 返回 */
 .scroll-top {
   position: fixed;
@@ -440,10 +468,12 @@ line-height: 2.2;
       <a href="https://ariellerocker.artstation.com/" target="_blank"><img src="images/about/icon-art.png"></a>
     </div>
 
-    <div class="corner-gif">
-      <img src="images/about/draw.gif">
-    </div>
-
+   <div class="corner-gif">
+  <a href="log.html" class="log-entry">
+    <img src="images/about/draw.gif">
+    <div class="log-label">[ Captain's Log _ 船长日志 入口 ]</div>
+  </a>
+</div>
   </div>
 
 </div>
