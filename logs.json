@@ -17,9 +17,9 @@
  {
         "id": "log-03",
         "type": "normal",
-        "date": "2026.04.16",
-        "title": "test 123",
-        "content": "anything but that...",
-        "images": ["images/log/sketch2.png"]
+        "date": "2019.10.19",
+        "title": "Helloween carnival sketches",
+        "content": "翻到了一些老的速写，用纸笔画画的感觉真好啊",
+        "images": ["images/log/sketch2.png","images/log/sketch3.png", "images/log/sketch4.png","images/log/sketch5.png"]
     }
 ]
