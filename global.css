@@ -1,3 +1,6 @@
+/* =========================
+   HOME LOGO（全站统一）
+========================= */
 .home-logo {
   position: fixed;
   top: 80px;
@@ -17,5 +20,64 @@
 }
 
 .home-logo img:active {
+  transform: scale(0.92);
+}
+
+
+/* =========================
+   SCROLL TOP（全站统一）
+========================= */
+.scroll-top {
+  position: fixed;
+  right: 60px;
+  bottom: 60px;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(255,60,60,0.4);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  color: #ff3b3b;
+
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(20px);
+
+  transition: 0.4s;
+
+  z-index: 1000;
+
+  text-shadow:
+    0 0 6px rgba(255,60,60,0.8),
+    0 0 12px rgba(255,60,60,0.4);
+}
+
+/* 出现时 */
+.scroll-top.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* hover 反馈 */
+.scroll-top:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 0 10px rgba(255,60,60,0.6),
+    0 0 20px rgba(255,60,60,0.3);
+}
+
+/* 点击反馈（补上统一手感） */
+.scroll-top:active {
   transform: scale(0.92);
 }
