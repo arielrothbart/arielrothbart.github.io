@@ -1,138 +1,324 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Captain's Log</title>
     <style>
         :root {
-            --bg-color: #0d1117;
+            --bg-color: #000000;
             --accent-color: #58a6ff;
-            --text-color: #c9d1d9;
+            /* 回归经典的赛博蓝 */
+            --text-color: #ffffff;
+            --secondary-text: rgba(255, 255, 255, 0.6);
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Courier New', Courier, monospace;
             margin: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: sans-serif;
             display: flex;
             scroll-behavior: smooth;
         }
 
-        /* 扫描线效果 */
+        /* 扫描线 */
         body::before {
             content: " ";
             position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 3px 100%;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+            background-size: 100% 4px;
             pointer-events: none;
             z-index: 10;
         }
 
-        /* 进入动画 */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 左侧导航 */
-        nav {
-            width: 250px;
+        /* --- 侧边栏 --- */
+        #nav-container {
+            width: 280px;
             height: 100vh;
             position: sticky;
             top: 0;
-            border-right: 1px solid #30363d;
-            padding: 20px;
+            border-right: 1px solid rgba(88, 166, 255, 0.2);
+            padding: 60px 30px;
+            box-sizing: border-box;
             overflow-y: auto;
+            background: black;
+            z-index: 100;
+            transition: transform 0.3s ease;
         }
 
-        nav a {
+        .nav-title {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            opacity: 0.6;
+            margin-bottom: 30px;
+        }
+
+        #nav-links a {
             display: block;
-            color: var(--text-color);
+            color: var(--secondary-text);
             text-decoration: none;
-            margin-bottom: 15px;
-            font-size: 0.9em;
-            transition: color 0.3s;
+            margin-bottom: 20px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
 
-        nav a:hover { color: var(--accent-color); }
+        #nav-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
 
-        /* 右侧内容 */
+        /* --- 主内容 --- */
         main {
             flex: 1;
-            padding: 40px;
-            animation: fadeInUp 1s ease-out;
+            padding: 60px 40px;
+            max-width: 800px;
         }
 
-        section {
+        .post {
             margin-bottom: 100px;
-            border-bottom: 1px dashed #30363d;
-            padding-bottom: 50px;
+            animation: fadeIn 1s ease-out;
         }
 
-        .sketch-placeholder {
-            background: #161b22;
-            border: 1px solid #30363d;
+        .post.pinned {
+            border-left: 2px solid var(--accent-color);
+            padding-left: 30px;
+            background: rgba(88, 166, 255, 0.03);
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .date {
+            font-size: 11px;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        h2 {
+            font-size: 18px;
+            letter-spacing: 3px;
+            margin: 15px 0;
+        }
+
+        p {
+            line-height: 1.8;
+            opacity: 0.8;
+            font-size: 15px;
+        }
+
+        .sketch-box {
+            display: flex;
+            flex-direction: column;
+            /* 图片垂直排列 */
+            gap: 20px;
+            /* 图片之间的间距 */
+            margin-top: 25px;
+        }
+
+        .sketch-box img {
             width: 100%;
-            max-width: 600px;
-            height: 300px;
-            margin: 20px 0;
+            max-width: 100%;
+            /* 确保不超出容器 */
+            height: auto;
+            border: 1px solid #222;
+            transition: transform 0.3s ease;
+        }
+
+        .sketch-box img:hover {
+            transform: scale(1.01);
+            /* 鼠标悬停微调，增加互动感 */
+        }
+
+        /* --- 手机端组件 --- */
+        #menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--accent-color);
+            color: black;
+            border: none;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* --- 统一按钮 --- */
+        .home-logo {
+            position: fixed;
+            top: 60px;
+            right: 60px;
+            z-index: 1000;
+        }
+
+        .home-logo img {
+            width: 80px;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .scroll-top {
+            position: fixed;
+            right: 60px;
+            bottom: 60px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--accent-color);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        /* 悬浮按钮组 */
-        .controls {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .btn {
-            background: var(--accent-color);
-            color: #fff;
-            border: none;
-            padding: 10px;
+            color: var(--accent-color);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
             cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 12px;
+            opacity: 0;
+            transition: 0.4s;
+            z-index: 1000;
+            text-shadow: 0 0 8px var(--accent-color);
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #menu-toggle {
+                display: block;
+            }
+
+            #nav-container {
+                position: fixed;
+                transform: translateX(-100%);
+                width: 240px;
+            }
+
+            #nav-container.active {
+                transform: translateX(0);
+            }
+
+            main {
+                padding: 80px 25px;
+            }
+
+            .home-logo {
+                top: 20px;
+                right: 20px;
+            }
+
+            .home-logo img {
+                width: 48px;
+            }
+
+            .scroll-top {
+                right: 20px;
+                bottom: 20px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<nav>
-    <h3 style="color: var(--accent-color);">LOG_FILES</h3>
-    <a href="#entry-03"># 2026.04.16 - 关于星舰构造</a>
-    <a href="#entry-02"># 2026.04.10 - 角色剪影速写</a>
-    <a href="#entry-01"># 2026.04.01 - 初始日志</a>
-</nav>
+    <button id="menu-toggle" onclick="toggleMenu()">MENU</button>
 
-<main>
-    <section id="entry-03">
-        <h2>STARDATE: 2026.04.16</h2>
-        <p>今天在构思新的推进器设计，尝试在 Procreate 里画了一版草图...</p>
-        <div class="sketch-placeholder">这里放你的 Sketch 图片</div>
-    </section>
+    <nav id="nav-container">
+        <div class="nav-title">LOG_DATABASE</div>
+        <div id="nav-links"></div>
+    </nav>
 
-    <section id="entry-02">
-        <h2>STARDATE: 2026.04.10</h2>
-        <p>深夜灵感：如果角色在低重力环境下战斗...</p>
-    </section>
-</main>
+    <main id="log-content"></main>
 
-<div class="controls">
-    <a href="#" class="btn">TOP</a>
-    <a href="index.html" class="btn">HOME</a>
-</div>
+    <a href="index.html" class="home-logo"><img src="logo.png"></a>
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // 1. 自动加载 JSON 数据
+        async function loadLogs() {
+            try {
+                const response = await fetch('logs.json');
+                const data = await response.json();
+                renderLogs(data);
+            } catch (err) {
+                console.error("加载日志失败，请检查 logs.json 是否在同一目录下", err);
+            }
+        }
+
+        function renderLogs(logs) {
+            const contentArea = document.getElementById('log-content');
+            const navArea = document.getElementById('nav-links');
+
+            logs.forEach(log => {
+                // 生成导航链接
+                const link = document.createElement('a');
+                link.href = `#${log.id}`;
+                link.innerText = `# ${log.title}`;
+                link.onclick = () => { if (window.innerWidth <= 768) toggleMenu(); };
+                navArea.appendChild(link);
+
+                // 处理图片列表：如果是单张图字符串，转为数组；如果是数组，直接使用
+                let imagesHtml = '';
+                if (log.images && Array.isArray(log.images)) {
+                    log.images.forEach(imgSrc => {
+                        imagesHtml += `<img src="${imgSrc}" style="margin-bottom: 15px;">`;
+                    });
+                } else if (log.image) { // 兼容旧的单图格式
+                    imagesHtml = `<img src="${log.image}">`;
+                }
+
+                // 生成日志内容
+                const section = document.createElement('section');
+                section.id = log.id;
+                section.className = `post ${log.type === 'pinned' ? 'pinned' : ''}`;
+
+                section.innerHTML = `
+                <span class="date">${log.date}</span>
+                <h2>${log.title}</h2>
+                <p>${log.content}</p>
+                ${imagesHtml ? `<div class="sketch-box">${imagesHtml}</div>` : ''}
+            `;
+                contentArea.appendChild(section);
+            });
+        }
+
+        // 2. 手机端菜单切换
+        function toggleMenu() {
+            document.getElementById('nav-container').classList.toggle('active');
+        }
+
+        // 3. 回顶部逻辑
+        const scrollBtn = document.getElementById('scrollTop');
+        window.onscroll = () => {
+            if (window.scrollY > 300) scrollBtn.classList.add('show');
+            else scrollBtn.classList.remove('show');
+        };
+        scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // 初始化加载
+        loadLogs();
+    </script>
 
 </body>
+
 </html>
