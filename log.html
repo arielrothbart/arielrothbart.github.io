@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Captain's Log</title>
     <link rel="stylesheet" href="global.css">
+
     <style>
         :root {
             --bg-color: #000000;
@@ -35,7 +36,8 @@
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
             background-size: 100% 4px;
             pointer-events: none;
-            z-index: 10;
+            z-index: -1;
+            opacity: 0.4;
         }
 
         /* --- 侧边栏 --- */
@@ -136,6 +138,43 @@
         .sketch-box img:hover {
             transform: scale(1.01);
             /* 鼠标悬停微调，增加互动感 */
+        }
+
+        /* 查看器背景 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        /* 查看器里的图片 */
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* 让列表中的缩略图看起来像可以点击的样子 */
+        .sketch-box img {
+            cursor: zoom-in;
         }
 
         /* --- 手机端组件 --- */
@@ -240,6 +279,11 @@
     </style>
 </head>
 
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close-btn">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
 <body>
 
     <button id="menu-toggle" onclick="toggleMenu()">MENU</button>
@@ -255,70 +299,92 @@
     <div class="scroll-top" id="scrollTop">↑</div>
 
     <script>
-        // 1. 自动加载 JSON 数据
-        async function loadLogs() {
-            try {
-                const response = await fetch('logs.json');
-                const data = await response.json();
-                renderLogs(data);
-            } catch (err) {
-                console.error("加载日志失败，请检查 logs.json 是否在同一目录下", err);
-            }
+    // --- 1. 全局状态（新增：用于支持图片放大功能） ---
+    let allImages = []; 
+
+    // --- 2. 自动加载 JSON 数据（保留自你的原代码） ---
+    async function loadLogs() {
+        try {
+            const response = await fetch('logs.json');
+            const data = await response.json();
+            renderLogs(data);
+        } catch (err) {
+            console.error("加载日志失败，请检查 logs.json 是否在同一目录下", err);
         }
+    }
 
-        function renderLogs(logs) {
-            const contentArea = document.getElementById('log-content');
-            const navArea = document.getElementById('nav-links');
+    // --- 3. 渲染日志（在你的原逻辑基础上，升级了图片点击功能） ---
+    function renderLogs(logs) {
+        const contentArea = document.getElementById('log-content');
+        const navArea = document.getElementById('nav-links');
 
-            logs.forEach(log => {
-                // 生成导航链接
-                const link = document.createElement('a');
-                link.href = `#${log.id}`;
-                link.innerText = `# ${log.title}`;
-                link.onclick = () => { if (window.innerWidth <= 768) toggleMenu(); };
-                navArea.appendChild(link);
+        logs.forEach(log => {
+            // 生成导航链接 (完全保留)
+            const link = document.createElement('a');
+            link.href = `#${log.id}`;
+            link.innerText = `# ${log.title}`;
+            link.onclick = () => { if (window.innerWidth <= 768) toggleMenu(); };
+            navArea.appendChild(link);
 
-                // 处理图片列表：如果是单张图字符串，转为数组；如果是数组，直接使用
-                let imagesHtml = '';
-                if (log.images && Array.isArray(log.images)) {
-                    log.images.forEach(imgSrc => {
-                        imagesHtml += `<img src="${imgSrc}" style="margin-bottom: 15px;">`;
-                    });
-                } else if (log.image) { // 兼容旧的单图格式
-                    imagesHtml = `<img src="${log.image}">`;
-                }
+            // 处理图片逻辑 (升级：加入点击放大指令)
+            let imagesHtml = '';
+            if (log.images && Array.isArray(log.images)) {
+                log.images.forEach(imgSrc => {
+                    allImages.push(imgSrc); // 存入图库
+                    const currentIdx = allImages.length - 1;
+                    imagesHtml += `<img src="${imgSrc}" style="margin-bottom: 15px; cursor:zoom-in;" onclick="openLightbox(${currentIdx})">`;
+                });
+            } else if (log.image) { 
+                allImages.push(log.image);
+                const currentIdx = allImages.length - 1;
+                imagesHtml = `<img src="${log.image}" style="cursor:zoom-in;" onclick="openLightbox(${currentIdx})">`;
+            }
 
-                // 生成日志内容
-                const section = document.createElement('section');
-                section.id = log.id;
-                section.className = `post ${log.type === 'pinned' ? 'pinned' : ''}`;
+            // 生成日志内容 (完全保留你的 HTML 结构)
+            const section = document.createElement('section');
+            section.id = log.id;
+            section.className = `post ${log.type === 'pinned' ? 'pinned' : ''}`;
 
-                section.innerHTML = `
+            section.innerHTML = `
                 <span class="date">${log.date}</span>
                 <h2>${log.title}</h2>
                 <p>${log.content}</p>
                 ${imagesHtml ? `<div class="sketch-box">${imagesHtml}</div>` : ''}
             `;
-                contentArea.appendChild(section);
-            });
-        }
+            contentArea.appendChild(section);
+        });
+    }
 
-        // 2. 手机端菜单切换
-        function toggleMenu() {
-            document.getElementById('nav-container').classList.toggle('active');
-        }
+    // --- 4. Lightbox 逻辑（新增：控制图片放大和关闭） ---
+    function openLightbox(index) {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        lb.style.display = 'flex';
+        lbImg.src = allImages[index];
+        document.body.style.overflow = 'hidden'; // 放大时禁止背景网页滚动
+    }
 
-        // 3. 回顶部逻辑
-        const scrollBtn = document.getElementById('scrollTop');
-        window.onscroll = () => {
-            if (window.scrollY > 300) scrollBtn.classList.add('show');
-            else scrollBtn.classList.remove('show');
-        };
-        scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = 'auto'; // 关闭时恢复滚动
+    }
 
-        // 初始化加载
-        loadLogs();
-    </script>
+    // --- 5. 手机端菜单切换（完全保留自你的原代码） ---
+    function toggleMenu() {
+        document.getElementById('nav-container').classList.toggle('active');
+    }
+
+    // --- 6. 回顶部逻辑（完全保留自你的原代码） ---
+    const scrollBtn = document.getElementById('scrollTop');
+    window.onscroll = () => {
+        if (window.scrollY > 300) scrollBtn.classList.add('show');
+        else scrollBtn.classList.remove('show');
+    };
+    scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // --- 7. 初始化启动 ---
+    loadLogs();
+</script>
 
 </body>
 
