@@ -12,7 +12,7 @@
         "date": "2026.04.16",
         "title": "MEET THE ARTIST",
         "content": "虽然是我2024年画的老图了 不过现在仍然试用！",
-        "images": "images/log/sketch1.jpg"
+        "images": ["images/log/sketch1.jpg"]
     },
  {
         "id": "log-03",
@@ -20,6 +20,6 @@
         "date": "2026.04.16",
         "title": "test 123",
         "content": "anything but that...",
-        "images": "images/log/sketch3.png"
+        "images": ["images/log/sketch2.png"]
     }
 ]
