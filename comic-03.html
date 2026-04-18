@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhapsody in Neon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:white;
+  font-family:Arial, sans-serif;
+}
+
+/* ===== HOME ===== */
+.home-logo{
+  position:fixed;
+  top:80px;
+  right:60px;
+  z-index:1000;
+}
+.home-logo img{
+  width:80px;
+  opacity:0.8;
+  transition:0.3s;
+}
+.home-logo img:hover{
+  opacity:1;
+  transform:scale(1.08);
+}
+
+/* ===== HERO（底层头图） ===== */
+.hero{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+
+  background:url("images/comics/comic-02/cover.jpg") center/cover no-repeat;
+  z-index:0;
+}
+  
+/* ===== 覆盖层（标题在这里） ===== */
+.overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+
+  z-index:2;
+  pointer-events:none;
+}
+
+/* 标题整体位置 */
+.intro{
+  width:90%;
+  max-width:1200px;
+  margin-bottom:80px;
+}
+
+/* 主标题 */
+.intro h1{
+  font-family:'Francois One', sans-serif;
+  font-size:clamp(60px, 10vw, 140px);
+  color:#cff2ff;
+
+  text-align:center;
+  margin:0;
+  line-height:0.9;
+}
+
+/* OVERTURE */
+.intro .sub{
+  font-family:'Francois One', sans-serif;
+  font-size:18px;
+  color:#cff2ff;
+  opacity:0.6;
+
+  text-align:center;
+  margin-top:1em;
+}
+
+/* 小字说明 */
+.intro .desc{
+  font-family:'Francois One', sans-serif;
+  font-size:clamp(14px, 2vw, 28px);
+  color:#fdbcec;
+
+  margin-top:20px;
+  width:max-content;
+
+  /* 👇 关键：左对齐标题 */
+  margin-left:auto;
+  margin-right:auto;
+  transform:translateX(-25%);
+}
+  
+/* ===== 内容层（会覆盖上来） ===== */
+.content{
+  position:relative;
+  z-index:3;
+
+  margin-top:100vh; /* 👈 提前开始覆盖 */
+  background:#000;
+
+  padding:120px 0 80px;
+}
+
+
+/* ===== 漫画页 ===== */
+.page{
+  display:flex;
+  justify-content:center;
+  margin-bottom:80px;
+}
+
+.page img{
+  width:90%;
+  max-width:800px;
+  cursor:zoom-in;
+}
+
+/* ===== 放大 ===== */
+.zoom{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.zoom img{
+  max-width:90%;
+  max-height:90%;
+ cursor: zoom-in;
+  transform-origin:center;
+  transition:transform 0.1s;
+  cursor: grab;
+}
+.zoom img:active{
+  cursor: grabbing;
+}
+
+/* ===== 底部nav 按钮 ===== */
+.project-nav{
+  display:flex;
+  justify-content:space-between;
+
+  width:80%;
+  margin:80px auto;
+
+  font-size:18px;
+}
+
+.project-nav a{
+  color:white;
+  text-decoration:none;
+  opacity:0.6;
+  transition:0.2s;
+}
+
+.project-nav a:hover{
+  opacity:1;
+}
+
+.small{
+  font-size:10px;
+  opacity:0.4;
+  display:block;
+  margin-bottom:6px;
+}
+  
+/* ===== TOP 按钮 ===== */
+.top-btn{
+  position:fixed;
+  right:60px;
+  bottom:60px;
+
+  width:48px;
+  height:48px;
+
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+  opacity:0.6;
+  transition:0.3s;
+
+  z-index:3000; /* 👈 关键 */
+}
+
+.top-btn.show{
+  opacity:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 背景头图 -->
+<div class="hero"></div>
+<div class="overlay">
+  <div class="intro">
+    <h1>霓虹狂想曲</h1>
+    <div class="sub">序章</div>
+    <p class="desc">
+      原创视觉小说<br>
+      编绘 Ariel Rothbart
+    </p>
+  </div>
+</div>
+<!-- HOME -->
+<a href="index.html" class="home-logo">
+  <img src="logo.png">
+</a>
+
+<!-- 内容 -->
+<div class="content">
+
+  <!-- 漫画页容器 -->
+  <div id="pages-container"></div>
+
+<div class="project-nav">
+
+  <a href="comic-01.html">
+    <span class="small">PREV PROJECT</span>
+    ‹ Valley of Gloom
+  </a>
+
+  <a href="comics.html">
+    <span class="small">BACK TO SHELF</span>
+    Comics ›
+  </a>
+
+</div>
+  
+</div>
+
+<!-- 放大 -->
+<div class="zoom" id="zoom">
+  <img id="zoomImg">
+</div>
+
+<!-- TOP -->
+<div class="top-btn" id="topBtn">↑</div>
+
+<script>
+ const container = document.getElementById("pages-container");
+  
+/* 👇 改这里就能控制页数 */
+const totalPages = 11;
+
+for(let i = 1; i <= totalPages; i++){
+  const page = document.createElement("div");
+  page.className = "page";
+
+  const img = document.createElement("img");
+  img.src = `images/comics/comic-03/page${i}.jpg`;
+
+  page.appendChild(img);
+  container.appendChild(page);
+}
+
+/* 放大 */
+const zoom = document.getElementById("zoom");
+const zoomImg = document.getElementById("zoomImg");
+
+document.addEventListener("click", function(e){
+  if(e.target.closest(".page img")){
+     const clicked = e.target;
+    currentIndex = pages.indexOf(clicked);   // 👈 新增
+    zoom.style.display = "flex";
+    zoomImg.src = e.target.src;
+
+    scale = 1;
+translateX = 0;
+translateY = 0;
+zoomImg.style.transform = "translate(0px, 0px) scale(1)";
+  }
+});
+
+zoom.addEventListener("click", (e)=>{
+
+  // 👉 点图片：左右切换
+  if(e.target === zoomImg){
+
+    const x = e.clientX;
+    const width = window.innerWidth;
+
+    if(x < width * 0.4){
+      currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+      switchImage();
+    }
+    else if(x > width * 0.6){
+      currentIndex = (currentIndex + 1) % pages.length;
+      switchImage();
+    }
+
+  }
+
+  // 👉 点黑背景：关闭
+  else{
+    zoom.style.display = "none";
+  }
+
+});
+
+/* top按钮 */
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", ()=>{
+  if(window.scrollY > 300){
+    topBtn.classList.add("show");
+  }else{
+    topBtn.classList.remove("show");
+  }
+});
+
+topBtn.onclick = ()=>{
+  window.scrollTo({top:0, behavior:"smooth"});
+};
+  
+let pages = [];
+
+window.addEventListener("load", ()=>{
+  pages = Array.from(document.querySelectorAll(".page img"));
+});
+let currentIndex = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let translateX = 0;
+let translateY = 0;
+  
+/* 滚轮缩放 */
+zoom.addEventListener("wheel", (e)=>{
+  e.preventDefault();
+
+  if(e.deltaY < 0){
+    scale += 0.1;
+  }else{
+    scale -= 0.1;
+  }
+
+  /* 限制范围 */
+  scale = Math.max(1, Math.min(scale, 3));
+
+ zoomImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+});
+  /* 拖动开始 */
+zoomImg.addEventListener("mousedown", (e)=>{
+  isDragging = true;
+  startX = e.clientX - translateX;
+  startY = e.clientY - translateY;
+});
+
+/* 拖动中 */
+window.addEventListener("mousemove", (e)=>{
+  if(!isDragging) return;
+
+  translateX = e.clientX - startX;
+  translateY = e.clientY - startY;
+
+  zoomImg.style.transform =
+    `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+});
+
+/* 拖动结束 */
+window.addEventListener("mouseup", ()=>{
+  isDragging = false;
+});
+ zoomImg.addEventListener("dblclick", ()=>{
+  translateX = 0;
+  translateY = 0;
+
+  zoomImg.style.transform =
+    `translate(0px, 0px) scale(${scale})`;
+}); 
+  document.addEventListener("keydown", (e)=>{
+  if(zoom.style.display !== "flex") return;
+
+  if(e.key === "ArrowRight"){
+    currentIndex = (currentIndex + 1) % pages.length;
+    switchImage();
+  }
+
+  if(e.key === "ArrowLeft"){
+    currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+    switchImage();
+  }
+});
+
+function switchImage(){
+  zoomImg.src = pages[currentIndex].src;
+
+  translateX = 0;
+  translateY = 0;
+  scale = 1;
+
+  zoomImg.style.transform = "translate(0px, 0px) scale(1)";
+}
+ 
+  let touchStartX = 0;
+
+zoom.addEventListener("touchstart", (e)=>{
+  touchStartX = e.touches[0].clientX;
+});
+
+zoom.addEventListener("touchend", (e)=>{
+  let touchEndX = e.changedTouches[0].clientX;
+  let diff = touchStartX - touchEndX;
+
+  if(Math.abs(diff) < 50) return;
+
+  if(diff > 0){
+    // 向左滑 → 下一页
+    currentIndex = (currentIndex + 1) % pages.length;
+  }else{
+    // 向右滑 → 上一页
+    currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+  }
+
+  switchImage();
+});
+</script>
+
+</body>
+</html>
