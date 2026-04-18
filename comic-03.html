@@ -1,228 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comics</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Orbitron:wght@400;600&family=ZCOOL+QingKe+HuangYou&family=ZCOOL+XiaoWei&display=swap"
-    rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhapsody in Neon</title>
 
-  <style>
-    body {
-      margin: 0;
-      background: #1a1a1a;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Francois+One&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:white;
+  font-family:Arial, sans-serif;
+}
 
-    /* ===== HOME LOGO ===== */
-    .home-logo {
-      position: fixed;
-      top: 80px;
-      right: 60px;
-      z-index: 1000;
-    }
+/* ===== HOME ===== */
+.home-logo{
+  position:fixed;
+  top:80px;
+  right:60px;
+  z-index:1000;
+}
+.home-logo img{
+  width:80px;
+  opacity:0.8;
+  transition:0.3s;
+}
+.home-logo img:hover{
+  opacity:1;
+  transform:scale(1.08);
+}
 
-    .home-logo img {
-      width: 80px;
-      opacity: 0.8;
-      transition: 0.3s;
-    }
+/* ===== HERO（底层头图） ===== */
+.hero{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
 
-    .home-logo img:hover {
-      opacity: 1;
-      transform: scale(1.08);
-    }
+  background:url("images/comics/comic-02/cover.jpg") center/cover no-repeat;
+  z-index:0;
+}
+  
+/* ===== 覆盖层（标题在这里） ===== */
+/* 1. 调整覆盖层：让内容整体靠下居中 */
+/* 1. 标题覆盖层：改为固定定位且不占据文档流，防止挤掉下方漫画 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* 关键修改：让内容靠底部对齐 */
+  justify-content: flex-end; 
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+}
 
-    /* ===== 页面标题 ===== */
-    .title {
-      font-family: 'Amatic SC', cursive;
-      text-align: center;
-      padding: 60px 0 20px;
-      font-size: 64px;
-      letter-spacing: 2px;
-      opacity: 0.85;
-    }
+/* 2. 标题包装盒：精准控制下沉距离 */
+.intro {
+  width: 100%;
+  /* 增加底边距，数值越大，文字就离屏幕最底部越远（越往上弹） */
+  /* 这里建议设为 10vh（即屏幕高度的10%），能刚好压在红框位置 */
+  margin-bottom: 12vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    /* ===== 书架背景 (找回了你的木板设计) ===== */
-    .bookshelf {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 60px;
-      padding: 60px;
-      position: relative;
-    }
+/* 3. PNG 主标题：强制居中并放大 */
+.main-title-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-    .bookshelf::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 20px;
-      background: linear-gradient(#3a2a1f, #2a1e16);
-      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
-    }
+.main-title-img img {
+  width: 80%;
+  max-width: 900px;
+  height: auto;
+  display: block;
+  /* 强力发光 */
+  filter: drop-shadow(0 0 20px rgba(0, 200, 255, 0.7)); 
+}
 
-    /* ===== 书籍容器 & 封面倾斜 (找回了你的透视设计) ===== */
-    .book {
-      width: 160px;
-      text-decoration: none;
-      color: white;
-      text-align: center;
-      perspective: 800px;
-      /* 维持 3D 透视 */
-    }
+/* 4. 副标题（序章）：霓虹粉、紧贴主标题 */
+.intro .sub {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 28px;
+  color: #fdbcec;
+  /* 双重阴影：一层发光，一层纯黑底色防止看不清 */
+  text-shadow: 0 0 10px rgba(253, 188, 236, 0.8), 2px 2px 4px #000;
+  letter-spacing: 12px;
+  /* 负边距向上提，贴紧 PNG 图片 */
+  margin-top: -20px; 
+  margin-bottom: 0;
+  text-align: center;
+}
 
-    .book img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 4px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-      transform: rotateY(-15deg);
-      /* 你的封面倾斜效果 */
-      transition: 0.3s;
-    }
+/* 5. 编绘小字：紧贴副标题 */
+.intro .desc {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 16px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.5;
+  letter-spacing: 4px;
+  text-shadow: 1px 1px 3px #000;
+  margin-top: 10px;
+  text-align: center;
+}
 
-    /* ===== 统一标题样式 ===== */
-    .book-title {
-      margin-top: 12px;
-      font-size: 14px;
-      letter-spacing: 1px;
-      opacity: 0.7;
-      /* 统一初始透明度 */
-      transition: 0.3s;
-    }
+/* 6. 漫画内容层：确保 z-index 正确，能盖过标题层向上滚动 */
+.content {
+  position: relative;
+  z-index: 5; /* 必须高于 overlay 的 z-index */
+  margin-top: 100vh;
+  background: #000;
+  padding: 120px 0 80px;
+}
+@media (max-width: 768px) {
+  /* 1. 调整标题盒子的位置：在手机长屏幕上，稍微再往下沉一点 */
+  .intro {
+    margin-bottom: 8vh; 
+  }
 
-    .book-title .subtitle {
-      display: block;
-      font-size: 12px;
-      opacity: 0.4;
-      margin-top: 4px;
-      letter-spacing: 2px;
-      transition: 0.3s;
-    }
+  /* 2. 主标题：手机上可以占满一点 */
+  .main-title-img img {
+    width: 90%;
+    filter: drop-shadow(0 0 10px rgba(0, 200, 255, 0.6));
+  }
 
-    /* ===== 统一 HOVER 效果 (封面回正 + 标题点亮) ===== */
-    .book:hover img {
-      transform: rotateY(0deg) translateY(-10px) scale(1.05);
-    }
+  /* 3. 副标题：字号缩小，关键是调整负边距，不要让它撞上图片 */
+  .intro .sub {
+    font-size: 20px;
+    margin-top: -10px; /* 手机上图片缩放了，负边距也要跟着缩减 */
+    letter-spacing: 6px;
+  }
 
-    .book:hover .book-title {
-      opacity: 1;
-      /* 鼠标悬停点亮标题 */
-    }
+  /* 4. 编绘说明 */
+  .intro .desc {
+    font-size: 13px;
+    margin-top: 8px;
+    letter-spacing: 2px;
+  }
 
-    .book:hover .subtitle {
-      opacity: 0.8;
-      /* 鼠标悬停点亮副标题 */
-    }
+  /* 5. 缩放 UI 元素：不然手机上看起来像巨型按钮 */
+  .home-logo {
+    top: 20px;
+    right: 20px;
+  }
+  .home-logo img {
+    width: 50px; /* 缩小 Logo */
+  }
 
-    /* ===== 字体区分 ===== */
+  .top-btn {
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+  }
 
-    /* 01: Valley of Gloom */
-    .book-gloom .book-title {
-      font-family: 'Amatic SC', cursive;
-      font-size: 26px;
-      letter-spacing: 2px;
-    }
+  /* 6. 底部导航：间距收紧 */
+  .project-nav {
+    width: 90%;
+    font-size: 14px;
+    margin: 40px auto;
+  }
+}
+/* ===== 漫画页 ===== */
+.page{
+  display:flex;
+  justify-content:center;
+  margin-bottom:80px;
+}
 
-    /* 02: Rhapsody in Neon (EN) */
-    .book-sci .book-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+.page img{
+  width:90%;
+  max-width:800px;
+  cursor:zoom-in;
+}
 
-    /* 03: 霓虹狂想曲 (CN) - 优化后的字体 */
-    .book-neon-cn .book-title {
-      font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-      font-size: 22px;
-      letter-spacing: 2px;
-       margin-top: 15px;
+/* ===== 放大 ===== */
+.zoom{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
 
-      display: block;
-    }
+.zoom img{
+  max-width:90%;
+  max-height:90%;
+ cursor: zoom-in;
+  transform-origin:center;
+  transition:transform 0.1s;
+  cursor: grab;
+}
+.zoom img:active{
+  cursor: grabbing;
+}
 
-    .book-neon-cn .subtitle {
-      font-family: 'ZCOOL XiaoWei', serif;
-      font-size: 16px;
-      letter-spacing: 2px;
-      margin-top: 12px;
+/* ===== 底部nav 按钮 ===== */
+.project-nav{
+  display:flex;
+  justify-content:space-between;
 
-      display: block;
-      
-    }
+  width:80%;
+  margin:80px auto;
 
-    /* ===== Mobile 优化 ===== */
-    @media (max-width: 768px) {
-      .title {
-        font-size: 36px;
-        margin-top: 40px;
-      }
+  font-size:18px;
+}
 
-      .bookshelf {
-        flex-direction: column;
-        align-items: center;
-      }
+.project-nav a{
+  color:white;
+  text-decoration:none;
+  opacity:0.6;
+  transition:0.2s;
+}
 
-      .book {
-        width: 180px;
-      }
+.project-nav a:hover{
+  opacity:1;
+}
 
-      .book img,
-      .book:hover img {
-        transform: none;
-      }
+.small{
+  font-size:10px;
+  opacity:0.4;
+  display:block;
+  margin-bottom:6px;
+}
+  
+/* ===== TOP 按钮 ===== */
+.top-btn{
+  position:fixed;
+  right:60px;
+  bottom:60px;
 
-      .book-title {
-        opacity: 1;
-      }
+  width:48px;
+  height:48px;
 
-      .book-title .subtitle {
-        opacity: 0.7;
-      }
-    }
-  </style>
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+  opacity:0.6;
+  transition:0.3s;
+
+  z-index:3000; /* 👈 关键 */
+}
+
+.top-btn.show{
+  opacity:1;
+}
+
+</style>
 </head>
 
 <body>
 
-  <a href="index.html" class="home-logo">
-    <img src="logo.png">
-  </a>
-  <div class="title">COMICS</div>
-
-  <div class="bookshelf">
-
-    <a href="comic-01.html" class="book book-gloom">
-      <img src="images/comics/comic01-cover.jpg">
-      <div class="book-title">Valley of Gloom</div>
-    </a>
-
-    <a href="comic-02.html" class="book book-sci">
-      <img src="images/comics/comic02-cover.jpg">
-      <div class="book-title">
-        RHAPSODY IN NEON
-        <span class="subtitle">OVERTURE</span>
-      </div>
-    </a>
-
-    <a href="comic-03.html" class="book book-neon-cn">
-      <img src="images/comics/comic03-cover.jpg">
-      <div class="book-title">
-        霓虹狂想曲
-        <span class="subtitle">序章 中文</span>
-      </div>
-    </a>
-
+<!-- 背景头图 -->
+<div class="hero"></div>
+<div class="overlay">
+  <div class="intro">
+    <div class="main-title-img">
+        <img src="images/comics/Rh-title.png" alt="霓虹狂想曲">
+    </div>
+    
+    <div class="sub">序章</div>
+    
+    <p class="desc">
+      原创视觉小说<br>
+      编绘 Ariel Rothbart
+    </p>
   </div>
+</div>
+<!-- HOME -->
+<a href="index.html" class="home-logo">
+  <img src="logo.png">
+</a>
+
+<!-- 内容 -->
+<div class="content">
+
+  <!-- 漫画页容器 -->
+  <div id="pages-container"></div>
+
+<div class="project-nav">
+
+  <a href="comic-01.html">
+    <span class="small">PREV PROJECT</span>
+    ‹ Valley of Gloom
+  </a>
+
+  <a href="comics.html">
+    <span class="small">BACK TO SHELF</span>
+    Comics ›
+  </a>
+
+</div>
+  
+</div>
+
+<!-- 放大 -->
+<div class="zoom" id="zoom">
+  <img id="zoomImg">
+</div>
+
+<!-- TOP -->
+<div class="top-btn" id="topBtn">↑</div>
+
+<script>
+ const container = document.getElementById("pages-container");
+  
+/* 👇 改这里就能控制页数 */
+const totalPages = 11;
+
+for(let i = 1; i <= totalPages; i++){
+  const page = document.createElement("div");
+  page.className = "page";
+
+  const img = document.createElement("img");
+  img.src = `images/comics/comic-03/page${i}.jpg`;
+
+  page.appendChild(img);
+  container.appendChild(page);
+}
+
+/* 放大 */
+const zoom = document.getElementById("zoom");
+const zoomImg = document.getElementById("zoomImg");
+
+document.addEventListener("click", function(e){
+  if(e.target.closest(".page img")){
+     const clicked = e.target;
+    currentIndex = pages.indexOf(clicked);   // 👈 新增
+    zoom.style.display = "flex";
+    zoomImg.src = e.target.src;
+
+    scale = 1;
+translateX = 0;
+translateY = 0;
+zoomImg.style.transform = "translate(0px, 0px) scale(1)";
+  }
+});
+
+zoom.addEventListener("click", (e)=>{
+
+  // 👉 点图片：左右切换
+  if(e.target === zoomImg){
+
+    const x = e.clientX;
+    const width = window.innerWidth;
+
+    if(x < width * 0.4){
+      currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+      switchImage();
+    }
+    else if(x > width * 0.6){
+      currentIndex = (currentIndex + 1) % pages.length;
+      switchImage();
+    }
+
+  }
+
+  // 👉 点黑背景：关闭
+  else{
+    zoom.style.display = "none";
+  }
+
+});
+
+/* top按钮 */
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", ()=>{
+  if(window.scrollY > 300){
+    topBtn.classList.add("show");
+  }else{
+    topBtn.classList.remove("show");
+  }
+});
+
+topBtn.onclick = ()=>{
+  window.scrollTo({top:0, behavior:"smooth"});
+};
+  
+let pages = [];
+
+window.addEventListener("load", ()=>{
+  pages = Array.from(document.querySelectorAll(".page img"));
+});
+let currentIndex = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let translateX = 0;
+let translateY = 0;
+  
+/* 滚轮缩放 */
+zoom.addEventListener("wheel", (e)=>{
+  e.preventDefault();
+
+  if(e.deltaY < 0){
+    scale += 0.1;
+  }else{
+    scale -= 0.1;
+  }
+
+  /* 限制范围 */
+  scale = Math.max(1, Math.min(scale, 3));
+
+ zoomImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+});
+  /* 拖动开始 */
+zoomImg.addEventListener("mousedown", (e)=>{
+  isDragging = true;
+  startX = e.clientX - translateX;
+  startY = e.clientY - translateY;
+});
+
+/* 拖动中 */
+window.addEventListener("mousemove", (e)=>{
+  if(!isDragging) return;
+
+  translateX = e.clientX - startX;
+  translateY = e.clientY - startY;
+
+  zoomImg.style.transform =
+    `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+});
+
+/* 拖动结束 */
+window.addEventListener("mouseup", ()=>{
+  isDragging = false;
+});
+ zoomImg.addEventListener("dblclick", ()=>{
+  translateX = 0;
+  translateY = 0;
+
+  zoomImg.style.transform =
+    `translate(0px, 0px) scale(${scale})`;
+}); 
+  document.addEventListener("keydown", (e)=>{
+  if(zoom.style.display !== "flex") return;
+
+  if(e.key === "ArrowRight"){
+    currentIndex = (currentIndex + 1) % pages.length;
+    switchImage();
+  }
+
+  if(e.key === "ArrowLeft"){
+    currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+    switchImage();
+  }
+});
+
+function switchImage(){
+  zoomImg.src = pages[currentIndex].src;
+
+  translateX = 0;
+  translateY = 0;
+  scale = 1;
+
+  zoomImg.style.transform = "translate(0px, 0px) scale(1)";
+}
+ 
+  let touchStartX = 0;
+
+zoom.addEventListener("touchstart", (e)=>{
+  touchStartX = e.touches[0].clientX;
+});
+
+zoom.addEventListener("touchend", (e)=>{
+  let touchEndX = e.changedTouches[0].clientX;
+  let diff = touchStartX - touchEndX;
+
+  if(Math.abs(diff) < 50) return;
+
+  if(diff > 0){
+    // 向左滑 → 下一页
+    currentIndex = (currentIndex + 1) % pages.length;
+  }else{
+    // 向右滑 → 上一页
+    currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+  }
+
+  switchImage();
+});
+</script>
 
 </body>
-
 </html>
