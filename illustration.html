@@ -260,6 +260,26 @@ img {
             .gallery-header { height: 60vh; }
             .home-logo { top: 20px; right: 20px; }
             .scroll-top { right: 20px; bottom: 20px; }
+            .main-title {
+        font-size: clamp(24px, 8vw, 40px); /* 稍微调小一点手机端的字号 */
+        letter-spacing: 6px !important;    /* 强制减小手机端的字间距 */
+        padding: 0 15px;                  /* 增加左右边距，防止贴边 */
+    }
+
+    @keyframes titleFadeIn {
+        0% { 
+            opacity: 0; 
+            transform: translateY(20px); 
+            letter-spacing: 12px; /* 动画初始值也要改小，否则动画过程会撑开屏幕 */
+            filter: blur(5px); 
+        }
+        100% { 
+            opacity: 0.9; 
+            transform: translateY(0); 
+            letter-spacing: 6px;  /* 动画结束值与上方保持一致 */
+            filter: blur(0); 
+        }
+    }
         }
         @media (max-width: 600px) { .gallery { column-count: 1; } }
     </style>
@@ -483,3 +503,4 @@ document.addEventListener('keydown', function(e) {
     </script>
 </body>
 </html>
+
