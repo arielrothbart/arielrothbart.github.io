@@ -418,11 +418,56 @@ font-family: 'Poiret One', sans-serif;
   height:100%;
   object-fit:contain;
 }
-}
+
 
 /* hover 联动 */
 .lounge-entry:hover .coffee-icon{
   opacity:1;
+}
+
+/* 极简指引样式 */
+.simple-guide {
+  display: flex;
+  flex-direction: column; /* 让线和字竖着排，正好在两张海报中间 */
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  pointer-events: none;
+}
+
+.simple-guide span {
+  font-family: 'Poiret One', sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #00c8ff;
+  opacity: 0.5;
+  white-space: nowrap;
+  /* 竖排文字如果是横着的，可以加这个： */
+  writing-mode: vertical-lr; 
+}
+
+.guide-line {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, #00c8ff, transparent);
+  box-shadow: 0 0 8px rgba(0,200,255,0.5);
+}
+
+/* 手机端适配：海报变上下排时，指引也变横向 */
+@media (max-width: 768px) {
+  .simple-guide {
+    flex-direction: row;
+    width: 100%;
+    margin: 20px 0;
+  }
+  .simple-guide span {
+    writing-mode: horizontal-tb;
+  }
+  .guide-line {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #00c8ff, transparent);
+  }
 }
   </style>
 </head>
@@ -471,7 +516,12 @@ font-family: 'Poiret One', sans-serif;
   <div class="project-title">Rhapsody in Neon</div>
   </a>
 
-  <!-- ⭐ 这里只改了这一行 -->
+  <div class="simple-guide">
+    <div class="guide-line"></div>
+    <span>SELECT A REALITY</span>
+    <div class="guide-line"></div>
+  </div>
+
   <a href="sym-noir.html" class="project-card">
     <img src="images/index/poster2.jpg">
     <div class="project-title">Symphony Noir</div>
