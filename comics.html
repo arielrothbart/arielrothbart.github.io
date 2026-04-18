@@ -1,196 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="stylesheet" href="global.css"> 
-<title>Comics</title>
-<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comics</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Orbitron:wght@400;600&family=ZCOOL+QingKe+HuangYou&family=ZCOOL+XiaoWei&display=swap"
+    rel="stylesheet">
 
- <style>
-body{
-  margin:0;
-  background:#1a1a1a;
-  font-family:Arial, sans-serif;
-  color:white;
-}
+  <style>
+    body {
+      margin: 0;
+      background: #1a1a1a;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
 
-  /*home logo*/
-  .home-logo {
-  position: fixed;
-  top: 80px;
-  right: 60px;
-  z-index: 1000;
-}
+    /* ===== HOME LOGO ===== */
+    .home-logo {
+      position: fixed;
+      top: 80px;
+      right: 60px;
+      z-index: 1000;
+    }
 
-.home-logo img {
-  width: 80px;
-  opacity: 0.8;
-  transition: 0.3s;
-}
+    .home-logo img {
+      width: 80px;
+      opacity: 0.8;
+      transition: 0.3s;
+    }
 
-.home-logo img:hover {
-  opacity: 1;
-  transform: scale(1.08);
-}
-  
-/* 页面标题 */
-.title{
-  font-family: 'Amatic SC', cursive;
+    .home-logo img:hover {
+      opacity: 1;
+      transform: scale(1.08);
+    }
 
-  text-align:center;
-  padding:60px 0 20px;
+    /* ===== 页面标题 ===== */
+    .title {
+      font-family: 'Amatic SC', cursive;
+      text-align: center;
+      padding: 60px 0 20px;
+      font-size: 64px;
+      letter-spacing: 2px;
+      opacity: 0.85;
+    }
 
-  font-size:64px;
-  letter-spacing:2px;
-  opacity:0.85;
-}
-  
-/* 书架背景 */
-.bookshelf{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:60px;
-  padding:60px;
-  position:relative;
-}
+    /* ===== 书架背景 (找回了你的木板设计) ===== */
+    .bookshelf {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px;
+      padding: 60px;
+      position: relative;
+    }
 
-/* 木板（视觉层） */
-.bookshelf::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:20px;
-  background:linear-gradient(#3a2a1f, #2a1e16);
-  box-shadow:0 -5px 15px rgba(0,0,0,0.5);
-}
+    .bookshelf::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: linear-gradient(#3a2a1f, #2a1e16);
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+    }
 
-/* 每本书 */
-.book{
-  width:160px;
-  text-decoration:none;
-  color:white;
-  text-align:center;
-  perspective:800px;
-}
-  
-/* 封面 */
-.book img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:4px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.6);
-  transform:rotateY(-15deg);
-  transition:0.3s;
-}
+    /* ===== 书籍容器 & 封面倾斜 (找回了你的透视设计) ===== */
+    .book {
+      width: 160px;
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      perspective: 800px;
+      /* 维持 3D 透视 */
+    }
 
-/* hover效果 */
-.book:hover img{
-  transform:rotateY(0deg) translateY(-10px) scale(1.05);
-}
+    .book img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+      transform: rotateY(-15deg);
+      /* 你的封面倾斜效果 */
+      transition: 0.3s;
+    }
 
-/* 标题 */
-/* 默认（备用） */
-.book-title{
-  margin-top:12px;
-  font-size:14px;
-  letter-spacing:1px;
-  opacity:0.7;
-}
-  .book-title .subtitle{
-  display:block;
-  font-size:12px;
-  opacity:0.4;
-  margin-top:4px;
-  letter-spacing:2px;
-}
+    /* ===== 统一标题样式 ===== */
+    .book-title {
+      margin-top: 12px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      opacity: 0.7;
+      /* 统一初始透明度 */
+      transition: 0.3s;
+    }
 
-/* 第一部：阴郁手写感 */
-.book-gloom .book-title{
-  font-family: 'Amatic SC', cursive;
-  font-size:26px;
-  letter-spacing:2px;
-}
+    .book-title .subtitle {
+      display: block;
+      font-size: 12px;
+      opacity: 0.4;
+      margin-top: 4px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
 
-/* 第二部：科幻感 */
-.book-sci .book-title{
-  font-family: 'Orbitron', sans-serif;
-  font-size:14px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-  /* 📱 Mobile 优化 */
-@media (max-width: 768px){
+    /* ===== 统一 HOVER 效果 (封面回正 + 标题点亮) ===== */
+    .book:hover img {
+      transform: rotateY(0deg) translateY(-10px) scale(1.05);
+    }
 
-  .title{
-    font-size:36px;
-    margin-top:40px;
-  }
+    .book:hover .book-title {
+      opacity: 1;
+      /* 鼠标悬停点亮标题 */
+    }
 
-   .bookshelf{
-    flex-direction:column;
-    align-items:center;
-  }
+    .book:hover .subtitle {
+      opacity: 0.8;
+      /* 鼠标悬停点亮副标题 */
+    }
 
-  .book{
-    width:180px;
-  }
+    /* ===== 字体区分 ===== */
 
-  .book img{
-    transform:none; /* 手机取消倾斜，更干净 */
-  }
+    /* 01: Valley of Gloom */
+    .book-gloom .book-title {
+      font-family: 'Amatic SC', cursive;
+      font-size: 26px;
+      letter-spacing: 2px;
+    }
 
-  .book:hover img{
-    transform:none; /* 手机没有hover，避免怪异 */
-  }
+    /* 02: Rhapsody in Neon (EN) */
+    .book-sci .book-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-  .book-title{
-    font-size:14px;
-  }
+    /* 03: 霓虹狂想曲 (CN) - 优化后的字体 */
+    .book-neon-cn .book-title {
+      font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+       margin-top: 15px;
 
-}
-</style>
+      display: block;
+    }
 
+    .book-neon-cn .subtitle {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      margin-top: 12px;
+
+      display: block;
+      
+    }
+
+    /* ===== Mobile 优化 ===== */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 36px;
+        margin-top: 40px;
+      }
+
+      .bookshelf {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .book {
+        width: 180px;
+      }
+
+      .book img,
+      .book:hover img {
+        transform: none;
+      }
+
+      .book-title {
+        opacity: 1;
+      }
+
+      .book-title .subtitle {
+        opacity: 0.7;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  
-<a href="index.html" class="home-logo">
-  <img src="logo.png">
-</a>
-<div class="title">COMICS</div>
 
-<div class="bookshelf">
+  <a href="index.html" class="home-logo">
+    <img src="logo.png">
+  </a>
+  <div class="title">COMICS</div>
 
-  <!-- 漫画 01 -->
- <a href="comic-01.html" class="book book-gloom">
-  <img src="images/comics/comic01-cover.jpg">
-  <div class="book-title">Valley of Gloom</div>
-</a>
+  <div class="bookshelf">
 
-  <!-- 漫画 02 -->
- <a href="comic-02.html" class="book book-sci">
-  <img src="images/comics/comic02-cover.jpg">
- <div class="book-title">
-  RHAPSODY IN NEON
-  <span class="subtitle">OVERTURE</span>
-</div>
-</a>
+    <a href="comic-01.html" class="book book-gloom">
+      <img src="images/comics/comic01-cover.jpg">
+      <div class="book-title">Valley of Gloom</div>
+    </a>
 
-<!-- 漫画 03 -->
- <a href="comic-03.html" class="book book-sci">
-  <img src="images/comics/comic03-cover.jpg">
- <div class="book-title">
-  霓虹狂想曲
-  <span class="subtitle">序章 中文</span>
-</div>
-</a>
-</div>
+    <a href="comic-02.html" class="book book-sci">
+      <img src="images/comics/comic02-cover.jpg">
+      <div class="book-title">
+        RHAPSODY IN NEON
+        <span class="subtitle">OVERTURE</span>
+      </div>
+    </a>
+
+    <a href="comic-03.html" class="book book-neon-cn">
+      <img src="images/comics/comic03-cover.jpg">
+      <div class="book-title">
+        霓虹狂想曲
+        <span class="subtitle">序章 中文</span>
+      </div>
+    </a>
+
+  </div>
 
 </body>
-</html>
 
+</html>
