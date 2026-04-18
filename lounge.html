@@ -306,8 +306,63 @@
                 /* 稍微缩小文字，腾出视觉空间[span_2](end_span) */
             }
         }
+
+        /* 遮罩层背景 */
+        .lightbox-overlay {
+            display: none;
+            /* 默认隐藏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 8, 0.9);
+            /* 深色背景 */
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* 弹出框内容 */
+        .lightbox-content {
+            background: rgba(255, 180, 100, 0.05);
+            border: 1px solid rgba(255, 180, 100, 0.4);
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 180, 100, 0.1);
+            animation: panelFade 0.3s ease;
+            max-width: 300px;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            max-width: 250px;
+            /* 严格限制二维码大小 */
+            height: auto;
+            border: 1px solid rgba(255, 180, 100, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .lightbox-content span {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: #ffb464;
+            text-transform: uppercase;
+        }
     </style>
 </head>
+<div id="qrLightbox" class="lightbox-overlay" onclick="closeQR()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+        <img src="images/about/alipay.jpg" alt="Replenishment QR">
+        <span>>> DIRECT REPLENISHMENT MODE <<
+                <div style="font-size: 9px; color: #888; margin-top: 10px; cursor: pointer;" onclick="closeQR()">[ CLOSE
+                    / 返回 ]</div>
+    </div>
+</div>
 
 <body>
 
@@ -388,30 +443,40 @@
             statusBox.style.color = "#ffb464"; // 确保点击后始终是点亮的橙色
         }
 
+        // 统一的状态更新函数（保持你喜欢的特殊符号逻辑）
+        function updateStatus(msg) {
+            const statusBox = document.getElementById('bunnyMsg');
+            if (msg.includes("Seth")) {
+                statusBox.innerText = ">> " + msg;
+            } else {
+                statusBox.innerText = msg;
+            }
+            statusBox.style.color = "#ffb464";
+        }
+
+        // 打开弹出层
         function toggleQR() {
-            const imgElement = document.getElementById('displayImg');
-            const hintElement = document.getElementById('actionHint');
+            const lightbox = document.getElementById('qrLightbox');
             const statusBox = document.getElementById('bunnyMsg');
 
-            const currentlyShowingQR = imgElement.classList.contains('qr-size');
+            // 显示弹出层
+            lightbox.style.display = 'flex';
 
-            if (!currentlyShowingQR) {
-                // --- 切换到：二维码状态 ---
-                imgElement.src = qrImg;
-                imgElement.classList.add('qr-size');
-                hintElement.innerText = "Click to return: Back to drawing mode.";
+            // 状态栏更新为补给中
+            statusBox.innerText = "SYSTEM: Awaiting energy signal from captain's supporters...";
+            statusBox.style.color = "#ffb464";
+        }
 
-                statusBox.innerText = "SYSTEM: Awaiting energy signal from captain's supporters...";
-                statusBox.style.color = "#ffb464";
-            } else {
-                // --- 切换回：动图状态 ---
-                imgElement.src = mainImg;
-                imgElement.classList.remove('qr-size');
-                hintElement.innerText = "Click image for direct replenishment mode...";
+        // 关闭弹出层
+        function closeQR() {
+            const lightbox = document.getElementById('qrLightbox');
 
-                const randomMsg = interactionMsgs[Math.floor(Math.random() * interactionMsgs.length)];
-                updateStatus(randomMsg); // 使用统一函数处理符号
-            }
+            // 隐藏弹出层
+            lightbox.style.display = 'none';
+
+            // 触发你喜欢的随机感谢语/Seth互动
+            const randomMsg = interactionMsgs[Math.floor(Math.random() * interactionMsgs.length)];
+            updateStatus(randomMsg);
         }
 
         function feedBunny() {
