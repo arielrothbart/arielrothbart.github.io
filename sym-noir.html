@@ -1,524 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>Symphony Noir</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symphony Noir</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
-<style>
-.nav-item{
-  margin:12px 0;
-  color:#666;
-  cursor:pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  <style>
+    .nav-item {
+      margin: 12px 0;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-.nav-item:hover{
-  color:#aaa;
-  transform: translateX(3px);
-}
-  
-body{
-  margin:0;
-  background:black;
-  color:white;
-  font-family:'Special Elite',cursive;
-}
+    .nav-item:hover {
+      color: #aaa;
+      transform: translateX(3px);
+    }
 
-/* ===== sidebar ===== */
-.sidebar{
-  position:fixed;
-  width:220px;
-  height:100vh;
-  background:#0a0a0a;
-  padding:30px;
-  z-index:10;
-}
-.menu-btn{
-  display:none;
-}
-.logo{
-  width:80px;
-  cursor:pointer;
-  transition: all 0.3s ease;
-}
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: 'Special Elite', cursive;
+    }
 
-.logo:hover{
-  transform: scale(1.08);
-  opacity:0.9;
-}
+    /* ===== sidebar ===== */
+    .sidebar {
+      position: fixed;
+      width: 220px;
+      height: 100vh;
+      background: #0a0a0a;
+      padding: 30px;
+      z-index: 10;
+    }
 
-.title{
-  font-size:26px;
-  margin:20px 0;
-  cursor:pointer;
-  transition: all 0.3s ease;
-}
+    .menu-btn {
+      display: none;
+    }
 
-.title:hover{
-  letter-spacing:2px;
-  opacity:0.9;
-}
+    .logo {
+      width: 80px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-.nav-item.active{color:white;}
+    .logo:hover {
+      transform: scale(1.08);
+      opacity: 0.9;
+    }
 
-/* ===== main ===== */
-.main{
-  margin-left:220px;
-  height:100vh;
-  position:relative;
-}
+    .title {
+      font-size: 26px;
+      margin: 20px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-/* ===== TITLE ===== */
-.title-screen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-}
+    .title:hover {
+      letter-spacing: 2px;
+      opacity: 0.9;
+    }
 
-.title-screen img{
-  width:760px;
-  opacity:0;
-  animation:fadeIn 2s forwards;
-}
+    .nav-item.active {
+      color: white;
+    }
 
-@keyframes fadeIn{to{opacity:1;}}
+    /* ===== main ===== */
+    .main {
+      margin-left: 220px;
+      height: 100vh;
+      position: relative;
+    }
 
-.fade-out{
-  animation:ghostOut 1.2s forwards;
-}
+    /* ===== TITLE ===== */
+    .title-screen {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
 
-@keyframes ghostOut{
-  to{
-    opacity:0;
-    transform:translateY(-60px);
-    filter:blur(6px);
-  }
-}
+    .title-screen img {
+      width: 760px;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
 
-/* ===== STORY ===== */
-.story-screen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  padding:80px;
-  overflow:hidden;
-}
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
 
-.story-container {
-  position: relative;
-  width: 100%;
-  max-width: 760px;
-  height: 100%;
-  overflow-y: auto;   
-  padding-top: 120px;
-  padding-bottom: 120px;
-  padding-left: 20px;
-  padding-right: 20px;
+    .fade-out {
+      animation: ghostOut 1.2s forwards;
+    }
 
-  /* === 新增：隐藏滚动条视觉效果 === */
-  scrollbar-width: none;       /* 对 Firefox 隐藏 */
-  -ms-overflow-style: none;    /* 对 IE/Edge 隐藏 */
-}
+    @keyframes ghostOut {
+      to {
+        opacity: 0;
+        transform: translateY(-60px);
+        filter: blur(6px);
+      }
+    }
 
-/* 对 Chrome, Safari, 以及移动端浏览器隐藏 */
-.story-container::-webkit-scrollbar {
-  display: none;
-}
+    /* ===== STORY ===== */
+    .story-screen {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 80px;
+      overflow: hidden;
+    }
 
-  
-.story-text{
-  line-height:2;
-  font-size:15px;
-  color:#ddd;
-  transition:0.3s;
+    .story-container {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      height: 100%;
+      overflow-y: auto;
+      padding-top: 120px;
+      padding-bottom: 120px;
+      padding-left: 20px;
+      padding-right: 20px;
 
-  white-space: normal;
-  word-break: break-word;
-  
-    user-select: none;
-  -webkit-user-select: none; /* 兼容 Safari/Chrome */
-  -moz-user-select: none;    /* 兼容 Firefox */
-  -ms-user-select: none;     /* 兼容 IE10+ */
-}
+      /* === 新增：隐藏滚动条视觉效果 === */
+      scrollbar-width: none;
+      /* 对 Firefox 隐藏 */
+      -ms-overflow-style: none;
+      /* 对 IE/Edge 隐藏 */
+    }
 
-.story-text p{
-  margin:0 0 1.6em 0;
-}
-  
- .empty-line{
-  height:1.2em;
-} 
-  .end-space{
-  height:120px;
-}
-  
-body{
-  overflow:hidden;
-}
-.flip{
-  transform:rotateY(10deg);
-  opacity:0.6;
-}
-.lang-hint{
-  position:relative;
+    /* 对 Chrome, Safari, 以及移动端浏览器隐藏 */
+    .story-container::-webkit-scrollbar {
+      display: none;
+    }
 
-  display:block;
-  text-align:right;
-  
-margin-right:35px;
-  
-  font-size:12px;
-  opacity:0.5;
-  letter-spacing:1px;
 
-  margin-bottom:20px;
-}
-  .story-screen.show .lang-hint{
-  opacity:0.5;
-}
-.story-enter{
-  position:fixed;
-  right:40px;
-  bottom:40px;
+    .story-text {
+      line-height: 2;
+      font-size: 15px;
+      color: #ddd;
+      transition: 0.3s;
 
-  font-size:12px;
-  letter-spacing:2px;
-  opacity:0.4;
-  cursor:pointer;
+      white-space: normal;
+      word-break: break-word;
 
-  transition:0.3s;
-  z-index:999;
-}
+      user-select: none;
+      -webkit-user-select: none;
+      /* 兼容 Safari/Chrome */
+      -moz-user-select: none;
+      /* 兼容 Firefox */
+      -ms-user-select: none;
+      /* 兼容 IE10+ */
+    }
 
-.story-enter:hover{
-  opacity:1;
-  letter-spacing:6px;
-  transform:scale(1.1);
-}
-/* ===== CHARACTERS ===== */
-.character-screen{
- position:relative; 
-  width:100%;
-  height:100%;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  gap:120px;
-}
+    .story-text p {
+      margin: 0 0 1.6em 0;
+    }
 
-.char img{
-  width:150px;
-  max-width:30vw;
-  border-radius:50%;
-  transition: 0.25s ease;
-  cursor: pointer;
-}
-  .char a:active img{
-  transform: scale(0.92);
-}
+    .empty-line {
+      height: 1.2em;
+    }
 
-.char a:hover img{
-  transform: scale(1.05);
-}
-.ghost{
-  position:absolute;
-  top:35%;                 /* ⭐直接控制高度 */
-  left:50%;
-  transform: translate(-50%, -50%);
-  opacity:0.6;
-}
+    .end-space {
+      height: 120px;
+    }
 
-.ghost img{
-  width:150px;
-  transition: 0.6s ease;
-  pointer-events: auto;
-}
+    body {
+      overflow: hidden;
+    }
 
-.ghost img:hover{
-  opacity: 0;
-  transform: scale(1.15);
-  filter: blur(8px);
-  transition: 0.8s ease;
-}
-@keyframes ghostFloat{
-  0% { transform: translate(-50%, -80%) translateY(0px); }
-  50% { transform: translate(-50%, -80%) translateY(-6px); }
-  100% { transform: translate(-50%, -80%) translateY(0px); }
-}
+    .flip {
+      transform: rotateY(10deg);
+      opacity: 0.6;
+    }
 
-.ghost{
-  animation: ghostFloat 4s ease-in-out infinite;
-}
-/* ===== ENTER ===== */
-.enter-btn{
-  font-size:12px;
-  cursor:pointer;
-  opacity:0.7;
-  letter-spacing:2px;
-  transition:0.3s;
-}
+    .lang-hint {
+      position: relative;
 
-.enter-btn:hover{
-  opacity:1;
-  letter-spacing:6px;
-  transform:scale(1.1);
-}
+      display: block;
+      text-align: right;
 
-/* ===== NETWORK ===== */
-.network-screen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:none;
-  overflow:hidden;
-}
+      margin-right: 35px;
 
-.viewer{
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:grab;
-}
+      font-size: 12px;
+      opacity: 0.5;
+      letter-spacing: 1px;
 
-.viewer img{
-  max-width:90%;
-  max-height:90%;
-}
+      margin-bottom: 20px;
+    }
 
-.zoom-hint{
-  position:absolute;
-  right:40px;
-  bottom:40px;
-  font-size:12px;
-  opacity:0.6;
-}
-/* ===== MOBILE ===== */
-.mobile-nav{display:none;}
+    .story-screen.show .lang-hint {
+      opacity: 0.5;
+    }
 
-@media (max-width:768px){
- .overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
+    .story-enter {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
 
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(4px);
+      font-size: 12px;
+      letter-spacing: 2px;
+      opacity: 0.4;
+      cursor: pointer;
 
-  display:none;
-  z-index:100;
-}
-.title-screen img{
-  width:clamp(300px, 80vw, 760px);
-}
+      transition: 0.3s;
+      z-index: 999;
+    }
 
-.character-screen{
-  gap:40px;
-}
+    .story-enter:hover {
+      opacity: 1;
+      letter-spacing: 6px;
+      transform: scale(1.1);
+    }
 
-.story-text{
-  font-size:13px;
-  line-height:1.8;
-}
-.story-container{
-  padding-top:80px;
-  padding-bottom:100px;
-}
-.main{
-  margin-left:0;
-}
+    /* ===== CHARACTERS ===== */
+    .character-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      gap: 120px;
+    }
 
-.overlay.show{
-  display:block;
-}
-.menu-btn{
-  position:fixed;
-  top:20px;
-  left:20px;
+    .char img {
+      width: 150px;
+      max-width: 30vw;
+      border-radius: 50%;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
 
-  width:44px;
-  height:44px;
+    .char a:active img {
+      transform: scale(0.92);
+    }
 
-  font-size:22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    .char a:hover img {
+      transform: scale(1.05);
+    }
 
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
+    .ghost {
+      position: absolute;
+      top: 35%;
+      /* ⭐直接控制高度 */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.6;
+    }
 
-  border-radius:10px;
-  z-index:200;
-}
-  body{overflow:auto;}
- .sidebar{
-  transform:translateX(-100%);
-  transition:0.3s;
+    .ghost img {
+      width: 150px;
+      transition: 0.6s ease;
+      pointer-events: auto;
+    }
 
-  z-index:300;  
-}
-  .sidebar.open{
-  transform:translateX(0);
-}
+    .ghost img:hover {
+      opacity: 0;
+      transform: scale(1.15);
+      filter: blur(8px);
+      transition: 0.8s ease;
+    }
 
- .mobile-nav{
-  display:none !important;
-}
-  .title-screen img{
- width:clamp(300px, 80vw, 760px);
-}
+    @keyframes ghostFloat {
+      0% {
+        transform: translate(-50%, -80%) translateY(0px);
+      }
 
-}
-  
-</style>
+      50% {
+        transform: translate(-50%, -80%) translateY(-6px);
+      }
+
+      100% {
+        transform: translate(-50%, -80%) translateY(0px);
+      }
+    }
+
+    .ghost {
+      animation: ghostFloat 4s ease-in-out infinite;
+    }
+
+    /* ===== ENTER ===== */
+    .enter-btn {
+      font-size: 12px;
+      cursor: pointer;
+      opacity: 0.7;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    .enter-btn:hover {
+      opacity: 1;
+      letter-spacing: 6px;
+      transform: scale(1.1);
+    }
+
+    /* ===== NETWORK ===== */
+    .network-screen {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      overflow: hidden;
+    }
+
+    .viewer {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+    }
+
+    .viewer img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .zoom-hint {
+      position: absolute;
+      right: 40px;
+      bottom: 40px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    /* ===== MOBILE ===== */
+    .mobile-nav {
+      display: none;
+    }
+
+    @media (max-width:768px) {
+      .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+
+        display: none;
+        z-index: 100;
+      }
+
+      .title-screen img {
+        width: clamp(300px, 80vw, 760px);
+      }
+
+      .character-screen {
+        gap: 40px;
+      }
+
+      .story-text {
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .story-container {
+        padding-top: 80px;
+        padding-bottom: 100px;
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .overlay.show {
+        display: block;
+      }
+
+      .menu-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+
+        border-radius: 10px;
+        z-index: 200;
+      }
+
+      body {
+        overflow: auto;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+        transition: 0.3s;
+
+        z-index: 300;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .mobile-nav {
+        display: none !important;
+      }
+
+      .title-screen img {
+        width: clamp(300px, 80vw, 760px);
+      }
+
+    }
+  </style>
 </head>
 
 <body>
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
   <div class="overlay" onclick="toggleMenu()"></div>
-  
-<div class="sidebar">
-  <img src="logo.png" class="logo" onclick="goHome()">
-  <div class="title" onclick="showTitle()">Symphony Noir</div>
 
-  <div class="nav-item" onclick="showTitle()">Title</div>
-  <div class="nav-item" onclick="showStory()">Story</div>
-  <div class="nav-item" onclick="showCharacters()">Characters</div>
-  <div class="nav-item" onclick="showNetwork()">Network</div>
-  <div class="nav-item" onclick="goTimeline()">Timeline</div>
-  <div class="nav-item" onclick="goGallery()">Gallery</div>
-</div>
+  <div class="sidebar">
+    <img src="logo.png" class="logo" onclick="goHome()">
+    <div class="title" onclick="showTitle()">Symphony Noir</div>
 
-<div class="main">
-
-<div class="title-screen" id="title" onclick="enterStory()">
-  <img src="images/sym/title.png" loading="eager" decoding="async">
-</div>
-
-<div class="story-screen" id="story">
-  <div class="story-container">
-    <div class="lang-hint" id="langHint">Click to English version</div>
-    <div class="story-text" id="storyText"></div>
+    <div class="nav-item" onclick="showTitle()">Title</div>
+    <div class="nav-item" onclick="showStory()">Story</div>
+    <div class="nav-item" onclick="showCharacters()">Characters</div>
+    <div class="nav-item" onclick="showNetwork()">Network</div>
+    <div class="nav-item" onclick="goTimeline()">Timeline</div>
+    <div class="nav-item" onclick="goGallery()">Gallery</div>
   </div>
-</div>
-  
- <div class="story-enter" onclick="showCharacters()">ENTER</div>
-<div class="character-screen" id="chars">
- <div class="char">
-  <a href="char-yagami.html">
-    <img src="images/sym/yagami.png">
-  </a>
-</div>
-  
-<div class="ghost">
-  <img src="images/sym/antonio.png">
-</div>
-<div class="enter-btn" onclick="enterNetwork()">ENTER</div>
 
-<div class="char">
-  <a href="char-shin.html">
-    <img src="images/sym/shin.png">
-  </a>
-</div>
-</div>
-<div class="network-screen" id="network">
-  <div class="viewer" id="viewer">
-    <img src="images/sym/network.png" id="netImg">
+  <div class="main">
+
+    <div class="title-screen" id="title" onclick="enterStory()">
+      <img src="images/sym/title.png" loading="eager" decoding="async">
+    </div>
+
+    <div class="story-screen" id="story">
+      <div class="story-container">
+        <div class="lang-hint" id="langHint">Click to English version</div>
+        <div class="story-text" id="storyText"></div>
+      </div>
+    </div>
+
+    <div class="story-enter" onclick="showCharacters()">ENTER</div>
+    <div class="character-screen" id="chars">
+      <div class="char">
+        <a href="char-yagami.html">
+          <img src="images/sym/yagami.png">
+        </a>
+      </div>
+
+      <div class="ghost">
+        <img src="images/sym/antonio.png">
+      </div>
+      <div class="enter-btn" onclick="enterNetwork()">ENTER</div>
+
+      <div class="char">
+        <a href="char-shin.html">
+          <img src="images/sym/shin.png">
+        </a>
+      </div>
+    </div>
+    <div class="network-screen" id="network">
+      <div class="viewer" id="viewer">
+        <img src="images/sym/network.png" id="netImg">
+      </div>
+      <div class="zoom-hint">Scroll to zoom · 拖动滚轮放大</div>
+    </div>
+
   </div>
-  <div class="zoom-hint">Scroll to zoom · 拖动滚轮放大</div>
-</div>
 
-</div>
-// 专门针对故事文本区域禁用右键菜单
-const storyArea = document.getElementById("storyText");
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const storyArea = document.getElementById("storyText");
+      if (storyArea) {
+        storyArea.addEventListener('contextmenu', function (e) {
+          e.preventDefault();
+        }, false);
+      }
+    });
+    /* 页面切换 */
+    const storyEnter = document.querySelector(".story-enter");
+    const title = document.getElementById("title");
+    const story = document.getElementById("story");
+    const chars = document.getElementById("chars");
+    const network = document.getElementById("network");
 
-storyArea.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-}, false);
+    function showTitle() {
+      title.style.display = "flex";
+      story.style.display = "none";
+      chars.style.display = "none";
+      network.style.display = "none";
 
-<script>
+      /* 🔧 重置动画状态 */
+      title.classList.remove("fade-out");
+    }
+    function showStory() {
+      title.style.display = "none";
+      story.style.display = "flex";
+      chars.style.display = "none";
+      network.style.display = "none";
 
-/* 页面切换 */
-const storyEnter = document.querySelector(".story-enter");
-const title = document.getElementById("title");
-const story = document.getElementById("story");
-const chars = document.getElementById("chars");
-const network = document.getElementById("network");
+      story.classList.add("show");
 
-function showTitle(){
-  title.style.display="flex";
-  story.style.display="none";
-  chars.style.display="none";
-  network.style.display="none";
+      document.querySelector(".story-container").scrollTop = 0;
+    }
+    function showCharacters() { title.style.display = "none"; story.style.display = "none"; chars.style.display = "flex"; network.style.display = "none"; }
+    function showNetwork() { title.style.display = "none"; story.style.display = "none"; chars.style.display = "none"; network.style.display = "block"; }
 
-  /* 🔧 重置动画状态 */
-  title.classList.remove("fade-out");
-}
-function showStory(){
-  title.style.display="none";
-  story.style.display="flex";
-  chars.style.display="none";
-  network.style.display="none";
-  
- story.classList.add("show"); 
-  
-  document.querySelector(".story-container").scrollTop = 0;
-}
-function showCharacters(){title.style.display="none";story.style.display="none";chars.style.display="flex";network.style.display="none";}
-function showNetwork(){title.style.display="none";story.style.display="none";chars.style.display="none";network.style.display="block";}
+    function enterStory() { title.classList.add("fade-out"); setTimeout(showStory, 900); }
 
-function enterStory(){title.classList.add("fade-out");setTimeout(showStory,900);}
+    function enterNetwork() {
+      chars.style.animation = "ghostOut 1s forwards";
+      setTimeout(() => {
+        showNetwork();
+        chars.style.animation = "";
+      }, 800);
+    }
 
-function enterNetwork(){
-  chars.style.animation = "ghostOut 1s forwards";
-  setTimeout(()=>{
-    showNetwork();
-    chars.style.animation="";
-  },800);
-}
+    function goHome() { location.href = "index.html"; }
+    function goTimeline() { location.href = "timeline.html"; }
+    function goGallery() { location.href = "gallery.html"; }
 
-function goHome(){location.href="index.html";}
-function goTimeline(){location.href="timeline.html";}
-function goGallery(){location.href="gallery.html";}
-  
-/* ===== sidebar 高亮 ===== */
-const navItems = document.querySelectorAll(".nav-item");
+    /* ===== sidebar 高亮 ===== */
+    const navItems = document.querySelectorAll(".nav-item");
 
-function setActive(index){
-  navItems.forEach((n,i)=>{
-    n.classList.toggle("active", i===index);
-  });
-}
+    function setActive(index) {
+      navItems.forEach((n, i) => {
+        n.classList.toggle("active", i === index);
+      });
+    }
 
-const _showTitle = showTitle;
-const _showStory = showStory;
-const _showCharacters = showCharacters;
-const _showNetwork = showNetwork;
+    const _showTitle = showTitle;
+    const _showStory = showStory;
+    const _showCharacters = showCharacters;
+    const _showNetwork = showNetwork;
 
-showTitle = function(){_showTitle();setActive(0);story.classList.remove("show"); storyEnter.style.display = "none"; }
-showStory = function(){_showStory();setActive(1); storyEnter.style.display = "block"; }
-showCharacters = function(){_showCharacters();setActive(2);storyEnter.style.display = "none"; }
-showNetwork = function(){_showNetwork();setActive(3);storyEnter.style.display = "none"; }
+    showTitle = function () { _showTitle(); setActive(0); story.classList.remove("show"); storyEnter.style.display = "none"; }
+    showStory = function () { _showStory(); setActive(1); storyEnter.style.display = "block"; }
+    showCharacters = function () { _showCharacters(); setActive(2); storyEnter.style.display = "none"; }
+    showNetwork = function () { _showNetwork(); setActive(3); storyEnter.style.display = "none"; }
 
-setActive(0);
-storyEnter.style.display = "none";
-  
-/* ===== STORY ===== */
+    setActive(0);
+    storyEnter.style.display = "none";
 
-const cnText = `黑色交响建立在两段半架空的历史之上。
+    /* ===== STORY ===== */
+
+    const cnText = `黑色交响建立在两段半架空的历史之上。
 
 1980年代至千禧年前后的美国佛蒙特州。  
 八神重英与菅原真，作为第二代日本移民生活在这里。  
@@ -539,7 +585,7 @@ const cnText = `黑色交响建立在两段半架空的历史之上。
 
 菅原真和八神深入马德里，只为探寻身上恶灵的故事。`;
 
-const enText = `Symphony Noir unfolds across two timelines.
+    const enText = `Symphony Noir unfolds across two timelines.
 
 Vermont, United States, from the 1980s to the early 2000s.  
 Yagami Shigefua and Sugahara Shin,
@@ -567,110 +613,111 @@ lingering for five hundred years?
 
 And so, they travel to Madrid.`;
 
-const storyText = document.getElementById("storyText");
+    const storyText = document.getElementById("storyText");
 
-function render(text){
-  storyText.innerHTML = text
-    .split(/\n/)
-    .map(line => 
-      line.trim()
-        ? `<p>${line}</p>`
-        : `<p class="empty-line"></p>`
-    )
-    .join("")
-    + `<p class="end-space"></p>`;
-}
+    function render(text) {
+      storyText.innerHTML = text
+        .split(/\n/)
+        .map(line =>
+          line.trim()
+            ? `<p>${line}</p>`
+            : `<p class="empty-line"></p>`
+        )
+        .join("")
+        + `<p class="end-space"></p>`;
+    }
 
-let isEn=false;
-  const hint = document.getElementById("langHint");
+    let isEn = false;
+    const hint = document.getElementById("langHint");
 
-function updateHint(){
-  hint.textContent = isEn 
-    ? "点击查看中文"
-    : "Click to English version";
-}
+    function updateHint() {
+      hint.textContent = isEn
+        ? "点击查看中文"
+        : "Click to English version";
+    }
 
-updateHint();
-render(cnText);
+    updateHint();
+    render(cnText);
 
-storyText.onclick = ()=>{
-  storyText.classList.add("flip");
-  setTimeout(()=>{
-    isEn=!isEn;
-    render(isEn?enText:cnText);
-     updateHint();  
-    storyText.classList.remove("flip");
-  },200);
-};
+    storyText.onclick = () => {
+      storyText.classList.add("flip");
+      setTimeout(() => {
+        isEn = !isEn;
+        render(isEn ? enText : cnText);
+        updateHint();
+        storyText.classList.remove("flip");
+      }, 200);
+    };
 
-/* ===== NETWORK ===== */
-let scale = 1;
-let pos = {x:0,y:0};
-let drag = false;
-let start = {};
-const viewer = document.getElementById("viewer");
-const img = document.getElementById("netImg");
+    /* ===== NETWORK ===== */
+    let scale = 1;
+    let pos = { x: 0, y: 0 };
+    let drag = false;
+    let start = {};
+    const viewer = document.getElementById("viewer");
+    const img = document.getElementById("netImg");
 
-let targetScale = 1;
+    let targetScale = 1;
 
-viewer.onwheel = e=>{
-  e.preventDefault();
+    viewer.onwheel = e => {
+      e.preventDefault();
 
-  targetScale *= e.deltaY>0 ? 0.9 : 1.1;
-  targetScale = Math.max(0.6, Math.min(targetScale, 3));
-};
+      targetScale *= e.deltaY > 0 ? 0.9 : 1.1;
+      targetScale = Math.max(0.6, Math.min(targetScale, 3));
+    };
 
-function animateZoom(){
-  scale += (targetScale - scale) * 0.15;
-  update();
-  requestAnimationFrame(animateZoom);
-}
-animateZoom();
+    function animateZoom() {
+      scale += (targetScale - scale) * 0.15;
+      update();
+      requestAnimationFrame(animateZoom);
+    }
+    animateZoom();
 
-viewer.onmousedown=e=>{
-  drag=true;
-  start.x=e.clientX-pos.x;
-  start.y=e.clientY-pos.y;
-};
+    viewer.onmousedown = e => {
+      drag = true;
+      start.x = e.clientX - pos.x;
+      start.y = e.clientY - pos.y;
+    };
 
- viewer.ondblclick = (e)=>{
-  e.preventDefault();   // ⭐关键这一行
+    viewer.ondblclick = (e) => {
+      e.preventDefault();   // ⭐关键这一行
 
-  scale = 1;
-  targetScale = 1;
-  pos = {x:0,y:0};
-  update();
-};
-  
-window.onmouseup=()=>drag=false;
+      scale = 1;
+      targetScale = 1;
+      pos = { x: 0, y: 0 };
+      update();
+    };
 
-window.onmousemove=e=>{
-  if(!drag)return;
-  pos.x=e.clientX-start.x;
-  pos.y=e.clientY-start.y;
-  update();
-};
+    window.onmouseup = () => drag = false;
 
-function update(){
-  pos.x = Math.max(-500, Math.min(500, pos.x));
-  pos.y = Math.max(-500, Math.min(500, pos.y));
+    window.onmousemove = e => {
+      if (!drag) return;
+      pos.x = e.clientX - start.x;
+      pos.y = e.clientY - start.y;
+      update();
+    };
 
-  img.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`;
-}
-function toggleMenu(){
-  const sidebar = document.querySelector(".sidebar");
-  const overlay = document.querySelector(".overlay");
+    function update() {
+      pos.x = Math.max(-500, Math.min(500, pos.x));
+      pos.y = Math.max(-500, Math.min(500, pos.y));
 
-  sidebar.classList.toggle("open");
-  overlay.classList.toggle("show");
-}
-  // 根据URL跳转到对应页面
-window.onload = function(){
-  if(window.location.hash === "#characters"){
-    showCharacters();
-  }
-}
-</script>
+      img.style.transform = `translate(${pos.x}px,${pos.y}px) scale(${scale})`;
+    }
+    function toggleMenu() {
+      const sidebar = document.querySelector(".sidebar");
+      const overlay = document.querySelector(".overlay");
+
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("show");
+    }
+    // 根据URL跳转到对应页面
+    window.onload = function () {
+      if (window.location.hash === "#characters") {
+        showCharacters();
+      }
+    }
+  </script>
 
 </body>
+
 </html>
