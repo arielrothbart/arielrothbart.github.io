@@ -453,6 +453,33 @@ font-family: 'Poiret One', sans-serif;
   box-shadow: 0 0 8px rgba(0,200,255,0.5);
 }
 
+/* P5P 特殊入口样式 */
+.p5p-entry {
+    filter: grayscale(0.8) contrast(1.2); /* 初始状态黑白感，暗示是旧档案 */
+    transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.p5p-entry:hover {
+    filter: grayscale(0) brightness(1.1); /* 移入时恢复色彩 */
+}
+
+.p5p-entry::before {
+    content: "COOPERATIVE WORK";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #ff4444; /* 给同人企划一点警示色，更有P5的感觉 */
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.p5p-entry:hover::before {
+    opacity: 0.7;
+    transform: translateY(10px);
+}
+
 /* 手机端适配：海报变上下排时，指引也变横向 */
 @media (max-width: 768px) {
   .simple-guide {
@@ -530,6 +557,7 @@ font-family: 'Poiret One', sans-serif;
 
 <div class="lounge-wrapper">
  <a href="lounge.html" class="lounge-entry">
+  
 
   <div class="coffee-icon">
     <img src="images/index/coffee_icon.png" alt="coffee">
@@ -539,6 +567,22 @@ font-family: 'Poiret One', sans-serif;
   <div class="chip bottom">CREW LOUNGE</div>
 </a>
 </div>
+
+<div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0 40px;">
+  <div style="width: 100px; height: 1px; background: linear-gradient(to right, transparent, #00c8ff); opacity: 0.4;"></div>
+  <span style="font-family: 'Poiret One', sans-serif; font-size: 11px; letter-spacing: 5px; color: #00c8ff; opacity: 0.6; white-space: nowrap;">ARCHIVE</span>
+  <div style="width: 100px; height: 1px; background: linear-gradient(to left, transparent, #00c8ff); opacity: 0.4;"></div>
+</div>
+
+<div class="projects" style="margin-top: 0; padding-bottom: 120px; justify-content: center;">
+  <a href="p5p.html" class="project-card">
+    <img src="images/index/p5p_poster.jpg" alt="Persona 5 Personal">
+    <div class="project-title" style="display:block; opacity: 0.8; font-size: 12px; letter-spacing: 3px;">
+        Persona 5 Personal
+    </div>
+  </a>
+</div>
+
 <script>
 const video = document.getElementById("heroVideo");
 
