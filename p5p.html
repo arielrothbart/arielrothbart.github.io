@@ -1,158 +1,266 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>Persona 5 Personal | Archive</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&display=swap" rel="stylesheet">
-    <style>
-        /* 1. 基础全局设定 */
-        body { margin: 0; background: #000; color: #fff; font-family: "FZYaoTi", "方正姚体", serif; overflow-x: hidden; }
-        
-        /* 2. Banner 容器：图片置顶占满 */
-        .banner-hero {
-            position: relative;
-            width: 100%;
-            height: 500px; 
-            background: #000;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<meta charset="UTF-8">
+<title>Persona 5 Personal | Archive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .hero-custom-img {
-            position: absolute;
-            top: 0; /* 置顶显示 */
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            z-index: 1;
-        }
+<!-- ✅ 使用可在线加载字体（接近 Emberly 气质） -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400&family=Noto+Serif+SC:wght@300&display=swap" rel="stylesheet">
 
-        /* 3. ABOUT 文字：还原 P1 的“方块压缩感” */
-        .about-content {
-            position: relative;
-            z-index: 5;
-            width: 88%;
-            max-width: 1200px;
-            display: flex;
-            gap: 60px; /* 缩短间距让整体更紧凑 */
-            align-items: flex-start;
-        }
+<style>
 
-        .about-left h2 { 
-            font-family: 'Abril Fatface', serif; /* 高对比度粗衬线，接近 Emberly */
-            font-size: 28px; 
-            letter-spacing: -1px; /* ⭐ 核心：负值字距，让标题挤在一起 */
-            margin: 0; 
-            font-weight: 400;
-            text-transform: uppercase;
-            line-height: 1;
-        }
+body {
+    margin: 0;
+    background: #000;
+   color: rgba(255,255,255,0.88);
+    font-family: 'Playfair Display', 'Noto Serif SC', serif;
+    overflow-x: hidden;
+}
 
-        .about-right {
-            flex: 1;
-        }
+/* Banner */
+.banner-hero {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .about-right p { 
-            font-family: 'Bodoni Moda', serif; /* 优雅紧致的衬线体 */
-            line-height: 1.4; /* ⭐ 核心：紧凑的行高，形成方块感 */
-            font-size: 16px; 
-            margin: 0 0 10px 0; 
-            letter-spacing: -0.5px; /* ⭐ 核心：负字距，让英文像方块一样对齐 */
-            text-align: justify; /* 两端对齐，增加秩序感 */
-        }
+/* 原始 logo 图 */
+.hero-custom-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    z-index: 1;
+}
 
-        /* 中文字体：强化姚体的窄长方块感 */
-        .zh-text {
-            font-family: "FZYaoTi", "方正姚体", serif;
-            letter-spacing: -0.5px; /* ⭐ 中文也要紧凑 */
-            font-size: 16px;
-            line-height: 1.5;
-        }
+/* ✅ 关键：红色叠层（恢复你旧站效果） */
+.hero-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(160, 20, 0, 0.7);
+    mix-blend-mode: normal;
+    z-index: 2;
+}
 
-        /* 4. 视频容器：边缘红色发光特效 */
-        .video-section { padding: 80px 0; text-align: center; }
-        .video-container { 
-            width: 80%; 
-            max-width: 950px; 
-            margin: 0 auto; 
-            box-shadow: 0 0 35px rgba(211, 47, 47, 0.6); /* 红色发光 */
-            border: 1px solid rgba(211, 47, 47, 0.3);
-            background: #000;
-        }
-        .video-container video { width: 100%; display: block; }
+/* 内容布局 */
+.about-content {
+    position: relative;
+    z-index: 10;
+    width: 85%;
+    max-width: 1100px;
+    display: flex;
+    align-items: flex-start;
+    gap: 120px;
+}
 
-        /* 5. 画廊主体：严格保留内容与布局 */
-        .gallery-main { width: 92%; max-width: 1200px; margin: 0 auto; padding-bottom: 120px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 40px; }
-        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 40px; }
-        .stack-vertical { display: flex; flex-direction: column; gap: 40px; margin-bottom: 40px; }
-        img:not(.hero-custom-img) { width: 100%; height: auto; display: block; }
+/* ABOUT */
+.about-left h2 {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-transform: none;
+    opacity: 0.9;
+}
 
-        /* 导航键 */
-        .global-nav { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
-        .btn { width: 45px; height: 45px; background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; font-size: 10px; }
-    </style>
+/* 右侧文字 */
+.about-right {
+    flex: 1;
+    max-width: 650px;
+}
+
+/* 英文 */
+.about-right p {
+    font-size: 14px;
+    line-height: 1.25;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.05px;
+}
+.about-right div p {
+    margin: 0;
+}
+/* 中文 */
+.zh-section {
+    margin-top: 20px;
+}
+
+.zh-section p {
+    font-family: "FZYaoTi", "Noto Serif SC", serif;
+    font-size: 14px;
+    line-height: 1.3;
+    margin-bottom: 2px;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: 0;
+}
+
+/* 视频 */
+.video-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.video-container {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(180, 0, 0, 0.5);
+    border: 1px solid rgba(180, 0, 0, 0.2);
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+}
+
+/* 画廊 */
+.gallery-main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 120px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.stack-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+img:not(.hero-custom-img) {
+    width: 100%;
+    display: block;
+}
+
+/* ✅ Global 按钮（统一风格版） */
+.global-nav {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 100;
+}
+
+.btn {
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 11px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="banner-hero">
-        <img src="images/p5p/school_logo_bg.png" class="hero-custom-img">
-        <div class="about-content">
-            <div class="about-left"><h2>ABOUT</h2></div>
-            <div class="about-right">
-                <p>This is a fan project under the persona 5's world setting.</p>
-                <p>Ariel has created a group of original characters.</p>
-                <p>Also there are some interacted with Yakuza game Ryu Ga Gotoku.</p>
-                <div class="zh-text" style="margin-top: 25px;">
-                    <p>这是一个以《女神异闻录5》作为背景的同人企划。</p>
-                    <p>人物和故事皆为原创，其中有同《如龙》系列作品的联动。是个人娱乐产物，无商业用途。涉及原作的设定，皆为SEGA所有。</p>
-                </div>
-                <p style="margin-top: 25px; font-size: 12px; opacity: 0.6;">The rights of the background music and graphic/UI designs in the video, settings that involve the original work all belong to SEGA.</p>
+<div class="banner-hero">
+    <!-- ⚠️ 用原始 logo，不要再用你自己做的红图 -->
+    <img src="images/p5p/school_logo_bg.png" class="hero-custom-img">
+
+    <div class="hero-overlay"></div>
+
+    <div class="about-content">
+        <div class="about-left"><h2>ABOUT</h2></div>
+
+        <div class="about-right">
+            <p>This is a fan project under the persona 5's world setting.</p>
+            <p>Ariel has created a group of original characters.</p>
+            <p>Also there are some interacted with Yakuza game Ryu Ga Gotoku.</p>
+
+            <div class="zh-section">
+                <p>这是一个以《女神异闻录5》作为背景的同人企划。</p>
+                <p>人物和故事皆为原创，其中有同《如龙》系列作品的联动。</p>
+                <p>是个人娱乐产物，无商业用途。</p>
+                <p>涉及原作的设定，皆为SEGA所有。</p>
             </div>
+
+          <div style="margin-top:16px; opacity:0.75; line-height:1.3;">
+    <p>The rights of the background music and graphic/UI designs in the video,</p>
+    <p>settings that involve the original work all belong to SEGA and the Persona 5 production.</p>
+</div>
         </div>
+    </div>
+</div>
+
+<div class="video-section">
+    <div class="video-container">
+        <video controls poster="images/p5p/video_gif_placeholder.gif">
+            <source src="images/p5p/p5p_main_video.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<div class="gallery-main">
+    <div class="grid-3">
+        <img src="images/p5p/img1.jpg"><img src="images/p5p/img2.jpg"><img src="images/p5p/img3.jpg">
+        <img src="images/p5p/img4.jpg"><img src="images/p5p/img5.jpg"><img src="images/p5p/img6.jpg">
     </div>
 
-    <div class="video-section">
-        <div class="video-container">
-            <video controls poster="images/p5p/video_gif_placeholder.gif">
-                <source src="images/p5p/p5p_main_video.mp4" type="video/mp4">
-            </video>
-        </div>
+    <div class="stack-vertical">
+        <img src="images/p5p/char1.jpg"><img src="images/p5p/char2.jpg"><img src="images/p5p/char3.jpg">
     </div>
 
-    <div class="gallery-main">
-        <div class="grid-3">
-            <img src="images/p5p/img1.jpg"><img src="images/p5p/img2.jpg"><img src="images/p5p/img3.jpg">
-            <img src="images/p5p/img4.jpg"><img src="images/p5p/img5.jpg"><img src="images/p5p/img6.jpg">
-        </div>
-        <div class="stack-vertical">
-            <img src="images/p5p/char1.jpg"><img src="images/p5p/char2.jpg"><img src="images/p5p/char3.jpg">
-        </div>
-        <div class="grid-3">
-            <img src="images/p5p/art1.jpg"><img src="images/p5p/art2.jpg"><img src="images/p5p/art3.jpg">
-        </div>
-        <div class="stack-vertical">
-            <img src="images/p5p/store1.jpg"><img src="images/p5p/store2.jpg"><img src="images/p5p/store3.jpg">
-        </div>
-        <div class="grid-3">
-            <img src="images/p5p/gall1.jpg"><img src="images/p5p/gall2.jpg"><img src="images/p5p/gall3.jpg">
-            <img src="images/p5p/gall4.jpg"><img src="images/p5p/gall5.jpg"><img src="images/p5p/gall6.jpg">
-            <img src="images/p5p/gall7.jpg"><img src="images/p5p/gall8.jpg"><img src="images/p5p/gall9.jpg">
-        </div>
-        <div class="grid-2">
-            <img src="images/p5p/comic1.jpg"><img src="images/p5p/comic2.jpg">
-        </div>
+    <div class="grid-3">
+        <img src="images/p5p/art1.jpg"><img src="images/p5p/art2.jpg"><img src="images/p5p/art3.jpg">
     </div>
 
-    <div class="global-nav">
-        <a href="index.html" class="btn">HOME</a>
-        <div class="btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">TOP</div>
+    <div class="stack-vertical">
+        <img src="images/p5p/store1.jpg"><img src="images/p5p/store2.jpg"><img src="images/p5p/store3.jpg">
     </div>
+
+    <div class="grid-3">
+        <img src="images/p5p/gall1.jpg"><img src="images/p5p/gall2.jpg"><img src="images/p5p/gall3.jpg">
+        <img src="images/p5p/gall4.jpg"><img src="images/p5p/gall5.jpg"><img src="images/p5p/gall6.jpg">
+        <img src="images/p5p/gall7.jpg"><img src="images/p5p/gall8.jpg"><img src="images/p5p/gall9.jpg">
+    </div>
+
+    <div class="grid-2">
+        <img src="images/p5p/comic1.jpg"><img src="images/p5p/comic2.jpg">
+    </div>
+</div>
+
+<!-- Global Nav -->
+<div class="global-nav">
+    <a href="index.html" class="btn">HOME</a>
+    <div class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">TOP</div>
+</div>
 
 </body>
 </html>
