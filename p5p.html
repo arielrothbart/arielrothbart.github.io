@@ -124,6 +124,46 @@
             display: block;
         }
 
+        .video-info {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+/* 关键：做“压暗空气”的感觉 */
+.video-info::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 120%;
+    height: 200%;
+
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.35) 40%,
+        rgba(0,0,0,0) 75%
+    );
+
+    filter: blur(18px);
+    z-index: -1;
+}
+
+.video-info a {
+    color: #5fd0ff;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.video-info a:hover {
+    color: #9be7ff;
+    text-shadow: 0 0 6px rgba(95,208,255,0.6);
+}
+
         /* 画廊 */
         .gallery-main {
             width: 90%;
@@ -201,6 +241,9 @@
                 <source src="images/p5p/p5p_main_video.mp4" type="video/mp4">
             </video>
         </div>
+        <div class="video-info">
+                P5P game playthrough | <a href="https://www.bilibili.com/video/BV17P4y187wq/?share_source=copy_web&vd_source=ecd5a16863f54c7f8b6b869a64caed32" target="_blank">link to bilibili</a>
+            </div>
     </div>
 
     <div class="gallery-main">
