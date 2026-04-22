@@ -198,6 +198,98 @@
             display: block;
         }
 
+/* =========================
+   MOBILE ADAPTATION
+========================= */
+@media (max-width: 768px) {
+
+    /* 整体边距收紧 */
+    body {
+        font-size: 13px;
+    }
+
+    /* Banner 高度降低 */
+    .banner-hero {
+        height: 260px;
+    }
+
+    /* 内容改为纵向 */
+    .about-content {
+        flex-direction: column;
+        gap: 24px;
+        width: 90%;
+    }
+
+    .about-left h2 {
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .about-right {
+        max-width: 100%;
+    }
+
+    .about-right p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .zh-section p {
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    /* 视频区域 */
+    .video-section {
+        padding: 50px 0;
+    }
+
+    .video-container {
+        width: 92%;
+        box-shadow: 0 0 20px rgba(180, 0, 0, 0.4);
+    }
+
+    /* 视频下方信息 */
+    .video-info {
+        margin-top: 30px;
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    /* 画廊全部改单列，更干净 */
+    .grid-3,
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stack-vertical {
+        gap: 20px;
+    }
+
+    .gallery-main {
+        width: 92%;
+        padding-bottom: 80px;
+    }
+
+    /* Home 按钮缩小 */
+    .home-logo {
+        top: 20px;
+        right: 20px;
+    }
+
+    .home-logo img {
+        width: 55px !important;
+    }
+
+    /* scroll 按钮也收一点 */
+    .scroll-top {
+        bottom: 20px;
+        right: 20px;
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
        
     </style>
 </head>
