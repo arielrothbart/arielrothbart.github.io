@@ -208,16 +208,20 @@
         font-size: 13px;
     }
 
-    /* Banner 高度降低 */
-    .banner-hero {
-        height: 260px;
-    }
+ .banner-hero {
+    height: auto;
+    min-height: 320px;
+    padding: 40px 0;
+
+    align-items: flex-start;  /* 不要再居中 */
+}
 
     /* 内容改为纵向 */
     .about-content {
         flex-direction: column;
         gap: 24px;
         width: 90%;
+    margin-top: 20px;
     }
 
     .about-left h2 {
@@ -227,6 +231,7 @@
 
     .about-right {
         max-width: 100%;
+           padding-top: 10px;
     }
 
     .about-right p {
