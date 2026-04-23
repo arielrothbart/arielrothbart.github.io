@@ -61,7 +61,7 @@
             display: flex;
             align-items: flex-start;
             gap: 120px;
-             transform: translate(6vw, 8%);
+            transform: translate(6vw, 8%);
         }
 
         /* ABOUT */
@@ -82,7 +82,7 @@
 
         /* 英文 */
         .about-right p {
-           font-size: clamp(14px, 1.05vw, 18px);
+            font-size: clamp(14px, 1.05vw, 18px);
             line-height: 1.25;
             margin: 0 0 4px 0;
             letter-spacing: -0.05px;
@@ -99,7 +99,7 @@
 
         .zh-section p {
             font-family: "FZYaoTi", "Noto Serif SC", serif;
-           font-size: clamp(14px, 1.05vw, 18px);
+            font-size: clamp(14px, 1.05vw, 18px);
             line-height: 1.3;
             margin-bottom: 2px;
             color: rgba(255, 255, 255, 0.92);
@@ -116,54 +116,63 @@
             width: 80%;
             max-width: 900px;
             margin: 0 auto;
+
+            aspect-ratio: 16 / 9;
+            /* ⭐锁死比例 */
+
+            overflow: hidden;
+            position: relative;
+
             box-shadow: 0 0 40px rgba(180, 0, 0, 0.5);
             border: 1px solid rgba(180, 0, 0, 0.2);
         }
 
         .video-container video {
             width: 100%;
-            display: block;
+            height: 100%;
+            object-fit: contain;
+            /* ⭐关键：完整显示，不裁切 */
+            background: black;
+            /* 防止留白难看 */
         }
 
         .video-info {
-    margin-top: 20px;
-    text-align: center;
-    position: relative;
-    z-index: 5;
-}
+            margin-top: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
 
-/* 关键：做“压暗空气”的感觉 */
-.video-info::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: 120%;
-    height: 200%;
+        /* 关键：做“压暗空气”的感觉 */
+        .video-info::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
 
-    background: radial-gradient(
-        ellipse at center,
-        rgba(0,0,0,0.65) 0%,
-        rgba(0,0,0,0.35) 40%,
-        rgba(0,0,0,0) 75%
-    );
+            width: 120%;
+            height: 200%;
 
-    filter: blur(18px);
-    z-index: -1;
-}
+            background: radial-gradient(ellipse at center,
+                    rgba(0, 0, 0, 0.65) 0%,
+                    rgba(0, 0, 0, 0.35) 40%,
+                    rgba(0, 0, 0, 0) 75%);
 
-.video-info a {
-    color: #5fd0ff;
-    text-decoration: none;
-    transition: 0.25s;
-}
+            filter: blur(18px);
+            z-index: -1;
+        }
 
-.video-info a:hover {
-    color: #9be7ff;
-    text-shadow: 0 0 6px rgba(95,208,255,0.6);
-}
+        .video-info a {
+            color: #5fd0ff;
+            text-decoration: none;
+            transition: 0.25s;
+        }
+
+        .video-info a:hover {
+            color: #9be7ff;
+            text-shadow: 0 0 6px rgba(95, 208, 255, 0.6);
+        }
 
         /* 画廊 */
         .gallery-main {
@@ -176,8 +185,35 @@
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 40px;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* ⭐ 每个格子变成“画框” */
+        .grid-3 img {
+            width: 100%;
+            height: 220px;
+            /* 统一视觉高度 */
+
+            object-fit: contain;
+            /* ⭐关键：等比缩放，不裁切不拉伸 */
+            background: black;
+            /* 可选：避免留白太丑 */
+
+            display: block;
+            transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+            cursor: pointer;
+        }
+
+        .grid-3 img:hover {
+            transform: scale(1.04);
+            /* 微放大 */
+            filter: brightness(1.05);
+            /* 稍微提亮 */
+        }
+
+        .grid-3 img:active {
+            transform: scale(0.98);
         }
 
         .grid-2 {
@@ -185,6 +221,26 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-bottom: 40px;
+        }
+
+        .grid-2 img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background: black;
+
+            display: block;
+            transition: transform 0.35s ease, filter 0.35s ease;
+            cursor: pointer;
+        }
+
+        .grid-2 img:hover {
+            transform: scale(1.04);
+            filter: brightness(1.05);
+        }
+
+        .grid-2 img:active {
+            transform: scale(0.98);
         }
 
         .stack-vertical {
@@ -199,111 +255,185 @@
             display: block;
         }
 
-/* =========================
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: opacity 0.3s ease;
+            z-index: 9999;
+        }
+
+        .lightbox.show {
+
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+
+            width: auto;
+            height: auto;
+
+            object-fit: contain;
+            /* ⭐防止任何拉伸 */
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        .lightbox .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .lightbox .prev {
+            left: 30px;
+        }
+
+        .lightbox .next {
+            right: 30px;
+        }
+
+        /* =========================
    MOBILE ADAPTATION
 ========================= */
-@media (max-width: 768px) {
+        @media (max-width: 768px) {
 
-    /* 整体边距收紧 */
-    body {
-        font-size: 13px;
-    }
+            /* 整体边距收紧 */
+            body {
+                font-size: 13px;
+            }
 
- .banner-hero {
-    height: auto;
-    min-height: 320px;
-    padding: 40px 0;
+            .banner-hero {
+                height: auto;
+                min-height: 320px;
+                padding: 40px 0;
 
-    align-items: flex-start;  /* 不要再居中 */
+                align-items: flex-start;
+                /* 不要再居中 */
+            }
+
+            /* 内容改为纵向 */
+            .about-content {
+                flex-direction: column;
+                gap: 24px;
+                width: 90%;
+                margin-top: 20px;
+            }
+
+            .about-left h2 {
+                font-size: 12px;
+                letter-spacing: 0.5px;
+            }
+
+            .about-right {
+                max-width: 100%;
+                padding-top: 10px;
+            }
+
+            .about-right p {
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            .zh-section p {
+                font-size: 13px;
+                line-height: 1.45;
+            }
+
+            /* 视频区域 */
+            .video-section {
+                padding: 50px 0;
+            }
+
+            .video-container {
+                width: 92%;
+                box-shadow: 0 0 20px rgba(180, 0, 0, 0.4);
+            }
+
+            /* 视频下方信息 */
+            .video-info {
+                margin-top: 30px;
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            /* 画廊全部改单列，更干净 */
+            .grid-3,
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stack-vertical {
+                gap: 20px;
+            }
+
+            .gallery-main {
+                width: 92%;
+                padding-bottom: 80px;
+            }
+
+            /* Home 按钮缩小 */
+            .home-logo {
+                top: 20px;
+                right: 20px;
+            }
+
+            .home-logo img {
+                width: 55px !important;
+            }
+
+            /* scroll 按钮也收一点 */
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+        }
+        .gallery-main img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
 }
 
-    /* 内容改为纵向 */
-    .about-content {
-        flex-direction: column;
-        gap: 24px;
-        width: 90%;
-    margin-top: 20px;
-    }
-
-    .about-left h2 {
-        font-size: 12px;
-        letter-spacing: 0.5px;
-    }
-
-    .about-right {
-        max-width: 100%;
-           padding-top: 10px;
-    }
-
-    .about-right p {
-        font-size: 13px;
-        line-height: 1.4;
-    }
-
-    .zh-section p {
-        font-size: 13px;
-        line-height: 1.45;
-    }
-
-    /* 视频区域 */
-    .video-section {
-        padding: 50px 0;
-    }
-
-    .video-container {
-        width: 92%;
-        box-shadow: 0 0 20px rgba(180, 0, 0, 0.4);
-    }
-
-    /* 视频下方信息 */
-    .video-info {
-        margin-top: 30px;
-        font-size: 12px;
-        padding: 6px 10px;
-    }
-
-    /* 画廊全部改单列，更干净 */
-    .grid-3,
-    .grid-2 {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .stack-vertical {
-        gap: 20px;
-    }
-
-    .gallery-main {
-        width: 92%;
-        padding-bottom: 80px;
-    }
-
-    /* Home 按钮缩小 */
-    .home-logo {
-        top: 20px;
-        right: 20px;
-    }
-
-    .home-logo img {
-        width: 55px !important;
-    }
-
-    /* scroll 按钮也收一点 */
-    .scroll-top {
-        bottom: 20px;
-        right: 20px;
-        font-size: 14px;
-        padding: 6px 10px;
-    }
+.gallery-main img:hover {
+    transform: scale(1.04);
+    filter: brightness(1.05);
 }
-       
+
+.gallery-main img:active {
+    transform: scale(0.98);
+}
     </style>
 </head>
 
 <body>
 
     <div class="banner-hero">
-        <!-- ⚠️ 用原始 logo，不要再用你自己做的红图 -->
         <img src="images/p5p/school_logo_bg.png" class="hero-custom-img">
 
         <div class="hero-overlay"></div>
@@ -340,8 +470,10 @@
             </video>
         </div>
         <div class="video-info">
-                P5P game playthrough | <a href="https://www.bilibili.com/video/BV17P4y187wq/?share_source=copy_web&vd_source=ecd5a16863f54c7f8b6b869a64caed32" target="_blank">link to bilibili</a>
-            </div>
+            P5P game playthrough | <a
+                href="https://www.bilibili.com/video/BV17P4y187wq/?share_source=copy_web&vd_source=ecd5a16863f54c7f8b6b869a64caed32"
+                target="_blank">link to bilibili</a>
+        </div>
     </div>
 
     <div class="gallery-main">
@@ -356,7 +488,10 @@
 
         <div class="grid-3">
             <img src="images/p5p/art1.jpg"><img src="images/p5p/art2.jpg"><img src="images/p5p/art3.jpg">
+            <img src="images/p5p/art4.jpg"><img src="images/p5p/art5.jpg"><img src="images/p5p/art6.jpg">
+            <img src="images/p5p/art7.jpg"><img src="images/p5p/art8.jpg"><img src="images/p5p/art9.jpg">
         </div>
+
 
         <div class="stack-vertical">
             <img src="images/p5p/store1.jpg"><img src="images/p5p/store2.jpg"><img src="images/p5p/store3.jpg">
@@ -365,33 +500,143 @@
         <div class="grid-3">
             <img src="images/p5p/gall1.jpg"><img src="images/p5p/gall2.jpg"><img src="images/p5p/gall3.jpg">
             <img src="images/p5p/gall4.jpg"><img src="images/p5p/gall5.jpg"><img src="images/p5p/gall6.jpg">
-            <img src="images/p5p/gall7.jpg"><img src="images/p5p/gall8.jpg"><img src="images/p5p/gall9.jpg">
+            <img src="images/p5p/gall7.jpg"><img src="images/p5p/gall8.jpg">
         </div>
 
-        <div class="grid-2">
-            <img src="images/p5p/comic1.jpg"><img src="images/p5p/comic2.jpg">
+        <div class="grid-3">
+            <img src="images/p5p/comic1.jpg"><img src="images/p5p/comic2.jpg"><img src="images/p5p/comic3.jpg">
         </div>
     </div>
 
- <!-- HOME LOGO -->
-<a href="index.html" class="home-logo">
-    <img src="logo.png" alt="home">
-</a>
+    <!-- HOME LOGO -->
+    <a href="index.html" class="home-logo">
+        <img src="logo.png" alt="home">
+    </a>
 
-<!-- SCROLL TOP -->
-<div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    ↑
-</div>
-
+    <!-- SCROLL TOP -->
+    <div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        ↑
+    </div>
+    <div id="lightbox" class="lightbox">
+        <span class="close">×</span>
+        <img class="lightbox-img">
+        <div class="nav prev">‹</div>
+        <div class="nav next">›</div>
+    </div>
 </body>
 <script>
-window.addEventListener("scroll", function () {
-    const btn = document.querySelector(".scroll-top");
-    if (window.scrollY > 200) {
-        btn.classList.add("show");
-    } else {
-        btn.classList.remove("show");
-    }
-});
+    window.addEventListener("scroll", function () {
+        const btn = document.querySelector(".scroll-top");
+        if (window.scrollY > 200) {
+            btn.classList.add("show");
+        } else {
+            btn.classList.remove("show");
+        }
+    });
 </script>
+<script>
+const images = document.querySelectorAll(".gallery-main img");
+const lightbox = document.getElementById("lightbox");
+const lightImg = lightbox.querySelector(".lightbox-img");
+
+let current = 0;
+
+// ===== 打开 =====
+images.forEach((img, index) => {
+    img.addEventListener("click", () => {
+        current = index;
+        open();
+    });
+});
+
+function open() {
+    lightImg.src = images[current].src;
+    lightbox.classList.add("show");
+    resetTransform();
+}
+
+// ===== 关闭 =====
+lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) close();
+});
+
+lightbox.querySelector(".close").onclick = close;
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+});
+
+function close() {
+    lightbox.classList.remove("show");
+}
+
+// ===== 切图 =====
+document.querySelector(".next").onclick = () => {
+    current = (current + 1) % images.length;
+    open();
+};
+
+document.querySelector(".prev").onclick = () => {
+    current = (current - 1 + images.length) % images.length;
+    open();
+};
+
+// ===== 缩放 + 拖拽（完全独立，不影响点击） =====
+let zoom = 1;
+let x = 0;
+let y = 0;
+let dragging = false;
+let startX = 0;
+let startY = 0;
+
+// 滚轮缩放
+lightImg.addEventListener("wheel", (e) => {
+    e.preventDefault();
+
+    zoom *= e.deltaY < 0 ? 1.1 : 0.9;
+    zoom = Math.min(Math.max(zoom, 1), 4);
+
+    applyTransform();
+});
+
+// 拖拽（左键按住才拖，不影响“点击打开”）
+lightImg.addEventListener("mousedown", (e) => {
+    if (zoom <= 1) return; // 不放大就不拖
+
+    dragging = true;
+    startX = e.clientX - x;
+    startY = e.clientY - y;
+    lightImg.style.cursor = "grabbing";
+});
+
+// 移动
+window.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+
+    x = e.clientX - startX;
+    y = e.clientY - startY;
+
+    applyTransform();
+});
+
+// 松开
+window.addEventListener("mouseup", () => {
+    dragging = false;
+    lightImg.style.cursor = "grab";
+});
+
+// 应用变换
+function applyTransform() {
+    lightImg.style.transform = `translate(${x}px, ${y}px) scale(${zoom})`;
+}
+
+// 重置
+function resetTransform() {
+    zoom = 1;
+    x = 0;
+    y = 0;
+    applyTransform();
+}
+</script>
+
 </html>
