@@ -415,19 +415,20 @@
                 padding: 6px 10px;
             }
         }
+
         .gallery-main img {
-    transition: transform 0.3s ease, filter 0.3s ease;
-    cursor: pointer;
-}
+            transition: transform 0.3s ease, filter 0.3s ease;
+            cursor: pointer;
+        }
 
-.gallery-main img:hover {
-    transform: scale(1.04);
-    filter: brightness(1.05);
-}
+        .gallery-main img:hover {
+            transform: scale(1.04);
+            filter: brightness(1.05);
+        }
 
-.gallery-main img:active {
-    transform: scale(0.98);
-}
+        .gallery-main img:active {
+            transform: scale(0.98);
+        }
     </style>
 </head>
 
@@ -490,6 +491,7 @@
             <img src="images/p5p/art1.jpg"><img src="images/p5p/art2.jpg"><img src="images/p5p/art3.jpg">
             <img src="images/p5p/art4.jpg"><img src="images/p5p/art5.jpg"><img src="images/p5p/art6.jpg">
             <img src="images/p5p/art7.jpg"><img src="images/p5p/art8.jpg"><img src="images/p5p/art9.jpg">
+            <img src="images/p5p/art10.jpg"><img src="images/p5p/art11.jpg"><img src="images/p5p/art12.jpg">
         </div>
 
 
@@ -500,11 +502,15 @@
         <div class="grid-3">
             <img src="images/p5p/gall1.jpg"><img src="images/p5p/gall2.jpg"><img src="images/p5p/gall3.jpg">
             <img src="images/p5p/gall4.jpg"><img src="images/p5p/gall5.jpg"><img src="images/p5p/gall6.jpg">
-            <img src="images/p5p/gall7.jpg"><img src="images/p5p/gall8.jpg">
+            <img src="images/p5p/gall7.jpg"><img src="images/p5p/gall8.jpg"><img src="images/p5p/gall9.jpg">
         </div>
 
         <div class="grid-3">
             <img src="images/p5p/comic1.jpg"><img src="images/p5p/comic2.jpg"><img src="images/p5p/comic3.jpg">
+        </div>
+
+        <div class="grid-3">
+            <img src="images/p5p/gall10.jpg"><img src="images/p5p/gall11.jpg"><img src="images/p5p/gall12.jpg">
         </div>
     </div>
 
@@ -535,108 +541,108 @@
     });
 </script>
 <script>
-const images = document.querySelectorAll(".gallery-main img");
-const lightbox = document.getElementById("lightbox");
-const lightImg = lightbox.querySelector(".lightbox-img");
+    const images = document.querySelectorAll(".gallery-main img");
+    const lightbox = document.getElementById("lightbox");
+    const lightImg = lightbox.querySelector(".lightbox-img");
 
-let current = 0;
+    let current = 0;
 
-// ===== 打开 =====
-images.forEach((img, index) => {
-    img.addEventListener("click", () => {
-        current = index;
-        open();
+    // ===== 打开 =====
+    images.forEach((img, index) => {
+        img.addEventListener("click", () => {
+            current = index;
+            open();
+        });
     });
-});
 
-function open() {
-    lightImg.src = images[current].src;
-    lightbox.classList.add("show");
-    resetTransform();
-}
+    function open() {
+        lightImg.src = images[current].src;
+        lightbox.classList.add("show");
+        resetTransform();
+    }
 
-// ===== 关闭 =====
-lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) close();
-});
+    // ===== 关闭 =====
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) close();
+    });
 
-lightbox.querySelector(".close").onclick = close;
+    lightbox.querySelector(".close").onclick = close;
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-});
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") close();
+    });
 
-function close() {
-    lightbox.classList.remove("show");
-}
+    function close() {
+        lightbox.classList.remove("show");
+    }
 
-// ===== 切图 =====
-document.querySelector(".next").onclick = () => {
-    current = (current + 1) % images.length;
-    open();
-};
+    // ===== 切图 =====
+    document.querySelector(".next").onclick = () => {
+        current = (current + 1) % images.length;
+        open();
+    };
 
-document.querySelector(".prev").onclick = () => {
-    current = (current - 1 + images.length) % images.length;
-    open();
-};
+    document.querySelector(".prev").onclick = () => {
+        current = (current - 1 + images.length) % images.length;
+        open();
+    };
 
-// ===== 缩放 + 拖拽（完全独立，不影响点击） =====
-let zoom = 1;
-let x = 0;
-let y = 0;
-let dragging = false;
-let startX = 0;
-let startY = 0;
+    // ===== 缩放 + 拖拽（完全独立，不影响点击） =====
+    let zoom = 1;
+    let x = 0;
+    let y = 0;
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
 
-// 滚轮缩放
-lightImg.addEventListener("wheel", (e) => {
-    e.preventDefault();
+    // 滚轮缩放
+    lightImg.addEventListener("wheel", (e) => {
+        e.preventDefault();
 
-    zoom *= e.deltaY < 0 ? 1.1 : 0.9;
-    zoom = Math.min(Math.max(zoom, 1), 4);
+        zoom *= e.deltaY < 0 ? 1.1 : 0.9;
+        zoom = Math.min(Math.max(zoom, 1), 4);
 
-    applyTransform();
-});
+        applyTransform();
+    });
 
-// 拖拽（左键按住才拖，不影响“点击打开”）
-lightImg.addEventListener("mousedown", (e) => {
-    if (zoom <= 1) return; // 不放大就不拖
+    // 拖拽（左键按住才拖，不影响“点击打开”）
+    lightImg.addEventListener("mousedown", (e) => {
+        if (zoom <= 1) return; // 不放大就不拖
 
-    dragging = true;
-    startX = e.clientX - x;
-    startY = e.clientY - y;
-    lightImg.style.cursor = "grabbing";
-});
+        dragging = true;
+        startX = e.clientX - x;
+        startY = e.clientY - y;
+        lightImg.style.cursor = "grabbing";
+    });
 
-// 移动
-window.addEventListener("mousemove", (e) => {
-    if (!dragging) return;
+    // 移动
+    window.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
 
-    x = e.clientX - startX;
-    y = e.clientY - startY;
+        x = e.clientX - startX;
+        y = e.clientY - startY;
 
-    applyTransform();
-});
+        applyTransform();
+    });
 
-// 松开
-window.addEventListener("mouseup", () => {
-    dragging = false;
-    lightImg.style.cursor = "grab";
-});
+    // 松开
+    window.addEventListener("mouseup", () => {
+        dragging = false;
+        lightImg.style.cursor = "grab";
+    });
 
-// 应用变换
-function applyTransform() {
-    lightImg.style.transform = `translate(${x}px, ${y}px) scale(${zoom})`;
-}
+    // 应用变换
+    function applyTransform() {
+        lightImg.style.transform = `translate(${x}px, ${y}px) scale(${zoom})`;
+    }
 
-// 重置
-function resetTransform() {
-    zoom = 1;
-    x = 0;
-    y = 0;
-    applyTransform();
-}
+    // 重置
+    function resetTransform() {
+        zoom = 1;
+        x = 0;
+        y = 0;
+        applyTransform();
+    }
 </script>
 
 </html>
