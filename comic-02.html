@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rhapsody in Neon</title>
-
+<link rel="stylesheet" href="global.css">
 <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
 
 <style>
@@ -184,32 +184,7 @@ body{
   margin-bottom:6px;
 }
   
-/* ===== TOP 按钮 ===== */
-.top-btn{
-  position:fixed;
-  right:60px;
-  bottom:60px;
 
-  width:48px;
-  height:48px;
-
-  border:1px solid rgba(255,255,255,0.3);
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  cursor:pointer;
-  opacity:0.6;
-  transition:0.3s;
-
-  z-index:3000; /* 👈 关键 */
-}
-
-.top-btn.show{
-  opacity:1;
-}
 
 </style>
 </head>
@@ -243,8 +218,15 @@ body{
 
   <a href="comics.html">
     <span class="small">BACK TO SHELF</span>
-     ‹Comics 
+     ‹ Comics 
   </a>
+
+<div class="nav-center">
+    <a href="rhapsody.html">
+      <span class="small">PROJECT HOME</span>
+      RHAPSODY IN NEON
+    </a>
+  </div>
 
    <a href="comic-03.html">
     <span class="small">NEXT PROJECT</span>
@@ -261,7 +243,7 @@ body{
 </div>
 
 <!-- TOP -->
-<div class="top-btn" id="topBtn">↑</div>
+<div class="scroll-top" id="topBtn">↑</div>
 
 <script>
  const container = document.getElementById("pages-container");
