@@ -1,347 +1,460 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* --- 1. 基础环境 --- */
-        body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             background-color: #050505;
             color: #ffffff;
+            /* 严格遵循你的字体要求 */
             font-family: 'Emberly', 'Microsoft YaHei', sans-serif;
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
 
         /* --- 2. 核心容器 (16:9 锁定) --- */
         .ui-viewport {
             position: fixed;
-            top: 50%; left: 50%;
-           transform: translate(-50%, -50%) scale(1.15);
-            width: 100vw; height: 56.25vw;
-            max-height: 100vh; max-width: 177.78vh;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.15);
+            width: 100vw;
+            height: 56.25vw;
+            /* 锁定 16:9 */
+            max-height: 100vh;
+            max-width: 177.78vh;
             z-index: 1;
         }
 
-        /* 【找回视频框样式】 精准定位在绿框左侧 */
         .video-box {
             position: absolute;
-            left: 71.22%; top: 61.66%;
-            width: 10.1%; height: 11.75%;
-            z-index: 5; 
+            left: 71.22%;
+            top: 61.66%;
+            width: 10.1%;
+            height: 11.75%;
+            z-index: 5;
             background: #000;
             overflow: hidden;
             border: 1px solid rgba(0, 242, 255, 0.2);
         }
 
-       #mini-video { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    transition: filter 0.5s ease, opacity 0.5s ease;
-}
+        #mini-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.5s ease, opacity 0.5s ease;
+        }
 
-/* 当视频没有播放时，让它稍微暗一点或者带点模糊，显得没那么突兀 */
-#mini-video:paused {
-    filter: brightness(0.5) grayscale(0.5);
-    opacity: 0.8;
-}
-        /* HUD & 舰船：发光与动画 */
-        .hud-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 10; pointer-events: none; }
+        #mini-video:paused {
+            filter: brightness(0.4) grayscale(0.3);
+            opacity: 0.8;
+        }
+
+        .hud-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            z-index: 10;
+            pointer-events: none;
+        }
+
         .ship-main {
             position: absolute;
-            width: 45%; left: 50%; top: 46%;
+            width: 45%;
+            left: 50%;
+            top: 46%;
             transform: translate(-50%, -50%);
             z-index: 15;
-            filter: drop-shadow(0 0 30px rgba(0, 238, 255, 0.4)); 
+            filter: drop-shadow(0 0 30px rgba(0, 238, 255, 0.4));
             animation: shipHover 5s ease-in-out infinite;
         }
+
         @keyframes shipHover {
-            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-2%); }
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(-2%);
+            }
         }
 
-        /* Home 键：动效 + 右对齐 */
         .home-btn {
             position: absolute;
-            right: 13.1%; top: 20.5%;
+            right: 13.1%;
+            top: 20.5%;
             z-index: 100;
             display: flex;
             flex-direction: column;
-            align-items: flex-end; 
+            align-items: flex-end;
             text-decoration: none;
             color: #fff;
             transition: 0.3s;
         }
-        .home-btn img { width: 75px; height: auto; transition: 0.4s ease; }
-        .home-btn:hover img { transform: scale(1.1); filter: brightness(1.2) drop-shadow(0 0 15px #00f2ff); }
-        .home-btn .text { 
-            font-size: 10px; opacity: 0.6; 
-            border-top: 1px solid rgba(255,255,255,0.3); 
-            margin-top: 8px; padding-top: 4px; 
-            text-align: right; 
+
+        .home-btn img {
+            width: 75px;
+            height: auto;
+            transition: 0.4s ease;
+        }
+
+        .home-btn:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.2) drop-shadow(0 0 15px #00f2ff);
+        }
+
+        .home-btn .text {
+            font-size: 10px;
+            opacity: 0.6;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 8px;
+            padding-top: 4px;
+            text-align: right;
             line-height: 1.4;
             letter-spacing: 1px;
         }
-        .home-btn:hover .text {
-    opacity: 1;
-    color: #00f2ff;
-    text-shadow: 0 0 8px rgba(0, 242, 255, 0.8);
-    border-top: 1px solid #00f2ff;
-}
 
-        /* 底部导航：找回分行与动效 */
+        /* --- 3. 底部导航 --- */
         .bottom-nav {
-    position: absolute;
-    /* 17.5% 是经过计算对齐 HUD 左侧白框横向坐标的位置 */
-    left: 17.5%; 
-    /* 78% 确保它垂直方向贴合底部 */
-    top: 78.5%; 
-    width: 70%; 
-    z-index: 20;
-    display: flex; 
-    gap: 20px;
-    pointer-events: auto; /* 确保在容器内可点击 */
-}
+            position: absolute;
+            left: 17.5%;
+            top: 73.5%;
+            width: 70%;
+            z-index: 20;
+            display: flex;
+            gap: 20px;
+        }
 
-.nav-card {
-    cursor: pointer; 
-    opacity: 0.6; 
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    padding: 12px 25px; 
-    border-left: 3px solid rgba(0, 242, 255, 0.2);
-    background: linear-gradient(90deg, rgba(0, 242, 255, 0.05) 0%, transparent 100%);
-    backdrop-filter: blur(5px);
-    text-decoration: none; 
-    color: white;
-}
+        .nav-card {
+            position: relative;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            padding: 12px 25px;
+            border-left: 2px solid rgba(0, 242, 255, 0.2);
+            background: linear-gradient(90deg, rgba(0, 242, 255, 0.08) 0%, transparent 100%);
+            backdrop-filter: blur(4px);
+            text-decoration: none;
+            color: white;
+            height: 46px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-/* --- 强化发光动效 --- */
-.nav-card:hover { 
-    opacity: 1; 
-    background: rgba(0, 242, 255, 0.15); 
-    border-left: 3px solid #00f2ff;
-    /* 核心发光：多层阴影叠加实现霓虹感 */
-    box-shadow: 
-        -5px 0 15px rgba(0, 242, 255, 0.3),
-        inset 5px 0 20px rgba(0, 242, 255, 0.1);
-    transform: translateY(-5px);
-}
+        .nav-card:hover,
+        .nav-card.active {
+            opacity: 1;
+            border-left: 2px solid #00f2ff;
+            box-shadow: -8px 0 20px rgba(0, 242, 255, 0.2);
+            transform: translateX(8px);
+        }
 
-.nav-card b { 
-    display: block; 
-    font-size: 15px; 
-    letter-spacing: 1.5px; 
-    color: #fff;
-    /* 文字微弱发光 */
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-}
+        .nav-card b {
+            display: block;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            color: #fff;
+        }
 
-.nav-card:hover b {
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
-}
+        .nav-card span {
+            display: block;
+            font-size: 15px;
+            color: #00f2ff;
+            margin-top: 3px;
+        }
 
-.nav-card span { 
-    display: block; 
-    font-size: 13px; 
-    opacity: 0.8; 
-    margin-top: 4px; 
-    color: #00f2ff; 
-}
+        .sub-menu,
+        /* 修改此处的 padding-left 来解决“贴线”问题 */
+        .lock-info {
+            position: absolute;
+            left: -2px;
+            top: 100%;
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: 0.4s ease;
+            border-left: 1px solid #00f2ff;
+            /* 对应卡片的左侧竖线 */
+            background: rgba(0, 0, 0, 0.8);
+            pointer-events: none;
 
-       /* --- 4. 手机端完全重写 --- */
+            /* 核心修复：添加左边距，让内容不再贴线 */
+            padding-left: 25px;
+            box-sizing: border-box;
+            /* 确保 padding 不会撑爆容器 */
+        }
+
+        /* 确保提示文字也是红色的 */
+        /* --- 彻底修复：字体变小、行间距收紧、红色锁定 --- */
+        .lock-text {
+            font-size: 10px !important;
+            /* 稍微调成 10px 比较精致 */
+            color: #ff4444 !important;
+            /* 强制红色 */
+            opacity: 0.9;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            /* 关键：把行高压下来，字就不会显得大而散 */
+            display: block;
+            margin: 0;
+            /* 消除默认外边距 */
+            padding: 0;
+            /* 消除默认内边距 */
+            text-align: left;
+            /* 网页端左对齐 */
+        }
+
+        .nav-card:hover .sub-menu,
+        .nav-card.active .sub-menu,
+        .nav-card:hover .lock-info {
+            max-height: 120px;
+            opacity: 1;
+            margin-top: 5px;
+            pointer-events: auto;
+        }
+
+        .sub-menu a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 13.5px;
+            padding: 8px 15px;
+            display: block;
+        }
+
+        .sub-menu a:hover {
+            color: #00f2ff;
+            background: rgba(0, 242, 255, 0.1);
+        }
+
+        .progress-mini {
+            width: 60px;
+            height: 1px;
+            background: #333;
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .progress-mini::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 30%;
+            height: 100%;
+            background: #ff4444;
+        }
+
+
+
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        /* --- 4. 手机端完全重写 (保持 16:9 且不重叠) --- */
         @media (max-width: 768px) {
-            body, html {
-                overflow-x: hidden;
-                overflow-y: auto; 
+
+            body,
+            html {
+                overflow-y: auto;
                 height: auto;
-                background-color: #050505;
             }
 
-            /* 核心：靠这个 -12vh 把 HUD 整体往上提，防止下沉 */
-            .ui-scene, .ui-viewport {
-                position: fixed; 
-                width: 100vw; height: 100vh;
-                left: 0; 
-                top: -12vh; 
-                transform: none; 
-                z-index: 1; 
+            .ui-viewport {
+                position: relative;
+                /* 改为相对定位，作为页面顶部 */
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100vw;
+                height: 56.25vw;
+                /* 强制锁定比例 */
+                max-width: none;
+                max-height: none;
             }
 
-            .video-box { display: none; } /* 手机端隐藏视频防止错位 */
+            .video-box {
+                display: none;
+            }
 
             .hud-overlay {
-                width: 240%; height: 100%;
-                left: -70%; top: 0;
-                opacity: 0.25;
+                width: 200%;
+                left: -50%;
+                opacity: 0.4;
+                top: 20%;
             }
 
-            /* 核心：靠这个 36% 锁定舰船位置，防止它压在菜单上 */
-            .ship-main, .ship-layer {
-                position: absolute; 
-                width: 95%; 
-                left: 50%;
-                top: 36%; 
-                transform: translateX(-50%);
-                z-index: 3;
-                filter: drop-shadow(0 0 30px rgba(0, 238, 255, 0.3));
-                animation: shipHoverMobile 6s ease-in-out infinite;
+            .ship-main {
+                width: 90%;
+                top: 70%;
             }
 
-            @keyframes shipHoverMobile {
-                0%, 100% { transform: translateX(-50%) translateY(0); }
-                50% { transform: translateX(-50%) translateY(-2.5%); }
-            }
-
-            /* Home 键：固定在右上角，取消歪斜动效 */
+            /* Home 键重生：层级置顶且可点击 */
             .home-btn {
-                position: fixed; 
+                position: fixed !important;
                 right: 20px;
-                top: 25px;
-                display: flex;
+                top: 20px;
+                z-index: 2000 !important;
+                pointer-events: auto !important;
+            }
+
+            .home-btn img {
+                width: 55px;
+            }
+
+            .home-btn .text {
+                display: none;
+            }
+
+            /* 菜单区域：流式布局，排在图片下方 */
+            .bottom-nav {
+                position: relative !important;
+                top: auto !important;
+                left: 0 !important;
+                width: 90% !important;
+                margin: 20px auto 40px !important;
                 flex-direction: column;
-                align-items: flex-end;
-                z-index: 100;
+                gap: 12px;
+                transform: none !important;
             }
-            .home-btn img { width: 55px; transition: 0.3s; }
-            .home-btn:hover img { transform: scale(1.1); filter: brightness(1.2) drop-shadow(0 0 10px #00f2ff); }
-            .home-btn .text { display: none; }
 
-            /* 菜单区域：锁定 58vh 间距 */
-          .bottom-nav {
-        /* 1. 强制改为固定定位，脱离父容器的 top: -12vh 限制 */
-        position: fixed !important; 
-        
-        /* 2. 重新定位到屏幕底部区域 */
-        top: auto !important;
-        bottom: 50px !important; 
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        
-        /* 3. 这里的 margin-top 已经没用了，设为 0 */
-        margin-top: 0 !important; 
-        
-        width: 85% !important;
-        flex-direction: column;
-        gap: 12px;
-        z-index: 999; /* 确保在最上层 */
-    }
-
-   .nav-card {
-    cursor: pointer; 
-    opacity: 0.7; 
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    padding: 12px 25px; 
-    /* 1. 改为极细的边框 */
-    border-left: 2px solid rgba(0, 242, 255, 0.2); 
-    
-    /* 2. 关键：背景改为从左向右淡出，右侧完全透明 */
-    background: linear-gradient(90deg, 
-        rgba(0, 242, 255, 0.08) 0%, 
-        rgba(0, 242, 255, 0.02) 50%, 
-        transparent 100%);
-        
-    /* 3. 这里的毛玻璃效果调低一点，更透亮 */
-    backdrop-filter: blur(4px); 
-    text-decoration: none; 
-    color: white;
-}
-.nav-card:hover { 
-    opacity: 1; 
-    /* 增加左侧激活色块的亮度 */
-    background: linear-gradient(90deg, 
-        rgba(0, 242, 255, 0.2) 0%, 
-        rgba(0, 242, 255, 0.05) 60%, 
-        transparent 100%); 
-    
-    border-left: 2px solid #00f2ff;
-    
-    /* 增加类似显示屏的微弱外发光 */
-    box-shadow: -10px 0 20px rgba(0, 242, 255, 0.15); 
-    transform: translateX(5px); /* 轻轻向右滑，增加交互感 */
-}
-            .nav-item, .nav-card {
-                border-left: none;
-                border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+            .nav-card {
+                height: auto;
+                min-height: 50px;
+                opacity: 0.9;
+                background: rgba(10, 10, 10, 0.95) !important;
+                border-left: 2px solid rgba(0, 242, 255, 0.5) !important;
+                align-items: center;
                 text-align: center;
-                background: rgba(0, 0, 0, 0.7);
-                padding: 16px 0;
-                backdrop-filter: blur(10px);
-                display: block; /* 确保英文中文分行 */
+                transform: none !important;
             }
-            .nav-item b, .nav-card b { display: block; font-size: 19px; } 
-            .nav-item span, .nav-card span { display: block; font-size: 14px; opacity: 0.9; }
+
+            .sub-menu,
+            .lock-info {
+                position: static;
+                max-height: 0;
+                opacity: 1;
+                background: transparent;
+                border-left: none;
+                align-items: center;
+            }
+
+            .nav-card.active .sub-menu,
+            .nav-card.active .lock-info {
+                max-height: 200px;
+                margin-top: 10px;
+            }
+
+            .progress-mini {
+                margin: 0 auto 8px auto;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="ui-viewport">
         <div class="video-box">
-            <video id="mini-video" autoplay loop muted playsinline>
-               <source src="images/rh/Battleship.mp4" type="video/mp4">
+            <video id="mini-video" loop muted playsinline>
+                <source src="images/rh/Battleship.mp4" type="video/mp4">
             </video>
         </div>
 
         <img src="images/rh/hud.webp" class="hud-overlay">
         <img src="images/rh/ship.png" class="ship-main">
-        
+
         <a href="index.html" class="home-btn">
             <img src="logo.png" alt="Home">
             <div class="text">NAV-SYS // HOME<br>ACCESS MAIN DATA</div>
         </a>
-         <div class="bottom-nav">
-        <div class="nav-card" onmouseover="switchVideo('City.mp4')">
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('City.mp4')">
             <b>Rhapsody in Neon</b>
             <span>霓虹狂想曲</span>
+            <div class="sub-menu">
+                <a href="comic-02.html" onclick="transitionToPage(event, 'comic-02.html')">序章漫画</a>
+                <a href="#">章节故事</a>
+            </div>
         </div>
-        <div class="nav-card" onmouseover="switchVideo('Battleship.mp4')">
+
+        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('Battleship.mp4')">
             <b>The Celestial Chronicle</b>
             <span>苍穹列记</span>
+            <div class="sub-menu">
+                <a href="#">序章漫画</a>
+                <a href="#">章节故事</a>
+            </div>
         </div>
+
         <div class="nav-card" onmouseover="switchVideo('Human.mp4')">
             <b>Personnel Files</b>
             <span>人物档案</span>
         </div>
-        <div class="nav-card" onmouseover="switchVideo('Warning.mp4')">
+
+        <div class="nav-card status-locked" onmouseover="switchVideo('Warning.mp4')">
             <b>Polifonía: Enroque</b>
             <span>复调:王车易位</span>
+            <div class="lock-info">
+                <div class="progress-mini"></div>
+                <span class="lock-text">ACCESS DENIED<br>权限未开放</span>
+            </div>
         </div>
     </div>
 
-    </div>
-
     <script>
-       const v = document.getElementById('mini-video');
-const navContainer = document.querySelector('.bottom-nav');
-const defaultVideo = 'battleship.mp4'; // 你希望固定播放的视频
+        const v = document.getElementById('mini-video');
+        let currentActiveCard = null;
 
-function switchVideo(fileName) {
-    if (window.innerWidth <= 768) return;
-    const path = 'images/rh/' + fileName;
-    
-    // 如果已经在播这个了，就别重跑了
-    if (v.src.includes(fileName)) {
-        if (v.paused) v.play();
-        return;
-    }
-    
-    v.src = path;
-    v.play().catch(e => console.log("播放被拦截:", e));
-}
+        function switchVideo(fileName) {
+            if (window.innerWidth <= 768) return;
+            const path = 'images/rh/' + fileName;
+            if (v.src.includes(fileName)) {
+                if (v.paused) v.play();
+                return;
+            }
+            v.src = path;
+            v.play().catch(e => console.log("Video blocked:", e));
+        }
 
-// 监听鼠标离开整个菜单区域
-navContainer.addEventListener('mouseleave', () => {
-    if (window.innerWidth <= 768) return;
-    
-    // 方案 A：直接暂停
-    v.pause(); 
-    
-    // 方案 B：如果你希望回到固定播放舰船，取消下面两行的注释
-    // v.src = 'images/rh/' + defaultVideo;
-    // v.play();
-});
+        function toggleSubMenu(card) {
+            if (currentActiveCard === card) {
+                card.classList.remove('active');
+                currentActiveCard = null;
+                return;
+            }
+            document.querySelectorAll('.nav-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            currentActiveCard = card;
+        }
+
+        document.querySelector('.bottom-nav').addEventListener('mouseleave', () => {
+            if (window.innerWidth <= 768) return;
+            if (!currentActiveCard) v.pause();
+        });
+
+        function transitionToPage(e, url) {
+            e.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => { window.location.href = url; }, 500);
+        }
     </script>
 </body>
+
 </html>
