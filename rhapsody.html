@@ -11,49 +11,135 @@
             background-color: #050505;
             color: #ffffff;
             font-family: 'Emberly', 'Microsoft YaHei', sans-serif;
-            overflow: hidden; 
+            overflow-x: hidden; 
         }
 
-        /* --- 2. 电脑端 16:9 场景 --- */
-        .ui-scene {
-            position: absolute;
-            aspect-ratio: 16 / 9;
+        /* --- 2. 核心容器 (16:9 锁定) --- */
+        .ui-viewport {
+            position: fixed;
+            top: 50%; left: 50%;
+           transform: translate(-50%, -50%) scale(1.15);
             width: 100vw; height: 56.25vw;
             max-height: 100vh; max-width: 177.78vh;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            scale: 1.05;
             z-index: 1;
         }
-        .hud-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 2; pointer-events: none; }
-        .video-target-box { position: absolute; left: 71.22%; top: 61.66%; width: 10.1%; height: 11.75%; z-index: 1; overflow: hidden; background: #000; }
+
+        /* 【找回视频框样式】 精准定位在绿框左侧 */
+        .video-box {
+            position: absolute;
+            left: 71.22%; top: 61.66%;
+            width: 10.1%; height: 11.75%;
+            z-index: 5; 
+            background: #000;
+            overflow: hidden;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+        }
         #mini-video { width: 100%; height: 100%; object-fit: cover; }
-        .ship-main { position: absolute; z-index: 3; width: 45%; left: 50%; top: 45%; transform: translate(-50%, -50%); filter: drop-shadow(0 0 30px rgba(0, 238, 255, 0.2)); animation: shipHover 5s ease-in-out infinite; }
-        @keyframes shipHover { 0%, 100% { transform: translate(-50%, -50%) translateY(0); } 50% { transform: translate(-50%, -50%) translateY(-2%); } }
 
-        .bottom-nav { position: absolute; left: 15%; top: 78%; width: 70%; z-index: 10; display: flex; gap: 20px; justify-content: flex-start; }
-        
-        /* 恢复主菜单动效 */
-        .nav-item { 
-            cursor: pointer; 
-            opacity: 0.7; 
-            transition: 0.3s; 
-            list-style: none; 
-            padding: 8px 15px; 
-            border-left: 3px solid rgba(0, 242, 255, 0.3); 
-            background: rgba(255, 255, 255, 0.03); 
+        /* HUD & 舰船：发光与动画 */
+        .hud-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 10; pointer-events: none; }
+        .ship-main {
+            position: absolute;
+            width: 45%; left: 50%; top: 46%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+            filter: drop-shadow(0 0 30px rgba(0, 238, 255, 0.4)); 
+            animation: shipHover 5s ease-in-out infinite;
         }
-        .nav-item:hover { 
-            opacity: 1; 
-            background: rgba(0, 242, 255, 0.1); 
-            border-left: 3px solid #00f2ff; 
-            filter: drop-shadow(0 0 5px #00f2ff);
+        @keyframes shipHover {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-2%); }
         }
 
-        .en-title { font-size: 14px; display: block; font-weight: bold; letter-spacing: 1px; }
-        .cn-title { font-size: 12px; display: block; opacity: 0.8; margin-top: 2px; }
+        /* Home 键：动效 + 右对齐 */
+        .home-btn {
+            position: absolute;
+            right: 13.1%; top: 20.5%;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; 
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+        }
+        .home-btn img { width: 75px; height: auto; transition: 0.4s ease; }
+        .home-btn:hover img { transform: scale(1.1); filter: brightness(1.2) drop-shadow(0 0 15px #00f2ff); }
+        .home-btn .text { 
+            font-size: 10px; opacity: 0.6; 
+            border-top: 1px solid rgba(255,255,255,0.3); 
+            margin-top: 8px; padding-top: 4px; 
+            text-align: right; 
+            line-height: 1.4;
+            letter-spacing: 1px;
+        }
+        .home-btn:hover .text {
+    opacity: 1;
+    color: #00f2ff;
+    text-shadow: 0 0 8px rgba(0, 242, 255, 0.8);
+    border-top: 1px solid #00f2ff;
+}
 
-        /* --- 3. 手机端适配 --- */
+        /* 底部导航：找回分行与动效 */
+        .bottom-nav {
+    position: absolute;
+    /* 17.5% 是经过计算对齐 HUD 左侧白框横向坐标的位置 */
+    left: 17.5%; 
+    /* 78% 确保它垂直方向贴合底部 */
+    top: 78.5%; 
+    width: 70%; 
+    z-index: 20;
+    display: flex; 
+    gap: 20px;
+    pointer-events: auto; /* 确保在容器内可点击 */
+}
+
+.nav-card {
+    cursor: pointer; 
+    opacity: 0.6; 
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 12px 25px; 
+    border-left: 3px solid rgba(0, 242, 255, 0.2);
+    background: linear-gradient(90deg, rgba(0, 242, 255, 0.05) 0%, transparent 100%);
+    backdrop-filter: blur(5px);
+    text-decoration: none; 
+    color: white;
+}
+
+/* --- 强化发光动效 --- */
+.nav-card:hover { 
+    opacity: 1; 
+    background: rgba(0, 242, 255, 0.15); 
+    border-left: 3px solid #00f2ff;
+    /* 核心发光：多层阴影叠加实现霓虹感 */
+    box-shadow: 
+        -5px 0 15px rgba(0, 242, 255, 0.3),
+        inset 5px 0 20px rgba(0, 242, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.nav-card b { 
+    display: block; 
+    font-size: 15px; 
+    letter-spacing: 1.5px; 
+    color: #fff;
+    /* 文字微弱发光 */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.nav-card:hover b {
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
+}
+
+.nav-card span { 
+    display: block; 
+    font-size: 13px; 
+    opacity: 0.8; 
+    margin-top: 4px; 
+    color: #00f2ff; 
+}
+
+       /* --- 4. 手机端完全重写 --- */
         @media (max-width: 768px) {
             body, html {
                 overflow-x: hidden;
@@ -62,7 +148,8 @@
                 background-color: #050505;
             }
 
-            .ui-scene {
+            /* 核心：靠这个 -12vh 把 HUD 整体往上提，防止下沉 */
+            .ui-scene, .ui-viewport {
                 position: fixed; 
                 width: 100vw; height: 100vh;
                 left: 0; 
@@ -71,7 +158,7 @@
                 z-index: 1; 
             }
 
-            .video-target-box { display: none; }
+            .video-box { display: none; } /* 手机端隐藏视频防止错位 */
 
             .hud-overlay {
                 width: 240%; height: 100%;
@@ -79,11 +166,12 @@
                 opacity: 0.25;
             }
 
-            .ship-main {
+            /* 核心：靠这个 36% 锁定舰船位置，防止它压在菜单上 */
+            .ship-main, .ship-layer {
                 position: absolute; 
                 width: 95%; 
                 left: 50%;
-                top: 36%; /* 保持你手动修正的 36% */
+                top: 36%; 
                 transform: translateX(-50%);
                 z-index: 3;
                 filter: drop-shadow(0 0 30px rgba(0, 238, 255, 0.3));
@@ -95,79 +183,132 @@
                 50% { transform: translateX(-50%) translateY(-2.5%); }
             }
 
-            .bottom-nav {
-                position: relative;
-                margin-top: 58vh; 
-                margin-bottom: 80px;
-                width: 80%;
-                left: 50%;
-                transform: translateX(-50%);
+            /* Home 键：固定在右上角，取消歪斜动效 */
+            .home-btn {
+                position: fixed; 
+                right: 20px;
+                top: 25px;
+                display: flex;
                 flex-direction: column;
-                gap: 15px;
-                z-index: 20; 
+                align-items: flex-end;
+                z-index: 100;
             }
+            .home-btn img { width: 55px; transition: 0.3s; }
+            .home-btn:hover img { transform: scale(1.1); filter: brightness(1.2) drop-shadow(0 0 10px #00f2ff); }
+            .home-btn .text { display: none; }
 
-            .nav-item {
+            /* 菜单区域：锁定 58vh 间距 */
+          .bottom-nav {
+        /* 1. 强制改为固定定位，脱离父容器的 top: -12vh 限制 */
+        position: fixed !important; 
+        
+        /* 2. 重新定位到屏幕底部区域 */
+        top: auto !important;
+        bottom: 50px !important; 
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        
+        /* 3. 这里的 margin-top 已经没用了，设为 0 */
+        margin-top: 0 !important; 
+        
+        width: 85% !important;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 999; /* 确保在最上层 */
+    }
+
+   .nav-card {
+    cursor: pointer; 
+    opacity: 0.7; 
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 12px 25px; 
+    /* 1. 改为极细的边框 */
+    border-left: 2px solid rgba(0, 242, 255, 0.2); 
+    
+    /* 2. 关键：背景改为从左向右淡出，右侧完全透明 */
+    background: linear-gradient(90deg, 
+        rgba(0, 242, 255, 0.08) 0%, 
+        rgba(0, 242, 255, 0.02) 50%, 
+        transparent 100%);
+        
+    /* 3. 这里的毛玻璃效果调低一点，更透亮 */
+    backdrop-filter: blur(4px); 
+    text-decoration: none; 
+    color: white;
+}
+.nav-card:hover { 
+    opacity: 1; 
+    /* 增加左侧激活色块的亮度 */
+    background: linear-gradient(90deg, 
+        rgba(0, 242, 255, 0.2) 0%, 
+        rgba(0, 242, 255, 0.05) 60%, 
+        transparent 100%); 
+    
+    border-left: 2px solid #00f2ff;
+    
+    /* 增加类似显示屏的微弱外发光 */
+    box-shadow: -10px 0 20px rgba(0, 242, 255, 0.15); 
+    transform: translateX(5px); /* 轻轻向右滑，增加交互感 */
+}
+            .nav-item, .nav-card {
                 border-left: none;
                 border-bottom: 1px solid rgba(0, 242, 255, 0.2);
                 text-align: center;
                 background: rgba(0, 0, 0, 0.7);
                 padding: 16px 0;
                 backdrop-filter: blur(10px);
+                display: block; /* 确保英文中文分行 */
             }
-            /* 手机端点击反馈 */
-            .nav-item:active {
-                background: rgba(0, 242, 255, 0.2);
-            }
-            
-            .en-title { font-size: 19px; } 
-            .cn-title { font-size: 14px; opacity: 0.9; }
+            .nav-item b, .nav-card b { display: block; font-size: 19px; } 
+            .nav-item span, .nav-card span { display: block; font-size: 14px; opacity: 0.9; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ui-scene">
-        <img src="images/rh/hud.webp" class="hud-overlay">
-        <img src="images/rh/ship.png" class="ship-main">
-        <div class="video-target-box">
+    <div class="ui-viewport">
+        <div class="video-box">
             <video id="mini-video" autoplay loop muted playsinline>
                 <source src="images/rh/city.mp4" type="video/mp4">
             </video>
         </div>
+
+        <img src="images/rh/hud.webp" class="hud-overlay">
+        <img src="images/rh/ship.png" class="ship-main">
+        
+        <a href="index.html" class="home-btn">
+            <img src="logo.png" alt="Home">
+            <div class="text">NAV-SYS // HOME<br>ACCESS MAIN DATA</div>
+        </a>
+         <div class="bottom-nav">
+        <div class="nav-card" onmouseover="switchVideo('city.mp4')">
+            <b>Rhapsody in Neon</b>
+            <span>霓虹狂想曲</span>
+        </div>
+        <div class="nav-card" onmouseover="switchVideo('battleship.mp4')">
+            <b>The Celestial Chronicle</b>
+            <span>苍穹列记</span>
+        </div>
+        <div class="nav-card" onmouseover="switchVideo('human.mp4')">
+            <b>Personnel Files</b>
+            <span>人物档案</span>
+        </div>
+        <div class="nav-card" onmouseover="switchVideo('warning.mp4')">
+            <b>Polifonía: Enroque</b>
+            <span>复调:王车易位</span>
+        </div>
     </div>
 
-    <div class="bottom-nav">
-        <div class="nav-item" onmouseover="switchVideo('City.mp4')">
-            <span class="en-title">Rhapsody in Neon</span>
-            <span class="cn-title">霓虹狂想曲</span>
-        </div>
-        <div class="nav-item" onmouseover="switchVideo('Battleship.mp4')">
-            <span class="en-title">The Celestial Chronicle</span>
-            <span class="cn-title">苍穹列记</span>
-        </div>
-        <div class="nav-item" onmouseover="switchVideo('Human.mp4')">
-            <span class="en-title">Personnel Files</span>
-            <span class="cn-title">人物档案</span>
-        </div>
-        <div class="nav-item" onmouseover="switchVideo('Warning.mp4')">
-            <span class="en-title">Polifonía: Enroque</span>
-            <span class="cn-title">复调:王车易位</span>
-        </div>
     </div>
 
     <script>
         function switchVideo(fileName) {
-            if (window.innerWidth <= 768 || !fileName) return;
+            if (window.innerWidth <= 768) return;
             const v = document.getElementById('mini-video');
-            const targetPath = 'images/rh/' + fileName;
-            
-            // 只有当路径真正变化时才切换，避免重复触发
-            if (v.src.toLowerCase().endsWith(fileName.toLowerCase())) return;
-            
-            v.src = targetPath;
-            v.load(); // 强制重新加载新资源
-            v.play().catch(e => console.log("Video play blocked"));
+            const path = 'images/rh/' + fileName;
+            if (v.src.includes(fileName)) return;
+            v.src = path;
+            v.play();
         }
     </script>
 </body>
