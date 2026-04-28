@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<link rel="prefetch" href="images/rh/hud.webp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <link rel="preload" href="images/rh/Battleship.mp4" as="video" type="video/mp4">
     <link rel="preload" href="images/rh/Human.mp4" as="video" type="video/mp4">
     <link rel="preload" href="images/rh/Warning.mp4" as="video" type="video/mp4">
-    
+
     <style>
         /* --- 1. 基础环境 --- */
         body,
@@ -281,17 +281,27 @@
             }
 
             .ui-viewport {
-                position: relative;
-                /* 改为相对定位，作为页面顶部 */
-                top: 0;
-                left: 0;
-                transform: none;
-                width: 100vw;
-                height: 56.25vw;
-                /* 强制锁定比例 */
-                max-width: none;
-                max-height: none;
-            }
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100vw;
+        
+        /* --- 核心修复：锁死这三行，确保船的 70% 坐标计算永远有基准 --- */
+        height: 56.25vw !important; 
+        min-height: 56.25vw !important;
+        display: block !important;
+        /* ------------------------------------------------------ */
+    }
+
+           .ship-main {
+        width: 90%;
+        top: 70%; /* 保持你原本的 70% 不动 */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* 动效会依然生效 */
+    }
+
 
             .video-box {
                 display: none;
@@ -304,10 +314,7 @@
                 top: 20%;
             }
 
-            .ship-main {
-                width: 90%;
-                top: 70%;
-            }
+
 
             /* Home 键重生：层级置顶且可点击 */
             .home-btn {
