@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rhapsody in Neon</title>
-
+<link rel="stylesheet" href="global.css">
 <link href="https://fonts.googleapis.com/css2?family=Francois+One&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
 <style>
 body{
@@ -44,6 +44,8 @@ body{
 }
   
 /* ===== 覆盖层（标题在这里） ===== */
+/* 1. 调整覆盖层：让内容整体靠下居中 */
+/* 1. 标题覆盖层：改为固定定位且不占据文档流，防止挤掉下方漫画 */
 .overlay {
   position: absolute;
   top: 0;
@@ -237,32 +239,7 @@ body{
   margin-bottom:6px;
 }
   
-/* ===== TOP 按钮 ===== */
-.top-btn{
-  position:fixed;
-  right:60px;
-  bottom:60px;
 
-  width:48px;
-  height:48px;
-
-  border:1px solid rgba(255,255,255,0.3);
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  cursor:pointer;
-  opacity:0.6;
-  transition:0.3s;
-
-  z-index:3000; /* 👈 关键 */
-}
-
-.top-btn.show{
-  opacity:1;
-}
 
 </style>
 </head>
@@ -303,8 +280,15 @@ body{
     ‹ Valley of Gloom
   </a>
 
+<div class="nav-center">
+    <a href="rhapsody.html">
+      <span class="small">返回项目主页</span>
+      霓虹狂想曲
+    </a>
+  </div>
+
   <a href="comics.html">
-    <span class="small">BACK TO SHELF</span>
+    <span class="small">回到书架</span>
     Comics ›
   </a>
 
@@ -318,7 +302,7 @@ body{
 </div>
 
 <!-- TOP -->
-<div class="top-btn" id="topBtn">↑</div>
+<div class="scroll-top" id="topBtn">↑</div>
 
 <script>
  const container = document.getElementById("pages-container");
