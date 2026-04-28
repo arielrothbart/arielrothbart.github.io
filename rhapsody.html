@@ -34,8 +34,19 @@
             overflow: hidden;
             border: 1px solid rgba(0, 242, 255, 0.2);
         }
-        #mini-video { width: 100%; height: 100%; object-fit: cover; }
 
+       #mini-video { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: filter 0.5s ease, opacity 0.5s ease;
+}
+
+/* 当视频没有播放时，让它稍微暗一点或者带点模糊，显得没那么突兀 */
+#mini-video:paused {
+    filter: brightness(0.5) grayscale(0.5);
+    opacity: 0.8;
+}
         /* HUD & 舰船：发光与动画 */
         .hud-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 10; pointer-events: none; }
         .ship-main {
@@ -269,7 +280,7 @@
     <div class="ui-viewport">
         <div class="video-box">
             <video id="mini-video" autoplay loop muted playsinline>
-                <source src="images/rh/city.mp4" type="video/mp4">
+               <source src="images/rh/battleship.mp4" type="video/mp4">
             </video>
         </div>
 
@@ -302,14 +313,35 @@
     </div>
 
     <script>
-        function switchVideo(fileName) {
-            if (window.innerWidth <= 768) return;
-            const v = document.getElementById('mini-video');
-            const path = 'images/rh/' + fileName;
-            if (v.src.includes(fileName)) return;
-            v.src = path;
-            v.play();
-        }
+       const v = document.getElementById('mini-video');
+const navContainer = document.querySelector('.bottom-nav');
+const defaultVideo = 'battleship.mp4'; // 你希望固定播放的视频
+
+function switchVideo(fileName) {
+    if (window.innerWidth <= 768) return;
+    const path = 'images/rh/' + fileName;
+    
+    // 如果已经在播这个了，就别重跑了
+    if (v.src.includes(fileName)) {
+        if (v.paused) v.play();
+        return;
+    }
+    
+    v.src = path;
+    v.play().catch(e => console.log("播放被拦截:", e));
+}
+
+// 监听鼠标离开整个菜单区域
+navContainer.addEventListener('mouseleave', () => {
+    if (window.innerWidth <= 768) return;
+    
+    // 方案 A：直接暂停
+    v.pause(); 
+    
+    // 方案 B：如果你希望回到固定播放舰船，取消下面两行的注释
+    // v.src = 'images/rh/' + defaultVideo;
+    // v.play();
+});
     </script>
 </body>
 </html>
