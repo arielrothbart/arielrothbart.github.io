@@ -281,21 +281,16 @@
             }
 
             .ui-viewport {
-              .ui-viewport {
-
-      position: fixed !important;                 /* ← 改回固定定位 */
-
-      top: 50% !important;                        /* ← 用标准居中 */
-
-      left: 50% !important;
-
-      transform: translate(-50%, -50%) scale(1.15) !important;
-
-      width: 100vw;
-
-      height: 56.25vw;
-
-      z-index: 1000 !important;   
+                position: relative;
+                /* 改为相对定位，作为页面顶部 */
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100vw;
+                height: 56.25vw;
+                /* 强制锁定比例 */
+                max-width: none;
+                max-height: none;
             }
 
             .video-box {
