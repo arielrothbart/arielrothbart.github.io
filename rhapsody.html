@@ -291,6 +291,7 @@
                 /* 强制锁定比例 */
                 max-width: none;
                 max-height: none;
+                opacity: 0; 
             }
 
             .video-box {
@@ -460,6 +461,15 @@
             document.body.classList.add('fade-out');
             setTimeout(() => { window.location.href = url; }, 500);
         }
+        
+        window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            window.dispatchEvent(new Event('resize'));
+            document.querySelector('.ui-viewport').style.opacity = 1;
+        });
+    });
+});
     </script>
 </body>
 
