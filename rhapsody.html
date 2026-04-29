@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <link rel="preload" href="images/rh/City.mp4" as="video" type="video/mp4">
     <link rel="preload" href="images/rh/Battleship.mp4" as="video" type="video/mp4">
@@ -84,6 +85,8 @@
             filter: drop-shadow(0 0 30px rgba(0, 238, 255, 0.4));
             animation: shipHover 5s ease-in-out infinite;
         }
+
+        
 
         @keyframes shipHover {
 
@@ -182,6 +185,89 @@
             margin-top: 3px;
         }
 
+@keyframes hudFadeUp {
+    0% {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.show {
+    animation: hudFadeUp 0.6s ease;
+}
+
+#hud-zh {
+    position: absolute;
+
+    left: 29%;   /* 左右位置 */
+    top: 31%;    /* 上下位置 */
+
+    width: 48%;
+    height: 10%;
+
+    color: #b4f0ff;
+    font-family: 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+
+    font-size: 10.5px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+
+    white-space: pre-line;
+    text-align: left;
+
+    opacity: 0;
+    overflow: hidden;
+word-break: break-word;
+ transform: translateY(0);
+
+ text-shadow:
+    0 0 4px rgba(0, 242, 255, 0.4),
+    0 0 8px rgba(0, 242, 255, 0.2);
+}
+
+#hud-en {
+    position: absolute;
+
+    left: 29%;
+    top: 58%;
+
+    width: 38%;
+    height: 12%;
+
+    color: #b4f0ff;
+   font-family: 'Share Tech Mono', monospace;
+
+    font-size: 11px;
+    line-height: 1.6;
+
+    white-space: pre-line;
+    text-align: left;
+
+    opacity: 0;
+    overflow: hidden;
+word-break: break-word;
+ transform: translateY(0);
+
+  text-shadow:
+    0 0 4px rgba(0, 242, 255, 0.4),
+    0 0 8px rgba(0, 242, 255, 0.2);
+}
+
+
+#hud-zh, #hud-en {
+    opacity: 1;
+}
+
+
+
+
         .sub-menu,
         /* 修改此处的 padding-left 来解决“贴线”问题 */
         .lock-info {
@@ -273,7 +359,10 @@
 
         /* --- 4. 手机端完全重写 (保持 16:9 且不重叠) --- */
         @media (max-width: 768px) {
-
+#hud-zh,
+#hud-en {
+    display: none;
+}
             body,
             html {
                 overflow-y: auto;
@@ -314,7 +403,6 @@
             }
     
 
-
         .video-box {
             display: none;
         }
@@ -325,8 +413,6 @@
             opacity: 0.4;
             top: 20%;
         }
-
-
 
         /* Home 键重生：层级置顶且可点击 */
         .home-btn {
@@ -399,7 +485,8 @@
                 <source src="images/rh/Battleship.mp4" type="video/mp4">
             </video>
         </div>
-
+<div id="hud-zh"></div>
+<div id="hud-en"></div>
         <img src="images/rh/hud.webp" class="hud-overlay">
         <img src="images/rh/ship.png" class="ship-main">
 
@@ -410,7 +497,7 @@
     </div>
 
     <div class="bottom-nav">
-        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('City.mp4')">
+        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('City.mp4'); showHUD('neon')">
             <b>Rhapsody in Neon</b>
             <span>霓虹狂想曲</span>
             <div class="sub-menu">
@@ -419,7 +506,7 @@
             </div>
         </div>
 
-        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('Battleship.mp4')">
+        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('Battleship.mp4'); showHUD('chronicle')">
             <b>The Celestial Chronicle</b>
             <span>苍穹列记</span>
             <div class="sub-menu">
@@ -428,12 +515,12 @@
             </div>
         </div>
 
-        <div class="nav-card" onmouseover="switchVideo('Human.mp4')">
+        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('Human.mp4'); showHUD('file')">
             <b>Personnel Files</b>
             <span>人物档案</span>
         </div>
 
-        <div class="nav-card status-locked" onmouseover="switchVideo('Warning.mp4')">
+        <div class="nav-card status-locked" onmouseover="switchVideo('Warning.mp4'); showHUD('poly')">
             <b>Polifonía: Enroque</b>
             <span>复调:王车易位</span>
             <div class="lock-info">
@@ -444,6 +531,7 @@
     </div>
 
     <script>
+        
         const v = document.getElementById('mini-video');
         let currentActiveCard = null;
 
@@ -469,16 +557,64 @@
             currentActiveCard = card;
         }
 
-        document.querySelector('.bottom-nav').addEventListener('mouseleave', () => {
-            if (window.innerWidth <= 768) return;
-            if (!currentActiveCard) v.pause();
-        });
+       document.querySelector('.bottom-nav').addEventListener('mouseleave', () => {
+    if (window.innerWidth <= 768) return;
+    if (!currentActiveCard) v.pause();
+    hideHUD();
+});
 
         function transitionToPage(e, url) {
             e.preventDefault();
             document.body.classList.add('fade-out');
             setTimeout(() => { window.location.href = url; }, 500);
         }
+
+        const hudTexts = {
+    neon: {
+        zh: "作为一个地下武器师，列奥波尔德被当作暗杀对象袭击时他本不感到意外。\n但当他发现杀手竟是一年前死去的爱人之时，一切都天翻地覆。",
+        en: "As an underground weaponsmith, \nLeopold isn’t surprised to find himself marked for assassination. \nUntil the man sent to kill him turns out to be \nthe lover he lost a year ago—and everything unravels."
+    },
+
+    chronicle: {
+        zh: "作为唯一能穿越天空洋流的舰船，\n这是狂想曲号——以及驾驶着她的人们——的传说。",
+        en: "\nThe only vessel capable of crossing the Aetherial Tide, \nthis is the legend of the Rhapsody—and those who dare to steer her."
+    },
+
+     file: {
+        zh: "收录于极夜城警局档案馆",
+        en: "\n\nKCPD Archive Record"
+    },
+
+    poly: {
+    
+        zh: "在义体失控事件后，极夜城中涌动着更多暗流。\n家族、企业以及那一丝苦苦维持的人性，该何去何从？",
+        en: "\nAfter the cybernetic collapse, Kaamos City slips into silent conspiracies. \nBetween power, loyalty, and the last trace of humanity, something is bound to give."
+    }
+};
+
+
+function showHUD(key) {
+    const zhBox = document.getElementById('hud-zh');
+    const enBox = document.getElementById('hud-en');
+
+    zhBox.textContent = hudTexts[key].zh;
+    enBox.textContent = hudTexts[key].en;
+
+    zhBox.classList.remove('show');
+    enBox.classList.remove('show');
+
+    void zhBox.offsetWidth;
+    void enBox.offsetWidth;
+
+    zhBox.classList.add('show');
+    enBox.classList.add('show');
+}
+
+function hideHUD() {
+    document.getElementById('hud-zh').textContent = "";
+    document.getElementById('hud-en').textContent = "";
+}
+
     </script>
 </body>
 
