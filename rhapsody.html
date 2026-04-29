@@ -393,7 +393,7 @@ word-break: break-word;
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
     opacity: 0.2;
 
-    animation: starDriftSlow 200s linear infinite;
+    animation: starDriftSlow 220s linear infinite;
 }
 @keyframes starDriftSlow {
     from {
@@ -412,7 +412,7 @@ word-break: break-word;
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
     opacity: 1.5;
 
-    animation: starDrift 120s linear infinite;
+    animation: starDrift 180s linear infinite;
 }
 
 @keyframes starDrift {
@@ -548,7 +548,7 @@ word-break: break-word;
 <div class="star-bg"></div>
     <div class="ui-viewport">
         <div class="video-box">
-            <video id="mini-video" loop muted playsinline>
+           <video id="mini-video" preload="auto" loop muted playsinline>
                 <source src="images/rh/Battleship.mp4" type="video/mp4">
             </video>
         </div>
@@ -606,9 +606,13 @@ word-break: break-word;
 ];
 
 preloadVideos.forEach(file => {
-    const video = document.createElement('video');
-    video.src = 'images/rh/' + file;
+   const video = document.createElement('video');
+video.src = 'images/rh/' + file;
+video.preload = 'auto';
+video.muted = true;
+video.play().catch(() => {});
 });
+
         const v = document.getElementById('mini-video');
         let currentActiveCard = null;
 
