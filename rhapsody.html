@@ -600,36 +600,40 @@ word-break: break-word;
     <script>
         
 
-const preloadVideos = [
-    'City.mp4',
-    'Battleship.mp4',
-    'Human.mp4',
-    'Warning.mp4'
-];
 
-preloadVideos.forEach((file, index) => {
-    setTimeout(() => {
-        const video = document.createElement('video');
-        video.src = 'images/rh/' + file;
-        video.preload = 'auto';
-        video.muted = true;
-        video.play().catch(() => {});
-    }, index * 800); // 每个间隔 0.8 秒
-});
 
         const v = document.getElementById('mini-video');
         let currentActiveCard = null;
 
-        function switchVideo(fileName) {
-            if (window.innerWidth <= 768) return;
-            const path = 'images/rh/' + fileName;
-            if (v.src.includes(fileName)) {
-                if (v.paused) v.play();
-                return;
-            }
-            v.src = path;
-            v.play().catch(e => console.log("Video blocked:", e));
-        }
+        const cache = {};
+
+function preloadVideo(fileName) {
+    if (cache[fileName]) return;
+
+    const vid = document.createElement('video');
+    vid.src = 'images/rh/' + fileName;
+    vid.preload = 'auto';
+    vid.muted = true;
+
+    cache[fileName] = vid;
+}
+
+function switchVideo(fileName) {
+    if (window.innerWidth <= 768) return;
+
+    const path = 'images/rh/' + fileName;
+
+    // 切换当前视频
+    if (!v.src.includes(fileName)) {
+        v.src = path;
+        v.play().catch(() => {});
+    }
+
+    // 👇 只预加载“下一个可能用到的”
+    if (fileName === 'City.mp4') preloadVideo('Battleship.mp4');
+    if (fileName === 'Battleship.mp4') preloadVideo('Human.mp4');
+    if (fileName === 'Human.mp4') preloadVideo('Warning.mp4');
+}
 
         function toggleSubMenu(card) {
             if (currentActiveCard === card) {
