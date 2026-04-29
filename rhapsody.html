@@ -205,12 +205,13 @@
 
 #hud-zh {
     position: absolute;
+z-index: 20;
 
-    left: 29%;   /* 左右位置 */
-    top: 31%;    /* 上下位置 */
+    left: 27%;   /* 左右位置 */
+    top: 28.7%;    /* 上下位置 */
 
-    width: 48%;
-    height: 10%;
+    width: 38%;
+    
 
     color: #b4f0ff;
     font-family: 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
@@ -220,26 +221,33 @@
     letter-spacing: 1px;
 
     white-space: pre-line;
-    text-align: left;
+   text-align: center;
 
     opacity: 0;
     overflow: hidden;
 word-break: break-word;
  transform: translateY(0);
+ 
+ display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+text-shadow:
+    0 0 6px rgba(0,0,0,0.8),
+    0 0 12px rgba(0,0,0,0.6),
+    0 0 20px rgba(0,0,0,0.4);
+  
 
- text-shadow:
-    0 0 4px rgba(0, 242, 255, 0.4),
-    0 0 8px rgba(0, 242, 255, 0.2);
 }
 
 #hud-en {
     position: absolute;
-
-    left: 29%;
-    top: 58%;
+z-index: 20;
+    left: 27%;
+    top: 57%;
 
     width: 38%;
-    height: 12%;
+    
 
     color: #b4f0ff;
    font-family: 'Share Tech Mono', monospace;
@@ -248,16 +256,25 @@ word-break: break-word;
     line-height: 1.6;
 
     white-space: pre-line;
-    text-align: left;
+    text-align: center;
 
     opacity: 0;
     overflow: hidden;
 word-break: break-word;
  transform: translateY(0);
 
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
   text-shadow:
-    0 0 4px rgba(0, 242, 255, 0.4),
-    0 0 8px rgba(0, 242, 255, 0.2);
+    0 0 4px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.7),
+    0 0 18px rgba(0,0,0,0.5),
+    0 0 30px rgba(0,0,0,0.3);
+
+
 }
 
 
@@ -588,7 +605,7 @@ word-break: break-word;
     poly: {
     
         zh: "在义体失控事件后，极夜城中涌动着更多暗流。\n家族、企业以及那一丝苦苦维持的人性，该何去何从？",
-        en: "\nAfter the cybernetic collapse, Kaamos City slips into silent conspiracies. \nBetween power, loyalty, and the last trace of humanity, something is bound to give."
+        en: "After the cybernetic collapse, \nKaamos City slips into silent conspiracies. \nBetween power, loyalty, and the last trace of humanity, \nsomething is bound to give."
     }
 };
 
