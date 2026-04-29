@@ -598,7 +598,17 @@ word-break: break-word;
     </div>
 
     <script>
-        
+        const preloadVideos = [
+    'City.mp4',
+    'Battleship.mp4',
+    'Human.mp4',
+    'Warning.mp4'
+];
+
+preloadVideos.forEach(file => {
+    const video = document.createElement('video');
+    video.src = 'images/rh/' + file;
+});
         const v = document.getElementById('mini-video');
         let currentActiveCard = null;
 
