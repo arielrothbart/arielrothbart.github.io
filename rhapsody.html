@@ -598,19 +598,25 @@ word-break: break-word;
     </div>
 
     <script>
-        const preloadVideos = [
-    'City.mp4',
-    'Battleship.mp4',
-    'Human.mp4',
-    'Warning.mp4'
-];
+        
 
-preloadVideos.forEach(file => {
-   const video = document.createElement('video');
-video.src = 'images/rh/' + file;
-video.preload = 'auto';
-video.muted = true;
-video.play().catch(() => {});
+window.addEventListener('load', () => {
+    const preloadVideos = [
+        'City.mp4',
+        'Battleship.mp4',
+        'Human.mp4',
+        'Warning.mp4'
+    ];
+
+    preloadVideos.forEach((file, index) => {
+        setTimeout(() => {
+            const video = document.createElement('video');
+            video.src = 'images/rh/' + file;
+            video.preload = 'auto';
+            video.muted = true;
+            video.play().catch(() => {});
+        }, index * 800);
+    });
 });
 
         const v = document.getElementById('mini-video');
@@ -653,23 +659,23 @@ video.play().catch(() => {});
         const hudTexts = {
     neon: {
         zh: "作为一个地下武器师，列奥波尔德被当作暗杀对象袭击时他本不感到意外。\n但当他发现杀手竟是一年前死去的爱人之时，一切都天翻地覆。",
-        en: "As an underground weaponsmith, \nLeopold isn’t surprised to find himself marked for assassination. \nUntil the man sent to kill him turns out to be \nthe lover he lost a year ago—and everything unravels."
+        en: "\nAs an underground weaponsmith, \nLeopold isn’t surprised to find himself marked for assassination. \nUntil the man sent to kill him turns out to be \nthe lover he lost a year ago—and everything unravels."
     },
 
     chronicle: {
         zh: "作为唯一能穿越天空洋流的舰船，\n这是狂想曲号——以及驾驶着她的人们——的传说。",
-        en: "\nThe only vessel capable of crossing the Aetherial Tide, \nthis is the legend of the Rhapsody—and those who dare to steer her."
+        en: "\n\nThe only vessel capable of crossing the Aetherial Tide, \nthis is the legend of the Rhapsody—and those who dare to steer her."
     },
 
      file: {
         zh: "收录于极夜城警局档案馆",
-        en: "\n\nKCPD Archive Record"
+        en: "\n\n\nKCPD Archive Record"
     },
 
     poly: {
     
         zh: "在义体失控事件后，极夜城中涌动着更多暗流。\n家族、企业以及那一丝苦苦维持的人性，该何去何从？",
-        en: "After the cybernetic collapse, \nKaamos City slips into silent conspiracies. \nBetween power, loyalty, and the last trace of humanity, \nsomething is bound to give."
+        en: "\nAfter the cybernetic collapse, \nKaamos City slips into silent conspiracies. \nBetween power, loyalty, and the last trace of humanity, \nsomething is bound to give."
     }
 };
 
