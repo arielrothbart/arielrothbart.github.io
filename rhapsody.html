@@ -600,23 +600,21 @@ word-break: break-word;
     <script>
         
 
-window.addEventListener('load', () => {
-    const preloadVideos = [
-        'City.mp4',
-        'Battleship.mp4',
-        'Human.mp4',
-        'Warning.mp4'
-    ];
+const preloadVideos = [
+    'City.mp4',
+    'Battleship.mp4',
+    'Human.mp4',
+    'Warning.mp4'
+];
 
-    preloadVideos.forEach((file, index) => {
-        setTimeout(() => {
-            const video = document.createElement('video');
-            video.src = 'images/rh/' + file;
-            video.preload = 'auto';
-            video.muted = true;
-            video.play().catch(() => {});
-        }, index * 800);
-    });
+preloadVideos.forEach((file, index) => {
+    setTimeout(() => {
+        const video = document.createElement('video');
+        video.src = 'images/rh/' + file;
+        video.preload = 'auto';
+        video.muted = true;
+        video.play().catch(() => {});
+    }, index * 800); // 每个间隔 0.8 秒
 });
 
         const v = document.getElementById('mini-video');
