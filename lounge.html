@@ -13,28 +13,31 @@
             font-weight: bold;
         }
 
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: #0d0d15;
-            color: #e0e0e0;
-            font-family: 'Vladivostok', 'Courier New', serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #050508; /* 给一个很深的底色 */
+    color: #e0e0e0;
+    font-family: 'Vladivostok', 'Courier New', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important; /* 让 body 彻底透明 */
+}
 
-        .stars-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #1b1b2f 0%, #050508 100%);
-            z-index: -1;
-        }
+.stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 核心修改：让背景色在这里实现，而不是在 body 实现 */
+    background: #050508; 
+    /* 核心修改：提高层级，确保它在 body 之上 */
+    z-index: 0; 
+    pointer-events: none;
+}
 
         .stars-bg::after {
             content: "";
@@ -58,20 +61,26 @@
             }
         }
 
-        .lounge-panel {
-            width: 90%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 180, 100, 0.2);
-            margin: 40px 0;
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 180, 100, 0.05);
-            position: relative;
-            text-align: center;
-            animation: panelFade 1.5s ease;
-        }
+       .lounge-panel {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px 0;
+    padding: 40px;
+    border-radius: 4px;
+    position: relative;
+    text-align: center;
+    animation: panelFade 1.5s ease;
+
+    /* --- 核心修改 --- */
+    background: transparent !important; /* 强制透明 */
+    backdrop-filter: none !important;    /* 彻底移除模糊 */
+    -webkit-backdrop-filter: none !important;
+    
+    /* 只保留发光的边框感，证明面板存在 */
+    border: 1px solid rgba(255, 180, 100, 0.4);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 180, 100, 0.1);
+    
+}
 
         .audio-control-container {
             position: absolute;
@@ -196,13 +205,21 @@
             font-weight: bold;
         }
 
-        .bunny-station {
-            padding: 10px 15px;
-            /* 将原先的 20px 缩小，让内部更紧凑[span_5](end_span) */
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            margin-bottom: 30px;
-            border: 1px dashed rgba(255, 180, 100, 0.2);
+      .bunny-station {
+    padding: 10px 15px;
+    /* 取消磨砂玻璃效果，让背景变清澈 */
+    background: transparent; 
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: none; /* 去掉虚线，让角色直接浮在星空上 */
+    
+    /* 提升层级，确保它清澈地显示 */
+    position: relative;
+    z-index: 5; 
+     border: 1px dashed rgba(255, 180, 100, 0.2);
         }
 
         .action-hint {
@@ -398,7 +415,7 @@
             <div class="action-hint" id="actionHint">Click image for direct replenishment mode...</div>
 
             <div class="avatar-click-zone" onclick="toggleQR()">
-                <img id="displayImg" src="images/about/lounge.gif" alt="Captain Drawing">
+                <img id="displayImg" src="images/about/lounge1.gif" alt="Captain Drawing">
             </div>
 
             <div class="bunny-status" id="bunnyMsg">Ryutaro is currently: Waiting for a carrot...</div>
