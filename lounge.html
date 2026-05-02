@@ -13,43 +13,34 @@
             font-weight: bold;
         }
 
-        body, html {
+       body, html {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-color: #050508; /* 给一个很深的底色 */
+    background-color: #050508;
     color: #e0e0e0;
     font-family: 'Vladivostok', 'Courier New', serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent !important; /* 让 body 彻底透明 */
 }
 
 .stars-bg {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 核心修改：让背景色在这里实现，而不是在 body 实现 */
+    top: 0; left: 0; width: 100%; height: 100%;
     background: #050508; 
-    /* 核心修改：提高层级，确保它在 body 之上 */
     z-index: 0; 
     pointer-events: none;
 }
 
-        .stars-bg::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.8;
-            animation: drift 60s linear infinite;
-        }
+       .stars-bg::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.8;
+    animation: drift 60s linear infinite;
+}
 
         @keyframes drift {
             from {
@@ -61,25 +52,22 @@
             }
         }
 
-       .lounge-panel {
+      .lounge-panel {
     width: 90%;
     max-width: 800px;
     margin: 40px 0;
     padding: 40px;
     border-radius: 4px;
     position: relative;
+    z-index: 1; /* 确保在星星之上 */
     text-align: center;
-    animation: panelFade 1.5s ease;
-
-    /* --- 核心修改 --- */
-    background: transparent !important; /* 强制透明 */
-    backdrop-filter: none !important;    /* 彻底移除模糊 */
-    -webkit-backdrop-filter: none !important;
     
-    /* 只保留发光的边框感，证明面板存在 */
-    border: 1px solid rgba(255, 180, 100, 0.4);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 180, 100, 0.1);
-    
+    /* 电脑端默认：磨砂玻璃 */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 180, 100, 0.2);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 180, 100, 0.05);
 }
 
         .audio-control-container {
@@ -207,20 +195,14 @@
 
       .bunny-station {
     padding: 10px 15px;
-    /* 取消磨砂玻璃效果，让背景变清澈 */
-    background: transparent; 
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    
+    background: rgba(0, 0, 0, 0.3); /* 电脑端带背景 */
     border-radius: 8px;
     margin-bottom: 30px;
-    border: none; /* 去掉虚线，让角色直接浮在星空上 */
-    
-    /* 提升层级，确保它清澈地显示 */
-    position: relative;
-    z-index: 5; 
-     border: 1px dashed rgba(255, 180, 100, 0.2);
-        }
+    border: 1px dashed rgba(255, 180, 100, 0.2);
+}
+/* 默认显示电脑版图片，隐藏手机版图片 */
+#displayImg-pc { display: block; width: 100%; height: auto; }
+#displayImg-mobile { display: none; width: 100%; height: auto; }
 
         .action-hint {
             margin-bottom: 5px;
@@ -301,28 +283,30 @@
         }
 
         @media (max-width: 600px) {
-            .lounge-panel {
-                padding: 15px;
+           .lounge-panel {
+        /* 1. 彻底去掉灰色亮光和磨砂 */
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        
+        /* 2. 增强边框感，防止完全看不出界限 */
+        border: 1px solid rgba(255, 180, 100, 0.4);
+        padding: 15px;
+        width: 95%;
+    }
+    .bunny-station {
+        /* 3. 去掉背景和边框 */
+        background: transparent !important;
+        border: none !important;
+        padding: 5px;
+    }
 
-                /* 减少面板内边距[span_0](end_span) */
-                width: 95%;
-                /* 让面板占满屏幕宽度 */
-            }
-
-            .bunny-station {
-                padding: 5px;
-                /* 极力压榨容器边距，让图片变大 */
-                border-radius: 4px;
-            }
-
-            .message-content {
-                padding-left: 10px;
-
-                /* 缩小装饰线的间距[span_1](end_span) */
-                font-size: 0.85rem;
-                /* 稍微缩小文字，腾出视觉空间[span_2](end_span) */
-            }
-        }
+    /* 4. 图片文件切换 */
+    #displayImg-pc { display: none !important; }
+    #displayImg-mobile { display: block !important; }
+}
+        
 
         /* 遮罩层背景 */
         .lightbox-overlay {
@@ -414,10 +398,10 @@
         <div class="bunny-station">
             <div class="action-hint" id="actionHint">Click image for direct replenishment mode...</div>
 
-            <div class="avatar-click-zone" onclick="toggleQR()">
-                <img id="displayImg" src="images/about/lounge1.gif" alt="Captain Drawing">
-            </div>
-
+           <div class="avatar-click-zone" onclick="toggleQR()">
+    <!-- 初始保持为空或放一张占位图，JS 会自动处理它 -->
+    <img id="displayImg" src="images/about/lounge.gif" alt="Captain Drawing">
+</div>
             <div class="bunny-status" id="bunnyMsg">Ryutaro is currently: Waiting for a carrot...</div>
         </div>
 
@@ -432,6 +416,23 @@
         </div>
     </div>
     <script>
+        // 页面加载时自动判断设备，切换图片
+function initAvatar() {
+    const imgElement = document.getElementById('displayImg');
+    // 如果屏幕宽度小于 600px (手机端)
+    if (window.innerWidth <= 600) {
+        imgElement.src = "images/about/lounge1.gif";
+    } else {
+        imgElement.src = "images/about/lounge.gif";
+    }
+}
+
+// 运行初始化
+initAvatar();
+
+// 监听窗口大小变化（可选，防止用户在电脑上缩放窗口导致错位）
+window.onresize = initAvatar;
+
         document.getElementById('bgm').volume = 0.3; // 范围是 0.0 到 1.0
         let isQR = false;
         const mainImg = "images/about/lounge.gif";
