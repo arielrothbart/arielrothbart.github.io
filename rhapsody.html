@@ -523,14 +523,32 @@ word-break: break-word;
 
         .sub-menu,
         .lock-info {
-            position: static;
-            max-height: 0;
-            opacity: 1;
-            background: transparent;
-            border-left: none;
-            align-items: center;
+           position: static;
+        max-height: 0;
+        opacity: 1;
+        background: transparent;
+        border-left: none;
+        
+        /* 1. 修复：取消 PC 端的左内边距，确保容器居中 */
+        padding-left: 0 !important; 
+        
+        /* 2. 确保 Flex 布局生效 */
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center;
+        width: 100%;
         }
+.lock-text {
+        /* 3. 修复：强制在移动端居中显示 */
+        text-align: center !important; 
+        width: 100%;
+    }
 
+    .progress-mini {
+        /* 4. 确保进度条在移动端也水平居中 */
+        margin: 0 auto 8px auto !important; 
+    }
         .nav-card.active .sub-menu,
         .nav-card.active .lock-info {
             max-height: 200px;
