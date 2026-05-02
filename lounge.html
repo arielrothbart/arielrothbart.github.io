@@ -283,29 +283,41 @@
         }
 
         @media (max-width: 600px) {
-           .lounge-panel {
-        /* 1. 彻底去掉灰色亮光和磨砂 */
+        @media (max-width: 600px) {
+    .lounge-panel {
         background: transparent !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         box-shadow: none !important;
-        
-        /* 2. 增强边框感，防止完全看不出界限 */
         border: 1px solid rgba(255, 180, 100, 0.4);
         padding: 15px;
         width: 95%;
+        /* 增加顶部内边距，给绝对定位的按钮留出安全区 */
+        padding-top: 45px; 
     }
+
+    .audio-control-container {
+        /* 调整位置，避免撞到文字 */
+        top: 12px;
+        right: 12px;
+    }
+
     .bunny-station {
-        /* 3. 去掉背景和边框 */
         background: transparent !important;
         border: none !important;
         padding: 5px;
     }
 
-    /* 4. 图片文件切换 */
+    /* 关键修正：移除手机端多余的空档 */
+    .avatar-click-zone {
+        min-height: auto !important; /* 强制取消 250px 的限制 */
+        margin: 5px auto !important;  /* 进一步压缩上下间距 */
+    }
+
     #displayImg-pc { display: none !important; }
     #displayImg-mobile { display: block !important; }
 }
+
         
 
         /* 遮罩层背景 */
