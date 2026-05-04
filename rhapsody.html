@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+SC:wght@300;400;500&display=swap"
+        rel="stylesheet">
 
     <link rel="preload" href="images/rh/City.mp4" as="video" type="video/mp4">
     <link rel="preload" href="images/rh/Battleship.mp4" as="video" type="video/mp4">
@@ -86,7 +88,7 @@
             animation: shipHover 5s ease-in-out infinite;
         }
 
-        
+
 
         @keyframes shipHover {
 
@@ -185,102 +187,107 @@
             margin-top: 3px;
         }
 
-@keyframes hudFadeUp {
-    0% {
-        transform: translateY(15px);
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+        @keyframes hudFadeUp {
+            0% {
+                transform: translateY(15px);
+                opacity: 0;
+            }
 
-.show {
-    animation: hudFadeUp 0.6s ease;
-}
+            20% {
+                opacity: 1;
+            }
 
-#hud-zh {
-    position: absolute;
-z-index: 20;
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-    left: 27%;   /* 左右位置 */
-    top: 30%;    /* 上下位置 */
+        .show {
+            animation: hudFadeUp 0.6s ease;
+        }
 
-    width: 38%;
-    
+        #hud-zh {
+            position: absolute;
+            z-index: 20;
 
-    color: #b4f0ff;
-    font-family: 'Noto Sans SC', sans-serif;
- font-weight: 500;
-    font-size: 10px;
-    line-height: 1.6;
-    letter-spacing: 1px;
+            left: 27%;
+            /* 左右位置 */
+            top: 30%;
+            /* 上下位置 */
 
-    white-space: pre-line;
-   text-align: center;
-
-    opacity: 0;
-    overflow: hidden;
-word-break: break-word;
- transform: translateY(0);
- 
- display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-text-shadow:
-    0 0 6px rgba(0,0,0,0.8),
-    0 0 12px rgba(0,0,0,0.6),
-    0 0 20px rgba(0,0,0,0.4);
-  
-
-}
-
-#hud-en {
-    position: absolute;
-z-index: 20;
-    left: 27%;
-    top: 57%;
-
-    width: 38%;
-    
-
-    color: #b4f0ff;
-   font-family: 'Share Tech Mono', monospace;
-
-    font-size: 10px;
-    line-height: 1.6;
-
-    white-space: pre-line;
-    text-align: center;
-
-    opacity: 0;
-    overflow: hidden;
-word-break: break-word;
- transform: translateY(0);
-
-  display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-  text-shadow:
-    0 0 4px rgba(0,0,0,0.9),
-    0 0 10px rgba(0,0,0,0.7),
-    0 0 18px rgba(0,0,0,0.5),
-    0 0 30px rgba(0,0,0,0.3);
+            width: 38%;
 
 
-}
+            color: #b4f0ff;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 1.6;
+            letter-spacing: 1px;
+
+            white-space: pre-line;
+            text-align: center;
+
+            opacity: 0;
+            overflow: hidden;
+            word-break: break-word;
+            transform: translateY(0);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-shadow:
+                0 0 6px rgba(0, 0, 0, 0.8),
+                0 0 12px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(0, 0, 0, 0.4);
 
 
-#hud-zh, #hud-en {
-    opacity: 1;
-}
+        }
+
+        #hud-en {
+            position: absolute;
+            z-index: 20;
+            left: 27%;
+            top: 57%;
+
+            width: 38%;
+
+
+            color: #b4f0ff;
+            font-family: 'Share Tech Mono', monospace;
+
+            font-size: 10px;
+            line-height: 1.6;
+
+            white-space: pre-line;
+            text-align: center;
+
+            opacity: 0;
+            overflow: hidden;
+            word-break: break-word;
+            transform: translateY(0);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            text-shadow:
+                0 0 4px rgba(0, 0, 0, 0.9),
+                0 0 10px rgba(0, 0, 0, 0.7),
+                0 0 18px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(0, 0, 0, 0.3);
+
+
+        }
+
+
+        #hud-zh,
+        #hud-en {
+            opacity: 1;
+        }
 
 
 
@@ -374,62 +381,69 @@ word-break: break-word;
             pointer-events: none;
         }
 
-.star-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+        .star-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
 
-    background: radial-gradient(circle at center, #0a0a12 0%, #020204 100%);
-    z-index: 0;
-}
-.star-bg::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
+            background: radial-gradient(circle at center, #0a0a12 0%, #020204 100%);
+            z-index: 0;
+        }
 
-    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity: 0.2;
+        .star-bg::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
 
-    animation: starDriftSlow 220s linear infinite;
-}
-@keyframes starDriftSlow {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: -600px 800px;
-    }
-}
-.star-bg::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.2;
 
-    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity: 1.5;
+            animation: starDriftSlow 220s linear infinite;
+        }
 
-    animation: starDrift 180s linear infinite;
-}
+        @keyframes starDriftSlow {
+            from {
+                background-position: 0 0;
+            }
 
-@keyframes starDrift {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: -800px 1200px;
-    }
-}
+            to {
+                background-position: -600px 800px;
+            }
+        }
+
+        .star-bg::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 1.5;
+
+            animation: starDrift 180s linear infinite;
+        }
+
+        @keyframes starDrift {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: -800px 1200px;
+            }
+        }
 
         /* --- 4. 手机端完全重写 (保持 16:9 且不重叠) --- */
         @media (max-width: 768px) {
-#hud-zh,
-#hud-en {
-    display: none;
-}
+
+            #hud-zh,
+            #hud-en {
+                display: none;
+            }
+
             body,
             html {
                 overflow-y: auto;
@@ -468,110 +482,112 @@ word-break: break-word;
                 -webkit-transform: translate(-50%, -40%);
                 /* 兼容老款 iPhone Safari */
             }
-    
 
-        .video-box {
-            display: none;
-        }
 
-        .hud-overlay {
-            width: 200%;
-            left: -50%;
-            opacity: 0.4;
-            top: 20%;
-        }
+            .video-box {
+                display: none;
+            }
 
-        /* Home 键重生：层级置顶且可点击 */
-        .home-btn {
-            position: fixed !important;
-            right: 20px;
-            top: 20px;
-            z-index: 2000 !important;
-            pointer-events: auto !important;
-        }
+            .hud-overlay {
+                width: 200%;
+                left: -50%;
+                opacity: 0.4;
+                top: 20%;
+            }
 
-        .home-btn img {
-            width: 55px;
-        }
+            /* Home 键重生：层级置顶且可点击 */
+            .home-btn {
+                position: fixed !important;
+                right: 20px;
+                top: 20px;
+                z-index: 2000 !important;
+                pointer-events: auto !important;
+            }
 
-        .home-btn .text {
-            display: none;
-        }
+            .home-btn img {
+                width: 55px;
+            }
 
-        /* 菜单区域：流式布局，排在图片下方 */
-        .bottom-nav {
-            position: relative !important;
-            top: auto !important;
-            left: 0 !important;
-            width: 90% !important;
-            margin: 20px auto 40px !important;
-            flex-direction: column;
-            gap: 12px;
-            transform: none !important;
-        }
+            .home-btn .text {
+                display: none;
+            }
 
-        .nav-card {
-            height: auto;
-            min-height: 50px;
-            opacity: 0.9;
-            background: rgba(10, 10, 10, 0.95) !important;
-            border-left: 2px solid rgba(0, 242, 255, 0.5) !important;
-            align-items: center;
-            text-align: center;
-            transform: none !important;
-        }
+            /* 菜单区域：流式布局，排在图片下方 */
+            .bottom-nav {
+                position: relative !important;
+                top: auto !important;
+                left: 0 !important;
+                width: 90% !important;
+                margin: 20px auto 40px !important;
+                flex-direction: column;
+                gap: 12px;
+                transform: none !important;
+            }
 
-        .sub-menu,
-        .lock-info {
-           position: static;
-        max-height: 0;
-        opacity: 1;
-        background: transparent;
-        border-left: none;
-        
-        /* 1. 修复：取消 PC 端的左内边距，确保容器居中 */
-        padding-left: 0 !important; 
-        
-        /* 2. 确保 Flex 布局生效 */
-        display: flex;
-        flex-direction: column;
-        align-items: center; 
-        justify-content: center;
-        width: 100%;
-        }
-.lock-text {
-        /* 3. 修复：强制在移动端居中显示 */
-        text-align: center !important; 
-        width: 100%;
-    }
+            .nav-card {
+                height: auto;
+                min-height: 50px;
+                opacity: 0.9;
+                background: rgba(10, 10, 10, 0.95) !important;
+                border-left: 2px solid rgba(0, 242, 255, 0.5) !important;
+                align-items: center;
+                text-align: center;
+                transform: none !important;
+            }
 
-    .progress-mini {
-        /* 4. 确保进度条在移动端也水平居中 */
-        margin: 0 auto 8px auto !important; 
-    }
-        .nav-card.active .sub-menu,
-        .nav-card.active .lock-info {
-            max-height: 200px;
-            margin-top: 10px;
-        }
+            .sub-menu,
+            .lock-info {
+                position: static;
+                max-height: 0;
+                opacity: 1;
+                background: transparent;
+                border-left: none;
 
-        .progress-mini {
-            margin: 0 auto 8px auto;
-        }
+                /* 1. 修复：取消 PC 端的左内边距，确保容器居中 */
+                padding-left: 0 !important;
+
+                /* 2. 确保 Flex 布局生效 */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .lock-text {
+                /* 3. 修复：强制在移动端居中显示 */
+                text-align: center !important;
+                width: 100%;
+            }
+
+            .progress-mini {
+                /* 4. 确保进度条在移动端也水平居中 */
+                margin: 0 auto 8px auto !important;
+            }
+
+            .nav-card.active .sub-menu,
+            .nav-card.active .lock-info {
+                max-height: 200px;
+                margin-top: 10px;
+            }
+
+            .progress-mini {
+                margin: 0 auto 8px auto;
+            }
         }
     </style>
 </head>
 
 <body>
-<div class="star-bg"></div>
+    <div class="star-bg"></div>
     <div class="ui-viewport">
         <div class="video-box">
-           <video id="mini-video" preload="auto" loop muted playsinline>
+            <video id="mini-video" preload="auto" loop muted playsinline>
                 <source src="images/rh/Battleship.mp4" type="video/mp4">
             </video>
         </div>
-<div id="hud-zh"></div>
-<div id="hud-en"></div>
+        <div id="hud-zh"></div>
+        <div id="hud-en"></div>
         <img src="images/rh/hud.webp" class="hud-overlay">
         <img src="images/rh/ship.png" class="ship-main">
 
@@ -591,7 +607,8 @@ word-break: break-word;
             </div>
         </div>
 
-        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('Battleship.mp4'); showHUD('chronicle')">
+        <div class="nav-card" onclick="toggleSubMenu(this)"
+            onmouseover="switchVideo('Battleship.mp4'); showHUD('chronicle')">
             <b>The Celestial Chronicle</b>
             <span>苍穹列记</span>
             <div class="sub-menu">
@@ -600,7 +617,8 @@ word-break: break-word;
             </div>
         </div>
 
-        <div class="nav-card" onclick="toggleSubMenu(this)" onmouseover="switchVideo('Human.mp4'); showHUD('file')">
+        <div class="nav-card" onclick="transitionToPage(event, 'pfile.html')"
+            onmouseover="switchVideo('Human.mp4'); showHUD('file')">
             <b>Personnel Files</b>
             <span>人物档案</span>
         </div>
@@ -616,7 +634,7 @@ word-break: break-word;
     </div>
 
     <script>
-        
+
 
 
 
@@ -625,33 +643,33 @@ word-break: break-word;
 
         const cache = {};
 
-function preloadVideo(fileName) {
-    if (cache[fileName]) return;
+        function preloadVideo(fileName) {
+            if (cache[fileName]) return;
 
-    const vid = document.createElement('video');
-    vid.src = 'images/rh/' + fileName;
-    vid.preload = 'auto';
-    vid.muted = true;
+            const vid = document.createElement('video');
+            vid.src = 'images/rh/' + fileName;
+            vid.preload = 'auto';
+            vid.muted = true;
 
-    cache[fileName] = vid;
-}
+            cache[fileName] = vid;
+        }
 
-function switchVideo(fileName) {
-    if (window.innerWidth <= 768) return;
+        function switchVideo(fileName) {
+            if (window.innerWidth <= 768) return;
 
-    const path = 'images/rh/' + fileName;
+            const path = 'images/rh/' + fileName;
 
-    // 切换当前视频
-    if (!v.src.includes(fileName)) {
-        v.src = path;
-        v.play().catch(() => {});
-    }
+            // 切换当前视频
+            if (!v.src.includes(fileName)) {
+                v.src = path;
+                v.play().catch(() => { });
+            }
 
-    // 👇 只预加载“下一个可能用到的”
-    if (fileName === 'City.mp4') preloadVideo('Battleship.mp4');
-    if (fileName === 'Battleship.mp4') preloadVideo('Human.mp4');
-    if (fileName === 'Human.mp4') preloadVideo('Warning.mp4');
-}
+            // 👇 只预加载“下一个可能用到的”
+            if (fileName === 'City.mp4') preloadVideo('Battleship.mp4');
+            if (fileName === 'Battleship.mp4') preloadVideo('Human.mp4');
+            if (fileName === 'Human.mp4') preloadVideo('Warning.mp4');
+        }
 
         function toggleSubMenu(card) {
             if (currentActiveCard === card) {
@@ -664,11 +682,11 @@ function switchVideo(fileName) {
             currentActiveCard = card;
         }
 
-       document.querySelector('.bottom-nav').addEventListener('mouseleave', () => {
-    if (window.innerWidth <= 768) return;
-    if (!currentActiveCard) v.pause();
-    hideHUD();
-});
+        document.querySelector('.bottom-nav').addEventListener('mouseleave', () => {
+            if (window.innerWidth <= 768) return;
+            if (!currentActiveCard) v.pause();
+            hideHUD();
+        });
 
         function transitionToPage(e, url) {
             e.preventDefault();
@@ -677,50 +695,50 @@ function switchVideo(fileName) {
         }
 
         const hudTexts = {
-    neon: {
-        zh: "作为一个地下武器师，列奥波尔德被当作暗杀对象袭击时他本不感到意外。\n但当他发现杀手竟是一年前死去的爱人之时，一切都天翻地覆。",
-        en: "\nAs an underground weaponsmith, \nLeopold isn’t surprised to find himself marked for assassination. \nUntil the man sent to kill him turns out to be \nthe lover he lost a year ago—and everything unravels."
-    },
+            neon: {
+                zh: "作为一个地下武器师，列奥波尔德被当作暗杀对象袭击时他本不感到意外。\n但当他发现杀手竟是一年前死去的爱人之时，一切都天翻地覆。",
+                en: "\nAs an underground weaponsmith, \nLeopold isn’t surprised to find himself marked for assassination. \nUntil the man sent to kill him turns out to be \nthe lover he lost a year ago—and everything unravels."
+            },
 
-    chronicle: {
-        zh: "作为唯一能穿越天空洋流的舰船，\n这是狂想曲号——以及驾驶着她的人们——的传说。",
-        en: "\n\nThe only vessel capable of crossing the Aetherial Tide, \nthis is the legend of the Rhapsody—and those who dare to steer her."
-    },
+            chronicle: {
+                zh: "作为唯一能穿越天空洋流的舰船，\n这是狂想曲号——以及驾驶着她的人们——的传说。",
+                en: "\n\nThe only vessel capable of crossing the Aetherial Tide, \nthis is the legend of the Rhapsody—and those who dare to steer her."
+            },
 
-     file: {
-        zh: "收录于极夜城警局档案馆",
-        en: "\n\n\nKCPD Archive Record"
-    },
+            file: {
+                zh: "收录于极夜城警局档案馆",
+                en: "\n\n\nKCPD Archive Record"
+            },
 
-    poly: {
-    
-        zh: "在义体失控事件后，极夜城中涌动着更多暗流。\n家族、企业以及那一丝苦苦维持的人性，该何去何从？",
-        en: "\nAfter the cybernetic collapse, \nKaamos City slips into silent conspiracies. \nBetween power, loyalty, and the last trace of humanity, \nsomething is bound to give."
-    }
-};
+            poly: {
+
+                zh: "在义体失控事件后，极夜城中涌动着更多暗流。\n家族、企业以及那一丝苦苦维持的人性，该何去何从？",
+                en: "\nAfter the cybernetic collapse, \nKaamos City slips into silent conspiracies. \nBetween power, loyalty, and the last trace of humanity, \nsomething is bound to give."
+            }
+        };
 
 
-function showHUD(key) {
-    const zhBox = document.getElementById('hud-zh');
-    const enBox = document.getElementById('hud-en');
+        function showHUD(key) {
+            const zhBox = document.getElementById('hud-zh');
+            const enBox = document.getElementById('hud-en');
 
-    zhBox.textContent = hudTexts[key].zh;
-    enBox.textContent = hudTexts[key].en;
+            zhBox.textContent = hudTexts[key].zh;
+            enBox.textContent = hudTexts[key].en;
 
-    zhBox.classList.remove('show');
-    enBox.classList.remove('show');
+            zhBox.classList.remove('show');
+            enBox.classList.remove('show');
 
-    void zhBox.offsetWidth;
-    void enBox.offsetWidth;
+            void zhBox.offsetWidth;
+            void enBox.offsetWidth;
 
-    zhBox.classList.add('show');
-    enBox.classList.add('show');
-}
+            zhBox.classList.add('show');
+            enBox.classList.add('show');
+        }
 
-function hideHUD() {
-    document.getElementById('hud-zh').textContent = "";
-    document.getElementById('hud-en').textContent = "";
-}
+        function hideHUD() {
+            document.getElementById('hud-zh').textContent = "";
+            document.getElementById('hud-en').textContent = "";
+        }
 
     </script>
 </body>
