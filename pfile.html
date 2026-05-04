@@ -5,34 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personnel Files | Rhapsody in Neon</title>
     <style>
-        :root {
-            --bg-color: #050505;
-            --accent-color: #00f2ff; 
-            --border-color: rgba(0, 242, 255, 0.2);
-            --text-main:#ffffff;
-            --glass-bg: linear-gradient(90deg, rgba(0, 242, 255, 0.05) 0%, transparent 100%);
-    --nav-width: 300px;
-            --nav-width: 300px;
-        }
+        /* 1. 引入自定义字体 */
+@font-face {
+    font-family: 'Vladivostok';
+    src: url('fonts/Vladivostiok-Bold.woff2') format('woff2'),
+         url('fonts/Vladivostiok-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
 
-       body {
+:root {
+    --bg-color: #050505;
+    --accent-color: #00f2ff; 
+    --border-color: rgba(0, 242, 255, 0.2);
+    --text-main: #ffffff;
+    --glass-bg: linear-gradient(90deg, rgba(0, 242, 255, 0.05) 0%, transparent 100%);
+    --nav-width: 300px;
+}
+
+body {
     margin: 0;
-    /* 核心：三层叠加 */
-    /* 第一层：中心向外扩散的幽蓝色径向渐变，模拟屏幕背光 */
-    /* 第二层：细微的横向扫描线（利用 linear-gradient 模拟） */
-    /* 第三层：底色，极致的黑 */
     background: 
         radial-gradient(circle at center, rgba(0, 242, 255, 0.03) 0%, transparent 70%),
         linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
         linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01)),
         #050505;
-    background-size: 100% 100%, 100% 4px, 3px 100%; /* 扫描线粗细控制 */
+    background-size: 100% 100%, 100% 4px, 3px 100%;
     color: var(--text-main);
-    font-family: 'Emberly', 'Courier New', serif; 
+    
+    /* 2. 更新字体调用：优先使用 Vladivostok */
+    font-family: 'Vladivostok', 'Emberly', sans-serif; 
+    
+    /* 维持你要求的紧凑、方正感 */
+    letter-spacing: 0.02em; 
+    
     display: flex;
     height: 100vh;
     overflow: hidden;
     position: relative;
+}
+
+/* 确保档案标题也继承该字体 */
+.char-info h2 {
+    font-family: 'Vladivostok', sans-serif;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin: 0 0 20px 0;
+    letter-spacing: 1px; /* 标题可以稍微拉开一点点间距增加仪式感 */
 }
 
 /* 增加一个全局的暗调噪点层，增加“档案纸张”或“电子噪点”的质感 */
@@ -249,11 +269,10 @@ body::after {
     <div id="nextBtn" class="lightbox-btn" onclick="changeImg(1); event.stopPropagation();">❯</div>
 </div>
 
-   <script>
+  <script>
     const directory = document.getElementById('directory');
     const toggleBtn = document.getElementById('toggleBtn');
     
-    // 全局变量，用于 Lightbox 切换
     let currentGallery = [];
     let currentIndex = 0;
 
@@ -291,59 +310,58 @@ body::after {
 
                 if (factionContent.members && factionContent.members.length > 0) {
                     factionContent.members.forEach(member => {
-    if(!member.id) return;
+                        if(!member.id) return;
 
-    // ... 前面的 link 生成代码保持不变 ...
+                        // --- 补回的关键：侧边栏名字链接生成 ---
+                        const link = document.createElement('a');
+                        link.href = `#${member.id}`;
+                        link.className = 'name-link';
+                        link.innerText = member.id;
+                        link.onclick = () => {
+                            if(window.innerWidth <= 768) directory.classList.remove('active');
+                        };
+                        linksContainer.appendChild(link);
+                        // ------------------------------------
 
-    const card = document.createElement('section');
-    card.className = 'profile-card';
-    card.id = member.id;
+                        const card = document.createElement('section');
+                        card.className = 'profile-card';
+                        card.id = member.id;
 
-    // 1. 准备完整的图片数组（主图 + 额外图）
-    const allImgs = [member.img];
-    if (member.more_imgs) allImgs.push(...member.more_imgs);
+                        const allImgs = [member.img];
+                        if (member.more_imgs) allImgs.push(...member.more_imgs);
+                        const imgsJson = JSON.stringify(allImgs).replace(/"/g, '&quot;');
 
-    // 2. 将数组转为字符串，方便在 HTML 属性中传递
-    // 使用 JSON.stringify 处理路径中的特殊字符
-    const imgsJson = JSON.stringify(allImgs).replace(/"/g, '&quot;');
+                        let dataGrid = '';
+                        for (const [key, val] of Object.entries(member.data)) {
+                            dataGrid += `<div class="data-item"><span class="label">${key}</span>${val}</div>`;
+                        }
 
-    let dataGrid = '';
-    for (const [key, val] of Object.entries(member.data)) {
-        dataGrid += `<div class="data-item"><span class="label">${key}</span>${val}</div>`;
-    }
+                        card.innerHTML = `
+                            <div class="char-thumb-box" onclick="openFull(${imgsJson}, 0)">
+                                <img src="${member.img}">
+                            </div>
+                            <div class="char-info">
+                                <h2>${member.name}</h2>
+                                <div class="data-grid">${dataGrid}</div>
+                                <div class="char-desc">${member.desc}</div>
+                                <div class="gallery-container"></div>
+                            </div>
+                        `;
 
-    card.innerHTML = `
-        <!-- 大图点击：传递完整数组，索引为 0 -->
-        <div class="char-thumb-box" onclick="openFull(${imgsJson}, 0)">
-            <img src="${member.img}">
-        </div>
-        <div class="char-info">
-            <h2>${member.name}</h2>
-            <div class="data-grid">${dataGrid}</div>
-            <div class="char-desc">${member.desc}</div>
-            <div class="gallery-container"></div>
-        </div>
-    `;
-
-    // 3. 渲染下方网格：只渲染从索引 1 开始的“额外图”
-    if (member.more_imgs && member.more_imgs.length > 0) {
-        const gallery = document.createElement('div');
-        gallery.className = 'char-gallery';
-        
-        member.more_imgs.forEach((imgSrc, index) => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.innerHTML = `<img src="${imgSrc}">`;
-            
-            // 注意：这里的点击索引是 index + 1，因为主图占了索引 0
-            item.onclick = () => openFull(allImgs, index + 1);
-            gallery.appendChild(item);
-        });
-        card.querySelector('.gallery-container').appendChild(gallery);
-    }
-
-    main.appendChild(card);
-});
+                        if (member.more_imgs && member.more_imgs.length > 0) {
+                            const gallery = document.createElement('div');
+                            gallery.className = 'char-gallery';
+                            member.more_imgs.forEach((imgSrc, index) => {
+                                const item = document.createElement('div');
+                                item.className = 'gallery-item';
+                                item.innerHTML = `<img src="${imgSrc}">`;
+                                item.onclick = () => openFull(allImgs, index + 1);
+                                gallery.appendChild(item);
+                            });
+                            card.querySelector('.gallery-container').appendChild(gallery);
+                        }
+                        main.appendChild(card);
+                    });
                 }
 
                 group.appendChild(title);
@@ -353,7 +371,6 @@ body::after {
         } catch (e) { console.error("Data error:", e); }
     }
 
-    // --- 升级后的 Lightbox 函数 ---
     function openFull(imgs, index) {
         currentGallery = imgs;
         currentIndex = index;
@@ -364,8 +381,6 @@ body::after {
     function updateLightbox() {
         const lbImg = document.getElementById('lightbox-img');
         lbImg.src = currentGallery[currentIndex];
-        
-        // 如果只有一张图，隐藏切换按钮
         const showBtns = currentGallery.length > 1 ? 'block' : 'none';
         document.getElementById('prevBtn').style.display = showBtns;
         document.getElementById('nextBtn').style.display = showBtns;
@@ -376,12 +391,10 @@ body::after {
         updateLightbox();
     }
 
-    // 点击背景关闭
     document.getElementById('lightbox').onclick = function() {
         this.style.display = 'none';
     };
 
-    // 键盘支持
     document.addEventListener('keydown', (e) => {
         if (document.getElementById('lightbox').style.display === 'flex') {
             if (e.key === "ArrowLeft") changeImg(-1);
@@ -393,7 +406,7 @@ body::after {
     function scrollToTop() { document.getElementById('main-scroll').scrollTo({ top: 0, behavior: 'smooth' }); }
     document.getElementById('main-scroll').onscroll = function() {
         const btn = document.getElementById('scrollTop');
-        btn.classList.toggle('show', this.scrollTop > 400);
+        if (btn) btn.classList.toggle('show', this.scrollTop > 400);
     };
 
     loadPersonnel();
