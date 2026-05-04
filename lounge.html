@@ -1,269 +1,289 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
 
-
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crew Lounge | Support</title>
+    <link rel="preload" as="image" href="images/about/alipay.jpg">
+    <style>
+        @font-face {
+            font-family: 'Vladivostok';
+            src: url('fonts/Vladivostok-Bold.woff') format('woff');
+            font-weight: bold;
+        }
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Crew Lounge | Support</title>
-
-<link rel="preload" as="image" href="images/about/alipay.jpg">
-
-<style>
-
-@font-face {
-
-font-family: 'Vladivostok';
-
-src: url('fonts/Vladivostok-Bold.woff') format('woff');
-
-font-weight: bold;
-
+       body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #050508;
+    color: #e0e0e0;
+    font-family: 'Vladivostok', 'Courier New', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-
-
-body, html {
-
-margin: 0;
-
-padding: 0;
-
-min-height: 100vh;
-
-background-color: #050508;
-
-color: #e0e0e0;
-
-font-family: 'Vladivostok', 'Courier New', serif;
-
-display: flex;
-
-align-items: center;
-
-justify-content: center;
-
-}
-
-
 
 .stars-bg {
-
-position: fixed;
-
-top: 0; left: 0; width: 100%; height: 100%;
-
-background: #050508;
-
-z-index: 0;
-
-pointer-events: none;
-
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #050508; 
+    z-index: 0; 
+    pointer-events: none;
 }
 
-
-
-.stars-bg::after {
-
-content: "";
-
-position: absolute;
-
-top: 0; left: 0; width: 100%; height: 100%;
-
-background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-
-opacity: 0.8;
-
-animation: drift 60s linear infinite;
-
+       .stars-bg::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.87;
+    animation: drift 60s linear infinite;
 }
 
+        @keyframes drift {
+            from {
+                background-position: 0 0;
+            }
 
+            to {
+                background-position: -1000px -500px;
+            }
+        }
 
-@keyframes drift {
-
-from {
-
-background-position: 0 0;
-
+      .lounge-panel {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px 0;
+    padding: 40px;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1; /* 确保在星星之上 */
+    text-align: center;
+    
+    /* 电脑端默认：磨砂玻璃 */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 180, 100, 0.2);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 180, 100, 0.05);
 }
 
+        .audio-control-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: 0.3s;
+        }
 
+        /* 播放图标：和你的边框颜色一致 */
+        .play-icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(255, 180, 100, 0.5);
+            /* 匹配你原本的橙色边框 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            position: relative;
+        }
 
-to {
+        /* 这里的伪元素用来画播放的小三角或暂停线 */
+        .play-icon::after {
+            content: "";
+            display: block;
+        }
 
-background-position: -1000px -500px;
+        /* 默认状态：小三角 */
+        .status-paused .play-icon::after {
+            border-left: 6px solid #ffb464;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            margin-left: 2px;
+        }
 
+        /* 播放状态：两条竖线 */
+        .status-playing .play-icon::after {
+            width: 6px;
+            height: 8px;
+            border-left: 2px solid #ffb464;
+            border-right: 2px solid #ffb464;
+        }
+
+        /* 文字标签：在手机端可以隐藏，只留图标 */
+        .audio-label {
+            font-size: 10px;
+            color: #ffb464;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .audio-control-container:hover .audio-label {
+            opacity: 1;
+        }
+
+        /* 移动端优化：为了不挤占标题，可以只显示图标 */
+        @media (max-width: 600px) {
+            .audio-label {
+                display: none;
+            }
+
+            .audio-control-container {
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        .audio-control:hover {
+            opacity: 1;
+        }
+
+        @keyframes panelFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status-tag {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #ffb464;
+            opacity: 0.7;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            color: #ffb464;
+            text-shadow: 0 0 10px rgba(255, 180, 100, 0.3);
+        }
+
+        .message-content {
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            text-align: left;
+            border-left: 2px solid rgba(255, 180, 100, 0.3);
+            padding-left: 20px;
+        }
+
+        .message-content p {
+            margin: 15px 0;
+            opacity: 0.8;
+        }
+
+        .highlight {
+            color: #ffb464;
+            font-weight: bold;
+        }
+
+      .bunny-station {
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.3); /* 电脑端带背景 */
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px dashed rgba(255, 180, 100, 0.2);
 }
-
-}
-
-
-
-.lounge-panel {
-
-width: 90%;
-
-max-width: 800px;
-
-margin: 40px 0;
-
-padding: 40px;
-
-border-radius: 4px;
-
-position: relative;
-
-z-index: 1; /* 确保在星星之上 */
-
-text-align: center;
-
-
-/* 电脑端默认：磨砂玻璃 */
-
-background: rgba(255, 255, 255, 0.03);
-
-backdrop-filter: blur(15px);
-
--webkit-backdrop-filter: blur(15px);
-
-border: 1px solid rgba(255, 180, 100, 0.2);
-
-box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 180, 100, 0.05);
-
-}
-
-
-
-.audio-control-container {
-
-position: absolute;
-
-top: 15px;
-
-right: 15px;
-
-display: flex;
-
-align-items: center;
-
-cursor: pointer;
-
-z-index: 10;
-
-transition: 0.3s;
-
-}
-
-
-
-/* 播放图标：和你的边框颜色一致 */
-
-.play-icon {
-
-width: 20px;
-
-height: 20px;
-
-border: 1px solid rgba(255, 180, 100, 0.5);
-
-/* 匹配你原本的橙色边框 */
-
-display: flex;
-
-align-items: center;
-
-justify-content: center;
-
-margin-right: 8px;
-
-position: relative;
-
-}
-
-
-
-/* 这里的伪元素用来画播放的小三角或暂停线 */
-
-.play-icon::after {
-
-content: "";
-
-display: block;
-
-}
-
-
-
-/* 默认状态：小三角 */
-
-.status-paused .play-icon::after {
-
-border-left: 6px solid #ffb464;
-
-border-top: 4px solid transparent;
-
-border-bottom: 4px solid transparent;
-
-margin-left: 2px;
-
-}
-
-
-
-/* 播放状态：两条竖线 */
-
-.status-playing .play-icon::after {
-
-width: 6px;
-
-height: 8px;
-
-border-left: 2px solid #ffb464;
-
-border-right: 2px solid #ffb464;
-
-}
-
-
-
-/* 文字标签：在手机端可以隐藏，只留图标 */
-
-.audio-label {
-
-font-size: 10px;
-
-color: #ffb464;
-
-letter-spacing: 1px;
-
-text-transform: uppercase;
-
-opacity: 0.6;
-
-}
-
-
-
-.audio-control-container:hover .audio-label {
-
-opacity: 1;
-
-}
-
-
-
-/* 移动端优化：为了不挤占标题，可以只显示图标 */
-
-@media (max-width: 600px) {
-
-.lounge-panel {
+/* 默认显示电脑版图片，隐藏手机版图片 */
+#displayImg-pc { display: block; width: 100%; height: auto; }
+#displayImg-mobile { display: none; width: 100%; height: auto; }
+
+        .action-hint {
+            margin-bottom: 12px;
+            /* 将原先的 12px 缩小，让图片更贴近上方文字[span_6](end_span) */
+            font-size: 11px;
+            color: #ffb464;
+            opacity: 0.8;
+        }
+
+        .avatar-click-zone {
+            width: 100%;
+            /* 占满父容器宽度 */
+            max-width: 100%;
+            /* 确保不超出边框 */
+            height: auto;
+            /* 高度根据图片比例自适应 */
+            margin: 10px auto;
+            /* 居中，去掉底部 10px 的边距来贴近文字 */
+            cursor: pointer;
+            transition: 0.3s;
+            min-height: 250px;
+        }
+
+        .avatar-click-zone img {
+            width: 100%;
+            /* 默认占满 */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            /* 增加平滑过渡，缩放时不生硬 */
+        }
+
+        /* 增加一个专门给二维码用的类 */
+        .qr-size {
+            max-width: 250px;
+            /* 只有二维码会缩到这个尺寸 */
+        }
+
+        .bunny-status {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .kofi-button {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid #ffb464;
+            color: #ffb464;
+            text-decoration: none;
+            letter-spacing: 4px;
+            font-size: 13px;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .kofi-button:hover {
+            background: #ffb464;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 180, 100, 0.4);
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            font-size: 11px;
+            text-decoration: none;
+            color: #555;
+            transition: 0.3s;
+            letter-spacing: 2px;
+        }
+
+        .back-link:hover {
+            color: #ffb464;
+            text-shadow: 0 0 8px rgba(255, 180, 100, 0.4);
+        }
+
+        @media (max-width: 600px) {
+    .lounge-panel {
         background: transparent !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
@@ -281,14 +301,7 @@ opacity: 1;
         right: 12px;
     }
 
-
-.audio-control:hover {
-
-opacity: 1;
-
-}
-
-.bunny-station {
+    .bunny-station {
         background: transparent !important;
         border: none !important;
         padding: 5px;
@@ -304,738 +317,220 @@ opacity: 1;
     #displayImg-mobile { display: block !important; }
 }
 
-@keyframes panelFade {
-
-from {
-
-opacity: 0;
-
-transform: translateY(20px);
-
-}
-
-
-
-to {
-
-opacity: 1;
-
-transform: translateY(0);
-
-}
-
-}
-
-
-
-.status-tag {
-
-font-size: 10px;
-
-letter-spacing: 3px;
-
-color: #ffb464;
-
-opacity: 0.7;
-
-margin-bottom: 20px;
-
-display: block;
-
-}
-
-
-
-h1 {
-
-font-size: 1.5rem;
-
-letter-spacing: 2px;
-
-margin-bottom: 30px;
-
-color: #ffb464;
-
-text-shadow: 0 0 10px rgba(255, 180, 100, 0.3);
-
-}
-
-
-
-.message-content {
-
-line-height: 1.8;
-
-font-size: 0.95rem;
-
-margin-bottom: 30px;
-
-text-align: left;
-
-border-left: 2px solid rgba(255, 180, 100, 0.3);
-
-padding-left: 20px;
-
-}
-
-
-
-.message-content p {
-
-margin: 15px 0;
-
-opacity: 0.8;
-
-}
-
-
-
-.highlight {
-
-color: #ffb464;
-
-font-weight: bold;
-
-}
-
-
-
-
-
-
-
-.action-hint {
-
-margin-bottom: 12px;
-
-/* 将原先的 12px 缩小，让图片更贴近上方文字[span_6](end_span) */
-
-font-size: 11px;
-
-color: #ffb464;
-
-opacity: 0.8;
-
-}
-
-
-
-.avatar-click-zone {
-
-width: 100%;
-
-/* 占满父容器宽度 */
-
-max-width: 100%;
-
-/* 确保不超出边框 */
-
-height: auto;
-
-/* 高度根据图片比例自适应 */
-
-margin: 10px auto;
-
-/* 居中，去掉底部 10px 的边距来贴近文字 */
-
-cursor: pointer;
-
-transition: 0.3s;
-
-min-height: 250px;
-
-}
-
-
-
-.avatar-click-zone img {
-
-width: 100%;
-
-/* 默认占满 */
-
-height: auto;
-
-display: block;
-
-margin: 0 auto;
-
-transition: all 0.3s ease;
-
-/* 增加平滑过渡，缩放时不生硬 */
-
-}
-
-
-
-/* 增加一个专门给二维码用的类 */
-
-.qr-size {
-
-max-width: 250px;
-
-/* 只有二维码会缩到这个尺寸 */
-
-}
-
-
-
-.bunny-status {
-
-margin-top: 5px;
-
-font-size: 12px;
-
-color: #888;
-
-}
-
-
-
-.kofi-button {
-
-display: inline-block;
-
-padding: 15px 40px;
-
-border: 1px solid #ffb464;
-
-color: #ffb464;
-
-text-decoration: none;
-
-letter-spacing: 4px;
-
-font-size: 13px;
-
-transition: all 0.3s;
-
-background: transparent;
-
-}
-
-
-
-.kofi-button:hover {
-
-background: #ffb464;
-
-color: #000;
-
-box-shadow: 0 0 20px rgba(255, 180, 100, 0.4);
-
-}
-
-
-
-.back-link {
-
-display: block;
-
-margin-top: 30px;
-
-padding-bottom: 10px;
-
-font-size: 11px;
-
-text-decoration: none;
-
-color: #555;
-
-transition: 0.3s;
-
-letter-spacing: 2px;
-
-}
-
-
-
-.back-link:hover {
-
-color: #ffb464;
-
-text-shadow: 0 0 8px rgba(255, 180, 100, 0.4);
-
-}
-
-
-
-@media (max-width: 600px) {
-
-.lounge-panel {
-
-/* 1. 彻底去掉灰色亮光和磨砂 */
-
-background: transparent !important;
-
-backdrop-filter: none !important;
-
--webkit-backdrop-filter: none !important;
-
-box-shadow: none !important;
-
-
-/* 2. 增强边框感，防止完全看不出界限 */
-
-border: 1px solid rgba(255, 180, 100, 0.4);
-
-padding: 15px;
-
-width: 95%;
-
-}
-
-.bunny-station {
-
-/* 3. 去掉背景和边框 */
-
-background: transparent !important;
-
-border: none !important;
-
-padding: 5px;
-
-}
-
-
-
-/* 4. 图片文件切换 */
-
-#displayImg-pc { display: none !important; }
-
-#displayImg-mobile { display: block !important; }
-
-}
-
-
-
-
-/* 遮罩层背景 */
-
-.lightbox-overlay {
-
-display: none;
-
-/* 默认隐藏 */
-
-position: fixed;
-
-top: 0;
-
-left: 0;
-
-width: 100%;
-
-height: 100%;
-
-background: rgba(5, 5, 8, 0.9);
-
-/* 深色背景 */
-
-backdrop-filter: blur(10px);
-
-z-index: 1000;
-
-align-items: center;
-
-justify-content: center;
-
-cursor: pointer;
-
-}
-
-
-
-/* 弹出框内容 */
-
-.lightbox-content {
-
-background: rgba(255, 180, 100, 0.05);
-
-border: 1px solid rgba(255, 180, 100, 0.4);
-
-padding: 20px;
-
-border-radius: 4px;
-
-text-align: center;
-
-box-shadow: 0 0 30px rgba(255, 180, 100, 0.1);
-
-animation: panelFade 0.3s ease;
-
-max-width: 300px;
-
-}
-
-
-
-.lightbox-content img {
-
-width: 100%;
-
-max-width: 250px;
-
-/* 严格限制二维码大小 */
-
-height: auto;
-
-border: 1px solid rgba(255, 180, 100, 0.2);
-
-margin-bottom: 15px;
-
-}
-
-
-
-.lightbox-content span {
-
-display: block;
-
-font-size: 10px;
-
-letter-spacing: 1px;
-
-color: #ffb464;
-
-text-transform: uppercase;
-
-}
-
-</style>
-
+        
+
+        /* 遮罩层背景 */
+        .lightbox-overlay {
+            display: none;
+            /* 默认隐藏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 8, 0.9);
+            /* 深色背景 */
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* 弹出框内容 */
+        .lightbox-content {
+            background: rgba(255, 180, 100, 0.05);
+            border: 1px solid rgba(255, 180, 100, 0.4);
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 180, 100, 0.1);
+            animation: panelFade 0.3s ease;
+            max-width: 300px;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            max-width: 250px;
+            /* 严格限制二维码大小 */
+            height: auto;
+            border: 1px solid rgba(255, 180, 100, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .lightbox-content span {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: #ffb464;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
-
 <div id="qrLightbox" class="lightbox-overlay" onclick="closeQR()">
-
-<div class="lightbox-content" onclick="event.stopPropagation()">
-
-<img src="images/about/alipay.jpg" alt="Replenishment QR">
-
-<span>>> DIRECT REPLENISHMENT MODE <<
-
-<div style="font-size: 9px; color: #888; margin-top: 10px; cursor: pointer;" onclick="closeQR()">[ CLOSE
-
-/ 返回 ]</div>
-
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+        <img src="images/about/alipay.jpg" alt="Replenishment QR">
+        <span>>> DIRECT REPLENISHMENT MODE <<
+                <div style="font-size: 9px; color: #888; margin-top: 10px; cursor: pointer;" onclick="closeQR()">[ CLOSE
+                    / 返回 ]</div>
+    </div>
 </div>
-
-</div>
-
-
 
 <body>
 
+    <div class="stars-bg"></div>
 
+    <audio id="bgm" loop>
+        <source src="music/lounge-bgm.mp3" type="audio/mpeg">
+    </audio>
 
-<div class="stars-bg"></div>
+    <div class="lounge-panel">
+        <div class="audio-control-container status-paused" onclick="toggleMusic()" id="musicController">
+            <div class="play-icon"></div>
+            <div class="audio-label" id="musicLabel">AUDIO: OFF</div>
+        </div>
 
+        <span class="status-tag">LOCATION: CREW LOUNGE // STATUS: RECOVERY MODE</span>
 
+        <h1>REPLENISHMENT STATION</h1>
 
-<audio id="bgm" loop>
+        <div class="message-content">
+            <p>
+                A vessel runs on energy, an artist runs on coffee...<br>
+                All support will go toward food supplies for my bunny <span class="highlight">Ryutaro</span> …or the
+                Captain herself! 😉
+            </p>
+            <p>
+                舰船需要能源，艺术工作者需要咖啡！<br>
+                您所投资的每一笔费用将用于我家小兔<span class="highlight">龙太郎</span>的食物补给——也许不会，我也说不好！总之，欢迎请船长喝咖啡！
+            </p>
+        </div>
 
-<source src="music/lounge-bgm.mp3" type="audio/mpeg">
+        <div class="bunny-station">
+            <div class="action-hint" id="actionHint">Click image for direct replenishment mode...</div>
 
-</audio>
-
-
-
-<div class="lounge-panel">
-
-<div class="audio-control-container status-paused" onclick="toggleMusic()" id="musicController">
-
-<div class="play-icon"></div>
-
-<div class="audio-label" id="musicLabel">AUDIO: OFF</div>
-
+           <div class="avatar-click-zone" onclick="toggleQR()">
+    <!-- 初始保持为空或放一张占位图，JS 会自动处理它 -->
+    <img id="displayImg" src="images/about/lounge.gif" alt="Captain Drawing">
 </div>
+            <div class="bunny-status" id="bunnyMsg">Ryutaro is currently: Waiting for a carrot...</div>
+        </div>
 
+        <a href="https://ko-fi.com/captainariel" target="_blank" class="kofi-button" onclick="feedBunny()">
+            SUPPORT ON KO-FI
+        </a>
 
+        <a href="index.html" class="back-link">BACK TO DECK / 返回主舱</a>
 
-<span class="status-tag">LOCATION: CREW LOUNGE // STATUS: RECOVERY MODE</span>
-
-
-
-<h1>REPLENISHMENT STATION</h1>
-
-
-
-<div class="message-content">
-
-<p>
-
-A vessel runs on energy, an artist runs on coffee...<br>
-
-All support will go toward food supplies for my bunny <span class="highlight">Ryutaro</span> …or the
-
-Captain herself! 😉
-
-</p>
-
-<p>
-
-舰船需要能源，艺术工作者需要咖啡！<br>
-
-您所投资的每一笔费用将用于我家小兔<span class="highlight">龙太郎</span>的食物补给——也许不会，我也说不好！总之，欢迎请船长喝咖啡！
-
-</p>
-
-</div>
-
-
-
-<div class="bunny-station">
-
-<div class="action-hint" id="actionHint">Click image for direct replenishment mode...</div>
-
-
-
-<div class="avatar-click-zone" onclick="toggleQR()">
-
-<!-- 初始保持为空或放一张占位图，JS 会自动处理它 -->
-
-<img id="displayImg" src="images/about/lounge.gif" alt="Captain Drawing">
-
-</div>
-
-<div class="bunny-status" id="bunnyMsg">Ryutaro is currently: Waiting for a carrot...</div>
-
-</div>
-
-
-
-<a href="https://ko-fi.com/captainariel" target="_blank" class="kofi-button" onclick="feedBunny()">
-
-SUPPORT ON KO-FI
-
-</a>
-
-
-
-<a href="index.html" class="back-link">BACK TO DECK / 返回主舱</a>
-
-
-
-<div style="font-size: 8px; color: #444; margin-top: 20px; letter-spacing: 0.5px; text-align: center;">
-
-MUSIC BY FSM TEAM FEAT. &lt; E S C P &gt; / CC BY 4.0
-
-</div>
-
-</div>
-
-<script>
-
-// 页面加载时自动判断设备，切换图片
-
+        <div style="font-size: 8px; color: #444; margin-top: 20px; letter-spacing: 0.5px; text-align: center;">
+            MUSIC BY FSM TEAM FEAT. &lt; E S C P &gt; / CC BY 4.0
+        </div>
+    </div>
+    <script>
+        // 页面加载时自动判断设备，切换图片
 function initAvatar() {
-
-const imgElement = document.getElementById('displayImg');
-
-// 如果屏幕宽度小于 600px (手机端)
-
-if (window.innerWidth <= 600) {
-
-imgElement.src = "images/about/lounge1.gif";
-
-} else {
-
-imgElement.src = "images/about/lounge.gif";
-
+    const imgElement = document.getElementById('displayImg');
+    // 如果屏幕宽度小于 600px (手机端)
+    if (window.innerWidth <= 600) {
+        imgElement.src = "images/about/lounge1.gif";
+    } else {
+        imgElement.src = "images/about/lounge.gif";
+    }
 }
-
-}
-
-
 
 // 运行初始化
-
 initAvatar();
 
-
-
 // 监听窗口大小变化（可选，防止用户在电脑上缩放窗口导致错位）
-
 window.onresize = initAvatar;
 
-
-
-document.getElementById('bgm').volume = 0.3; // 范围是 0.0 到 1.0
-
-let isQR = false;
-
-const mainImg = "images/about/lounge.gif";
-
-const qrImg = "images/about/alipay.jpg";
-
-
-
-// 统一的动态互动词库
-
-const interactionMsgs = [
-
-"Ryutaro: (Crunch crunch) The replenishment has arrived!",
-
-"Energy Restored! Captain is drawing faster now.",
-
-"Ryutaro performed a 'Binky'! He's grateful for the treats.",
-
-"Coffee beans acquired. Navigation systems online.",
-
-"Seth adjusted the coffee temperature. 'A gift from a friend, Captain.'",
-
-"Ryutaro hopped onto Seth's lap. The lounge feels peaceful.",
-
-"Seth smiles at the terminal, watching the aurora dance along the hull.",
-
-"Seth has checked the log. 'My thanks for the support.'"
-
-];
-
-
-
-// 内部函数：专门处理文字显示逻辑，确保符号统一
-
-function updateStatus(msg) {
-
-const statusBox = document.getElementById('bunnyMsg');
-
-if (msg.includes("Seth")) {
-
-statusBox.innerText = ">> " + msg;
-
-} else {
-
-statusBox.innerText = msg;
-
-}
-
-statusBox.style.color = "#ffb464"; // 确保点击后始终是点亮的橙色
-
-}
-
-
-
-// 统一的状态更新函数（保持你喜欢的特殊符号逻辑）
-
-function updateStatus(msg) {
-
-const statusBox = document.getElementById('bunnyMsg');
-
-if (msg.includes("Seth")) {
-
-statusBox.innerText = ">> " + msg;
-
-} else {
-
-statusBox.innerText = msg;
-
-}
-
-statusBox.style.color = "#ffb464";
-
-}
-
-
-
-// 打开弹出层
-
-function toggleQR() {
-
-const lightbox = document.getElementById('qrLightbox');
-
-const statusBox = document.getElementById('bunnyMsg');
-
-
-
-// 显示弹出层
-
-lightbox.style.display = 'flex';
-
-
-
-// 状态栏更新为补给中
-
-statusBox.innerText = "SYSTEM: Awaiting energy signal from captain's supporters...";
-
-statusBox.style.color = "#ffb464";
-
-}
-
-
-
-// 关闭弹出层
-
-function closeQR() {
-
-const lightbox = document.getElementById('qrLightbox');
-
-
-
-// 隐藏弹出层
-
-lightbox.style.display = 'none';
-
-
-
-// 触发你喜欢的随机感谢语/Seth互动
-
-const randomMsg = interactionMsgs[Math.floor(Math.random() * interactionMsgs.length)];
-
-updateStatus(randomMsg);
-
-}
-
-
-
-function feedBunny() {
-
-const randomMsg = interactionMsgs[Math.floor(Math.random() * interactionMsgs.length)];
-
-updateStatus(randomMsg); // 使用统一函数处理符号
-
-}
-
-
-
-function toggleMusic() {
-
-const bgm = document.getElementById('bgm');
-
-const controller = document.getElementById('musicController');
-
-const label = document.getElementById('musicLabel');
-
-
-
-if (bgm.paused) {
-
-bgm.play();
-
-controller.classList.remove('status-paused');
-
-controller.classList.add('status-playing');
-
-label.innerText = "AUDIO: ON";
-
-} else {
-
-bgm.pause();
-
-controller.classList.remove('status-playing');
-
-controller.classList.add('status-paused');
-
-label.innerText = "AUDIO: OFF";
-
-}
-
-}
-
-</script>
-
+        document.getElementById('bgm').volume = 0.3; // 范围是 0.0 到 1.0
+        let isQR = false;
+        const mainImg = "images/about/lounge.gif";
+        const qrImg = "images/about/alipay.jpg";
+
+        // 统一的动态互动词库
+        const interactionMsgs = [
+            "Ryutaro: (Crunch crunch) The replenishment has arrived!",
+            "Energy Restored! Captain is drawing faster now.",
+            "Ryutaro performed a 'Binky'! He's grateful for the treats.",
+            "Coffee beans acquired. Navigation systems online.",
+            "Seth adjusted the coffee temperature. 'A gift from a friend, Captain.'",
+            "Ryutaro hopped onto Seth's lap. The lounge feels peaceful.",
+            "Seth smiles at the terminal, watching the aurora dance along the hull.",
+            "Seth has checked the log. 'My thanks for the support.'"
+        ];
+
+        // 内部函数：专门处理文字显示逻辑，确保符号统一
+        function updateStatus(msg) {
+            const statusBox = document.getElementById('bunnyMsg');
+            if (msg.includes("Seth")) {
+                statusBox.innerText = ">> " + msg;
+            } else {
+                statusBox.innerText = msg;
+            }
+            statusBox.style.color = "#ffb464"; // 确保点击后始终是点亮的橙色
+        }
+
+        // 统一的状态更新函数（保持你喜欢的特殊符号逻辑）
+        function updateStatus(msg) {
+            const statusBox = document.getElementById('bunnyMsg');
+            if (msg.includes("Seth")) {
+                statusBox.innerText = ">> " + msg;
+            } else {
+                statusBox.innerText = msg;
+            }
+            statusBox.style.color = "#ffb464";
+        }
+
+        // 打开弹出层
+        function toggleQR() {
+            const lightbox = document.getElementById('qrLightbox');
+            const statusBox = document.getElementById('bunnyMsg');
+
+            // 显示弹出层
+            lightbox.style.display = 'flex';
+
+            // 状态栏更新为补给中
+            statusBox.innerText = "SYSTEM: Awaiting energy signal from captain's supporters...";
+            statusBox.style.color = "#ffb464";
+        }
+
+        // 关闭弹出层
+        function closeQR() {
+            const lightbox = document.getElementById('qrLightbox');
+
+            // 隐藏弹出层
+            lightbox.style.display = 'none';
+
+            // 触发你喜欢的随机感谢语/Seth互动
+            const randomMsg = interactionMsgs[Math.floor(Math.random() * interactionMsgs.length)];
+            updateStatus(randomMsg);
+        }
+
+        function feedBunny() {
+            const randomMsg = interactionMsgs[Math.floor(Math.random() * interactionMsgs.length)];
+            updateStatus(randomMsg); // 使用统一函数处理符号
+        }
+
+        function toggleMusic() {
+            const bgm = document.getElementById('bgm');
+            const controller = document.getElementById('musicController');
+            const label = document.getElementById('musicLabel');
+
+            if (bgm.paused) {
+                bgm.play();
+                controller.classList.remove('status-paused');
+                controller.classList.add('status-playing');
+                label.innerText = "AUDIO: ON";
+            } else {
+                bgm.pause();
+                controller.classList.remove('status-playing');
+                controller.classList.add('status-paused');
+                label.innerText = "AUDIO: OFF";
+            }
+        }
+    </script>
 </body>
-
-
 
 </html>
