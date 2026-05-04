@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnel Files | Rhapsody in Neon</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --accent-color: #00f2ff; 
+            --border-color: rgba(0, 242, 255, 0.2);
+            --text-main:#ffffff;
+            --glass-bg: linear-gradient(90deg, rgba(0, 242, 255, 0.05) 0%, transparent 100%);
+    --nav-width: 300px;
+            --nav-width: 300px;
+        }
+
+       body {
+    margin: 0;
+    /* 核心：三层叠加 */
+    /* 第一层：中心向外扩散的幽蓝色径向渐变，模拟屏幕背光 */
+    /* 第二层：细微的横向扫描线（利用 linear-gradient 模拟） */
+    /* 第三层：底色，极致的黑 */
+    background: 
+        radial-gradient(circle at center, rgba(0, 242, 255, 0.03) 0%, transparent 70%),
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01)),
+        #050505;
+    background-size: 100% 100%, 100% 4px, 3px 100%; /* 扫描线粗细控制 */
+    color: var(--text-main);
+    font-family: 'Emberly', 'Courier New', serif; 
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 增加一个全局的暗调噪点层，增加“档案纸张”或“电子噪点”的质感 */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+    opacity: 0.08; /* 极低透明度，若隐若现 */
+    pointer-events: none;
+    z-index: 1;
+}
+/* 侧边栏：强化纵向线条感 */
+#directory {
+    background: rgba(0, 0, 0, 0.4); /* 降低透明度，透出背景的幽光 */
+    backdrop-filter: blur(5px);
+    border-right: 1px solid var(--border-color);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 档案卡片：移除杂色，强化蓝色的发光感 */
+.profile-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--border-color);
+    /* 模拟屏幕边缘的微弱反光 */
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.05);
+}
+
+/* 强化“极夜城”的冷峻风格 */
+.profile-card::before {
+    content: "KCPD // ARCHIVE_0026"; 
+    color: var(--accent-color);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--accent-color);
+    background: #050505;
+    padding: 0 12px;
+}
+
+/* 附加图片网格 */
+.char-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.gallery-item {
+    aspect-ratio: 1 / 1; /* 强制正方形 */
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gallery-item:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Lightbox 增强：加入左右切换 */
+.lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+    padding: 20px 15px;
+    cursor: pointer;
+    font-family: serif;
+    font-size: 24px;
+    z-index: 2100;
+}
+.lightbox-btn:hover { background: var(--accent-color); color: #000; }
+#prevBtn { left: 20px; }
+#nextBtn { right: 20px; }
+        /* --- Home 按钮 --- */
+        .home-logo {
+            position: fixed; top: 30px; right: 40px; z-index: 1100;
+            width: 60px; height: 60px; cursor: pointer; transition: 0.3s;
+        }
+        .home-logo:hover { transform: scale(1.1); }
+        .home-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* --- 移动端菜单按钮 --- */
+        .menu-toggle {
+            display: none; position: fixed; left: 20px; top: 20px; z-index: 1200;
+            cursor: pointer; color: var(--accent-color); font-size: 24px;
+            background: rgba(0,0,0,0.8); padding: 5px 10px; border: 1px solid var(--border-color);
+        }
+
+        /* --- 侧边栏 --- */
+        #directory {
+            width: var(--nav-width); height: 100vh; border-right: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.95); padding: 60px 20px; box-sizing: border-box;
+            overflow-y: auto; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1150;
+        }
+
+        /* 移动端侧边栏适配 */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            #directory {
+                position: fixed; left: 0; top: 0;
+                transform: translateX(-100%);
+                width: 85%; /* 移动端宽度稍宽点好操作 */
+            }
+            #directory.active { transform: translateX(0); }
+        }
+
+        .faction-group { margin-bottom: 10px; }
+        .faction-title {
+            font-size: 11px; letter-spacing: 1px; color: var(--accent-color);
+            border-bottom: 1px solid var(--border-color); padding: 12px 10px;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            transition: 0.3s;
+        }
+        .faction-title:hover { background: rgba(255, 180, 100, 0.1); }
+        .faction-title::after { content: '→'; font-size: 10px; opacity: 0.3; transition: 0.3s; }
+        
+        .faction-group:not(.collapsed) .faction-title { color: #fff; border-bottom: 1px solid var(--accent-color); }
+        .faction-group:not(.collapsed) .faction-title::after { transform: rotate(90deg); opacity: 1; }
+
+        .name-links { max-height: 800px; overflow: hidden; transition: 0.4s ease-in-out; }
+        .faction-group.collapsed .name-links { max-height: 0; }
+
+        .name-link {
+            display: block; color: rgba(255, 255, 255, 0.4); text-decoration: none;
+            padding: 8px 20px; font-size: 13px; transition: 0.3s;
+        }
+        .name-link:hover { color: var(--accent-color); padding-left: 25px; background: rgba(255,180,100,0.05); }
+
+        /* --- 主内容区 --- */
+        main { flex: 1; overflow-y: auto; scroll-behavior: smooth; padding: 60px; }
+        @media (max-width: 768px) { main { padding: 80px 20px 40px 20px; } }
+
+        .faction-intro-block {
+            max-width: 900px; margin: 40px auto 60px auto;
+            border-left: 2px solid var(--accent-color); padding-left: 25px;
+            scroll-margin-top: 100px; 
+        }
+        .faction-intro-block h1 { font-size: 1.5rem; color: var(--accent-color); margin-bottom: 15px; }
+        .faction-intro-text { font-size: 14px; line-height: 1.8; color: #aaa; }
+
+        /* 档案卡片 */
+        .profile-card {
+            max-width: 900px; margin: 0 auto 120px auto; display: grid;
+            grid-template-columns: 320px 1fr; gap: 40px;
+            border: 1px solid var(--border-color); padding: 35px;
+            background: var(--glass-bg); position: relative;
+            scroll-margin-top: 100px;
+        }
+        @media (max-width: 900px) { .profile-card { grid-template-columns: 1fr; gap: 20px; padding: 20px; } }
+
+       .profile-card::before {
+    content: "FILE_DECRYPTED"; /* 修改文案更符合档案感 */
+    position: absolute; top: -10px; left: 25px;
+    background: var(--bg-color); padding: 0 10px;
+    color: var(--accent-color); font-size: 9px; 
+    letter-spacing: 2px;
+    border: 1px solid var(--border-color); /* 增加一个小边框 */
+}
+
+        .char-thumb-box { width: 100%; height: 480px; background: #000; overflow: hidden; cursor: zoom-in; border: 1px solid rgba(255,255,255,0.1); }
+        .char-thumb-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        
+        .char-info h2 { font-size: 1.8rem; color: var(--accent-color); margin: 0 0 20px 0; }
+        .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .data-item { font-size: 11px; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 5px 0; }
+        .label { color: var(--accent-color); margin-right: 10px; }
+        .char-desc { line-height: 1.8; font-size: 14px; opacity: 0.8; }
+
+        /* 悬浮按钮 */
+        .nav-controls { position: fixed; right: 20px; bottom: 30px; display: flex; flex-direction: column; gap: 10px; }
+        .ctrl-btn {
+            width: 50px; height: 50px; border: 1px solid var(--accent-color); border-radius: 50%;
+            background: rgba(0,0,0,0.8); color: var(--accent-color);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 8px; cursor: pointer; transition: 0.3s; text-align: center; text-decoration: none;
+        }
+        #scrollTop { opacity: 0; visibility: hidden; }
+        #scrollTop.show { opacity: 1; visibility: visible; }
+
+        #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; cursor: zoom-out; }
+        #lightbox img { max-width: 90%; max-height: 90%; }
+    </style>
+</head>
+<body>
+
+    <!-- 移动端开关 -->
+    <div class="menu-toggle" id="toggleBtn">☰</div>
+
+    <a href="index.html" class="home-logo"><img src="logo.png" alt="Home"></a>
+
+    <nav id="directory"></nav>
+    <main id="main-scroll"></main>
+
+    <div class="nav-controls">
+        <a href="rhapsody.html" class="ctrl-btn">RETURN<br>PROJ</a>
+        <div id="scrollTop" class="ctrl-btn" onclick="scrollToTop()">TOP</div>
+    </div>
+
+    <div id="lightbox">
+    <div id="prevBtn" class="lightbox-btn" onclick="changeImg(-1); event.stopPropagation();">❮</div>
+    <img id="lightbox-img" src="" onclick="event.stopPropagation();">
+    <div id="nextBtn" class="lightbox-btn" onclick="changeImg(1); event.stopPropagation();">❯</div>
+</div>
+
+   <script>
+    const directory = document.getElementById('directory');
+    const toggleBtn = document.getElementById('toggleBtn');
+    
+    // 全局变量，用于 Lightbox 切换
+    let currentGallery = [];
+    let currentIndex = 0;
+
+    toggleBtn.onclick = () => directory.classList.toggle('active');
+
+    async function loadPersonnel() {
+        try {
+            const response = await fetch('personnel.json');
+            const data = await response.json();
+            const main = document.getElementById('main-scroll');
+
+            for (const [factionName, factionContent] of Object.entries(data)) {
+                const fId = factionContent.id;
+
+                const group = document.createElement('div');
+                group.className = 'faction-group collapsed';
+                
+                const title = document.createElement('div');
+                title.className = 'faction-title';
+                title.innerHTML = `<span>${factionName}</span>`;
+                title.onclick = () => {
+                    document.getElementById(fId).scrollIntoView({ behavior: 'smooth' });
+                    group.classList.toggle('collapsed');
+                    if(window.innerWidth <= 768) directory.classList.remove('active');
+                };
+
+                const linksContainer = document.createElement('div');
+                linksContainer.className = 'name-links';
+
+                const introSection = document.createElement('div');
+                introSection.className = 'faction-intro-block';
+                introSection.id = fId;
+                introSection.innerHTML = `<h1>${factionName}</h1><div class="faction-intro-text">${factionContent.intro || ''}</div>`;
+                main.appendChild(introSection);
+
+                if (factionContent.members && factionContent.members.length > 0) {
+                    factionContent.members.forEach(member => {
+    if(!member.id) return;
+
+    // ... 前面的 link 生成代码保持不变 ...
+
+    const card = document.createElement('section');
+    card.className = 'profile-card';
+    card.id = member.id;
+
+    // 1. 准备完整的图片数组（主图 + 额外图）
+    const allImgs = [member.img];
+    if (member.more_imgs) allImgs.push(...member.more_imgs);
+
+    // 2. 将数组转为字符串，方便在 HTML 属性中传递
+    // 使用 JSON.stringify 处理路径中的特殊字符
+    const imgsJson = JSON.stringify(allImgs).replace(/"/g, '&quot;');
+
+    let dataGrid = '';
+    for (const [key, val] of Object.entries(member.data)) {
+        dataGrid += `<div class="data-item"><span class="label">${key}</span>${val}</div>`;
+    }
+
+    card.innerHTML = `
+        <!-- 大图点击：传递完整数组，索引为 0 -->
+        <div class="char-thumb-box" onclick="openFull(${imgsJson}, 0)">
+            <img src="${member.img}">
+        </div>
+        <div class="char-info">
+            <h2>${member.name}</h2>
+            <div class="data-grid">${dataGrid}</div>
+            <div class="char-desc">${member.desc}</div>
+            <div class="gallery-container"></div>
+        </div>
+    `;
+
+    // 3. 渲染下方网格：只渲染从索引 1 开始的“额外图”
+    if (member.more_imgs && member.more_imgs.length > 0) {
+        const gallery = document.createElement('div');
+        gallery.className = 'char-gallery';
+        
+        member.more_imgs.forEach((imgSrc, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `<img src="${imgSrc}">`;
+            
+            // 注意：这里的点击索引是 index + 1，因为主图占了索引 0
+            item.onclick = () => openFull(allImgs, index + 1);
+            gallery.appendChild(item);
+        });
+        card.querySelector('.gallery-container').appendChild(gallery);
+    }
+
+    main.appendChild(card);
+});
+                }
+
+                group.appendChild(title);
+                group.appendChild(linksContainer);
+                directory.appendChild(group);
+            }
+        } catch (e) { console.error("Data error:", e); }
+    }
+
+    // --- 升级后的 Lightbox 函数 ---
+    function openFull(imgs, index) {
+        currentGallery = imgs;
+        currentIndex = index;
+        document.getElementById('lightbox').style.display = 'flex';
+        updateLightbox();
+    }
+
+    function updateLightbox() {
+        const lbImg = document.getElementById('lightbox-img');
+        lbImg.src = currentGallery[currentIndex];
+        
+        // 如果只有一张图，隐藏切换按钮
+        const showBtns = currentGallery.length > 1 ? 'block' : 'none';
+        document.getElementById('prevBtn').style.display = showBtns;
+        document.getElementById('nextBtn').style.display = showBtns;
+    }
+
+    function changeImg(step) {
+        currentIndex = (currentIndex + step + currentGallery.length) % currentGallery.length;
+        updateLightbox();
+    }
+
+    // 点击背景关闭
+    document.getElementById('lightbox').onclick = function() {
+        this.style.display = 'none';
+    };
+
+    // 键盘支持
+    document.addEventListener('keydown', (e) => {
+        if (document.getElementById('lightbox').style.display === 'flex') {
+            if (e.key === "ArrowLeft") changeImg(-1);
+            if (e.key === "ArrowRight") changeImg(1);
+            if (e.key === "Escape") document.getElementById('lightbox').style.display = 'none';
+        }
+    });
+
+    function scrollToTop() { document.getElementById('main-scroll').scrollTo({ top: 0, behavior: 'smooth' }); }
+    document.getElementById('main-scroll').onscroll = function() {
+        const btn = document.getElementById('scrollTop');
+        btn.classList.toggle('show', this.scrollTop > 400);
+    };
+
+    loadPersonnel();
+</script>
+</body>
+</html>

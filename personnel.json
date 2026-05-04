@@ -1,0 +1,50 @@
+{
+    "Kaamos City // 极夜城": {
+        "id": "group_kaamos",
+        "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。<br>上城区的高楼会挡住阳光，下城区只拥有黄昏与夜晚。",
+        "members": [
+            {
+                "id": "Leopold",
+                "name": "Leopold Servantes<br>列奥波尔德 塞万提斯",
+                "img": "images/pfiles/leo.jpg",
+                "data": {
+                    "AFFILIATION": "下城区黑市",
+                    "IDENTITY": "地下武器师",
+                    "AUGMENT": "Mechanical Arms and legs",
+                    "LOCATION": "Sector 04"
+                },
+                "desc": "曾服役于城市军队的Leopold在一场战争后被标记为死亡。他在黑市中丢失了双手与双腿。此后转为地下武器师。他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名。",
+                "more_imgs": [
+                    "extra_01.jpg"
+                ]
+            }
+        ]
+    },
+    "The Rhapsody Crew // 狂想曲舰队": {
+        "id": "group_rhapsody",
+        "intro": "洋流纪元以来，唯一能穿越天空洋流的船。",
+        "members": [
+            {
+                "id": "Captain LOS",
+                "name": "Lyra Oasis Solis <br>(Ariel Rothbart)",
+                "img": "images/characters/ariel.jpg",
+                "data": {
+                    "ORIGIN": "Ariel Rothbart",
+                    "CODE": "L.O.S.",
+                    "POSITION": "The Captain"
+                },
+                "desc": "改名为LOS的Ariel，试图在保留对过去的爱的同时，于新世界寻找栖身之所。"
+            }
+        ]
+    },
+    "Amber Dust // 琥珀之尘": {
+        "id": "group_amber",
+        "intro": "极夜城周边的卫星城市，与其隔着旧城废墟（已被沙漠气候风化的茶盘区）生活方式近乎废土",
+        "members": []
+    },
+    "Eithelon // 艾特隆联邦": {
+        "id": "group_eithelon",
+        "intro": "Rothbart家族曾经生活的联邦国。由崇尚机械主义的轴心派掌权期间，曾经大肆清算拾音者（生物人文主义)。",
+        "members": []
+    }
+}
