@@ -10,13 +10,30 @@
                 "data": {
                     "AFFILIATION": "下城区黑市",
                     "IDENTITY": "地下武器师",
-                    "AUGMENT": "Mechanical Arms and legs",
+                    "AUGMENT": "手臂、双腿机械体，右眼为军用型号义眼——银色毒液",
                     "LOCATION": "Sector 04"
                 },
                 "desc": "曾服役于城市军队的Leopold在一场战争后被标记为死亡。他在黑市中丢失了双手与双腿。此后转为地下武器师。他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名。",
                 "more_imgs": [
-                    "extra_01.jpg"
+                    "extra_leo01.jpg",
+                    "extra_leo02.jpg"
                 ]
+            }
+
+             ,{
+                "id": "Kensuke",
+                "name": "Sukedachi Kensuke<br>助太刀 研介",
+                "img": "images/pfiles/ken.jpg",
+                "data": {
+                    "AFFILIATION": "下城区黑市",
+                    "IDENTITY": "雇佣杀手/菅原会-任侠联 舍弟头",
+                     "CODE": "杀手十二面相",
+                    "AUGMENT": "全身义体化",
+                    "LOCATION": "Sector 04"
+                },
+                "desc": "在菅原会的直系组织 任侠联担任舍弟头的助太刀研介，同时也是著名的雇佣杀手。他使用不同的义体、不同的身份执行任务。在黑市中被称为“杀手十二面相” 没人知道他的真面目。也没人知道，作为义体操控大师的他，内心真正的渴望——是辨明自己是否还能像人类一样活着。"
+            
+                
             }
         ]
     },
@@ -33,7 +50,35 @@
                     "CODE": "L.O.S.",
                     "POSITION": "The Captain"
                 },
-                "desc": "改名为LOS的Ariel，试图在保留对过去的爱的同时，于新世界寻找栖身之所。"
+                "desc": "狂想曲号的现任船长。在AT 61年Rhea号坠落事件后，接替失踪的Seth成为了船长。她将Rhea号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。"
+            },
+            {
+                "id": "Commander Seth",
+                "name": "Seth Remqrque <br>赛斯 雷马克",
+                "data": {
+                    "CODE": "ESC (Esclusive Special Commander)",
+                    "POSITION": "前舰长"
+                },
+                "desc": "缔造了Rhea号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——Rhea项目废弃时，Seth协同其组建的船队一起开走了即将解体的Rhea号，并成功驾驶她穿越了天空洋流。Rhea号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人唯一的容身之所。至今这艘舰船都是唯一能进入深层洋流并稳定航行的存在。<br><br>AT 61年，在遭遇极镜公司的埋伏后，Seth将船长的位置交付给了Los，并与连接舱一起从高空坠落。Seth亲手搭载的舰船AI-Lavinia计算后得出了结论：舰长的生还概率为0."
+            },
+            {
+                "id": "FM Hector",
+                "name": "Hector Kaine<br>赫克托尔 凯恩",
+                "data": {
+                    "POSITION": "大副",
+                    "AUGMENT": "全身义体"
+                },
+                "desc": ""
+            },
+            {
+                "id": "SM Channing",
+                "name": "Channing Liang<br>乾宁 梁",
+                "data": {
+                    "ORIGIN": "Renato Jimenez/ 梁成溪",
+                    "POSITION": "二副",
+                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体"
+                },
+                "desc": ""
             }
         ]
     },
