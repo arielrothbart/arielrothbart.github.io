@@ -39,12 +39,12 @@
     },
     "The Rhapsody Crew // 狂想曲舰队": {
         "id": "group_rhapsody",
-        "intro": "洋流纪元以来，唯一能穿越天空洋流的船。",
+        "intro": "洋流纪元以来，唯一能稳定穿越磁海的船。",
         "members": [
             {
                 "id": "Captain LOS",
-                "name": "Lyra Oasis Solis <br>(Ariel Rothbart)",
-                "img": "images/characters/ariel.jpg",
+                "name": "Lyra Oasis Solis <br>莱拉 奥希思 索利斯",
+                "img": "images/pfiles/ariel.jpg",
                 "data": {
                     "ORIGIN": "Ariel Rothbart",
                     "CODE": "L.O.S.",
@@ -64,21 +64,41 @@
             {
                 "id": "FM Hector",
                 "name": "Hector Kaine<br>赫克托尔 凯恩",
+                 "img": "images/pfiles/hector.jpg",
                 "data": {
                     "POSITION": "大副",
                     "AUGMENT": "全身义体"
                 },
-                "desc": ""
+                "desc": "狂想曲号的大副。有着叛逆的灵魂。在加入军队前就早早贷款做了义体改造。<br>兴趣爱好是收集各种帽子和夏威夷衬衫，性格活泼，有时甚至有点疯疯癫癫的。曾经坚定的认为自己会成为下一任船长。<br>因为不愿参加荒唐的战争，从军队退役。但欠下了巨额义体贷款。他本不隶属于Seth的红隼试飞队，却因为一直崇拜、欣赏着Seth，从其他部队应招募而来。他是最初的舰队27位船员之一。<br><br>Rhea号坠落事件后，二副一直怕Hector谋反现任船长。船长似乎不这么认为。虽然看起来疯，但却是连喝醉了也不会泄露秘密的家伙。"
+              , "more_imgs": [
+                   "images/pfiles/hector.png"
+                ]  
             },
             {
                 "id": "SM Channing",
-                "name": "Channing Liang<br>乾宁 梁",
+                "name": "Channing Liang<br>(乾宁) 梁成溪",
+                "img": "images/pfiles/channing.jpg",
                 "data": {
                     "ORIGIN": "Renato Jimenez/ 梁成溪",
                     "POSITION": "二副",
                     "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体"
                 },
-                "desc": ""
+                "desc": "他是希门内斯王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就变成了Channing。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长Seth Remarque看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。Channing留了下来。他说，我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。"
+           },
+
+             {
+                "id": "LC Dan",
+                "name": "Dan Vance Aston<br>(丹) 万斯 阿斯顿",
+                "img": "images/pfiles/dan.jpg",
+                "data": {
+                    "ORIGIN": "Vance Aston",
+                    "POSITION": "船队法律顾问/外交部负责人",
+                    "AUGMENT": "电子脑化"
+                },
+                "desc": "这位保障舰船存在且正常航行的律师，起初只是一个混迹黑市街头的骗子。<br>Dan和Seth是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找Seth，想留住东西就去找Dan。看来现在依旧如此。<br><br>直到有一天，Rhea号被『击落』了，Dan拒绝查看记录，也不承认Seth死了。Los说要让狂想曲号成为合法的船，Dan说好。于是他开始学习真正的法律条款。<br>她有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受Seth真的被这个世界吞噬了。"
+            , "more_imgs": [
+                   "images/pfiles/dan.png"
+                ]  
             }
         ]
     },
