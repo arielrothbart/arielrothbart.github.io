@@ -51,7 +51,7 @@
             },
             {
                 "id": "Commander Seth",
-                "name": "Seth Remqrque <br>赛斯 雷马克",
+                "name": "Seth H.Remqrque <br>赛斯 H.雷马克",
                 "img": "images/pfiles/seth.jpg",
                 "data": {
                     "CODE": "ESC (Esclusive Special Commander)",
@@ -59,7 +59,8 @@
                 },
                 "desc": "缔造了Rhea号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——Rhea项目废弃时，Seth协同其组建的船队一起开走了即将解体的Rhea号，并成功驾驶她穿越了天空洋流。Rhea号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人唯一的容身之所。至今这艘舰船都是唯一能进入深层洋流并稳定航行的存在。<br><br>AT 61年，在遭遇极镜公司的埋伏后，Seth将船长的位置交付给了Los，并与连接舱一起从高空坠落。Seth亲手搭载的舰船AI-Lavinia计算后得出了结论：舰长的生还概率为0."
             , "more_imgs": [
-                   "images/pfiles/seth01.jpg"
+                   "images/pfiles/seth01.jpg",
+                   "images/pfiles/seth02.jpg"
                 ]  
             },
             {
