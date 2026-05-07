@@ -1,117 +1,111 @@
 {
     "Kaamos City // 极夜城": {
         "id": "group_kaamos",
-        "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。<br>上城区的高楼会挡住阳光，下城区只拥有黄昏与夜晚。",
+        "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。上城（*卯区*）的高楼会挡住阳光，下城（*戌区*）只拥有黄昏与夜晚。<br><br>A neutral harbor city linking Europe, North America, and Asia.<br>Kaamos is physically divided into upper（*Orto*）and Lower（*Ocaso*）Districts.<br>The skyscrapers of the Orto block out the sun entirely,<br>leaving the Ocaso with nothing but twilight and night.",
         "members": [
             {
                 "id": "Leopold",
-                "name": "Leopold Servantes<br>列奥波尔德 塞万提斯",
+                "name": "Leopold Servantes<br>列奥波尔德 塞万提斯<br>",
                 "img": "images/pfiles/leo.jpg",
                 "data": {
-                    "AFFILIATION": "下城区黑市",
-                    "IDENTITY": "地下武器师",
-                    "AUGMENT": "手臂、双腿机械体，右眼为军用型号义眼——银色毒液",
-                    "LOCATION": "Sector 04"
+                    "AFFILIATION": "戌区黑市|Ocaso District Black Market ",
+                    "IDENTITY": "地下武器师|Underground Weaponsmith ",
+                    "AUGMENT": "手臂、双腿机械义体，右眼为军用型号义眼——银色毒液|Cybernetic arms and legs. Military-grade prosthetic right eye “Silver Venom”"
                 },
-                "desc": "曾服役于城市军队的Leopold在一场战争后被标记为死亡。他在黑市中丢失了双手与双腿。此后转为地下武器师。他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名。"
-             
-            }
-
-             ,{
+                "desc": "曾服役于城市军队的列奥波尔德 塞万提斯，在一场战争后被标记为死亡。<br>他在黑市中失去了双手与双腿，此后转为地下武器师。<br>他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名.|Once a Tech-soldier in the city military, Leopold Servantes was officially declared dead after the war. <br>Somewhere within the black market beneath Kaamos, he lost both his arms and legs. <br><br>He later resurfaced as an underground weaponsmith.<br><br>The weapons he creates possess an eerie elegance beneath their lethal craftsmanship. <br> Beautiful. Precise. Catastrophic.<br>Within the underworld, his name has become legend. "
+            },
+            {
                 "id": "Kensuke",
                 "name": "Sukedachi Kensuke<br>助太刀 研介",
                 "img": "images/pfiles/ken.jpg",
                 "data": {
-                    "AFFILIATION": "下城区黑市",
-                    "IDENTITY": "雇佣杀手/菅原会-任侠联 舍弟头",
-                     "CODE": "杀手十二面相",
-                    "AUGMENT": "全身义体化",
-                    "LOCATION": "Sector 04"
+                    "AFFILIATION": "下城区黑市|Ocaso District Black Market",
+                    "IDENTITY": "雇佣杀手/*菅原会*-任侠联 舍弟头|Mercenary Assassin / Wakagashira of the *Sugahara-kai* Alliance",
+                    "CODE": "杀手十二面相|The killer of Twelve Faces",
+                    "AUGMENT": "全身义体化|Full-body cyberization"
                 },
-                "desc": "在菅原会的直系组织 任侠联担任舍弟头的助太刀研介，同时也是著名的雇佣杀手。他使用不同的义体、不同的身份执行任务。在黑市中被称为“杀手十二面相” 没人知道他的真面目。也没人知道，作为义体操控大师的他，内心真正的渴望——是辨明自己是否还能像人类一样活着。"
-            
-                
+                "desc": "在菅原会的直系组织 任侠联担任舍弟头的助太刀研介，同时也是著名的雇佣杀手。他使用不同的义体、不同的身份执行任务。在黑市中被称为“杀手十二面相” 没人知道他的真面目。也没人知道，作为义体操控大师的他，内心真正的渴望——是辨明自己是否还能像人类一样活着。|Sukedachi Kensuke serves as the Wakagashira of the Ninkyo Union, a direct branch of the Sugahara-kai. <br>At the same time, he is one of the most infamous contract killers in the underground world. <br>Different bodies. Different identities. Different names for different assignments. <br>In the black market, he is known only as “The Assassin of Twelve Faces.” <br>No one knows what his real face looks like. <br>And no one knows that beneath his mastery over artificial bodies, his deepest desire is painfully human:<br>To discover whether he is still capable of living as one. "
             }
         ]
     },
     "The Rhapsody Crew // 狂想曲舰队": {
         "id": "group_rhapsody",
-        "intro": "洋流纪元以来，唯一能稳定穿越磁海的船。",
+        "intro": "洋流纪元以来，唯一能稳定穿越*天空洋流*的船。<br><br>Since the beginning of the Tide Era,<br>the only vessel capable of navigating the *Aetherial Tide* with stable precision.",
         "members": [
             {
                 "id": "Captain LOS",
-                "name": "Lyra Oasis Solis <br>莱拉 奥希思 索利斯",
+                "name": "Captain Los<br>洛斯船长",
                 "img": "images/pfiles/ariel.jpg",
                 "data": {
-                    "ORIGIN": "Ariel Rothbart",
-                    "CODE": "L.O.S.",
-                    "POSITION": "The Captain"
+                    "ORIGIN": "鴱黎尔 *洛特巴德*|Ariel *Rothbart*",
+                    "CODE": "L.O.S.|Lyra Oasis Solis",
+                    "POSITION": "船长|The Captain"
                 },
-                "desc": "狂想曲号的现任船长。在AT 61年Rhea号坠落事件后，接替失踪的Seth成为了船长。她将Rhea号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。"
+                "desc": "狂想曲号的现任船长。在AT 61年瑞亚号坠落事件后，接替失踪的Seth成为了船长。她将瑞亚号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。|Current captain of the Rhapsody. <br>Following the Rhea incident in AT 61 and Seth Remarque’s death, Los inherited command of the vessel. Under her leadership, the once-gray transport ship was transformed into a legitimate astronomical expedition vessel working alongside research institutions and data corporations. <br> <br>Before joining the Astral Lyceum, the young captain lived through experiences she rarely speaks of. <br>And long before she stepped aboard as captain, her fate had already become intertwined with this ship."
             },
             {
                 "id": "Commander Seth",
                 "name": "Seth H.Remqrque <br>赛斯 H.雷马克",
                 "img": "images/pfiles/seth.jpg",
                 "data": {
-                    "CODE": "ESC (Esclusive Special Commander)",
-                    "POSITION": "前舰长"
+                    "ORIGIN": "赛斯 哈迩席恩 雷马克|Seth Halcyon Remarque",
+                    "CODE": "ESC|Esclusive Special Commander",
+                    "POSITION": "Former Captain|前舰长"
                 },
-                "desc": "缔造了Rhea号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——Rhea项目废弃时，Seth协同其组建的船队一起开走了即将解体的Rhea号，并成功驾驶她穿越了天空洋流。Rhea号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人唯一的容身之所。至今这艘舰船都是唯一能进入深层洋流并稳定航行的存在。<br><br>AT 61年，在遭遇极镜公司的埋伏后，Seth将船长的位置交付给了Los，并与连接舱一起从高空坠落。Seth亲手搭载的舰船AI-Lavinia计算后得出了结论：舰长的生还概率为0."
-            , "more_imgs": [
-                   "images/pfiles/seth01.jpg",
-                   "images/pfiles/seth02.jpg"
-                ]  
+                "desc": "缔造了瑞亚号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——*瑞亚项目*废弃时，赛斯协同其组建的船队一起开走了即将解体的瑞亚号，并成功驾驶她穿越了*天空洋流*。瑞亚号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人的容身之所。至今这艘舰船都是唯一能进入深层磁洋流并稳定航行的存在。<br><br>AT 61年，在遭遇*极镜公司*的埋伏后，赛斯将船长的位置交付给了洛斯，并与连接舱一起从高空坠落。赛斯亲手搭载的舰船AI-*菈薇尼亚*计算后得出了结论：舰长的生还概率为0.|The legendary pilot who forged the myth of the Rhea. <br>Once he was the leader of the Kestrel Test Squadron, Seth Remarque defied the abandonment of the *Rhea Project* — humanity’s failed attempt to traverse the *Aetherial Tide*. <br><br>Before the vessel could be dismantled, Seth and the crew he gathered stole the Rhea and disappeared into the sky currents. <br>Against all expectations, they survived. <br>From that moment onward, the Rhea became a myth within the gray zones of the world.For over a decade, she served as the only refuge for those discarded by society. <br>Even now, she remains the only ship capable of entering the deep layers of the Tide and navigating them safely. <br><br>In AT 61, the Rhea was ambushed by the *Kagami Kiwami Corporation*. Seth entrusted command to Los before falling from the upper atmosphere together with the docking module. <br><br>After calculation, *Lavinia* — the ship AI personally developed by Seth — reached a final conclusion:<br>Probability of Captain Survival: 0%.",
+                "more_imgs": [
+                    "images/pfiles/seth01.jpg",
+                    "images/pfiles/seth02.jpg"
+                ]
             },
             {
                 "id": "FM Hector",
                 "name": "Hector Kaine<br>赫克托尔 凯恩",
-                 "img": "images/pfiles/hector.jpg",
+                "img": "images/pfiles/hector.jpg",
                 "data": {
-                    "POSITION": "大副",
-                    "AUGMENT": "全身义体"
+                    "POSITION": "大副|First Mate",
+                    "AUGMENT": "全身义体|Full-body cyberization"
                 },
-                "desc": "狂想曲号的大副。有着叛逆的灵魂。在加入军队前就早早贷款做了义体改造。<br>兴趣爱好是收集各种帽子和夏威夷衬衫，性格活泼，有时甚至有点疯疯癫癫的。曾经坚定的认为自己会成为下一任船长。<br>因为不愿参加荒唐的战争，从军队退役。但欠下了巨额义体贷款。他本不隶属于Seth的红隼试飞队，却因为一直崇拜、欣赏着Seth，从其他部队应招募而来。他是最初的舰队27位船员之一。<br><br>Rhea号坠落事件后，二副一直怕Hector谋反现任船长。船长似乎不这么认为。虽然看起来疯，但却是连喝醉了也不会泄露秘密的家伙。"
-              , "more_imgs": [
-                   "images/pfiles/hector.png"
-                ]  
+                "desc": "狂想曲号的大副。有着叛逆的灵魂。在加入军队前就早早贷款做了义体改造。<br>兴趣爱好是收集各种帽子和夏威夷衬衫，性格活泼，有时甚至有点疯疯癫癫的。曾经坚定的认为自己会成为下一任船长。<br>因为不愿参加荒唐的战争，从军队退役。但欠下了巨额义体贷款。他本不隶属于Seth的红隼试飞队，却因为一直崇拜、欣赏着Seth，从其他部队应招募而来。他是最初的舰队27位船员之一。<br><br>Rhea号坠落事件后，二副一直怕Hector谋反现任船长。船长似乎不这么认为。虽然看起来疯，但却是连喝醉了也不会泄露秘密的家伙。|The First Mate of the Rhapsody. <br>Hector possesses the soul of a rebel. Even before military enlistment, he had already buried himself in debt to undergo cybernetic augmentation. <br>His hobbies include collecting hats and loud Hawaiian shirts. <br>Energetic, reckless, occasionally insane. <br>For years, he firmly believed he would become the ship’s next captain. <br>Disillusioned by meaningless wars, Hector eventually left the military — though the enormous augmentation debt remained. <br>He was never originally assigned to Seth’s Kestrel Test Squadron. Instead, driven by admiration for Seth himself, he volunteered from another division and became one of the original twenty-seven crew members of the Rhea. <br><br>After the Rhea Incident, many feared Hector might attempt mutiny against the new captain. <br>Los never seemed concerned. <br>For all his madness, Hector remains the kind of man who would keep a secret even while drunk beyond reason.",
+                "more_imgs": [
+                    "images/pfiles/hector.png"
+                ]
             },
             {
                 "id": "SM Channing",
-                "name": "Channing Liang<br>(乾宁) 梁成溪",
+                "name": "Channing Liang<br>乾宁 梁",
                 "img": "images/pfiles/channing.jpg",
                 "data": {
-                    "ORIGIN": "Renato Jimenez/ 梁成溪",
-                    "POSITION": "二副",
-                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体"
+                    "ORIGIN": "梁成溪<br>/雷纳托 希门内斯|Liang Chengxi<br>/Renato Jimenéz",
+                    "POSITION": "二副|Second Mate",
+                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体|Cybernetic cardiopulmonary system, electronic brain conversion, partial facial augmentation"
                 },
-                "desc": "他是希门内斯王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就变成了Channing。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长Seth Remarque看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。Channing留了下来。他说，我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。"
-           },
-
-             {
+                "desc": "他是*希门内斯*王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就从成溪变成了乾宁。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长赛斯 雷马克看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。乾宁留了下来。他说，「我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。」|Third son of the *Jimenéz* royal family. His eldest brother was born to rule. His second brother was born to challenge the world itself. The House of Jimenez had no need for a third ruler. So he left. Joining a polar research flight program, he chose to live under the name given by his mother，instead of the royal family. <br>Most of his comrades could never pronounce his Chinese name properly. Somewhere along the way, “Channing” simply became easier. He claimed not to care.Not about names. Not about inheritance. Not about status. He never asked for anything. Except Seth Remarque saw through him completely. <br> “You do want it,” Seth told him.“Stop lying to yourself. Make your choice.”<br><br>After Seth disappeared, the new captain announced that the ship would continue sailing, but anyone unwilling to remain was free to leave. Channing stayed. <br> “I will repay him,” he said.“Not with his life. With mine. That is my choice.”"
+            },
+            {
                 "id": "LC Dan",
-                "name": "Dan Vance Aston<br>(丹) 万斯 阿斯顿",
+                "name": "Vance D Aston<br>万斯 D 阿斯顿",
                 "img": "images/pfiles/dan.jpg",
                 "data": {
-                    "ORIGIN": "Vance Aston",
-                    "POSITION": "船队法律顾问//外交部负责人",
-                    "AUGMENT": "电子脑化"
+                    "ORIGIN": "万斯 丹 阿斯顿|Vance Dan Aston",
+                    "POSITION": "法律顾问//外交部负责人|Legal consoler / Director of Foreign Affairs",
+                    "AUGMENT": "电子脑化|Electronic brain conversion"
                 },
-                "desc": "这位保障舰船存在且正常航行的律师，起初只是一个混迹黑市街头的骗子。<br>Dan和Seth是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找Seth，想留住东西就去找Dan。看来现在依旧如此。<br><br>直到有一天，Rhea号被『击落』了，Dan拒绝查看记录，也不承认Seth死了。Los说要让狂想曲号成为合法的船，Dan说好。于是他开始学习真正的法律条款。<br>Dan有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受Seth真的被这个世界吞噬了。"
-            , "more_imgs": [
-                   "images/pfiles/dan.png"
-                ]  
+                "desc": "这位保障舰船存在且正常航行的律师，起初只是一个混迹黑市街头的骗子。<br>丹和赛斯是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找雷，想留住东西就去找丹。看来现在依旧如此。<br><br>直到有一天，瑞亚号被『击落』了，丹拒绝查看记录，也不承认赛斯死了。洛斯说要让狂想曲号成为合法的船，丹说好。于是他开始学习真正的法律条款。<br>丹有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受赛斯真的被这个世界吞噬了。|The lawyer responsible for keeping the Rhapsody alive and legally operational was once nothing more than a scam artist wandering the black markets. <br>Dan met Seth in an orphanage.Back then, the children used to say: <br> “If you want something, ask Ray. If you want to keep it, ask Dan.” <br>Apparently, that still holds true. <br>When the Rhea was finally “shot down,” Dan refused to examine the records. He refused to acknowledge Seth’s death. <br><br>Los said she wanted to turn the Rhapsody into a legitimate vessel. Dan answered simply: “Fine.”And so he began studying actual law. <br><br>Dan hides behind endless sarcasm, negotiation tricks, and sharp-tongued humor. He sees the ugliness of the world clearly and survives by walking through its filth. Yet there is one truth he cannot accept: That Seth Remarque was truly swallowed by this world.",
+                "more_imgs": [
+                    "images/pfiles/dan.png"
+                ]
             }
         ]
     },
     "Amber Dust // 琥珀之尘": {
         "id": "group_amber",
-        "intro": "极夜城周边的卫星城市，与其隔着旧城废墟（已被沙漠气候风化的茶盘区）生活方式近乎废土",
+        "intro": "极夜城周边的卫星城市，与其隔着旧城废墟（已被沙漠气候风化的*茶盘区*）生活方式近乎废土<br><br>A satellite settlement beyond Kaamos City,<br>separated from it by the ruins of the Old Basin（*Saucer District*）<br>— a wasteland long eroded into desert terrain.<br>Life there resembles the remnants of a post-collapse world.",
         "members": []
     },
     "Eithelon // 艾特隆联邦": {
         "id": "group_eithelon",
-        "intro": "Rothbart家族曾经生活的联邦国。由崇尚机械主义的轴心派掌权期间，曾经大肆清算拾音者（生物人文主义)。",
+        "intro": "*洛特巴德*家族曾经生活的联邦国。由崇尚机械主义的*正轴派*掌权期间，曾经大肆清算*HCN*（人类存续网络)组织。<br><br>The former homeland of the *Rothbart* family. <br>During the rule of the Mechanists -*The Axis*, <br>the Federation carried out large-scale purges against the *HCN* — Human Continuity Network.",
         "members": []
     }
 }
