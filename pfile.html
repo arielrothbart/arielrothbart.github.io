@@ -797,6 +797,40 @@
             will-change: transform;
             /* 优化性能 */
         }
+        /* --- 移动端档案文字溢出修复 --- */
+@media (max-width: 768px) {
+    /* 1. 让档案项从并排改为上下排列 */
+    .data-item {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 4px;
+        padding: 10px 0;
+    }
+
+    /* 2. 取消固定宽度，防止把内容推出去 */
+    .label {
+        width: auto !important; 
+        margin-right: 0;
+        font-size: 10px;
+        opacity: 0.8;
+    }
+
+    /* 3. 确保数值区域占满宽度并自动换行 */
+    .data-value {
+        width: 100%;
+        word-break: break-all; /* 强制长单词换行 */
+    }
+
+    /* 4. 针对卡片内边距微调，给文字留空间 */
+    .profile-card {
+        padding: 15px !important;
+        overflow: hidden; /* 确保装饰不导致溢出 */
+    }
+
+    .char-info h2 {
+        font-size: 1.4rem; /* 稍微缩小标题，防止长名字溢出 */
+    }
+}
     </style>
 </head>
 
