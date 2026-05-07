@@ -5,12 +5,13 @@
         "members": [
             {
                 "id": "Leopold",
-                "name": "Leopold Servantes<br>列奥波尔德 塞万提斯<br>",
+                "name": "Leopold Servantes<br>列奥波尔德 塞万提斯",
                 "img": "images/pfiles/leo.jpg",
                 "data": {
                     "AFFILIATION": "戌区黑市|Ocaso District Black Market ",
                     "IDENTITY": "地下武器师|Underground Weaponsmith ",
-                    "AUGMENT": "手臂、双腿机械义体，右眼为军用型号义眼——银色毒液|Cybernetic arms and legs. Military-grade prosthetic right eye “Silver Venom”"
+                    "AUGMENT": "手臂、双腿机械义体,电子脑化|Cybernetic arms and legs.<br>Cyberbrain conversion",
+                    "": "右眼为军用型号义眼“银色毒液”|Military-grade prosthetic right eye “Silver Venom”"
                 },
                 "desc": "曾服役于城市军队的列奥波尔德 塞万提斯，在一场战争后被标记为死亡。<br>他在黑市中失去了双手与双腿，此后转为地下武器师。<br>他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名.|Once a Tech-soldier in the city military, Leopold Servantes was officially declared dead after the war. <br>Somewhere within the black market beneath Kaamos, he lost both his arms and legs. <br><br>He later resurfaced as an underground weaponsmith.<br><br>The weapons he creates possess an eerie elegance beneath their lethal craftsmanship. <br> Beautiful. Precise. Catastrophic.<br>Within the underworld, his name has become legend. "
             },
@@ -50,7 +51,9 @@
                 "data": {
                     "ORIGIN": "赛斯 哈迩席恩 雷马克|Seth Halcyon Remarque",
                     "CODE": "ESC|Esclusive Special Commander",
-                    "POSITION": "Former Captain|前舰长"
+                    "POSITION": "Former Captain|前舰长",
+                    "AUGMENT": "电子脑化，加装军用脊髓神经调节模块|Cyberbrain conversion,<br>Military-grade spinal neuro-regulator "
+                    
                 },
                 "desc": "缔造了瑞亚号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——*瑞亚项目*废弃时，赛斯协同其组建的船队一起开走了即将解体的瑞亚号，并成功驾驶她穿越了*天空洋流*。瑞亚号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人的容身之所。至今这艘舰船都是唯一能进入深层磁洋流并稳定航行的存在。<br><br>AT 61年，在遭遇*极镜公司*的埋伏后，赛斯将船长的位置交付给了洛斯，并与连接舱一起从高空坠落。赛斯亲手搭载的舰船AI-*菈薇尼亚*计算后得出了结论：舰长的生还概率为0.|The legendary pilot who forged the myth of the Rhea. <br>Once he was the leader of the Kestrel Test Squadron, Seth Remarque defied the abandonment of the *Rhea Project* — humanity’s failed attempt to traverse the *Aetherial Tide*. <br><br>Before the vessel could be dismantled, Seth and the crew he gathered stole the Rhea and disappeared into the sky currents. <br>Against all expectations, they survived. <br>From that moment onward, the Rhea became a myth within the gray zones of the world.For over a decade, she served as the only refuge for those discarded by society. <br>Even now, she remains the only ship capable of entering the deep layers of the Tide and navigating them safely. <br><br>In AT 61, the Rhea was ambushed by the *Kagami Kiwami Corporation*. Seth entrusted command to Los before falling from the upper atmosphere together with the docking module. <br><br>After calculation, *Lavinia* — the ship AI personally developed by Seth — reached a final conclusion:<br>Probability of Captain Survival: 0%.",
                 "more_imgs": [
@@ -78,7 +81,7 @@
                 "data": {
                     "ORIGIN": "梁成溪<br>/雷纳托 希门内斯|Liang Chengxi<br>/Renato Jimenéz",
                     "POSITION": "二副|Second Mate",
-                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体|Cybernetic cardiopulmonary system, electronic brain conversion, partial facial augmentation"
+                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体|Cybernetic cardiopulmonary system, Cyberbrain conversion, partial facial augmentation"
                 },
                 "desc": "他是*希门内斯*王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就从成溪变成了乾宁。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长赛斯 雷马克看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。乾宁留了下来。他说，「我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。」|Third son of the *Jimenéz* royal family. His eldest brother was born to rule. His second brother was born to challenge the world itself. The House of Jimenez had no need for a third ruler. So he left. Joining a polar research flight program, he chose to live under the name given by his mother，instead of the royal family. <br>Most of his comrades could never pronounce his Chinese name properly. Somewhere along the way, “Channing” simply became easier. He claimed not to care.Not about names. Not about inheritance. Not about status. He never asked for anything. Except Seth Remarque saw through him completely. <br> “You do want it,” Seth told him.“Stop lying to yourself. Make your choice.”<br><br>After Seth disappeared, the new captain announced that the ship would continue sailing, but anyone unwilling to remain was free to leave. Channing stayed. <br> “I will repay him,” he said.“Not with his life. With mine. That is my choice.”"
             },
@@ -89,7 +92,7 @@
                 "data": {
                     "ORIGIN": "万斯 丹 阿斯顿|Vance Dan Aston",
                     "POSITION": "法律顾问//外交部负责人|Legal consoler / Director of Foreign Affairs",
-                    "AUGMENT": "电子脑化|Electronic brain conversion"
+                    "AUGMENT": "电子脑化|Cyberbrain conversion"
                 },
                 "desc": "这位保障舰船存在且正常航行的律师，起初只是一个混迹黑市街头的骗子。<br>丹和赛斯是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找雷，想留住东西就去找丹。看来现在依旧如此。<br><br>直到有一天，瑞亚号被『击落』了，丹拒绝查看记录，也不承认赛斯死了。洛斯说要让狂想曲号成为合法的船，丹说好。于是他开始学习真正的法律条款。<br>丹有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受赛斯真的被这个世界吞噬了。|The lawyer responsible for keeping the Rhapsody alive and legally operational was once nothing more than a scam artist wandering the black markets. <br>Dan met Seth in an orphanage.Back then, the children used to say: <br> “If you want something, ask Ray. If you want to keep it, ask Dan.” <br>Apparently, that still holds true. <br>When the Rhea was finally “shot down,” Dan refused to examine the records. He refused to acknowledge Seth’s death. <br><br>Los said she wanted to turn the Rhapsody into a legitimate vessel. Dan answered simply: “Fine.”And so he began studying actual law. <br><br>Dan hides behind endless sarcasm, negotiation tricks, and sharp-tongued humor. He sees the ugliness of the world clearly and survives by walking through its filth. Yet there is one truth he cannot accept: That Seth Remarque was truly swallowed by this world.",
                 "more_imgs": [
