@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 
 <head>
+    <link rel="preconnect" href="images/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personnel Files | Rhapsody in Neon</title>
@@ -91,6 +92,9 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
                 inset 0 0 20px rgba(0, 242, 255, 0.05);
             /* 增加内发光 */
+            will-change: transform, opacity; /* 告知浏览器提前准备 */
+    transform: translateZ(0);       /* 强制触发 GPU 加速 */
+    backface-visibility: hidden;
         }
 
         /* 在卡片右上角放置一个“x”图层作为UI细节 */
@@ -870,11 +874,16 @@ function applyHighlights(text) {
     return highlightedText;
 }
 
-        async function loadPersonnel() {
+       async function loadPersonnel() {
             try {
                 const response = await fetch('personnel.json');
                 const data = await response.json();
                 const main = document.getElementById('main-scroll');
+                const directory = document.getElementById('directory'); // 确保能获取到目录容器
+
+                // --- 优化 1：创建两个“虚拟容器”，避免频繁刷新页面渲染 ---
+                const mainFragment = document.createDocumentFragment();
+                const dirFragment = document.createDocumentFragment();
 
                 for (const [factionName, factionContent] of Object.entries(data)) {
                     const fId = factionContent.id;
@@ -897,26 +906,27 @@ function applyHighlights(text) {
                     const introSection = document.createElement('div');
                     introSection.className = 'faction-intro-block';
                     introSection.id = fId;
-                    // 同样使用竖线分割逻辑（如果你地区介绍也想分中英文），并套用高亮函数
-let introHtml = '';
-if (factionContent.intro && factionContent.intro.includes('|')) {
-    const parts = factionContent.intro.split('|');
-    introHtml = `
-        <div class="desc-cn">${applyHighlights(parts[0].trim())}</div>
-        <div class="desc-en">${applyHighlights(parts[1].trim())}</div>
-    `;
-} else {
-    introHtml = `<div class="faction-intro-text">${applyHighlights(factionContent.intro || '')}</div>`;
-}
 
-introSection.innerHTML = `<h1>${applyHighlights(factionName)}</h1>${introHtml}`;
-                    main.appendChild(introSection);
+                    let introHtml = '';
+                    if (factionContent.intro && factionContent.intro.includes('|')) {
+                        const parts = factionContent.intro.split('|');
+                        introHtml = `
+                            <div class="desc-cn">${applyHighlights(parts[0].trim())}</div>
+                            <div class="desc-en">${applyHighlights(parts[1].trim())}</div>
+                        `;
+                    } else {
+                        introHtml = `<div class="faction-intro-text">${applyHighlights(factionContent.intro || '')}</div>`;
+                    }
+
+                    introSection.innerHTML = `<h1>${applyHighlights(factionName)}</h1>${introHtml}`;
+                    
+                    // --- 优化 2：把原本给 main 的内容先塞进虚拟容器 ---
+                    mainFragment.appendChild(introSection);
 
                     if (factionContent.members && factionContent.members.length > 0) {
                         factionContent.members.forEach(member => {
                             if (!member.id) return;
 
-                            // --- 补回的关键：侧边栏名字链接生成 ---
                             const link = document.createElement('a');
                             link.href = `#${member.id}`;
                             link.className = 'name-link';
@@ -925,7 +935,6 @@ introSection.innerHTML = `<h1>${applyHighlights(factionName)}</h1>${introHtml}`;
                                 if (window.innerWidth <= 768) directory.classList.remove('active');
                             };
                             linksContainer.appendChild(link);
-                            // ------------------------------------
 
                             const card = document.createElement('section');
                             card.className = 'profile-card';
@@ -937,55 +946,49 @@ introSection.innerHTML = `<h1>${applyHighlights(factionName)}</h1>${introHtml}`;
 
                             let dataGrid = '';
                             for (const [key, val] of Object.entries(member.data)) {
-                                // 使用竖线 | 作为中英文的绝对分隔符
                                 if (val.includes('|')) {
                                     const parts = val.split('|');
-                                    // parts[0] 是完整的中文部分（支持内部换行）
-                                    // parts[1] 是完整的英文部分（支持内部换行）
                                     dataGrid += `
-            <div class="data-item">
-                <span class="label">${key}</span>
-                <div class="data-value">
-<span class="cn-subtext">${applyHighlights(parts[0].trim())}</span>
-<span class="en-subtext">${applyHighlights(parts[1].trim())}</span>
-                </div>
-            </div>`;
+                                        <div class="data-item">
+                                            <span class="label">${key}</span>
+                                            <div class="data-value">
+                                                <span class="cn-subtext">${applyHighlights(parts[0].trim())}</span>
+                                                <span class="en-subtext">${applyHighlights(parts[1].trim())}</span>
+                                            </div>
+                                        </div>`;
                                 } else {
-                                    // 如果没有竖线，则视为纯中文或未分类内容，保持原样显示
                                     dataGrid += `
-            <div class="data-item">
-                <span class="label">${key}</span>
-                <div class="data-value">
-                    <span class="cn-subtext">${val}</span>
-                </div>
-            </div>`;
+                                        <div class="data-item">
+                                            <span class="label">${key}</span>
+                                            <div class="data-value">
+                                                <span class="cn-subtext">${val}</span>
+                                            </div>
+                                        </div>`;
                                 }
                             }
 
                             card.innerHTML = `
-                            <div class="char-thumb-box" onclick="openFull(${imgsJson}, 0)">
-                                <img src="${member.img}">
-                            </div>
-                            <div class="char-info">
-                                <h2>${member.name}</h2>
-                                <div class="data-grid">${dataGrid}</div>
-                              <div class="char-desc">
-    ${(() => {
-                                    if (member.desc.includes('|')) {
-                                        const descParts = member.desc.split('|');
-                                       
-return `
-    <div class="desc-cn">${applyHighlights(descParts[0].trim())}</div>
-    <div class="desc-en">${applyHighlights(descParts[1].trim())}</div>
-`;
-                                    }
-                                    return member.desc; // 如果没写竖线，保持原样
-                                })()}
-</div>
-
-                                <div class="gallery-container"></div>
-                            </div>
-                        `;
+                                <div class="char-thumb-box" onclick="openFull(${imgsJson}, 0)">
+                                    <img src="${member.img}" loading="lazy">
+                                </div>
+                                <div class="char-info">
+                                    <h2>${member.name}</h2>
+                                    <div class="data-grid">${dataGrid}</div>
+                                    <div class="char-desc">
+                                        ${(() => {
+                                            if (member.desc.includes('|')) {
+                                                const descParts = member.desc.split('|');
+                                                return `
+                                                    <div class="desc-cn">${applyHighlights(descParts[0].trim())}</div>
+                                                    <div class="desc-en">${applyHighlights(descParts[1].trim())}</div>
+                                                `;
+                                            }
+                                            return member.desc;
+                                        })()}
+                                    </div>
+                                    <div class="gallery-container"></div>
+                                </div>
+                            `;
 
                             if (member.more_imgs && member.more_imgs.length > 0) {
                                 const gallery = document.createElement('div');
@@ -993,20 +996,27 @@ return `
                                 member.more_imgs.forEach((imgSrc, index) => {
                                     const item = document.createElement('div');
                                     item.className = 'gallery-item';
-                                    item.innerHTML = `<img src="${imgSrc}">`;
+                                    item.innerHTML = `<img src="${imgSrc}" loading="lazy">`;
                                     item.onclick = () => openFull(allImgs, index + 1);
                                     gallery.appendChild(item);
                                 });
                                 card.querySelector('.gallery-container').appendChild(gallery);
                             }
-                            main.appendChild(card);
+                            // --- 优化 3：把卡片也先塞进虚拟容器 ---
+                            mainFragment.appendChild(card);
                         });
                     }
 
                     group.appendChild(title);
                     group.appendChild(linksContainer);
-                    directory.appendChild(group);
+                    // --- 优化 4：把目录组也先塞进虚拟容器 ---
+                    dirFragment.appendChild(group);
                 }
+
+                // --- 优化总结：在这里最后一步，才真正操作网页，一次性渲染 ---
+                main.appendChild(mainFragment);
+                directory.appendChild(dirFragment);
+
             } catch (e) { console.error("Data error:", e); }
         }
 
@@ -1051,7 +1061,11 @@ return `
         loadPersonnel();
         // 识别 JSON 中被星号包裹的词：*高亮内容*
 highlightedText = highlightedText.replace(/\*(.*?)\*/g, `<span class="term-highlight">$1</span>`);
-    </script>
+  
+document.addEventListener('DOMContentLoaded', () => {
+    loadPersonnel(); // 确保 DOM 骨架一旦就绪就开始读取数据
+});
+   </script>
 </body>
 
 </html>
