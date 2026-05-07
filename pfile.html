@@ -813,6 +813,9 @@
         margin-right: 0;
         font-size: 10px;
         opacity: 0.8;
+        top: 0; /* 将它移回边框内一点，或者微调负值 */
+        transform: scale(0.8); /* 缩小标签以适应窄屏 */
+        left: 5px;
     }
 
     /* 3. 确保数值区域占满宽度并自动换行 */
@@ -824,7 +827,8 @@
     /* 4. 针对卡片内边距微调，给文字留空间 */
     .profile-card {
         padding: 15px !important;
-        overflow: hidden; /* 确保装饰不导致溢出 */
+        overflow:visible !important; 
+        margin-top: 20px;
     }
 
     .char-info h2 {
