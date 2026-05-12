@@ -579,9 +579,12 @@
 
         /* 正文中的中文 */
         .desc-cn {
-            color: rgba(255, 255, 255, 0.95);
-            line-height: 1.8;
-            font-size: 14px;
+            .desc-cn {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
         }
 
         /* 正文中的英文 */
@@ -594,7 +597,7 @@
             border-left: 1px solid rgba(0, 242, 255, 0.2);
             /* 淡淡的左边框装饰线 */
             padding-left: 15px;
-            margin-top: -5px;
+          margin-top: 18px;
             /* 让英文紧贴上方的中文段落 */
         }
 
@@ -608,6 +611,50 @@
     border-bottom: 1px dashed rgba(0, 242, 255, 0.4);
 }
 
+.char-desc {
+    margin-top: 20px;
+    border-top: 1px solid rgba(0, 242, 255, 0.15);
+    padding-top: 12px;
+}
+
+/* 折叠按钮 */
+.char-desc summary {
+    cursor: pointer;
+    list-style: none;
+    color: var(--accent-color);
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    transition: 0.3s;
+    user-select: none;
+}
+
+/* 去掉默认三角 */
+.char-desc summary::-webkit-details-marker {
+    display: none;
+}
+
+/* hover */
+.char-desc summary:hover {
+    opacity: 1;
+    text-shadow: 0 0 8px var(--accent-color);
+}
+
+/* 展开后的状态 */
+.char-desc[open] summary {
+    margin-bottom: 10px;
+    opacity: 1;
+}
+
+/* 自定义箭头 */
+.char-desc summary::before {
+    content: "▶ ";
+    font-size: 10px;
+}
+
+.char-desc[open] summary::before {
+    content: "▼ ";
+}
 
         /* 悬浮按钮 */
         .nav-controls {
@@ -1012,18 +1059,20 @@ function applyHighlights(text) {
                                 <div class="char-info">
                                     <h2>${member.name}</h2>
                                     <div class="data-grid">${dataGrid}</div>
-                                    <div class="char-desc">
-                                        ${(() => {
-                                            if (member.desc.includes('|')) {
-                                                const descParts = member.desc.split('|');
-                                                return `
-                                                    <div class="desc-cn">${applyHighlights(descParts[0].trim())}</div>
-                                                    <div class="desc-en">${applyHighlights(descParts[1].trim())}</div>
-                                                `;
-                                            }
-                                            return member.desc;
-                                        })()}
-                                    </div>
+                                 <details class="char-desc">
+    <summary>ARCHIVE DESCRIPTION</summary>
+
+    ${(() => {
+        if (member.desc.includes('|')) {
+            const descParts = member.desc.split('|');
+            return `
+                <div class="desc-cn">${applyHighlights(descParts[0].trim())}</div>
+                <div class="desc-en">${applyHighlights(descParts[1].trim())}</div>
+            `;
+        }
+        return member.desc;
+    })()}
+</details>
                                     <div class="gallery-container"></div>
                                 </div>
                             `;
