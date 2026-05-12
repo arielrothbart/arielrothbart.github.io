@@ -44,7 +44,8 @@
                 },
            "desc": "狂想曲号的现任船长。在AT 61年瑞亚号坠落事件后，接替失踪的Seth成为了船长。她将瑞亚号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。|Current captain of the Rhapsody. <br>Following the Rhea incident in AT 61 and Seth Remarque’s death, Los inherited command of the vessel. Under her leadership, the once-gray transport ship was transformed into a legitimate astronomical expedition vessel working alongside research institutions and data corporations. <br> <br>Before joining the Astral Lyceum, the young captain lived through experiences she rarely speaks of. <br>And long before she stepped aboard as captain, her fate had already become intertwined with this ship."
           , "more_imgs": [
-                    "images/pfiles/ariel01.jpg"     
+                    "images/pfiles/ariel01.jpg",
+                    "images/pfiles/ariel02.jpg"     
                 ]
             },
             {
@@ -61,7 +62,8 @@
                 "desc": "缔造了瑞亚号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——*瑞亚项目*废弃时，赛斯协同其组建的船队一起开走了即将解体的瑞亚号，并成功驾驶她穿越了*天空洋流*。瑞亚号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人的容身之所。至今这艘舰船都是唯一能进入深层磁洋流并稳定航行的存在。<br><br>AT 61年，在遭遇*极镜公司*的埋伏后，赛斯将船长的位置交付给了洛斯，并与连接舱一起从高空坠落。赛斯亲手搭载的舰船AI-*菈薇尼亚*计算后得出了结论：舰长的生还概率为0.|The legendary pilot who forged the myth of the Rhea. <br>Once he was the leader of the Kestrel Test Squadron, Seth Remarque defied the abandonment of the *Rhea Project* — humanity’s failed attempt to traverse the *Aetherial Tide*. <br><br>Before the vessel could be dismantled, Seth and the crew he gathered stole the Rhea and disappeared into the sky currents. <br>Against all expectations, they survived. <br>From that moment onward, the Rhea became a myth within the gray zones of the world.For over a decade, she served as the only refuge for those discarded by society. <br>Even now, she remains the only ship capable of entering the deep layers of the Tide and navigating them safely. <br><br>In AT 61, the Rhea was ambushed by the *Kagami Kiwami Corporation*. Seth entrusted command to Los before falling from the upper atmosphere together with the docking module. <br><br>After calculation, *Lavinia* — the ship AI personally developed by Seth — reached a final conclusion:<br>Probability of Captain Survival: 0%.",
                 "more_imgs": [
                     "images/pfiles/seth01.jpg",
-                    "images/pfiles/seth02.jpg"
+                    "images/pfiles/seth02.jpg",
+                    "images/pfiles/seth03.jpg"
                 ]
             },
             {
@@ -108,10 +110,30 @@
         "id": "group_amber",
         "intro": "极夜城周边的卫星城市，与其隔着旧城废墟（已被沙漠气候风化的*茶盘区*）生活方式近乎废土<br><br>A satellite settlement beyond Kaamos City,<br>separated from it by the ruins of the Old Basin（*Saucer District*）<br>— a wasteland long eroded into desert terrain.<br>Life there resembles the remnants of a post-collapse world.",
         "members": []
-    },
+     },
+
     "Eithelon // 艾特隆联邦": {
         "id": "group_eithelon",
         "intro": "*洛特巴德*家族曾经生活的联邦国。由崇尚机械主义的*正轴派*掌权期间，曾经大肆清算*HCN*（人类存续网络)组织。<br><br>The former homeland of the *Rothbart* family. <br>During the rule of the Mechanists -*The Axis*, <br>the Federation carried out large-scale purges against the *HCN* — Human Continuity Network.",
-        "members": []
+        "members": [
+            {
+                "id": "Rov",
+                "name": "Афанасий Ротбарт<br>阿法纳西 洛特巴德",
+                "img": "images/pfiles/rov.jpg",
+                "data": {
+                    "ORIGIN": "阿法纳西 洛特巴德|Afanasy Rothbart",
+                    "IDENTITY": "无国界雇佣兵|MSF Soldior",
+                    "STATUS": "已死亡|Deseased",
+                    "CODE": "洛夫|Rov"
+                },
+                "desc": "出生于艾特隆联邦的阿法纳西，父母是*人文存续派*的艺术家，祖父是皇家科学家。在机械派掌权后，家族遭到了清洗。<br>追捕中，他目睹了家人的死亡，年仅8岁的他被送往*米尔维*荒原上的劳改监狱。在那里，他受到了囚禁于此的科学家与艺术家们的庇护和教育，读完了监狱中的所有书籍，犯人们尊敬他的家族，称呼他为“*洛夫*”。<br>在十五岁时洛夫被迫编入机械派的军队。三年后，他借助无国界军队的俘虏行动脱离联邦获得了自由。辗转于多年的战争并幸存，他一直以为妹妹早已死亡。退役一年后被旧长官征召成为军事教官，却再次经历了基地被毁，一人幸存的洛夫再也无法忍受残酷的命运，在阿拉斯加的军事基地自尽。<br>恰恰因为他的死亡，洛夫的大脑被秘密用于修复了妹妹洛斯受损的神经系统。使她得以苏醒，重新获得生命。多年后，因为赛斯舰长的离世，同样的幸存者创伤与悲痛令兄妹的意识产生了共鸣。两人的意识第一次在同一具身体内意识到对方的存在。|Afanasy Rothbart was born in the Eteron Federation to a family tied to the *Human Preservationists*. His parents were artists, while his grandfather served as a royal scientist. After the Mechanist faction seized power, the Rothbart family became one of the targets of the political purge.<br>During the pursuit, Afanasy witnessed the death of his family. At the age of eight, he was sent to the ALC labor camp in the *Mirev* wastelands. There, he was protected and educated by the imprisoned scientists and artists who respected the legacy of the Rothbart family. Having read every book within the prison, he eventually came to be known among the inmates simply as “*Rov*.”<br>At fifteen, Rov was forcibly conscripted into the Mechanist military. Three years later, he escaped the Federation during a borderless army capture operation and finally obtained his freedom. After surviving years of war and displacement, believing his younger sister had long since died, he was recruited once again by a former commander to serve as a military instructor after retirement. However, after enduring yet another catastrophe in which he became the sole survivor of a destroyed base, Rov could no longer withstand the cruelty of fate and took his own life at a military facility in Alaska.<br>Ironically, it was his death that allowed his brain to be secretly used in the repair of his sister Los’s damaged neural system, enabling her to awaken and live once more. Years later, following the death of Captain Seth, the overwhelming grief and survivor’s trauma shared by both siblings caused their consciousnesses to resonate. For the first time, they became aware of each other’s presence within the same body."
+     , "more_imgs": [
+                    "images/pfiles/rov01.jpg",
+                    "images/pfiles/rov02.jpg",
+                    "images/pfiles/rov04.jpg",
+                    "images/pfiles/rov05.jpg"     
+                ]
+            }
+]
     }
 }
