@@ -45,7 +45,8 @@
            "desc": "狂想曲号的现任船长。在AT 61年瑞亚号坠落事件后，接替失踪的Seth成为了船长。她将瑞亚号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。|Current captain of the Rhapsody. <br>Following the Rhea incident in AT 61 and Seth Remarque’s death, Los inherited command of the vessel. Under her leadership, the once-gray transport ship was transformed into a legitimate astronomical expedition vessel working alongside research institutions and data corporations. <br> <br>Before joining the Astral Lyceum, the young captain lived through experiences she rarely speaks of. <br>And long before she stepped aboard as captain, her fate had already become intertwined with this ship."
           , "more_imgs": [
                     "images/pfiles/ariel01.jpg",
-                    "images/pfiles/ariel02.jpg"     
+                    "images/pfiles/ariel02.jpg",
+                     "images/pfiles/ariel03.jpg"          
                 ]
             },
             {
@@ -122,7 +123,7 @@
                 "img": "images/pfiles/rov.jpg",
                 "data": {
                     "ORIGIN": "阿法纳西 洛特巴德|Afanasy Rothbart",
-                    "IDENTITY": "无国界雇佣兵|MSF Soldior",
+                    "IDENTITY": "前 无国界雇佣兵|Former MSF Soldier",
                     "STATUS": "已死亡|Deseased",
                     "CODE": "洛夫|Rov"
                 },
