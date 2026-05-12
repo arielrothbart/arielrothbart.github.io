@@ -14,6 +14,11 @@
                     "": "右眼为军用型号义眼“银色毒液”|Military-grade prosthetic right eye “Silver Venom”"
                 },
                 "desc": "曾服役于城市军队的列奥波尔德 塞万提斯，在一场战争后被标记为死亡。<br>他在黑市中失去了双手与双腿，此后转为地下武器师。<br>他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名.|Once a Tech-soldier in the city military, Leopold Servantes was officially declared dead after the war. <br>Somewhere within the black market beneath Kaamos, he lost both his arms and legs. <br><br>He later resurfaced as an underground weaponsmith.<br><br>The weapons he creates possess an eerie elegance beneath their lethal craftsmanship. <br> Beautiful. Precise. Catastrophic.<br>Within the underworld, his name has become legend. "
+           , "more_imgs": [
+                    "images/pfiles/leo01.jpg",
+                    "images/pfiles/leo02.jpg",
+                    "images/pfiles/leo03.jpg"        
+                ]
             },
             {
                 "id": "Kensuke",
@@ -26,6 +31,9 @@
                     "AUGMENT": "全身义体化|Full-body cyberization"
                 },
                 "desc": "在菅原会的直系组织 任侠联担任舍弟头的助太刀研介，同时也是著名的雇佣杀手。他使用不同的义体、不同的身份执行任务。在黑市中被称为“*杀手十二面相*” 没人知道他的真面目。也没人知道，作为义体操控大师的他，内心真正的渴望——是辨明自己是否还能像人类一样活着。|Sukedachi Kensuke serves as the Wakagashira of the Ninkyo Union, a direct branch of the Sugahara-kai. <br>At the same time, he is one of the most infamous contract killers in the underground world. <br>Different bodies. Different identities. Different names for different assignments. <br>In the black market, he is known only as “*The Killer of Twelve Faces*.” <br>No one knows what his real face looks like. <br>And no one knows that beneath his mastery over artificial bodies, his deepest desire is painfully human:<br>To discover whether he is still capable of living as one. "
+            , "more_imgs": [
+                    "images/pfiles/ken01.jpg"     
+                ]
             }
         ]
     },
@@ -46,7 +54,7 @@
           , "more_imgs": [
                     "images/pfiles/ariel01.jpg",
                     "images/pfiles/ariel02.jpg",
-                     "images/pfiles/ariel03.jpg"          
+                    "images/pfiles/ariel03.jpg"          
                 ]
             },
             {
