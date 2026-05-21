@@ -844,62 +844,6 @@
             /* 优化性能 */
         }
 
-  /* --- 极其稳定的“空数据网格”自动变身方案 --- */
-
-/* 1. 如果数据网格是空的，说明没有成员信息，直接把左边的大黑照片框藏起来 */
-.profile-card:has(.data-grid:empty) .char-thumb-box {
-    display: none !important;
-}
-
-/* 2. 移除卡片本尊的毛玻璃、黑底色、边框、阴影，并收缩为单栏线段容器 */
-.profile-card:has(.data-grid:empty) {
-    grid-template-columns: 1fr !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    margin: 60px auto !important;
-    padding: 0 !important;
-    max-width: 900px !important;
-}
-
-/* 3. 干净利落地切断卡片自带的所有伪元素 UI 边角装饰 */
-.profile-card:has(.data-grid:empty)::before,
-.profile-card:has(.data-grid:empty)::after {
-    display: none !important;
-}
-
-/* 4. 隐藏残留的折叠框容器、空画廊等杂物 */
-.profile-card:has(.data-grid:empty) .data-grid,
-.profile-card:has(.data-grid:empty) .char-desc,
-.profile-card:has(.data-grid:empty) .char-gallery {
-    display: none !important;
-}
-
-/* 5. 抓取卡片右侧的 H2 名字标题，把它暴力拉升、居中，改造成赛博霓虹分割线 */
-.profile-card:has(.data-grid:empty) .char-info h2 {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 20px !important;
-    color: var(--accent-color) !important;
-    opacity: 0.5 !important;
-    font-size: 11px !important;
-    letter-spacing: 4px !important;
-    font-family: 'Vladivostok', sans-serif !important;
-    text-shadow: 0 0 6px var(--accent-color) !important;
-    margin: 0 !important;
-    user-select: none !important;
-}
-
-/* 6. 在标题文字两端画出线性淡出的高能发光光束 */
-.profile-card:has(.data-grid:empty) .char-info h2::before,
-.profile-card:has(.data-grid:empty) .char-info h2::after {
-    content: "" !important;
-    flex: 1 !important;
-    height: 1px !important;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent) !important;
-}
 
         /* --- 移动端档案文字溢出修复 --- */
 @media (max-width: 768px) {
@@ -939,7 +883,116 @@
         font-size: 1.4rem; /* 稍微缩小标题，防止长名字溢出 */
     }
 }
+/* ==========================================================
+   赛博缝合术：精准修复分隔符卡片的居中与宽度问题
+   ========================================================== */
 
+/* 1. 抓取空卡片，完全打碎外壳，并且强行铺满整行、内容水平居中 */
+.profile-card:has(.data-grid:empty),
+.profile-card:not(:has(.data-item)) {
+    min-height: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;              /* 清空内边距 */
+    margin: 70px auto !important;       /* 上下腾出完美的隔离带，水平自动居中 */
+    width: 100% !important;             /* 强行撑满父级容器宽度 */
+    max-width: 100% !important;
+    display: flex !important;           /* 启用 Flex 布局 */
+    justify-content: center !important; /* 强制子元素在屏幕水平正中央排列 */
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. 彻底抹杀空卡片里连带吐出来的破碎头像、空属性框、多余装饰和各种伪元素线 */
+.profile-card:has(.data-grid:empty) .char-thumb-box,
+.profile-card:has(.data-grid:empty) .data-grid,
+.profile-card:has(.data-grid:empty) .char-desc,
+.profile-card:has(.data-grid:empty)::before,
+.profile-card:has(.data-grid:empty)::after,
+.profile-card:not(:has(.data-item)) .char-thumb-box,
+.profile-card:not(:has(.data-item)) .data-grid,
+.profile-card:not(:has(.data-item)) .char-desc,
+.profile-card:not(:has(.data-item))::before,
+.profile-card:not(:has(.data-item))::after {
+    display: none !important;
+}
+
+/* 3. 把原本靠右的 char-info 纠正为独立的、居中的全宽文本块 */
+.profile-card:has(.data-grid:empty) .char-info,
+.profile-card:not(:has(.data-item)) .char-info {
+    width: auto !important;             /* 随文字长度自适应 */
+    max-width: 100% !important;
+    float: none !important;             /* 拔掉可能存在的左浮动或右浮动 */
+    display: block !important;
+    text-align: center !important;      /* 文字内部居中 */
+    padding: 0 !important;
+    margin: 0 auto !important;          /* 自身在父级中居中 */
+    position: relative !important;      /* 为左右两边的延伸装饰线提供定位基准 */
+}
+
+/* 4. 格式化第一行：中文标题 */
+.profile-card:has(.data-grid:empty) .char-info h2,
+.profile-card:not(:has(.data-item)) .char-info h2 {
+    display: block !important;
+    text-align: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    /* 严格维持你要求的紧凑方正霓虹感 */
+    color: var(--accent-color) !important;
+    font-size: 13px !important;
+    letter-spacing: 4px !important; 
+    font-family: 'Vladivostok', 'Emberly', sans-serif !important;
+    text-shadow: 0 0 8px var(--accent-color) !important;
+    opacity: 0.9 !important;
+}
+
+/* 5. 第二行英文：紧密贴合在中文下方 */
+.profile-card:has(.data-grid:empty) .char-info h2::after,
+.profile-card:not(:has(.data-item)) .char-info h2::after {
+    content: "OCASO DISTRICT · CYBER RAGRANT" !important;
+    display: block !important;
+    text-align: center !important;
+    margin-top: 6px !important;         /* 精确控制中英文之间挨近的精致间距 */
+    
+    /* 辅助英文样式 */
+    font-size: 9px !important;
+    letter-spacing: 6px !important;     /* 极度拉伸的高级冷峻字距 */
+    opacity: 0.8 !important;
+    color: var(--accent-color) !important;
+    
+}
+
+/* 6. 装饰线：在文字左侧拉出一条向左淡出的霓虹光束线 */
+.profile-card:has(.data-grid:empty) .char-info::before,
+.profile-card:not(:has(.data-item)) .char-info::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    right: 100% !important;             /* 从文字左侧边缘开始 */
+    margin-right: 40px !important;      /* 装饰线距离文字的精致留白 */
+    transform: translateY(-50%) !important;
+    width: 120px !important;            /* 线条长度 */
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, var(--accent-color)) !important; /* 向左淡出 */
+    opacity: 0.9 !important;
+}
+
+/* 7. 装饰线：在文字右侧拉出一条向右淡出的霓虹光束线 */
+.profile-card:has(.data-grid:empty) .char-info::after,
+.profile-card:not(:has(.data-item)) .char-info::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 100% !important;              /* 从文字右侧边缘开始 */
+    margin-left: 40px !important;       /* 装饰线距离文字的精致留白 */
+    transform: translateY(-50%) !important;
+    width: 120px !important;            /* 线条长度 */
+    height: 1px !important;
+    background: linear-gradient(90deg, var(--accent-color), transparent) !important; /* 向右淡出 */
+    opacity: 0.6 !important;
+}
     </style>
 </head>
 
