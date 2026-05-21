@@ -4,7 +4,7 @@
         "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。上城（*卯区*）的高楼会挡住阳光，下城（*戌区*）只拥有黄昏与夜晚。<br><br>A neutral harbor city linking Europe, North America, and Asia.<br>Kaamos is physically divided into upper（*Orto*）and Lower（*Ocaso*）Districts.<br>The skyscrapers of the Orto block out the sun entirely,<br>leaving the Ocaso with nothing but twilight and night.",
         "members": [
         {
-  "id": "separator_ocaso",
+  "id": "—— OCASO DISTRICT · BLACK MARKET STRAYS ——",
   "name": "戌区 · 黑市边缘人",
   "data-type": "separator",
   "img": "",
@@ -43,7 +43,43 @@
             , "more_imgs": [
                     "images/pfiles/ken01.jpg"     
                 ]
-            }
+            },
+             {
+  "id": "—— OCASO DISTRICT · SYNDICATE ——",
+  "name": "戌区 · 黑帮家族 ",
+  "data-type": "separator",
+  "img": "",
+  "data": {},
+  "desc": ""
+}, 
+
+
+{
+  "id": "—— ORTO DISTRICT ·  BOGATOR ENTITIES ——",
+  "name": "卯区 · 巨擘实体 ",
+  "data-type": "separator",
+  "img": "",
+  "data": {},
+  "desc": ""
+},
+
+{
+  "id": "—— KAAMOS CITY POLICE DEPARTMENT ——",
+  "name": "极夜城警署",
+  "data-type": "separator",
+  "img": "",
+  "data": {},
+  "desc": ""
+},
+
+{
+  "id": "—— GOVERNMENT ARMED FORCES ——",
+  "name": "极夜城 · 政府军",
+  "data-type": "separator",
+  "img": "",
+  "data": {},
+  "desc": ""
+}
         ]
     },
     "The Rhapsody Crew // 狂想曲舰队": {
