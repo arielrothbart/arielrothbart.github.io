@@ -3,9 +3,9 @@
         "id": "group_kaamos",
         "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。上城（*卯区*）的高楼会挡住阳光，下城（*戌区*）只拥有黄昏与夜晚。<br><br>A neutral harbor city linking Europe, North America, and Asia.<br>Kaamos is physically divided into upper（*Orto*）and Lower（*Ocaso*）Districts.<br>The skyscrapers of the Orto block out the sun entirely,<br>leaving the Ocaso with nothing but twilight and night.",
         "members": [
-        {
-  "id": "—— OCASO · BLACK MARKET STRAYS ——",
-  "name": "戌区 · 黑市边缘人",
+            {
+  "id": "—— BLACK MARKET STRAYS ——",
+  "name": "黑市边缘人",
   "data-type": "separator",
   "img": "",
   "data": {},
@@ -18,7 +18,7 @@
                 "data": {
                     "AFFILIATION": "戌区黑市|Ocaso District Black Market ",
                     "IDENTITY": "地下武器师|Underground Weaponsmith ",
-                    "AUGMENT": "手臂、双腿机械义体,电子脑化|Cybernetic arms and legs.<br>Cyberbrain conversion",
+                    "AUGMENT": "手臂、双腿机械义体,电子脑化|Standard Mechanical Prosthetic arms and legs.<br>Cyberbrain conversion",
                     "": "右眼为军用型号义眼“银色毒液”|Military-grade prosthetic right eye “Silver Venom”"
                 },
                 "desc": "曾服役于城市军队的列奥波尔德 塞万提斯，在一场战争后被标记为死亡。<br>他在黑市中失去了双手与双腿，此后转为地下武器师。<br>他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名.|Once a Tech-soldier in the city military, Leopold Servantes was officially declared dead after the war. <br>Somewhere within the black market beneath Kaamos, he lost both his arms and legs. <br><br>He later resurfaced as an underground weaponsmith.<br><br>The weapons he creates possess an eerie elegance beneath their lethal craftsmanship. <br> Beautiful. Precise. Catastrophic.<br>Within the underworld, his name has become legend. "
@@ -44,9 +44,24 @@
                     "images/pfiles/ken01.jpg"     
                 ]
             },
+
              {
-  "id": "—— OCASO · YAKUZA ——",
-  "name": "戌区 · 黑帮家族 ",
+                "id": "Gu Tu",
+                "name": "Gu Tu<br>顾菟",
+                "img": "images/pfiles/gutu.jpg",
+                "data": {
+                    "AFFILIATION": "戌区黑市|Ocaso District Black Market ",
+                    "IDENTITY": "黑客|Hecker ",
+                    "CODE": "月影|Moon Shadow"
+                    
+                },
+                "desc": "顾菟身高170cm，有一对金色的蛇瞳义眼。是个技术高超的黑客。曾经的他在极夜城招摇撞骗，自称是占卜大师的徒弟。<br>顾菟的店藏在一家占卜卦摊的后面。他曾经偷拿了老道士陈星显正在休眠的义体，捣鼓成了半启动状态做门面，用实时盗取的信息行骗。可惜某天把意识上传到卫星以做「赛博飞升」的老道士醒来了，他只好作罢。<br>顾菟在互联网空间里是一团电子烟雾状的蛇。他坚称那是中国青蛇，实际上谁也看不清品种。<br><br>他是狂想曲号唯一不生活在船上的外编人员。利用狂想曲号特有的移动式非对称卫星突发传输终端，他的网络数据抓包与吞吐速率远超城里的任何同行。和现任船长是从小的朋友。顾菟是个需要常年开着加湿器的家里蹲。因此他的工作室里总是烟雾缭绕，混着电脑的霓虹光。除了陈道长和船长，另一位能让他心服口服的朋友便是列奥波尔德 塞万提斯了，据顾菟所说，原因是，对方是个比他还厉害的骗子。|Gu Tu stands at 170 cm tall and possesses a pair of golden, serpentine cybernetic eyes. He is a highly skilled hacker. He used to swindle people all over Kaamos City, claiming to be the disciple of a master diviner.<br>Gu Tu's shop is hidden behind a fortune-telling stall. He once stole the dormant cybernetic body of the old Taoist priest, Chen Xingxian, and tinkered with it until it was in a semi-booted state to use as a storefront facade, using real-time stolen data to scam customers. Unfortunately, the old Taoist—who had uploaded his consciousness into a satellite for a 「Cyber-Ascension」—woke up one day, forcing Gu Tu to drop the act.<br>In cyberspace, Gu Tu manifests as a serpentine cloud of electronic smog. He adamantly insists it is a Chinese green snake, though in reality, no one can discern its exact species.<br><br>He is the only external member of the Rhapsody who does not actually live on the ship. Leveraging Rhapsody’s unique mobile satellite burst-transmission terminal, his data packet capture and throughput rates are vastly superior to any hacker in the city. He has been childhood friends with the current captain. Gu Tu is a cyber-gremlin who needs a humidifier running year-round; as a result, his studio is always shrouded in thick mist, blending with the neon glow of his computers. Aside from Daoist Chen and the captain, the only other friend who has earned his genuine respect is Leopold Servantes. According to Gu Tu, the reason is simple: the guy is an even better con artist than he is."
+           
+            },
+
+             {
+  "id": "—— YAKUZA ——",
+  "name": "黑道家族 ",
   "data-type": "separator",
   "img": "",
   "data": {},
@@ -64,21 +79,35 @@
                 },
                 "desc": "菅原真是前*哀川会*的三代目会长。AI战争爆发时，他启动「冷冻计划」，将养女与心腹送往中立的*极夜城*，并为其置办义体。在极夜城，他一手创建了当地最大的暴力组织*菅原会*，并开设了以极致仿真感著称的*空中邸园*与花街。<br><br>尽管他的资产足以匹敌各大*巨擎财阀*，但受出身限制，他始终被卯区的商业圈排挤。这位行事铁血的黑道领袖，仍恪守老派极道的「仁义」。据传原已隐退的他，为庇护某位政界友人而重新坐上大位。却也因长年稳坐高位，引发了部下的暗流涌动。菅原真非常疼爱他的养女朝生。|Sugahara Shin was the Third Generation Chairman（Sandaime） of the *Aikawa kai*. Upon the outbreak of the AI War, he initiated the Cryo-Project, sending his adopted daughter and core executives to the neutral city *Kaamos*, where he provided them with prosthetic bodies. In Kaamos City, he single-handedly established the *Sugahara kai*, the city's largest organized crime group (Yakuza), and founded *the Sky Gion* and a red light district renowned for its hyper-realistic experiences.<br><br>Despite possessing assets that rival those of major *Bogator* corporations, Sugahara Shin is consistently ostracized by the business circles of the Orto-District due to his background. This iron-fisted underworld leader still adheres to the old-school yakuza code of Jingi (chivalry and honor). It is said that he had originally retired, only to reclaim his position to protect a friend in politics. However, his long tenure at the top has also stirred undercurrents of dissatisfaction among his subordinates. <br>Sugahara Shin deeply cherishes his adopted daughter, Asao.", 
                 "more_imgs": [
-                   
+                   "images/pfiles/shin01.jpg" ,
+                   "images/pfiles/shin02.jpg"
                 ]
             },
 
 {
-  "id": "—— ORTO · BOGATOR ENTITIES ——",
-  "name": "卯区 · 巨擘实体 ",
+  "id": "—— BOGATOR ENTITIES ——",
+  "name": "巨擘实体",
   "data-type": "separator",
   "img": "",
   "data": {},
   "desc": ""
 },
-
+ {
+                "id": "Lorenzo D.L.",
+                "name": "Lorenzo D. Ludovisi<br>洛伦佐 杜兰特 路德维希",
+                "img": "images/pfiles/lorenzo.jpg",
+                "data": {
+                    "AFFILIATION": "戌区/卯区|Orto/Ocaso District",
+                    "IDENTITY": "杜兰特美术馆馆长|Curator of Le Gallerie Degli Durante ",
+                    "AUGMENT": "高仿生轻量级生化义体|Hyper-realistic Lightweight Biomimetic Prosthetic"
+                },
+                "desc": "以洛伦佐所经营的业务来看，他本应属于财阀一员。但意在让身处下城的人们也能观赏到艺术品，他将本馆开设在了岩鹨山（戌区）附近的中心地区。据他所说，为了观赏艺术品而乐意踏足地面的人，才值得看到他的收藏和画作。<br>意大利裔的馆长拥有清澈明亮的眼睛和非常贴近真人的生化义体构造。加之他优雅老派的生活习惯，很难让人想象他年前时的经历。洛伦佐虽然很早就进行了电子脑化，却直到53岁才开始运用义体。更换义体的原因更是匪夷所思，据传是因为原本的身体受到了难以挽回的损伤。<br><br>他的资料并未加密，但鲜有人猜到，年轻的洛伦佐曾经受到过黑手党家族的资助，从佛罗伦萨前往巴黎学习艺术品管理。在法国，他结识了安东尼奥 希门内斯 （Antonio Jiménes）亲王。两人的义体皆由希门内斯军事工业制造。且安东尼奥的义体在其入狱期间一直由他保管。<br>八神重英出狱后，（继承亲王的义体）正是洛伦佐资助了他的全部手术和义体改造。<br>虽然作为鉴定师和管理人活跃在艺术届，但洛伦佐从未停止创作。他的画作很少流入市场，所画的内容也非常随性。即便他经常拒绝bogator们的委托，洛伦佐在上城区的人缘依旧很好。也有人说这是拜他那张好看的脸所赐。| By business scale alone, Lorenzobelongs among the bogators. Yet, to bring art to the Lower District, he opened his gallery in the heart of the Orto District near Iwabari Yama. He believes only those willing to step onto the surface for art deserve to see his collection.<br>The Italian curator has clear, bright eyes and a cybernetic body remarkably close to real flesh. This elegant, old-school lifestyle makes his turbulent youth hard to imagine. Though cyberized early, Lorenzo didn’t adopt a full prosthetic body until age 53—following rumors of irreversible damage to his original flesh.<br><br>His files are unencrypted, yet few guess his past: sponsored by a Mafia family, a young Lorenzo moved from Florence to Paris to study art administration. There, he met Prince Antonio Jiménes. The cybernetic bodies of both men were crafted by Jiménes Arsenal; notably, during the Prince's imprisonment, Lorenzo had personally kept Antonio's prosthetic body in his safekeeping.<br>Upon Yagami Shigefusa's release, Lorenzo funded his entire surgical reconstruction and cybernetic overhaul.<br>Though active as an appraiser and curator, Lorenzo never stopped painting. His works rarely hit the market, born of pure spontaneity. Despite regularly snubbing bogators' commissions, his popularity in the Upper District remains unmatched. Some say it is simply thanks to his handsome face."
+             , "more_imgs": [
+                    "images/pfiles/lo01.jpg"        
+                ]
+            },
 {
-  "id": "—— KAAMOS CITY POLICE DEPARTMENT ——",
+  "id": "—— KCPD ——",
   "name": "极夜城警署",
   "data-type": "separator",
   "img": "",
@@ -88,7 +117,7 @@
 
 {
   "id": "—— GOVERNMENT ARMED FORCES ——",
-  "name": "极夜城 · 政府军",
+  "name": "政府军",
   "data-type": "separator",
   "img": "",
   "data": {},
