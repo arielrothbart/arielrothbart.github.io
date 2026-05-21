@@ -4,7 +4,7 @@
         "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。上城（*卯区*）的高楼会挡住阳光，下城（*戌区*）只拥有黄昏与夜晚。<br><br>A neutral harbor city linking Europe, North America, and Asia.<br>Kaamos is physically divided into upper（*Orto*）and Lower（*Ocaso*）Districts.<br>The skyscrapers of the Orto block out the sun entirely,<br>leaving the Ocaso with nothing but twilight and night.",
         "members": [
         {
-  "id": "—— OCASO DISTRICT · BLACK MARKET STRAYS ——",
+  "id": "—— OCASO · BLACK MARKET STRAYS ——",
   "name": "戌区 · 黑市边缘人",
   "data-type": "separator",
   "img": "",
@@ -34,8 +34,8 @@
                 "name": "Sukedachi Kensuke<br>助太刀 研介",
                 "img": "images/pfiles/ken.jpg",
                 "data": {
-                    "AFFILIATION": "下城区黑市|Ocaso District Black Market",
-                    "IDENTITY": "雇佣杀手/*菅原会*-任侠联 舍弟头|Mercenary Assassin / Wakagashira of the *Sugahara-kai* Alliance",
+                    "AFFILIATION": "戌区黑市<br>菅原会 黑道组织|Ocaso District Black Market<br>Sugahara-Kai Yakuza ",
+                    "IDENTITY": "雇佣杀手<br>菅原会-任侠联 舍弟头|Mercenary Assassin<br>Wakagashira of the *Sugahara-kai* Alliance",
                     "CODE": "杀手十二面相|The killer of Twelve Faces",
                     "AUGMENT": "全身义体化|Full-body cyberization"
                 },
@@ -45,17 +45,31 @@
                 ]
             },
              {
-  "id": "—— OCASO DISTRICT · SYNDICATE ——",
+  "id": "—— OCASO · YAKUZA ——",
   "name": "戌区 · 黑帮家族 ",
   "data-type": "separator",
   "img": "",
   "data": {},
   "desc": ""
 }, 
-
+ {
+                "id": "Shin Sugahara",
+                "name": "Sugahara Shin<br>菅原 真",
+                "img": "images/pfiles/shin.jpg",
+                "data": {
+                    "AFFILIATION": "下城区黑帮家族|Ocaso Distrct · Yakuza",
+                    "IDENTITY": "菅原会 会长|Chairman of the *Sugahara-kai* Alliance",
+                    "CODE": "三代目|Sandaime",
+                    "AUGMENT": "全身义体化* 信息错误 |Full-body cyberization* error"
+                },
+                "desc": "菅原真是前*哀川会*的三代目会长。AI战争爆发时，他启动「冷冻计划」，将养女与心腹送往中立的*极夜城*，并为其置办义体。在极夜城，他一手创建了当地最大的暴力组织*菅原会*，并开设了以极致仿真感著称的*空中邸园*与花街。<br><br>尽管他的资产足以匹敌各大*巨擎财阀*，但受出身限制，他始终被卯区的商业圈排挤。这位行事铁血的黑道领袖，仍恪守老派极道的「仁义」。据传原已隐退的他，为庇护某位政界友人而重新坐上大位。却也因长年稳坐高位，引发了部下的暗流涌动。菅原真非常疼爱他的养女朝生。|Sugahara Shin was the Third Generation Chairman（Sandaime） of the *Aikawa kai*. Upon the outbreak of the AI War, he initiated the Cryo-Project, sending his adopted daughter and core executives to the neutral city *Kaamos*, where he provided them with prosthetic bodies. In Kaamos City, he single-handedly established the *Sugahara kai*, the city's largest organized crime group (Yakuza), and founded *the Sky Gion* and a red light district renowned for its hyper-realistic experiences.<br><br>Despite possessing assets that rival those of major *Bogator* corporations, Sugahara Shin is consistently ostracized by the business circles of the Orto-District due to his background. This iron-fisted underworld leader still adheres to the old-school yakuza code of Jingi (chivalry and honor). It is said that he had originally retired, only to reclaim his position to protect a friend in politics. However, his long tenure at the top has also stirred undercurrents of dissatisfaction among his subordinates. <br>Sugahara Shin deeply cherishes his adopted daughter, Asao.", 
+                "more_imgs": [
+                   
+                ]
+            },
 
 {
-  "id": "—— ORTO DISTRICT ·  BOGATOR ENTITIES ——",
+  "id": "—— ORTO · BOGATOR ENTITIES ——",
   "name": "卯区 · 巨擘实体 ",
   "data-type": "separator",
   "img": "",
