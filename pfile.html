@@ -970,35 +970,7 @@
     text-transform: uppercase !important; /* 强制大写 */
 }
 
-/* 6. 装饰线：在文字左侧拉出一条向左淡出的霓虹光束线 */
-.profile-card:has(.data-grid:empty) .char-info::before,
-.profile-card:not(:has(.data-item)) .char-info::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 50% !important;
-    right: 100% !important;             /* 从文字左侧边缘开始 */
-    margin-right: 40px !important;      /* 装饰线距离文字的精致留白 */
-    transform: translateY(-50%) !important;
-    width: 120px !important;            /* 线条长度 */
-    height: 1px !important;
-    background: linear-gradient(90deg, transparent, var(--accent-color)) !important; /* 向左淡出 */
-    opacity: 0.6 !important;
-}
 
-/* 7. 装饰线：在文字右侧拉出一条向右淡出的霓虹光束线 */
-.profile-card:has(.data-grid:empty) .char-info::after,
-.profile-card:not(:has(.data-item)) .char-info::after {
-    content: "" !important;
-    position: absolute !important;
-    top: 50% !important;
-    left: 100% !important;              /* 从文字右侧边缘开始 */
-    margin-left: 40px !important;       /* 装饰线距离文字的精致留白 */
-    transform: translateY(-50%) !important;
-    width: 120px !important;            /* 线条长度 */
-    height: 1px !important;
-    background: linear-gradient(90deg, var(--accent-color), transparent) !important; /* 向右淡出 */
-    opacity: 0.6 !important;
-}
     </style>
 </head>
 
