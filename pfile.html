@@ -579,13 +579,12 @@
 
         /* 正文中的中文 */
         .desc-cn {
-            .desc-cn {
     color: rgba(255, 255, 255, 0.95);
     line-height: 1.8;
     font-size: 14px;
     margin-bottom: 10px;
 }
-        }
+        
 
         /* 正文中的英文 */
         .desc-en {
@@ -844,6 +843,64 @@
             will-change: transform;
             /* 优化性能 */
         }
+
+  /* --- 极其稳定的“空数据网格”自动变身方案 --- */
+
+/* 1. 如果数据网格是空的，说明没有成员信息，直接把左边的大黑照片框藏起来 */
+.profile-card:has(.data-grid:empty) .char-thumb-box {
+    display: none !important;
+}
+
+/* 2. 移除卡片本尊的毛玻璃、黑底色、边框、阴影，并收缩为单栏线段容器 */
+.profile-card:has(.data-grid:empty) {
+    grid-template-columns: 1fr !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 60px auto !important;
+    padding: 0 !important;
+    max-width: 900px !important;
+}
+
+/* 3. 干净利落地切断卡片自带的所有伪元素 UI 边角装饰 */
+.profile-card:has(.data-grid:empty)::before,
+.profile-card:has(.data-grid:empty)::after {
+    display: none !important;
+}
+
+/* 4. 隐藏残留的折叠框容器、空画廊等杂物 */
+.profile-card:has(.data-grid:empty) .data-grid,
+.profile-card:has(.data-grid:empty) .char-desc,
+.profile-card:has(.data-grid:empty) .char-gallery {
+    display: none !important;
+}
+
+/* 5. 抓取卡片右侧的 H2 名字标题，把它暴力拉升、居中，改造成赛博霓虹分割线 */
+.profile-card:has(.data-grid:empty) .char-info h2 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    color: var(--accent-color) !important;
+    opacity: 0.5 !important;
+    font-size: 11px !important;
+    letter-spacing: 4px !important;
+    font-family: 'Vladivostok', sans-serif !important;
+    text-shadow: 0 0 6px var(--accent-color) !important;
+    margin: 0 !important;
+    user-select: none !important;
+}
+
+/* 6. 在标题文字两端画出线性淡出的高能发光光束 */
+.profile-card:has(.data-grid:empty) .char-info h2::before,
+.profile-card:has(.data-grid:empty) .char-info h2::after {
+    content: "" !important;
+    flex: 1 !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent) !important;
+}
+
         /* --- 移动端档案文字溢出修复 --- */
 @media (max-width: 768px) {
     /* 1. 让档案项从并排改为上下排列 */
@@ -882,6 +939,7 @@
         font-size: 1.4rem; /* 稍微缩小标题，防止长名字溢出 */
     }
 }
+
     </style>
 </head>
 
