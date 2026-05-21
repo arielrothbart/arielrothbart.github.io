@@ -394,7 +394,7 @@
 
         .name-link {
             display: block;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(241, 255, 255, 0.59);
             text-decoration: none;
             padding: 8px 20px;
             font-size: 13px;
@@ -405,6 +405,22 @@
             color: var(--accent-color);
             padding-left: 25px;
             background: rgba(255, 180, 100, 0.05);
+        }
+        /* 1. 精准抓取带 -- 的分隔栏：字体变小、颜色变暗、拉开上方间距 */
+        .name-link[href^="#——"] {
+            font-size: 10px !important;
+            color: rgba(255, 255, 255, 0.2) !important; /* 降低透明度至 0.2，使其退居背景 */
+            letter-spacing: 1px;
+            padding-top: 16px !important;  /* 增加顶部间距，和上方人名错开 */
+            padding-bottom: 4px !important;
+            background: transparent !important;
+        }
+
+        /* 2. 锁定分隔栏：鼠标悬浮时不文字右移、不出现背景高亮 */
+        .name-link[href^="#——"]:hover {
+            color: rgba(255, 255, 255, 0.3) !important; /* 悬浮时仅微亮 */
+            padding-left: 20px !important; /* 保持原始的 20px 缩进，不触发向右滑动 */
+            background: transparent !important;
         }
 
         /* --- 主内容区 --- */
