@@ -918,18 +918,7 @@
     display: none !important;
 }
 
-/* 3. 把原本靠右的 char-info 纠正为独立的、居中的全宽文本块 */
-.profile-card:has(.data-grid:empty) .char-info,
-.profile-card:not(:has(.data-item)) .char-info {
-    width: auto !important;             /* 随文字长度自适应 */
-    max-width: 100% !important;
-    float: none !important;             /* 拔掉可能存在的左浮动或右浮动 */
-    display: block !important;
-    text-align: center !important;      /* 文字内部居中 */
-    padding: 0 !important;
-    margin: 0 auto !important;          /* 自身在父级中居中 */
-    position: relative !important;      /* 为左右两边的延伸装饰线提供定位基准 */
-}
+
 
 /* 4. 格式化第一行：中文标题 */
 .profile-card:has(.data-grid:empty) .char-info h2,
@@ -948,20 +937,21 @@
     opacity: 0.9 !important;
 }
 
-/* 5. 第二行英文：紧密贴合在中文下方 */
+/* 5. 第二行英文：让空卡片去抓它上方紧挨着的那个 intro-block 的 id */
 .profile-card:has(.data-grid:empty) .char-info h2::after,
 .profile-card:not(:has(.data-item)) .char-info h2::after {
-    content: "OCASO DISTRICT · CYBER RAGRANT" !important;
+    /* 核心魔法：直接读取 JS 传给 h2 的 data-en 属性 */
+    content: attr(data-en) !important;
     display: block !important;
     text-align: center !important;
-    margin-top: 6px !important;         /* 精确控制中英文之间挨近的精致间距 */
+    margin-top: 6px !important;         /* 中英文贴合间距 */
     
     /* 辅助英文样式 */
     font-size: 9px !important;
-    letter-spacing: 6px !important;     /* 极度拉伸的高级冷峻字距 */
-    opacity: 0.8 !important;
+    letter-spacing: 6px !important;     /* 霓虹冷峻拉伸字距 */
+    opacity: 0.9 !important;
     color: var(--accent-color) !important;
-    
+    text-transform: uppercase !important; /* 强制大写 */
 }
 
 /* 6. 装饰线：在文字左侧拉出一条向左淡出的霓虹光束线 */
@@ -976,7 +966,7 @@
     width: 120px !important;            /* 线条长度 */
     height: 1px !important;
     background: linear-gradient(90deg, transparent, var(--accent-color)) !important; /* 向左淡出 */
-    opacity: 0.9 !important;
+    opacity: 0.6 !important;
 }
 
 /* 7. 装饰线：在文字右侧拉出一条向右淡出的霓虹光束线 */
@@ -1167,9 +1157,9 @@ function applyHighlights(text) {
                                 <div class="char-thumb-box" onclick="openFull(${imgsJson}, 0)">
                                     <img src="${member.img}" loading="lazy">
                                 </div>
-                                <div class="char-info">
-                                    <h2>${member.name}</h2>
-                                    <div class="data-grid">${dataGrid}</div>
+                               <div class="char-info">
+    <h2 data-en="${member.id}">${member.name}</h2>
+    <div class="data-grid">${dataGrid}</div>
                                  <details class="char-desc">
     <summary>ARCHIVE DESCRIPTION</summary>
 
