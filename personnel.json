@@ -92,6 +92,44 @@
   "data": {},
   "desc": ""
 },
+{
+                "id": "Osvaldo",
+                "name": "Osvaldo Jiménes  <br>奥斯瓦尔多 希门内斯",
+                "img": "images/pfiles/os.jpg",
+                "data": {
+                    "AFFILIATION": "卯区|Ocaso District",
+                    "CODE": "皇帝|The Emperor",
+                    "IDENTITY": "马德里亚王廷 国王<br>*希门内斯军工*最高总长|King of Madria<br>Director-General of *Jiménes Arsenal*",
+                    "AUGMENT": "全身机械义体|Full-body Mechanical Prosthetic "
+                    
+                },
+                "desc": "奥斯瓦尔多 希门内斯是马德里亚王廷的现任国王，也是希门内斯军工和卢梭科技的实际掌权者。他用冷静、克制，近乎严苛的理性掌控着王室与商业帝国的运转。也被公众视为危险强硬的皇帝，厌恶他的人私下称他为暴君。<br>高度义体化后，他的外表停留于四十岁前后。从十七岁继位起，他便习惯于将自己的义体当做商品宣传。也学会了怎样为王权微笑。<br><br>这世界上唯一能获得奥斯信任的人寥寥无几。也只有少之又少的人知道，这位「暴君」既非冷酷无情，更非无所畏惧。他最大的恐惧正是伴随真情而来的代价。|Osvaldo Jiménes is the reigning King of Madria, holding absolute authority over both Jiménes Arsenal and Russo Tech. He commands the royal court and his corporate empire with a chillingly composed, restrained, and almost draconian rationality. To the public, he is a dangerous and hardline figure known as The Emperor; to his detractors whispering in the shadows, he is simply the Tyrant.<br>Highly cyberized, his physical appearance is frozen around the age of forty. Thrust onto the throne at seventeen, he has long accustomed himself to treating his own cybernetic body as a walking advertisement for his military-industrial products. Along the way, he has also learned exactly how to smile for the sake of the crown.<br><br>Those who have earned Osvaldo's true trust are exceedingly rare. Fewer still know that this 「Tyrant」 is neither entirely cold-blooded nor completely fearless. His greatest fear is, in fact, the devastating price that comes with genuine affection.",
+                "more_imgs": [
+                    "images/pfiles/os01.jpg",
+                    "images/pfiles/os02.jpg",
+                    "images/pfiles/os03.jpg",
+                    "images/pfiles/os04.jpg"
+            
+                                    ]
+            },
+           {
+                "id": "Antonio",
+                "name": "Antonio Jiménes  <br>安东尼奥 希门内斯",
+                "img": "images/pfiles/anto.jpg",
+                "data": {
+                    "AFFILIATION": "卯区|Ocaso District",
+                    "CODE": "亲王|El príncipe",
+                    "IDENTITY": "马德里亚王储<br>灯火通讯社创始人*|Prince of Madria<br>Founding Publisher of The Lucerna Press",
+                    "AUGMENT": "全身机械义体|Full-body Mechanical Prosthetic "
+                    
+                },
+                "desc": "安东尼奥是马德里亚的亲王，作为顺位第一的继承人，也是欧洲半岛最具争议性的公众人物之一。金发，墨绿色的眼睛，右边的额头上有不规则的岛型烫伤，即便在义体上也保留了这个伤痕。<br>他在二十岁便拥有了第一间自己的新闻社。即便作为政治犯流亡法国时，他仍笔耕不辍。辛辣的社评借由各种笔名发表，即便不认识安东尼奥亲王，人们也一定看过1797LC的文章，而这只是他的众多笔名之一。<br><br>安东尼奥和长兄奥斯瓦尔多一样深谙政治手腕，却更愿意走入人群之中。他非常敬重奥斯，很长一段时间，两人是对方唯一信任的对象。<br>在流亡法国期间，他爱上了纯粹而美丽的艺术家洛伦佐，花花公子从此变得死心塌地起来。<br><br>AT 53年安东尼奥入狱服刑，AT 64年传来了他死于狱中暴乱的消息。|Prince Antonio of Madria, first in line to the throne, remains one of the most controversial public figures on the European Peninsula. He has blond hair, dark green eyes, and an irregular, island-shaped burn scar on his right temple—a distinct mark he deliberately chose to retain even on his cybernetic body.<br>He founded his first news agency at the age of twenty. Even while exiled in France as a political dissident, his pen never rested. His scathing social editorials were published under an array of pseudonyms. One might not recognize Prince Antonio, but they have undoubtedly read the sharp critiques of 「1797LC」—merely one of his many aliases.<br><br>Though just as adept at political maneuvering as his elder brother Osvaldo, Antonio prefers to immerse himself among the masses. He harbors profound respect for Osvaldo; for the longest time, the brothers were each other's sole confidants.<br>It was during his French exile that he fell deeply for the pure, captivating artist, Lorenzo. From that moment, the notorious playboy became fiercely devoted.<br><br>In AT 53, Antonio was incarcerated. Eleven years later, in AT 64, word spread that he had perished in a prison riot.",
+                "more_imgs": [
+                    "images/pfiles/anto01.jpg",
+                    "images/pfiles/anto02.jpg",
+                    "images/pfiles/anto03.jpg"
+                                    ]
+            },
  {
                 "id": "Lorenzo D.L.",
                 "name": "Lorenzo D. Ludovisi<br>洛伦佐 杜兰特 路德维希",
