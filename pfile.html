@@ -1069,9 +1069,7 @@ function applyHighlights(text) {
                     title.className = 'faction-title';
                     title.innerHTML = `<span>${factionName}</span>`;
                     title.onclick = () => {
-                        document.getElementById(fId).scrollIntoView({ behavior: 'smooth' });
                         group.classList.toggle('collapsed');
-                        if (window.innerWidth <= 768) directory.classList.remove('active');
                     };
 
                     const linksContainer = document.createElement('div');
