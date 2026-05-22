@@ -94,7 +94,7 @@
 },
 {
                 "id": "Osvaldo",
-                "name": "Osvaldo Jiménes  <br>奥斯瓦尔多 希门内斯",
+                "name": "Osvaldo Jiménez  <br>奥斯瓦尔多 希门内斯",
                 "img": "images/pfiles/os.jpg",
                 "data": {
                     "AFFILIATION": "卯区|Ocaso District",
@@ -103,7 +103,7 @@
                     "AUGMENT": "全身机械义体|Full-body Mechanical Prosthetic "
                     
                 },
-                "desc": "奥斯瓦尔多 希门内斯是马德里亚王廷的现任国王，也是希门内斯军工和卢梭科技的实际掌权者。他用冷静、克制，近乎严苛的理性掌控着王室与商业帝国的运转。也被公众视为危险强硬的皇帝，厌恶他的人私下称他为暴君。<br>高度义体化后，他的外表停留于四十岁前后。从十七岁继位起，他便习惯于将自己的义体当做商品宣传。也学会了怎样为王权微笑。<br><br>这世界上唯一能获得奥斯信任的人寥寥无几。也只有少之又少的人知道，这位「暴君」既非冷酷无情，更非无所畏惧。他最大的恐惧正是伴随真情而来的代价。|Osvaldo Jiménes is the reigning King of Madria, holding absolute authority over both Jiménes Arsenal and Russo Tech. He commands the royal court and his corporate empire with a chillingly composed, restrained, and almost draconian rationality. To the public, he is a dangerous and hardline figure known as The Emperor; to his detractors whispering in the shadows, he is simply the Tyrant.<br>Highly cyberized, his physical appearance is frozen around the age of forty. Thrust onto the throne at seventeen, he has long accustomed himself to treating his own cybernetic body as a walking advertisement for his military-industrial products. Along the way, he has also learned exactly how to smile for the sake of the crown.<br><br>Those who have earned Osvaldo's true trust are exceedingly rare. Fewer still know that this 「Tyrant」 is neither entirely cold-blooded nor completely fearless. His greatest fear is, in fact, the devastating price that comes with genuine affection.",
+                "desc": "奥斯瓦尔多 希门内斯是马德里亚王廷的现任国王，也是希门内斯军工和卢梭科技的实际掌权者。他用冷静、克制，近乎严苛的理性掌控着王室与商业帝国的运转。也被公众视为危险强硬的皇帝，厌恶他的人私下称他为暴君。<br>高度义体化后，他的外表停留于四十岁前后。从十七岁继位起，他便习惯于将自己的义体当做商品宣传。也学会了怎样为王权微笑。<br><br>这世界上唯一能获得奥斯信任的人寥寥无几。也只有少之又少的人知道，这位「暴君」既非冷酷无情，更非无所畏惧。他最大的恐惧正是伴随真情而来的代价。|Osvaldo Jiménez is the reigning King of Madria, holding absolute authority over both Jiménez Arsenal and Russo Tech. He commands the royal court and his corporate empire with a chillingly composed, restrained, and almost draconian rationality. To the public, he is a dangerous and hardline figure known as The Emperor; to his detractors whispering in the shadows, he is simply the Tyrant.<br>Highly cyberized, his physical appearance is frozen around the age of forty. Thrust onto the throne at seventeen, he has long accustomed himself to treating his own cybernetic body as a walking advertisement for his military-industrial products. Along the way, he has also learned exactly how to smile for the sake of the crown.<br><br>Those who have earned Osvaldo's true trust are exceedingly rare. Fewer still know that this 「Tyrant」 is neither entirely cold-blooded nor completely fearless. His greatest fear is, in fact, the devastating price that comes with genuine affection.",
                 "more_imgs": [
                     "images/pfiles/os01.jpg",
                     "images/pfiles/os02.jpg",
@@ -114,12 +114,12 @@
             },
            {
                 "id": "Antonio",
-                "name": "Antonio Jiménes  <br>安东尼奥 希门内斯",
+                "name": "Antonio Jiménez  <br>安东尼奥 希门内斯",
                 "img": "images/pfiles/anto.jpg",
                 "data": {
                     "AFFILIATION": "卯区|Ocaso District",
                     "CODE": "亲王|El príncipe",
-                    "IDENTITY": "马德里亚王储<br>灯火通讯社创始人*|Prince of Madria<br>Founding Publisher of The Lucerna Press",
+                    "IDENTITY": "马德里亚王储<br>*灯火通讯社创始人*|Prince of Madria<br>Founding Publisher of *The Lucerna Press*",
                     "AUGMENT": "全身机械义体|Full-body Mechanical Prosthetic "
                     
                 },
