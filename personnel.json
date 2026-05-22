@@ -119,7 +119,7 @@
                 "data": {
                     "AFFILIATION": "卯区|Ocaso District",
                     "CODE": "亲王|El príncipe",
-                    "IDENTITY": "马德里亚王储<br>*灯火通讯社创始人*|Prince of Madria<br>Founding Publisher of *The Lucerna Press",
+                    "IDENTITY": "马德里亚王储<br>*灯火通讯社创始人*|Prince of Madria<br>Founding Publisher of *The Lucerna Press*",
                     "AUGMENT": "全身机械义体|Full-body Mechanical Prosthetic "
                     
                 },
@@ -127,11 +127,12 @@
                 "more_imgs": [
                     "images/pfiles/anto01.jpg",
                     "images/pfiles/anto02.jpg",
-                    "images/pfiles/anto03.jpg"
+                    "images/pfiles/anto03.jpg",
+                    "images/pfiles/anto04.jpg"
                                     ]
             },
  {
-                "id": "Lorenzo D.L.",
+                "id": "Lorenzo",
                 "name": "Lorenzo D. Ludovisi<br>洛伦佐 杜兰特 路德维希",
                 "img": "images/pfiles/lorenzo.jpg",
                 "data": {
