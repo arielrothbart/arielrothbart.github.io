@@ -448,7 +448,40 @@
             display: none !important;
         }
         /* ======================================================== */
-
+/* =========================================
+           移动端文字溢出终极修复 (直接加在最底部即可)
+           ========================================= */
+        @media (max-width: 768px) {
+            .data-grid { gap: 10px; }
+            .data-item { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 4px; 
+                padding: 10px 0; 
+                min-width: 0; 
+            }
+            .label { 
+                width: auto !important; 
+                margin-right: 0; 
+                font-size: 10px; 
+                opacity: 0.8; 
+                transform: scale(0.9); 
+                transform-origin: left; 
+            }
+            .data-value { 
+                width: 100%; 
+                min-width: 0; 
+                word-break: normal; 
+                overflow-wrap: break-word; 
+            }
+            .profile-card { 
+                padding: 15px !important; 
+                overflow: visible !important; 
+                margin-top: 20px; 
+                box-sizing: border-box; 
+            }
+            .char-info h2 { font-size: 1.4rem; }
+        }
     </style>
 </head>
 
