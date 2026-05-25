@@ -33,6 +33,7 @@
                 "id": "Kensuke",
                 "name": "Sukedachi Kensuke<br>助太刀 研介",
                 "img": "images/pfiles/ken.jpg",
+                "badge": "images/icons/shin_seal.webp",
                 "data": {
                     "AFFILIATION": "戌区黑市<br>菅原会 黑道组织|Ocaso District Black Market<br>Sugahara-Kai Yakuza ",
                     "IDENTITY": "雇佣杀手<br>菅原会-任侠联 舍弟头|Mercenary Assassin<br>Wakagashira of the *Sugahara-kai* Alliance",
@@ -70,6 +71,7 @@
  {
                 "id": "Shin Sugahara",
                 "name": "Sugahara Shin<br>菅原 真",
+                "badge": "images/icons/shin_seal.webp",
                 "img": "images/pfiles/shin.jpg",
                 "data": {
                     "AFFILIATION": "下城区黑帮家族|Ocaso Distrct · Yakuza",
@@ -95,6 +97,7 @@
 {
                 "id": "Osvaldo",
                 "name": "Osvaldo Jiménez  <br>奥斯瓦尔多 希门内斯",
+                 "badge": "images/icons/os_seal.webp",
                 "img": "images/pfiles/os.jpg",
                 "data": {
                     "AFFILIATION": "卯区|Ocaso District",
@@ -115,6 +118,7 @@
            {
                 "id": "Antonio",
                 "name": "Antonio Jiménez  <br>安东尼奥 希门内斯",
+                 "badge": "images/icons/anto_seal.webp",
                 "img": "images/pfiles/anto.jpg",
                 "data": {
                     "AFFILIATION": "卯区|Ocaso District",
@@ -134,13 +138,14 @@
  {
                 "id": "Lorenzo",
                 "name": "Lorenzo D. Ludovisi<br>洛伦佐 杜兰特 路德维希",
+                "badge": "images/icons/lo_seal.webp",
                 "img": "images/pfiles/lorenzo.jpg",
                 "data": {
                     "AFFILIATION": "戌区/卯区|Orto/Ocaso District",
                     "IDENTITY": "杜兰特美术馆馆长|Curator of Le Gallerie Degli Durante ",
                     "AUGMENT": "高仿生轻量级生化义体|Hyper-realistic Lightweight Biomimetic Prosthetic"
                 },
-                "desc": "以洛伦佐所经营的业务来看，他本应属于财阀一员。但意在让身处下城的人们也能观赏到艺术品，他将本馆开设在了岩鹨山（戌区）附近的中心地区。据他所说，为了观赏艺术品而乐意踏足地面的人，才值得看到他的收藏和画作。<br>意大利裔的馆长拥有清澈明亮的眼睛和非常贴近真人的生化义体构造。加之他优雅老派的生活习惯，很难让人想象他年前时的经历。洛伦佐虽然很早就进行了电子脑化，却直到53岁才开始运用义体。更换义体的原因更是匪夷所思，据传是因为原本的身体受到了难以挽回的损伤。<br><br>他的资料并未加密，但鲜有人猜到，年轻的洛伦佐曾经受到过黑手党家族的资助，从佛罗伦萨前往巴黎学习艺术品管理。在法国，他结识了安东尼奥 希门内斯亲王。两人的义体皆由希门内斯军事工业制造。且安东尼奥的义体在其入狱期间一直由他保管。<br>八神重英出狱后继承了安东的义体，正是洛伦佐资助了他的全部手术和义体改造。<br>虽然作为鉴定师和管理人活跃在艺术届，但洛伦佐从未停止创作。他的画作很少流入市场，所画的内容也非常随性。即便他经常拒绝bogator们的委托，洛伦佐在上城区的人缘依旧很好。也有人说这是拜他那张好看的脸所赐。| By business scale alone, Lorenzobelongs among the bogators. Yet, to bring art to the Lower District, he opened his gallery in the heart of the Orto District near Iwabari Yama. He believes only those willing to step onto the surface for art deserve to see his collection.<br>The Italian curator has clear, bright eyes and a cybernetic body remarkably close to real flesh. This elegant, old-school lifestyle makes his turbulent youth hard to imagine. Though cyberized early, Lorenzo didn’t adopt a full prosthetic body until age 53—following rumors of irreversible damage to his original flesh.<br><br>His files are unencrypted, yet few guess his past: sponsored by a Mafia family, a young Lorenzo moved from Florence to Paris to study art administration. There, he met Prince Antonio Jiménez. The cybernetic bodies of both men were crafted by Jiménez Arsenal; notably, during the Prince's imprisonment, Lorenzo had personally kept Antonio's prosthetic body in his safekeeping.<br>Upon Yagami Shigefusa's release, Lorenzo funded his entire surgical reconstruction and cybernetic overhaul.<br>Though active as an appraiser and curator, Lorenzo never stopped painting. His works rarely hit the market, born of pure spontaneity. Despite regularly snubbing bogators' commissions, his popularity in the Upper District remains unmatched. Some say it is simply thanks to his handsome face."
+                "desc": "以洛伦佐所经营的业务来看，他本应属于财阀一员。但意在让身处下城的人们也能观赏到艺术品，他将本馆开设在了岩鹨山（戌区）附近的中心地区。据他所说，为了观赏艺术品而乐意踏足地面的人，才值得看到他的收藏和画作。<br>意大利裔的馆长拥有清澈明亮的眼睛和非常贴近真人的生化义体构造。加之他优雅老派的生活习惯，很难让人想象他年前时的经历。洛伦佐虽然很早就进行了电子脑化，却直到53岁才开始运用义体。更换义体的原因更是匪夷所思，据传是因为原本的身体受到了难以挽回的损伤。<br><br>他的资料并未加密，但鲜有人猜到，年轻的洛伦佐曾经受到过黑手党家族的资助，从佛罗伦萨前往巴黎学习艺术品管理。在法国，他结识了安东尼奥 希门内斯 （Antonio Jiménez）亲王。两人的义体皆由希门内斯军事工业制造。且安东尼奥的义体在其入狱期间一直由他保管。<br>八神重英出狱后，（继承亲王的义体）正是洛伦佐资助了他的全部手术和义体改造。<br>虽然作为鉴定师和管理人活跃在艺术届，但洛伦佐从未停止创作。他的画作很少流入市场，所画的内容也非常随性。即便他经常拒绝bogator们的委托，洛伦佐在上城区的人缘依旧很好。也有人说这是拜他那张好看的脸所赐。| By business scale alone, Lorenzobelongs among the bogators. Yet, to bring art to the Lower District, he opened his gallery in the heart of the Orto District near Iwabari Yama. He believes only those willing to step onto the surface for art deserve to see his collection.<br>The Italian curator has clear, bright eyes and a cybernetic body remarkably close to real flesh. This elegant, old-school lifestyle makes his turbulent youth hard to imagine. Though cyberized early, Lorenzo didn’t adopt a full prosthetic body until age 53—following rumors of irreversible damage to his original flesh.<br><br>His files are unencrypted, yet few guess his past: sponsored by a Mafia family, a young Lorenzo moved from Florence to Paris to study art administration. There, he met Prince Antonio Jiménez. The cybernetic bodies of both men were crafted by Jiménez Arsenal; notably, during the Prince's imprisonment, Lorenzo had personally kept Antonio's prosthetic body in his safekeeping.<br>Upon Yagami Shigefusa's release, Lorenzo funded his entire surgical reconstruction and cybernetic overhaul.<br>Though active as an appraiser and curator, Lorenzo never stopped painting. His works rarely hit the market, born of pure spontaneity. Despite regularly snubbing bogators' commissions, his popularity in the Upper District remains unmatched. Some say it is simply thanks to his handsome face."
              , "more_imgs": [
                     "images/pfiles/lo01.jpg"        
                 ]
@@ -171,6 +176,7 @@
             {
                 "id": "Captain LOS",
                 "name": "Captain Los<br>洛斯船长",
+                "badge": "images/icons/cap_seal.webp",
                 "img": "images/pfiles/ariel.jpg",
                 "data": {
                     "ORIGIN": "鴱黎尔 *洛特巴德*|Ariel *Rothbart*",
@@ -181,7 +187,8 @@
           , "more_imgs": [
                     "images/pfiles/ariel01.jpg",
                     "images/pfiles/ariel02.jpg",
-                    "images/pfiles/ariel03.jpg"          
+                    "images/pfiles/ariel03.jpg",
+                    "images/pfiles/ariel04.png"            
                 ]
             },
             {
