@@ -257,7 +257,27 @@
         }
 
         main { flex: 1; overflow-y: auto; scroll-behavior: smooth; padding: 60px; }
-        @media (max-width: 768px) { main { padding: 80px 20px 40px 20px; } }
+      
+            /* 侧边栏底部版权说明 */
+        .sidebar-copyright {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.8;
+            letter-spacing: 1px;
+            font-family: 'Vladivostok', sans-serif;
+        }
+        .sidebar-copyright .cn-text {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: rgba(0, 242, 255, 0.5); /* 用暗一点的主题蓝强调名字 */
+            display: block;
+            margin-top: 10px;
+        }
+        
+          @media (max-width: 768px) { main { padding: 80px 20px 40px 20px; } }
 
         .faction-intro-block {
             max-width: 900px; margin: 40px auto 60px auto; border-left: 2px solid var(--accent-color);
@@ -667,11 +687,18 @@
                     group.appendChild(title);
                     group.appendChild(linksContainer);
                     dirFragment.appendChild(group);
-                }
+                                }
+
+                // --- 新增：侧边栏底部的版权与世界观说明 ---
+                const copyDiv = document.createElement('div');
+                copyDiv.className = 'sidebar-copyright';
+                // 下面用的是选项A的文案，您可以随时修改文字
+                copyDiv.innerHTML = `> SYS.TXT: ORIGINAL CHARACTERS<br>> PROJECT // RHAPSODY IN NEON<br>> © ALL RIGHTS RESERVED.<span class="cn-text">角色设定与编绘：Ariel Rothbart</span>`;
+                dirFragment.appendChild(copyDiv);
+                // ----------------------------------------
 
                 main.appendChild(mainFragment);
                 directory.appendChild(dirFragment);
-
             } catch (e) { console.error("Data error:", e); }
         }
 
