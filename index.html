@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-  
+<html lang="zh-CN">
+
 <head>
+  <meta charset="UTF-8">
   <title>Captain Ariel ✦ Rhapsody</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
   
   <meta property="og:title" content="Captain Ariel | Visual Narratives">
-<meta property="og:description" content="Art, design and fragments of a drifting world">
-<meta property="og:image" content="https://captainariel.art/preview.jpg">
-<meta property="og:url" content="https://captainariel.art">
-<meta property="og:type" content="website">
+  <meta property="og:description" content="Art, design and fragments of a drifting world">
+  <meta property="og:image" content="https://captainariel.art/preview.jpg">
+  <meta property="og:url" content="https://captainariel.art">
+  <meta property="og:type" content="website">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
   <style>
-@font-face {
-  font-family: 'VladBold';
-  src: url('./fonts/Vladivostok-Bold.woff2') format('woff2'),
-       url('./fonts/Vladivostok-Bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+    @font-face {
+      font-family: 'VladBold';
+      src: url('./fonts/Vladivostok-Bold.woff2') format('woff2'),
+           url('./fonts/Vladivostok-Bold.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
     body {
       margin: 0;
       background: black;
@@ -79,19 +81,19 @@
     }
 
     .title {
-  position: absolute;
-  top: 80px;
-  right: 120px;
-  text-align: right;
-font-family: 'Poiret One', sans-serif;
-  font-weight: 400;
-  letter-spacing: 6px;
+      position: absolute;
+      top: 80px;
+      right: 120px;
+      text-align: right;
+      font-family: 'Poiret One', sans-serif;
+      font-weight: 400;
+      letter-spacing: 6px;
 
-  opacity: 0;
-  transform: translateY(-40px); /* ⭐关键这一行 */
+      opacity: 0;
+      transform: translateY(-40px);
 
-  animation: fadeIn 2.5s ease forwards;
-}
+      animation: fadeIn 2.5s ease forwards;
+    }
 
     .title h1 {
       margin: 0;
@@ -105,34 +107,33 @@ font-family: 'Poiret One', sans-serif;
     }
 
     .nav {
-  position: absolute;
-  top: 200px;          /* 稍微往下，呼吸感更好 */
-  right: 140px;        /* 稍微往左一点，避免贴边 */
+      position: absolute;
+      top: 200px;          
+      right: 140px;        
 
-  text-align: right;
-  font-size: 18px;     /* ⭐ 放大字体 */
-  letter-spacing: 3px; /* ⭐ 更有设计感 */
-  line-height: 1.8;    /* ⭐ 拉开行距 */
-  
- font-family: 'Playfair Display', serif;
-  text-shadow: 0 0 6px rgba(255,255,255,0.15);
+      text-align: right;
+      font-size: 18px;     
+      letter-spacing: 3px; 
+      line-height: 1.8;    
       
-}
+      font-family: 'Playfair Display', serif;
+      text-shadow: 0 0 6px rgba(255,255,255,0.15);
+    }
 
     @keyframes softBoot {
       0% { opacity: 0.2; }
       100% { opacity: 1; }
     }
 
-.nav a {
-  display: block;
-  opacity: 0.25;
+    .nav a {
+      display: block;
+      opacity: 0.25;
 
-  margin: 6px 0;
-  transition: 0.3s;
+      margin: 6px 0;
+      transition: 0.3s;
 
-  text-shadow: 0 0 4px rgba(0,0,0,0.6);  /* ⭐关键 */
-}
+      text-shadow: 0 0 4px rgba(0,0,0,0.6);  
+    }
 
     .nav a:nth-child(1) { animation: softBoot 1.2s forwards 0.6s; }
     .nav a:nth-child(2) { animation: softBoot 1.2s forwards 0.2s; }
@@ -141,26 +142,26 @@ font-family: 'Poiret One', sans-serif;
     .nav a:nth-child(5) { animation: softBoot 1.2s forwards 1.2s; }
     .nav a:nth-child(6) { animation: softBoot 1.2s forwards 0.8s; }
 
-  .nav a:hover {
-  opacity: 1;
-  letter-spacing: 5px;   /* ⭐ hover 更明显一点 */
-  transform: translateX(-4px); /* ⭐ 微微滑动，很有质感 */
-}
+    .nav a:hover {
+      opacity: 1;
+      letter-spacing: 5px;   
+      transform: translateX(-4px); 
+    }
 
     .logo {
       margin-top: 20px;
     }
 
-  .logo img {
-  width: 60px;       /* ⭐ 放大 */
-  opacity: 0.8;
-  transition: 0.3s;
-}
+    .logo img {
+      width: 60px;       
+      opacity: 0.8;
+      transition: 0.3s;
+    }
 
-  .logo img:hover {
-  opacity: 1;
-  transform: scale(1.15);
-}
+    .logo img:hover {
+      opacity: 1;
+      transform: scale(1.15);
+    }
 
     @keyframes fadeIn {
       to {
@@ -172,60 +173,60 @@ font-family: 'Poiret One', sans-serif;
     /* ========================= */
     /* ⭐ 主光流 */
     /* ========================= */
-.beam {
-  width: 2px;
-  height: 180px; /* ⭐拉长 */
+    .beam {
+      width: 2px;
+      height: 180px; 
 
-  margin: -60px auto 0; /* ⭐关键：往上拉 */
+      margin: -60px auto 0; 
 
-  background: linear-gradient(
-    to bottom,
-    rgba(0,200,255,0),
-    rgba(0,200,255,1),
-    rgba(0,200,255,0)
-  );
+      background: linear-gradient(
+        to bottom,
+        rgba(0,200,255,0),
+        rgba(0,200,255,1),
+        rgba(0,200,255,0)
+      );
 
-  box-shadow: 0 0 16px rgba(0,200,255,1);
+      box-shadow: 0 0 16px rgba(0,200,255,1);
 
-  animation: flow 2.5s infinite;
-}
-.beam::before {
-  content: "";
- position: relative; 
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00c8ff;
-  box-shadow: 0 0 12px #00c8ff;
-}
+      animation: flow 2.5s infinite;
+    }
+    .beam::before {
+      content: "";
+      position: relative; 
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00c8ff;
+      box-shadow: 0 0 12px #00c8ff;
+    }
     .energy-dot {
-  position: absolute;
-  bottom: 00px;     /* 控制高度，想往上就改这个 */
-  left: 50%;
-  transform: translateX(-50%);
+      position: absolute;
+      bottom: 00px;     
+      left: 50%;
+      transform: translateX(-50%);
 
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
 
-  background: #00c8ff;
+      background: #00c8ff;
 
-  box-shadow:
-    0 0 6px #00c8ff,
-    0 0 14px #00c8ff,
-    0 0 28px rgba(0,200,255,0.8);
+      box-shadow:
+        0 0 6px #00c8ff,
+        0 0 14px #00c8ff,
+        0 0 28px rgba(0,200,255,0.8);
 
-  animation: dotPulse 2.5s infinite ease-in-out;
-}
+      animation: dotPulse 2.5s infinite ease-in-out;
+    }
 
-@keyframes dotPulse {
-  0%   { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
-  50%  { opacity: 1;   transform: translateX(-50%) scale(1.2); }
-  100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
-}
+    @keyframes dotPulse {
+      0%   { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
+      50%  { opacity: 1;   transform: translateX(-50%) scale(1.2); }
+      100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
+    }
     /* ========================= */
     /* ⭐ PROJECT */
     /* ========================= */
@@ -251,11 +252,11 @@ font-family: 'Poiret One', sans-serif;
 
     .project-card:hover img {
       transform: scale(1.08);
-     filter: brightness(1.1) contrast(1.1);
+      filter: brightness(1.1) contrast(1.1);
     }
 
     .project-title {
-     display: none;
+      display: none;
       position: absolute;
       bottom: 20px;
       left: 20px;
@@ -272,230 +273,268 @@ font-family: 'Poiret One', sans-serif;
     .projects:hover .beam {
       box-shadow: 0 0 22px #00c8ff;
     }
-.lounge-entry{
-  width:220px;
-  height:90px;
+    .lounge-entry{
+      width:220px;
+      height:90px;
 
-  margin:35px auto 120px;  /* 👈 控制上下间距 */
-
-  position:relative;
-  cursor:pointer;
-}
-.lounge-wrapper{
-  display:flex;
-  justify-content:center;
-}
-/* 两层 */
-.chip{
-  top:45px;  
-  position:absolute;
-  width:100%;
-  padding:12px 0;
-
-  text-align:center;
-  font-size:13px;
-  letter-spacing:2px;
-
-  border:1px solid rgba(255,255,255,0.2);
-  background:rgba(255,255,255,0.02);
-
-  transition:0.3s ease;
-}
-
-/* 上层 */
-.chip.top{
-  top:0;
-  left:0;
-  z-index:2;
-}
-
-/* 下层 */
-.chip.bottom{
-  top:6px;
-  left:6px;
-  opacity:0.4;
-}
-
-/* hover 错位 */
-.lounge-entry:hover .top{
-  transform:translate(4px,4px);
-}
-
-.lounge-entry:hover .bottom{
-  transform:translate(-4px,-4px);
-  opacity:0.8;
-}
-
-/* hover 发光 */
-.lounge-entry:hover .chip{
-  border-color:#00c8ff;
-  box-shadow:0 0 10px rgba(0,200,255,0.6);
-}
-/* 点击瞬间：整体轻微按下 */
-.lounge-entry{
-  transition: transform 0.15s ease;
-}
-/* 点击时：发光更强 */
-.lounge-entry:active .chip{
-  border-color:#00c8ff;
-  box-shadow:
-    0 0 8px rgba(0,200,255,0.8),
-    0 0 20px rgba(0,200,255,0.6);
-}
-.lounge-entry:active{
-  transform: scale(0.97);
-}
-    /* 咖啡：轮廓发光（不是方块） */
-.lounge-entry:hover .coffee-icon img{
-  filter: drop-shadow(0 0 6px rgba(0,200,255,0.6));
-}
-
-.lounge-entry:active .coffee-icon img{
-  filter: drop-shadow(0 0 10px rgba(0,200,255,0.9));
-}
-    
-  @media (max-width: 768px) {
-
-    .hero {
-        height: auto;
-      }
-
-      video {
-        height: auto;
-      }
-
-      .title {
-        position: static;
-        text-align: center;
-        margin-top: 20px;
-      }
-
-      .nav {
-        position: static;
-        text-align: center;
-        margin-top: 20px;
-      }
-
-      .nav a {
-        display: inline-block;
-        margin: 8px;
-      }
-
-      .projects {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-      }
-
-      .project-card {
-        width: 70%;
-      }
-
-      .project-title {
-        opacity: 1;
-      }
-    .lounge-entry:hover .coffee-icon{
-  opacity:1;
-  transform:translateX(-50%) scale(1.05);
-}
+      margin:35px auto 120px;  
+      position:relative;
+      cursor:pointer;
     }
-/* 整体位置 */
-.coffee-icon{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
+    .lounge-wrapper{
+      display:flex;
+      justify-content:center;
+    }
+    /* 两层 */
+    .chip{
+      top:45px;  
+      position:absolute;
+      width:100%;
+      padding:12px 0;
 
-  top:-60px;   /* 👈 往上“抬”到红框位置 */
+      text-align:center;
+      font-size:13px;
+      letter-spacing:2px;
 
-  width:60px;
-  height:60px;
+      border:1px solid rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.02);
 
-  opacity:0.6;
-  pointer-events:none;
-}
+      transition:0.3s ease;
+    }
+
+    /* 上层 */
+    .chip.top {
+      top:0;
+      left:0;
+      z-index:2;
+    }
+
+    /* 下层 */
+    .chip.bottom{
+      top:6px;
+      left:6px;
+      opacity:0.4;
+    }
+
+    /* hover 错位 */
+    .lounge-entry:hover .top{
+      transform:translate(4px,4px);
+    }
+
+    .lounge-entry:hover .bottom{
+      transform:translate(-4px,-4px);
+      opacity:0.8;
+    }
+
+    /* hover 发光 */
+    .lounge-entry:hover .chip{
+      border-color:#00c8ff;
+      box-shadow:0 0 10px rgba(0,200,255,0.6);
+    }
+    /* 点击瞬间：整体轻微按下 */
+    .lounge-entry{
+      transition: transform 0.15s ease;
+    }
+    /* 点击时：发光更强 */
+    .lounge-entry:active .chip{
+      border-color:#00c8ff;
+      box-shadow:
+        0 0 8px rgba(0,200,255,0.8),
+        0 0 20px rgba(0,200,255,0.6);
+    }
+    .lounge-entry:active{
+      transform: scale(0.97);
+    }
+    /* 咖啡：轮廓发光（不是方块） */
+    .lounge-entry:hover .coffee-icon img{
+      filter: drop-shadow(0 0 6px rgba(0,200,255,0.6));
+    }
+
+    .lounge-entry:active .coffee-icon img{
+      filter: drop-shadow(0 0 10px rgba(0,200,255,0.9));
+    }
+    
+    @media (max-width: 768px) {
+
+      .hero {
+          height: auto;
+        }
+
+        video {
+          height: auto;
+        }
+
+        .title {
+          position: static;
+          text-align: center;
+          margin-top: 20px;
+        }
+
+        .nav {
+          position: static;
+          text-align: center;
+          margin-top: 20px;
+        }
+
+        .nav a {
+          display: inline-block;
+          margin: 8px;
+        }
+
+        .projects {
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+        }
+
+        .project-card {
+          width: 70%;
+        }
+
+        .project-title {
+          opacity: 1;
+        }
+      .lounge-entry:hover .coffee-icon{
+        opacity:1;
+        transform:translateX(-50%) scale(1.05);
+      }
+    }
+    /* 整体位置 */
+    .coffee-icon{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+
+      top:-60px;   
+
+      width:60px;
+      height:60px;
+
+      opacity:0.6;
+      pointer-events:none;
+    }
     .coffee-icon img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
 
+    /* hover 联动 */
+    .lounge-entry:hover .coffee-icon{
+      opacity:1;
+    }
 
-/* hover 联动 */
-.lounge-entry:hover .coffee-icon{
-  opacity:1;
-}
+    /* 极简指引样式 */
+    .simple-guide {
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      pointer-events: none;
+    }
 
-/* 极简指引样式 */
-.simple-guide {
-  display: flex;
-  flex-direction: column; /* 让线和字竖着排，正好在两张海报中间 */
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  pointer-events: none;
-}
+    .simple-guide span {
+      font-family: 'Poiret One', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #00c8ff;
+      opacity: 0.5;
+      white-space: nowrap;
+      writing-mode: vertical-lr; 
+    }
 
-.simple-guide span {
-  font-family: 'Poiret One', sans-serif;
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: #00c8ff;
-  opacity: 0.5;
-  white-space: nowrap;
-  /* 竖排文字如果是横着的，可以加这个： */
-  writing-mode: vertical-lr; 
-}
+    .guide-line {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, #00c8ff, transparent);
+      box-shadow: 0 0 8px rgba(0,200,255,0.5);
+    }
 
-.guide-line {
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent, #00c8ff, transparent);
-  box-shadow: 0 0 8px rgba(0,200,255,0.5);
-}
+    /* P5P 特殊入口样式 */
+    .p5p-entry {
+        filter: grayscale(0.8) contrast(1.2); 
+        transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+    }
 
-/* P5P 特殊入口样式 */
-.p5p-entry {
-    filter: grayscale(0.8) contrast(1.2); /* 初始状态黑白感，暗示是旧档案 */
-    transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-}
+    .p5p-entry:hover {
+        filter: grayscale(0) brightness(1.1); 
+    }
 
-.p5p-entry:hover {
-    filter: grayscale(0) brightness(1.1); /* 移入时恢复色彩 */
-}
+    .p5p-entry::before {
+        content: "COOPERATIVE WORK";
+        position: absolute;
+        top: -20px;
+        left: 0;
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #ff4444; 
+        opacity: 0;
+        transition: 0.5s;
+    }
 
-.p5p-entry::before {
-    content: "COOPERATIVE WORK";
-    position: absolute;
-    top: -20px;
-    left: 0;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #ff4444; /* 给同人企划一点警示色，更有P5的感觉 */
-    opacity: 0;
-    transition: 0.5s;
-}
+    .p5p-entry:hover::before {
+        opacity: 0.7;
+        transform: translateY(10px);
+    }
 
-.p5p-entry:hover::before {
-    opacity: 0.7;
-    transform: translateY(10px);
-}
+    /* 手机端适配：海报变上下排时，指引也变横向 */
+    @media (max-width: 768px) {
+      .simple-guide {
+        flex-direction: row;
+        width: 100%;
+        margin: 20px 0;
+      }
+      .simple-guide span {
+        writing-mode: horizontal-tb;
+      }
+      .guide-line {
+        width: 50px;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #00c8ff, transparent);
+      }
+    }
 
-/* 手机端适配：海报变上下排时，指引也变横向 */
-@media (max-width: 768px) {
-  .simple-guide {
-    flex-direction: row;
-    width: 100%;
-    margin: 20px 0;
-  }
-  .simple-guide span {
-    writing-mode: horizontal-tb;
-  }
-  .guide-line {
-    width: 50px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #00c8ff, transparent);
-  }
-}
+    /* ========================================================
+       ⭐ 新增：Personnel Files 专属悬停左侧双行副注文案
+       ======================================================== */
+    .nav a[href="pfile.html"] {
+        position: relative; /* 为伪元素提供定位基准，不改变物理大小 */
+    }
+
+    .nav a[href="pfile.html"]::before {
+        content: "Characters\A Worldbuilding"; /* \A 是 CSS 中的换行符 */
+        position: absolute;
+        right: calc(100% + 18px); /* 精确落在 Personnel Files 文字左侧并留出空隙 */
+        top: 50%;
+        transform: translateY(-50%); /* 确保纵向绝对居中 */
+        
+        /* 辅助小字样式设计 */
+        font-family: 'Inter', sans-serif; /* 使用更小巧方正的现代无衬线体做细节支撑 */
+        font-size: 10px;
+        line-height: 1.3;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.35); /* 偏暗、退居次要层级的冷白调 */
+        text-align: right;
+        white-space: pre; /* 关键：告知浏览器识别 \A 符号进行换行 */
+        
+        /* 动态控制 */
+        opacity: 0;
+        transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        pointer-events: none; /* 鼠标穿透，防止干扰正常的点击区域 */
+    }
+
+    /* 鼠标移入整个链接时，小字亮起 */
+    .nav a[href="pfile.html"]:hover::before {
+        opacity: 1;
+    }
+
+    /* 响应式保护：当手机端导航栏变为横向 Inline 块时，强行关闭此特效，防止排版挤压崩溃 */
+    @media (max-width: 768px) {
+        .nav a[href="pfile.html"]::before {
+            display: none !important;
+        }
+    }
   </style>
 </head>
 
@@ -504,14 +543,9 @@ font-family: 'Poiret One', sans-serif;
 <div class="hero">
 <div class="energy-dot"></div>
 <video autoplay muted loop playsinline preload="auto" webkit-playsinline id="heroVideo">
-
-  <!-- 📱 手机 -->
   <source src="images/index/2.mp4" media="(max-width: 768px)" type="video/mp4">
-
-  <!-- 💻 桌面： -->
   <source src="images/index/1.webm" media="(min-width: 769px)" type="video/webm">
   <source src="images/index/1.mp4" media="(min-width: 769px)" type="video/mp4">
- 
 </video>
 
   <div class="title">
@@ -522,9 +556,9 @@ font-family: 'Poiret One', sans-serif;
   <div class="nav">
     <a href="about.html">About</a>
     <a href="commission.html">Commission</a>
-       <a href="pfile.html">OC Archive</a>
+    <a href="pfile.html">Personnel Files</a>
     <a href="illustration.html">Illustration</a>
-     <a href="comics.html">Comics</a>
+    <a href="comics.html">Comics</a>
     <a href="log.html">Log</a>
 
     <div class="logo">
@@ -537,7 +571,6 @@ font-family: 'Poiret One', sans-serif;
 </div>
 
 <div class="projects">
-
  <a href="transmission.html" class="project-card">
   <img src="images/index/poster1.jpg">
   <div class="project-title">Rhapsody in Neon</div>
@@ -557,12 +590,9 @@ font-family: 'Poiret One', sans-serif;
 
 <div class="lounge-wrapper">
  <a href="lounge.html" class="lounge-entry">
-  
-
   <div class="coffee-icon">
     <img src="images/index/coffee_icon.png" alt="coffee">
   </div>
-
   <div class="chip top">CREW LOUNGE</div>
   <div class="chip bottom">CREW LOUNGE</div>
 </a>
@@ -586,31 +616,23 @@ font-family: 'Poiret One', sans-serif;
 <script>
 const video = document.getElementById("heroVideo");
 
-// ⭐ 1. 页面加载时就尝试播放
 function tryPlayVideo() {
   if (video) {
     const playPromise = video.play();
-
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        // 自动播放失败（iOS常见）
         console.log("Autoplay blocked, waiting for interaction");
       });
     }
   }
 }
 
-// ⭐ DOM加载完成就试
 document.addEventListener("DOMContentLoaded", tryPlayVideo);
-
-// ⭐ 页面真正显示时再试一次（关键！）
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") {
     tryPlayVideo();
   }
 });
-
-// ⭐ 2. 用户交互兜底（滑动 / 点屏）
 document.addEventListener("touchstart", tryPlayVideo, { once: true });
 document.addEventListener("scroll", tryPlayVideo, { once: true });
 </script>
