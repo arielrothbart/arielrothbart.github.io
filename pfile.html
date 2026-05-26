@@ -95,7 +95,7 @@
 
         /* 在卡片左上角放一个矩形组装饰标签（还原凸起样式） */
         .profile-card::before {
-            content: "FILE_DECRYPTED // ARCHIVE";
+            content: "FILE_DECRYPTED";
             position: absolute;
             top: -11px; /* 向上移动，骑在边框线上 */
             left: 30px;
@@ -433,7 +433,7 @@
             pointer-events: none;  
             z-index: 10;           /* 【修复】提到了比背景高的层级 */
             mix-blend-mode: screen;
-            filter: drop-shadow(0 0 10px var(--accent-color)); 
+            filter: drop-shadow(0 0 5px var(--accent-color)); 
             transition: all 0.5s ease;
         }
 
