@@ -1,7 +1,7 @@
 {
     "Kaamos City // 极夜城": {
         "id": "group_kaamos",
-        "intro": "位于海滨的中立城市。<br>联通北美和亚洲。被物理分化为上下城区。上城（*卯区*）的高楼会挡住阳光，下城（*戌区*）只拥有黄昏与夜晚。<br><br>A neutral harbor city linking North America, and Asia.<br>Kaamos is physically divided into upper（*Orto*）and Lower（*Ocaso*）Districts.<br>The skyscrapers of the Orto block out the sun entirely,<br>leaving the Ocaso with nothing but twilight and night.",
+        "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。上城（*卯区*）的高楼会挡住阳光，下城（*戌区*）只拥有黄昏与夜晚。<br><br>A neutral harbor city linking Europe, North America, and Asia.<br>Kaamos is physically divided into upper（*Orto*）and Lower（*Ocaso*）Districts.<br>The skyscrapers of the Orto block out the sun entirely,<br>leaving the Ocaso with nothing but twilight and night.",
         "members": [
             {
   "id": "—— BLACK MARKET STRAYS ——",
@@ -14,6 +14,7 @@
             {
                 "id": "Leopold",
                 "name": "Leopold Servantes<br>列奥波尔德 塞万提斯",
+                 "badge": "images/icons/leo_seal.webp",
                 "img": "images/pfiles/leo.jpg",
                 "data": {
                     "AFFILIATION": "戌区黑市|Ocaso District Black Market ",
