@@ -50,6 +50,7 @@
              {
                 "id": "Gu Tu",
                 "name": "Gu Tu<br>顾菟",
+                      "badge": "images/icons/gu_seal.webp",
                 "img": "images/pfiles/gutu.jpg",
                 "data": {
                     "AFFILIATION": "戌区黑市|Ocaso District Black Market ",
