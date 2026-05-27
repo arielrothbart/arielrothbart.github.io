@@ -446,19 +446,19 @@
             right: 35px;
             width: 180px;          
             height: 180px;
-            opacity: 0.25;         /* 【修复】透明度上调，防止被毛玻璃背景隐藏 */
+            opacity: 0.2;         /* 【修复】透明度上调，防止被毛玻璃背景隐藏 */
             background-size: contain;
             background-repeat: no-repeat;
             background-position: top right;
             pointer-events: none;  
             z-index: 10;           /* 【修复】提到了比背景高的层级 */
             mix-blend-mode: screen;
-            filter: drop-shadow(0 0 5px var(--accent-color)); 
+            filter: drop-shadow(0 0 10px var(--accent-color)); 
             transition: all 0.5s ease;
         }
 
         .profile-card:hover .faction-watermark {
-            opacity: 0.4;          /* 悬停时也会变更亮 */
+            opacity: 0.3;          /* 悬停时也会变更亮 */
             transform: scale(1.05);
         }
 
