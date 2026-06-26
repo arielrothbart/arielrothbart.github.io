@@ -502,6 +502,13 @@
             }
             .char-info h2 { font-size: 1.4rem; }
         }
+
+        /* ======= 新增：限制移动端长按图片弹出菜单和用户选中 ======= */
+        img {
+            -webkit-touch-callout: none; /* iOS Safari 禁用长按呼出菜单 */
+            -webkit-user-select: none;   /* 禁用选择 */
+            user-select: none;
+        }
     </style>
 </head>
 
@@ -741,6 +748,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadPersonnel(); // 确保 DOM 骨架一旦就绪就开始读取数据
 });
+
+// ======= 新增：保护图片，防止右键存图与拖拽 =======
+        document.addEventListener('contextmenu', function (e) {
+            // 如果点击的是图片（包含大图、头像、画廊小图等），则阻止右键菜单
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('dragstart', function (e) {
+            // 阻止图片被直接拖拽到桌面或新标签页
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        }, { passive: false });
    </script>
 </body>
 
