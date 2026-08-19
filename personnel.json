@@ -249,6 +249,19 @@
                 "more_imgs": [
                     "images/pfiles/dan01.jpg"
                 ]
+            },
+             {
+                "id": "CE Liz",
+                "name": "Elizabeth Ochoa<br>伊丽莎白 奥乔亚",
+                "img": "images/pfiles/liz.jpg",
+                "data": {
+                    "ORIGIN": "伊丽莎白 ‘莉兹’ 奥乔亚|Elizabeth ‘Liz’ Ochoa",
+                    "POSITION": "首席工程师|Chief Engineer",
+                    "AUGMENT": "电子脑化 头部义体化|Cyberbrain conversion，head augmentation"
+                },
+                "desc": "莉兹是建造瑞亚号的大功臣。她不隶属于任何军队，年轻的莉兹凭借着过硬的技术跟师父一起来到了瑞亚项目。在老技师退休后，工程队就全由莉兹负责了。当年对于刚到试飞项目的新人队长赛斯很是照顾。<br><br>现在莉兹是*狂想曲号*的首席工程师、维修部部长。上到舰艇的心脏——能量反应堆，下到丹的机械打火机，她都能修。技术部是核心驾驶组外最重要的部门，莉兹在船上也是一言千金的大姐头。<br>莉兹性格飒爽，还非常护短，维修部的员工们都非常崇拜她。当然，她要操的心也不少。|Liz is one of the pivotal contributors behind the construction of the Rhea. Unaffiliated with the military, young Liz joined the Rhea Project alongside her mentor, backed solely by her exceptional engineering expertise. When the senior technician eventually retired, she took full charge of the entire engineering crew. Back in those early days, she also took great care of Seth, who was then merely a rookie captain new to the flight-testing program.<br><br>Liz now serves as the Chief Engineer and head of the Maintenance Department aboard of *the Rhapsody*. From the vessel’s beating heart—its energy reactor, down to Dan’s mechanical lighter, there is nothing beyond her repair. Outside the core flight crew, the technical division is the most important department on board, and Liz is the unquestioned, formidable big sister of the ship whose word carries absolute weight.<br>Straightforward, decisive, and fiercely protective of her own people, Liz is deeply respected by everyone in the maintenance department. Of course, being the person everyone relies on means she always has plenty to worry about."
+                
+                
             }
         ]
     },
