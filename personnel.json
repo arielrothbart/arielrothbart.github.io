@@ -236,20 +236,7 @@
                 },
                 "desc": "他是*希门内斯*王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就从成溪变成了乾宁。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长赛斯 雷马克看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。乾宁留了下来。他说，「我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。」|Third son of the *Jimenéz* royal family. His eldest brother was born to rule. His second brother was born to challenge the world itself. The House of Jimenez had no need for a third ruler. So he left. Joining a polar research flight program, he chose to live under the name given by his mother，instead of the royal family. <br>Most of his comrades could never pronounce his Chinese name properly. Somewhere along the way, “Channing” simply became easier. He claimed not to care.Not about names. Not about inheritance. Not about status. He never asked for anything. Except Seth Remarque saw through him completely. <br> “You do want it,” Seth told him.“Stop lying to yourself. Make your choice.”<br><br>After Seth disappeared, the new captain announced that the ship would continue sailing, but anyone unwilling to remain was free to leave. Channing stayed. <br> “I will repay him,” he said.“Not with his life. With mine. That is my choice.”"
             },
-            {
-                "id": "LC Dan",
-                "name": "Vance D Aston<br>万斯 D 阿斯顿",
-                "img": "images/pfiles/dan.jpg",
-                "data": {
-                    "ORIGIN": "万斯 丹 阿斯顿|Vance Dan Aston",
-                    "POSITION": "法律顾问//外交部负责人|Legal consoler / Director of Foreign Affairs",
-                    "AUGMENT": "电子脑化|Cyberbrain conversion"
-                },
-                "desc": "黑市称他为「腹语师万斯」。正因有这位律师，舰船得以存在且正常航行，可他起初只是一个混迹黑市街头的骗子。<br>丹和赛斯是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找赛斯，想留住东西就去找丹。看来现在依旧如此。<br><br>直到有一天，瑞亚号被『击落』了，丹拒绝查看记录，也不承认赛斯死了。洛斯说要让狂想曲号成为合法的船，丹说好。于是他开始学习真正的法律条款。<br>丹有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受赛斯真的被这个世界吞噬了。|They call him 「Vance the Vent(riloquist)」in the black market. The lawyer responsible for keeping the Rhapsody alive and legally operational was once nothing more than a scam artist wandering the black markets. <br>Dan met Seth in an orphanage.Back then, the children used to say: <br> “If you want something, ask Seth. If you want to keep it, ask Dan.” <br>Apparently, that still holds true. <br>When the Rhea was finally “shot down,” Dan refused to examine the records. He refused to acknowledge Seth’s death. <br><br>Los said she wanted to turn the Rhapsody into a legitimate vessel. Dan answered simply: “Fine.”And so he began studying actual law. <br><br>Dan hides behind endless sarcasm, negotiation tricks, and sharp-tongued humor. He sees the ugliness of the world clearly and survives by walking through its filth. Yet there is one truth he cannot accept: That Seth Remarque was truly swallowed by this world.",
-                "more_imgs": [
-                    "images/pfiles/dan01.jpg"
-                ]
-            },
+           
              {
                 "id": "CE Liz",
                 "name": "Elizabeth Ochoa<br>伊丽莎白 奥乔亚",
@@ -262,6 +249,20 @@
                 "desc": "莉兹是建造瑞亚号的大功臣。她不隶属于任何军队，年轻的莉兹凭借着过硬的技术跟师父一起来到了瑞亚项目。在老技师退休后，工程队就全由莉兹负责了。当年对于刚到试飞项目的新人队长赛斯很是照顾。<br><br>现在莉兹是*狂想曲号*的首席工程师、维修部部长。上到舰艇的心脏——能量反应堆，下到丹的机械打火机，她都能修。技术部是核心驾驶组外最重要的部门，莉兹在船上也是一言千金的大姐头。<br>莉兹性格飒爽，还非常护短，维修部的员工们都非常崇拜她。当然，她要操的心也不少。|Liz is one of the pivotal contributors behind the construction of the Rhea. Unaffiliated with the military, young Liz joined the Rhea Project alongside her mentor, backed solely by her exceptional engineering expertise. When the senior technician eventually retired, she took full charge of the entire engineering crew. Back in those early days, she also took great care of Seth, who was then merely a rookie captain new to the flight-testing program.<br><br>Liz now serves as the Chief Engineer and head of the Maintenance Department aboard of *the Rhapsody*. From the vessel’s beating heart—its energy reactor, down to Dan’s mechanical lighter, there is nothing beyond her repair. Outside the core flight crew, the technical division is the most important department on board, and Liz is the unquestioned, formidable big sister of the ship whose word carries absolute weight.<br>Straightforward, decisive, and fiercely protective of her own people, Liz is deeply respected by everyone in the maintenance department. Of course, being the person everyone relies on means she always has plenty to worry about."
                 
                 
+            },
+             {
+                "id": "LC Dan",
+                "name": "Vance D Aston<br>万斯 D 阿斯顿",
+                "img": "images/pfiles/dan.jpg",
+                "data": {
+                    "ORIGIN": "万斯 丹 阿斯顿|Vance Dan Aston",
+                    "POSITION": "法律顾问//外交部负责人|Legal consoler / Director of Foreign Affairs",
+                    "AUGMENT": "电子脑化|Cyberbrain conversion"
+                },
+                "desc": "黑市称他为「腹语师万斯」。正因有这位律师，舰船得以存在且正常航行，可他起初只是一个混迹黑市街头的骗子。<br>丹和赛斯是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找赛斯，想留住东西就去找丹。看来现在依旧如此。<br><br>直到有一天，瑞亚号被『击落』了，丹拒绝查看记录，也不承认赛斯死了。洛斯说要让狂想曲号成为合法的船，丹说好。于是他开始学习真正的法律条款。<br>丹有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受赛斯真的被这个世界吞噬了。|They call him 「Vance the Vent(riloquist)」in the black market. The lawyer responsible for keeping the Rhapsody alive and legally operational was once nothing more than a scam artist wandering the black markets. <br>Dan met Seth in an orphanage.Back then, the children used to say: <br> “If you want something, ask Seth. If you want to keep it, ask Dan.” <br>Apparently, that still holds true. <br>When the Rhea was finally “shot down,” Dan refused to examine the records. He refused to acknowledge Seth’s death. <br><br>Los said she wanted to turn the Rhapsody into a legitimate vessel. Dan answered simply: “Fine.”And so he began studying actual law. <br><br>Dan hides behind endless sarcasm, negotiation tricks, and sharp-tongued humor. He sees the ugliness of the world clearly and survives by walking through its filth. Yet there is one truth he cannot accept: That Seth Remarque was truly swallowed by this world.",
+                "more_imgs": [
+                    "images/pfiles/dan01.jpg"
+                ]
             }
         ]
     },
