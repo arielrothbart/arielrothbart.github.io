@@ -273,7 +273,7 @@
 
     "Eithelon // 艾特隆联邦": {
         "id": "group_eithelon",
-        "intro": "*洛特巴德*家族曾经生活的联邦国。由崇尚机械主义的*正轴派*掌权期间，曾经大肆清算*HCN*（人类存续网络)组织。<br><br>The former homeland of the *Rothbart* family. <br>During the rule of the Mechanists -*The Axis*, <br>the Federation carried out large-scale purges against the *HCN* — Human Continuity Network.",
+        "intro": "*洛特巴德*家族曾经生活的联邦国。由崇尚机械主义的*进化派*掌权期间，曾经大肆清算*HCN*（人类存续网络)组织。<br><br>The former homeland of the *Rothbart* family. <br>During the rule of the Mechanists -*The Evolvers*, <br>the Federation carried out large-scale purges against the *HCN* — Human Continuity Network.",
         "members": [
             {
                 "id": "Rov",
