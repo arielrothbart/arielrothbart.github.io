@@ -236,7 +236,19 @@
                 },
                 "desc": "他是*希门内斯*王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就从成溪变成了乾宁。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长赛斯 雷马克看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。乾宁留了下来。他说，「我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。」|Third son of the *Jimenéz* royal family. His eldest brother was born to rule. His second brother was born to challenge the world itself. The House of Jimenez had no need for a third ruler. So he left. Joining a polar research flight program, he chose to live under the name given by his mother，instead of the royal family. <br>Most of his comrades could never pronounce his Chinese name properly. Somewhere along the way, “Channing” simply became easier. He claimed not to care.Not about names. Not about inheritance. Not about status. He never asked for anything. Except Seth Remarque saw through him completely. <br> “You do want it,” Seth told him.“Stop lying to yourself. Make your choice.”<br><br>After Seth disappeared, the new captain announced that the ship would continue sailing, but anyone unwilling to remain was free to leave. Channing stayed. <br> “I will repay him,” he said.“Not with his life. With mine. That is my choice.”"
             },
-           
+             {
+                "id": "PO Alyosha",
+                "name": "Alexei Ivanovich Davydov<br>阿列克谢 伊万诺维奇 达维多夫",
+                "img": "images/pfiles/aid.jpg",
+                "data": {
+                    "POSITION": "动力技术官|Propulsion Officer",
+                    "AUGMENT": "电子脑化，加装军用脊髓神经调节模块|Cyberbrain conversion,<br>Military-grade spinal neuro-regulator"
+                },
+                "desc": "阿列克谢 伊万诺维奇 达维多夫 是狂想曲号上的动力技术官，隶属于核心驾驶组。负责监测推进器和引擎状态。熟悉的人都叫他阿廖沙。<br>阿廖沙曾是红隼试飞队的动力官，更是第一个接受赛斯的小队队员。他虽然是原初的舰队27人之一，但在瑞亚号首次航行成功后，他却离开了。除了核心驾驶组外，没人知道那天发生了什么。<br>时隔16年，洛斯在米尔维劳改营找到了他。<br>最接近家的地方——阿廖沙回到了船上，一切都是如此熟悉，船还记得他，他也记得这里。只是赛斯不在了。<br><br>阿廖沙宽肩细腰，身形高大，看起来就很适合拥抱。虽然样子有些高冷，其实是个热心肠。16年的牢狱也没能改变这一点。据说赛斯曾经偷过他心爱的酒壶，在试飞前把酒换成了水。于是阿廖沙对自己的酒壶看的很紧，就算赛斯这小子不在附近也一样。<br>不论是对自己的家乡，还是对身边的友人，阿廖沙的感情深沉又真挚。谁会不喜欢这样的人呢？|Alexei Ivanovich Davydov is the Propulsion Officer on the Rhapsody, a member of the core flight crew responsible for monitoring the thrusters output and reactor status. To those close to him, he is always just Alyosha.<br>Alyosha was the Propulsion Officer of the Red Kestrel test flight team, and the first member of the crew to accept Seth as one of their own. He was also one of the original twenty-seven members of the fleet, but he left the team after Rhea’s first successful voyage. Aside from the core flight crew, no one knows what happened that day.<br> Sixteen years later, Los found him in the Mirev Labor Camp. <br>The closest thing to home at last—Alyosha returned to the ship. Everything felt so familiar. The ship remembered him, and he remembered it. Everything was as it had been. Except Seth.<br><br>Broad-shouldered with a narrow waist, Alyosha is tall and looks naturally built for hugs. Though he may appear somewhat aloof, he is warm-hearted by nature, and even sixteen years in prison could not change that. It is said that Seth once stole his beloved flask and replaced the liquor with water before a test flight, so Alyosha still keeps a close eye on his flask. Old habits, perhaps. Though Seth is no longer there to test them.<br>Whether toward his homeland or the friends by his side, Alyosha’s feelings run deep and true. Who could fail to love a man like that?",
+                "more_imgs": [
+                    "images/pfiles/aid01.jpg"
+                    ]
+                     },
              {
                 "id": "CE Liz",
                 "name": "Elizabeth Ochoa<br>伊丽莎白 奥乔亚",
