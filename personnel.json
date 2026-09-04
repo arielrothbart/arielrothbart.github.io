@@ -250,6 +250,18 @@
                     ]
                      },
              {
+                "id": "Brygg",
+                "name": "Tycho Brygg<br>第谷 布瑞格",
+                "img": "images/pfiles/brygg.jpg",
+                "data": {
+                    "POSITION": "洋流观测员|Current Watcher",
+                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体|Cybernetic cardiopulmonary system, Cyberbrain conversion, partial facial augmentation"
+                },
+                "desc": "布瑞格在红隼试飞队时就是个老资历，现在就更老了。没人敢问他的年龄。好吧，其实他6x岁——拉薇尼娅说船员档案是机密 :(<br><br>布瑞格的存在十分特殊，*洋流观测员*是专门为他开设的职位。他教会了赛斯用肉眼观测洋流，还能实时纠正探测器的波峰波谷误差值。也就是说，在驾驶时，舰桥看到的洋流数据都经过了布瑞格的校对。他仍然保留着肉眼和大部分自己的身体。在加入瑞亚项目前，他是一名厉害的狙击手。也是在这个时期，布瑞格为了执行极限任务进行了心肺功能义体化。<br><br>他手上似乎永远拿着咖啡。因为长期猫在观测镜前，布瑞格的身形有些佝偻，活像一只老海狮。新人很容易被他严肃的表情吓到，而且他说话也经常充斥着嘲讽满满的冷笑话。但其实布瑞格喜欢笑，而且笑点很奇怪。|Brygg was already an old hand back in the Red Kestrel test flight team, and he’s even older now. No one dares ask his age. Well, actually, he’s sixty-something—Lavinia says the crew records are classified :(<br><br>Brygg’s presence is rather unique. The position of *Current Watcher* was created specifically for him. He taught Seth how to observe the currents with the naked eye, and could calibrate the probes’ peak and trough readings in real time. In other words, while the ship was flying through the currents, all the current data displayed on the bridge was cross-checked against Brygg’s observations. He still retains his natural eyes and most of his original body. Before joining the Rhea Project, he was an exceptional sniper. It was back then that he had his heart and lungs cybernetically rebuilt to survive extreme ops.<br><br>He always seemed to have a mug of coffee in hand. Decades of hunching over  the observation scope had left him with a stooped back, looking for all the world like an old sea lion. Fresh recruits were easily spooked by his deadpan scowl, and his speech is often peppered with sarcastic, painfully dry jokes. Still, Brygg actually liked a good laugh—even if he laughed at the oddest things.",
+                "more_imgs": [
+                    "images/pfiles/brygg01.jpg" ]   
+            },
+             {
                 "id": "Liz",
                 "name": "Elizabeth Ochoa<br>伊丽莎白 奥乔亚",
                 "img": "images/pfiles/liz.jpg",
