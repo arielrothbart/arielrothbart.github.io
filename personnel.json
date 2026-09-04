@@ -177,7 +177,7 @@
         "members": [
             {
                 "id": "Captain LOS",
-                "name": "Captain Los<br>洛斯船长",
+                "name": "Captain LOS<br>洛斯船长",
                 "badge": "images/icons/cap_seal.webp",
                 "img": "images/pfiles/ariel.jpg",
                 "data": {
@@ -237,7 +237,7 @@
                 "desc": "他是*希门内斯*王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就从成溪变成了乾宁。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长赛斯 雷马克看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。乾宁留了下来。他说，「我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。」|Third son of the *Jimenéz* royal family. His eldest brother was born to rule. His second brother was born to challenge the world itself. The House of Jimenez had no need for a third ruler. So he left. Joining a polar research flight program, he chose to live under the name given by his mother，instead of the royal family. <br>Most of his comrades could never pronounce his Chinese name properly. Somewhere along the way, “Channing” simply became easier. He claimed not to care.Not about names. Not about inheritance. Not about status. He never asked for anything. Except Seth Remarque saw through him completely. <br> “You do want it,” Seth told him.“Stop lying to yourself. Make your choice.”<br><br>After Seth disappeared, the new captain announced that the ship would continue sailing, but anyone unwilling to remain was free to leave. Channing stayed. <br> “I will repay him,” he said.“Not with his life. With mine. That is my choice.”"
             },
              {
-                "id": "PO Alyosha",
+                "id": "Alyosha",
                 "name": "Alexei Ivanovich Davydov<br>阿列克谢 伊万诺维奇 达维多夫",
                 "img": "images/pfiles/aid.jpg",
                 "data": {
@@ -250,7 +250,7 @@
                     ]
                      },
              {
-                "id": "CE Liz",
+                "id": "Liz",
                 "name": "Elizabeth Ochoa<br>伊丽莎白 奥乔亚",
                 "img": "images/pfiles/liz.jpg",
                 "data": {
@@ -278,7 +278,7 @@
                 
             },
              {
-                "id": "LC Dan",
+                "id": "Dan",
                 "name": "Vance D Aston<br>万斯 D 阿斯顿",
                 "img": "images/pfiles/dan.jpg",
                 "data": {
