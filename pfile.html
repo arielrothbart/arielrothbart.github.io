@@ -531,7 +531,7 @@
 
     <div id="lightbox">
         <div id="prevBtn" class="lightbox-btn" onclick="changeImg(-1); event.stopPropagation();">❮</div>
-        <img id="lightbox-img" src="" onclick="event.stopPropagation();">
+       <img id="lightbox-img" src="" onclick="if(window.innerWidth <= 768) event.stopPropagation();">
         <div id="nextBtn" class="lightbox-btn" onclick="changeImg(1); event.stopPropagation();">❯</div>
     </div>
 
