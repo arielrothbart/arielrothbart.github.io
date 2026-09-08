@@ -4,17 +4,17 @@
         "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。上城（*卯区*）的高楼会挡住阳光，下城（*戌区*）只拥有黄昏与夜晚。<br><br>A neutral harbor city linking Europe, North America, and Asia.<br>Kaamos is physically divided into upper（*Orto*）and Lower（*Ocaso*）Districts.<br>The skyscrapers of the Orto block out the sun entirely,<br>leaving the Ocaso with nothing but twilight and night.",
         "members": [
             {
-  "id": "—— BLACK MARKET STRAYS ——",
-  "name": "黑市边缘人",
-  "data-type": "separator",
-  "img": "",
-  "data": {},
-  "desc": ""
-},
+                "id": "—— BLACK MARKET STRAYS ——",
+                "name": "黑市边缘人",
+                "data-type": "separator",
+                "img": "",
+                "data": {},
+                "desc": ""
+            },
             {
                 "id": "Leopold",
                 "name": "Leopold Servantes<br>列奥波尔德 塞万提斯",
-                 "badge": "images/icons/leo_seal.webp",
+                "badge": "images/icons/leo_seal.webp",
                 "img": "images/pfiles/leo.jpg",
                 "data": {
                     "AFFILIATION": "戌区黑市|Ocaso District Black Market ",
@@ -22,12 +22,12 @@
                     "AUGMENT": "手臂、双腿机械义体,电子脑化|Standard Mechanical Prosthetic arms and legs.<br>Cyberbrain conversion",
                     "": "右眼为军用型号义眼“银色毒液”|Military-grade prosthetic right eye “Silver Venom”"
                 },
-                "desc": "曾服役于城市军队的列奥波尔德 塞万提斯，在一场战争后被标记为死亡。<br>他在黑市中失去了双手与双腿，此后转为地下武器师。<br>他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名.|Once a Tech-soldier in the city military, Leopold Servantes was officially declared dead after the war. <br>Somewhere within the black market beneath Kaamos, he lost both his arms and legs. <br><br>He later resurfaced as an underground weaponsmith.<br><br>The weapons he creates possess an eerie elegance beneath their lethal craftsmanship. <br> Beautiful. Precise. Catastrophic.<br>Within the underworld, his name has become legend. "
-           , "more_imgs": [
+                "desc": "曾服役于城市军队的列奥波尔德 塞万提斯，在一场战争后被标记为死亡。<br>他在黑市中失去了双手与双腿，此后转为地下武器师。<br>他制造的武器拥有诡谲美丽的外表，又具有致命的杀伤力。在地下世界非常有名.|Once a Tech-soldier in the city military, Leopold Servantes was officially declared dead after the war. <br>Somewhere within the black market beneath Kaamos, he lost both his arms and legs. <br><br>He later resurfaced as an underground weaponsmith.<br><br>The weapons he creates possess an eerie elegance beneath their lethal craftsmanship. <br> Beautiful. Precise. Catastrophic.<br>Within the underworld, his name has become legend. ",
+                "more_imgs": [
                     "images/pfiles/leo01.jpg",
                     "images/pfiles/leo02.jpg",
                     "images/pfiles/leo03.jpg",
-                    "images/pfiles/leo04.jpg"          
+                    "images/pfiles/leo04.jpg"
                 ]
             },
             {
@@ -41,37 +41,35 @@
                     "CODE": "杀手十二面相|The killer of Twelve Faces",
                     "AUGMENT": "全身义体化|Full-body cyberization"
                 },
-                "desc": "在菅原会的直系组织 任侠联担任舍弟头的助太刀研介，同时也是著名的雇佣杀手。他使用不同的义体、不同的身份执行任务。在黑市中被称为“*杀手十二面相*” 没人知道他的真面目。也没人知道，作为义体操控大师的他，内心真正的渴望——是辨明自己是否还能像人类一样活着。|Sukedachi Kensuke serves as the Wakagashira of the Ninkyo Union, a direct branch of the Sugahara-kai. <br>At the same time, he is one of the most infamous contract killers in the underground world. <br>Different bodies. Different identities. Different names for different assignments. <br>In the black market, he is known only as “*The Killer of Twelve Faces*.” <br>No one knows what his real face looks like. <br>And no one knows that beneath his mastery over artificial bodies, his deepest desire is painfully human:<br>To discover whether he is still capable of living as one. "
-            , "more_imgs": [
-                    "images/pfiles/ken01.jpg"     
+                "desc": "在菅原会的直系组织 任侠联担任舍弟头的助太刀研介，同时也是著名的雇佣杀手。他使用不同的义体、不同的身份执行任务。在黑市中被称为“*杀手十二面相*” 没人知道他的真面目。也没人知道，作为义体操控大师的他，内心真正的渴望——是辨明自己是否还能像人类一样活着。|Sukedachi Kensuke serves as the Wakagashira of the Ninkyo Union, a direct branch of the Sugahara-kai. <br>At the same time, he is one of the most infamous contract killers in the underground world. <br>Different bodies. Different identities. Different names for different assignments. <br>In the black market, he is known only as “*The Killer of Twelve Faces*.” <br>No one knows what his real face looks like. <br>And no one knows that beneath his mastery over artificial bodies, his deepest desire is painfully human:<br>To discover whether he is still capable of living as one. ",
+                "more_imgs": [
+                    "images/pfiles/ken01.jpg"
                 ]
             },
-
-             {
+            {
                 "id": "Gu Tu",
                 "name": "Gu Tu<br>顾菟",
-                   "badge": "images/icons/gu_seal.webp",
+                "badge": "images/icons/gu_seal.webp",
                 "img": "images/pfiles/gutu.jpg",
                 "data": {
                     "AFFILIATION": "戌区黑市|Ocaso District Black Market ",
                     "IDENTITY": "黑客|Hecker ",
                     "CODE": "月影|Moon Shadow"
-                    
                 },
-                "desc": "顾菟身高170cm，有一对金色的蛇瞳义眼。是个技术高超的黑客。曾经的他在极夜城招摇撞骗，自称是占卜大师的徒弟。<br>顾菟的店藏在一家占卜卦摊的后面。他曾经偷拿了老道士陈星显正在休眠的义体，捣鼓成了半启动状态做门面，用实时盗取的信息行骗。可惜某天把意识上传到卫星以做「赛博飞升」的老道士醒来了，他只好作罢。<br>顾菟在互联网空间里是一团电子烟雾状的蛇。他坚称那是中国青蛇，实际上谁也看不清品种。<br><br>他是狂想曲号唯一不生活在船上的外编人员。利用狂想曲号特有的移动式非对称卫星突发传输终端，他的网络数据抓包与吞吐速率远超城里的任何同行。和现任船长是从小的朋友。顾菟是个需要常年开着加湿器的家里蹲。因此他的工作室里总是烟雾缭绕，混着电脑的霓虹光。除了陈道长和船长，另一位能让他心服口服的朋友便是列奥波尔德 塞万提斯了，据顾菟所说，原因是，对方是个比他还厉害的骗子。|Gu Tu stands at 170 cm tall and possesses a pair of golden, serpentine cybernetic eyes. He is a highly skilled hacker. He used to swindle people all over Kaamos City, claiming to be the disciple of a master diviner.<br>Gu Tu's shop is hidden behind a fortune-telling stall. He once stole the dormant cybernetic body of the old Taoist priest, Chen Xingxian, and tinkered with it until it was in a semi-booted state to use as a storefront facade, using real-time stolen data to scam customers. Unfortunately, the old Taoist—who had uploaded his consciousness into a satellite for a 「Cyber-Ascension」—woke up one day, forcing Gu Tu to drop the act.<br>In cyberspace, Gu Tu manifests as a serpentine cloud of electronic smog. He adamantly insists it is a Chinese green snake, though in reality, no one can discern its exact species.<br><br>He is the only external member of the Rhapsody who does not actually live on the ship. Leveraging Rhapsody’s unique mobile satellite burst-transmission terminal, his data packet capture and throughput rates are vastly superior to any hacker in the city. He has been childhood friends with the current captain. Gu Tu is a cyber-gremlin who needs a humidifier running year-round; as a result, his studio is always shrouded in thick mist, blending with the neon glow of his computers. Aside from Daoist Chen and the captain, the only other friend who has earned his genuine respect is Leopold Servantes. According to Gu Tu, the reason is simple: the guy is an even better con artist than he is."
-            , "more_imgs": [
-                    "images/pfiles/gutu01.jpg" ]   
+                "desc": "顾菟身高170cm，有一对金色的蛇瞳义眼。是个技术高超的黑客。曾经的他在极夜城招摇撞骗，自称是占卜大师的徒弟。<br>顾菟的店藏在一家占卜卦摊的后面。他曾经偷拿了老道士陈星显正在休眠的义体，捣鼓成了半启动状态做门面，用实时盗取的信息行骗。可惜某天把意识上传到卫星以做「赛博飞升」的老道士醒来了，他只好作罢。<br>顾菟在互联网空间里是一团电子烟雾状的蛇。他坚称那是中国青蛇，实际上谁也看不清品种。<br><br>他是狂想曲号唯一不生活在船上的外编人员。利用狂想曲号特有的移动式非对称卫星突发传输终端，他的网络数据抓包与吞吐速率远超城里的任何同行。和现任船长是从小的朋友。顾菟是个需要常年开着加湿器的家里蹲。因此他的工作室里总是烟雾缭绕，混着电脑的霓虹光。除了陈道长和船长，另一位能让他心服口服的朋友便是列奥波尔德 塞万提斯了，据顾菟所说，原因是，对方是个比他还厉害的骗子。|Gu Tu stands at 170 cm tall and possesses a pair of golden, serpentine cybernetic eyes. He is a highly skilled hacker. He used to swindle people all over Kaamos City, claiming to be the disciple of a master diviner.<br>Gu Tu's shop is hidden behind a fortune-telling stall. He once stole the dormant cybernetic body of the old Taoist priest, Chen Xingxian, and tinkered with it until it was in a semi-booted state to use as a storefront facade, using real-time stolen data to scam customers. Unfortunately, the old Taoist—who had uploaded his consciousness into a satellite for a 「Cyber-Ascension」—woke up one day, forcing Gu Tu to drop the act.<br>In cyberspace, Gu Tu manifests as a serpentine cloud of electronic smog. He adamantly insists it is a Chinese green snake, though in reality, no one can discern its exact species.<br><br>He is the only external member of the Rhapsody who does not actually live on the ship. Leveraging Rhapsody’s unique mobile satellite burst-transmission terminal, his data packet capture and throughput rates are vastly superior to any hacker in the city. He has been childhood friends with the current captain. Gu Tu is a cyber-gremlin who needs a humidifier running year-round; as a result, his studio is always shrouded in thick mist, blending with the neon glow of his computers. Aside from Daoist Chen and the captain, the only other friend who has earned his genuine respect is Leopold Servantes. According to Gu Tu, the reason is simple: the guy is an even better con artist than he is.",
+                "more_imgs": [
+                    "images/pfiles/gutu01.jpg"
+                ]
             },
-
-             {
-  "id": "—— YAKUZA ——",
-  "name": "黑道家族 ",
-  "data-type": "separator",
-  "img": "",
-  "data": {},
-  "desc": ""
-}, 
- {
+            {
+                "id": "—— YAKUZA ——",
+                "name": "黑道家族 ",
+                "data-type": "separator",
+                "img": "",
+                "data": {},
+                "desc": ""
+            },
+            {
                 "id": "Shin Sugahara",
                 "name": "Sugahara Shin<br>菅原 真",
                 "badge": "images/icons/shin_seal.webp",
@@ -82,32 +80,30 @@
                     "CODE": "三代目|Sandaime",
                     "AUGMENT": "全身义体化* 信息错误 |Full-body cyberization* error"
                 },
-                "desc": "菅原真是前*哀川会*的三代目会长。AI战争爆发时，他启动「冷冻计划」，将养女与心腹送往中立的*极夜城*，并为其置办义体。在极夜城，他一手创建了当地最大的暴力组织*菅原会*，并开设了以仿真感著称的*空中邸园*与花街。<br><br>尽管他的资产足以匹敌各大*巨擎财阀*，但受出身限制，他始终被卯区的商业圈排挤。这位行事铁血的黑道领袖，仍恪守老派极道的「仁义」。据传原已隐退的他，为庇护某位政界友人而重新坐上大位。却也因长年稳坐高位，引发了组织内的暗流涌动。菅原真非常疼爱他的养女朝生。|Sugahara Shin was the Third Generation Chairman（Sandaime） of the *Aikawa kai*. Upon the outbreak of the AI War, he initiated the Cryo-Project, sending his adopted daughter and core executives to the neutral city *Kaamos*, where he provided them with prosthetic bodies. In Kaamos City, he single-handedly established the *Sugahara kai*, the city's largest organized crime group (Yakuza), and founded *the Sky Gion* and a red light district renowned for its hyper-realistic experiences.<br><br>Despite possessing assets that rival those of major *Bogator* corporations, Sugahara Shin is consistently ostracized by the business circles of the Orto-District due to his background. This iron-fisted underworld leader still adheres to the old-school yakuza code of Jingi (chivalry and honor). It is said that he had originally retired, only to reclaim his position to protect a friend in politics. However, his long tenure at the top has also stirred undercurrents of dissatisfaction among his subordinates. <br>Sugahara Shin deeply cherishes his adopted daughter, Asao.", 
+                "desc": "菅原真是前*哀川会*的三代目会长。AI战争爆发时，他启动「冷冻计划」，将养女与心腹送往中立的*极夜城*，并为其置办义体。在极夜城，他一手创建了当地最大的暴力组织*菅原会*，并开设了以仿真感著称的*空中邸园*与花街。<br><br>尽管他的资产足以匹敌各大*巨擎财阀*，但受出身限制，他始终被卯区的商业圈排挤。这位行事铁血的黑道领袖，仍恪守老派极道的「仁义」。据传原已隐退的他，为庇护某位政界友人而重新坐上大位。却也因长年稳坐高位，引发了组织内的暗流涌动。菅原真非常疼爱他的养女朝生。|Sugahara Shin was the Third Generation Chairman（Sandaime） of the *Aikawa kai*. Upon the outbreak of the AI War, he initiated the Cryo-Project, sending his adopted daughter and core executives to the neutral city *Kaamos*, where he provided them with prosthetic bodies. In Kaamos City, he single-handedly established the *Sugahara kai*, the city's largest organized crime group (Yakuza), and founded *the Sky Gion* and a red light district renowned for its hyper-realistic experiences.<br><br>Despite possessing assets that rival those of major *Bogator* corporations, Sugahara Shin is consistently ostracized by the business circles of the Orto-District due to his background. This iron-fisted underworld leader still adheres to the old-school yakuza code of Jingi (chivalry and honor). It is said that he had originally retired, only to reclaim his position to protect a friend in politics. However, his long tenure at the top has also stirred undercurrents of dissatisfaction among his subordinates. <br>Sugahara Shin deeply cherishes his adopted daughter, Asao.",
                 "more_imgs": [
-                   "images/pfiles/shin01.jpg" ,
-                   "images/pfiles/shin02.jpg"
+                    "images/pfiles/shin01.jpg",
+                    "images/pfiles/shin02.jpg"
                 ]
             },
-
-{
-  "id": "—— BOGATOR ENTITIES ——",
-  "name": "巨擘实体",
-  "data-type": "separator",
-  "img": "",
-  "data": {},
-  "desc": ""
-},
-{
+            {
+                "id": "—— BOGATOR ENTITIES ——",
+                "name": "巨擘实体",
+                "data-type": "separator",
+                "img": "",
+                "data": {},
+                "desc": ""
+            },
+            {
                 "id": "Osvaldo",
                 "name": "Osvaldo Jiménez  <br>奥斯瓦尔多 希门内斯",
-                 "badge": "images/icons/os_seal.webp",
+                "badge": "images/icons/os_seal.webp",
                 "img": "images/pfiles/os.jpg",
                 "data": {
                     "AFFILIATION": "卯区|Ocaso District",
                     "CODE": "皇帝|The Emperor",
                     "IDENTITY": "马德里亚王廷 国王<br>*希门内斯军工*最高总长|King of Madria<br>Director-General of *Jiménez Arsenal*",
                     "AUGMENT": "全身机械义体|Full-body Mechanical Prosthetic "
-                    
                 },
                 "desc": "奥斯瓦尔多 希门内斯是马德里亚王廷的现任国王，也是希门内斯军工和卢梭科技的实际掌权者。他用冷静、克制，近乎严苛的理性掌控着王室与商业帝国的运转。也被公众视为危险强硬的皇帝，厌恶他的人私下称他为暴君。<br>高度义体化后，他的外表停留于四十岁前后。从十七岁继位起，他便习惯于将自己的义体当做商品宣传。也学会了怎样为王权微笑。<br><br>这世界上唯一能获得奥斯信任的人寥寥无几。也只有少之又少的人知道，这位「暴君」既非冷酷无情，更非无所畏惧。他最大的恐惧正是伴随真情而来的代价。|Osvaldo Jiménez is the reigning King of Madria, holding absolute authority over both Jiménez Arsenal and Russo Tech. He commands the royal court and his corporate empire with a chillingly composed, restrained, and almost draconian rationality. To the public, he is a dangerous and hardline figure known as The Emperor; to his detractors whispering in the shadows, he is simply the Tyrant.<br>Highly cyberized, his physical appearance is frozen around the age of forty. Thrust onto the throne at seventeen, he has long accustomed himself to treating his own cybernetic body as a walking advertisement for his military-industrial products. Along the way, he has also learned exactly how to smile for the sake of the crown.<br><br>Those who have earned Osvaldo's true trust are exceedingly rare. Fewer still know that this 「Tyrant」 is neither entirely cold-blooded nor completely fearless. His greatest fear is, in fact, the devastating price that comes with genuine affection.",
                 "more_imgs": [
@@ -115,20 +111,18 @@
                     "images/pfiles/os02.jpg",
                     "images/pfiles/os03.jpg",
                     "images/pfiles/os04.jpg"
-            
-                                    ]
+                ]
             },
-           {
+            {
                 "id": "Antonio",
                 "name": "Antonio Jiménez  <br>安东尼奥 希门内斯",
-                 "badge": "images/icons/anto_seal.webp",
+                "badge": "images/icons/anto_seal.webp",
                 "img": "images/pfiles/anto.jpg",
                 "data": {
                     "AFFILIATION": "卯区|Ocaso District",
                     "CODE": "亲王|El príncipe",
                     "IDENTITY": "马德里亚王储<br>*灯火通讯社创始人*|Prince of Madria<br>Founding Publisher of *The Lucerna Press*",
                     "AUGMENT": "全身机械义体|Full-body Mechanical Prosthetic "
-                    
                 },
                 "desc": "安东尼奥是马德里亚的亲王，作为顺位第一的继承人，也是欧洲半岛最具争议性的公众人物之一。金发，墨绿色的眼睛，右边的额头上有不规则的岛型烫伤，在义体上也保留了这个伤痕。<br>他在二十岁便拥有了第一间自己的新闻社。作为政治犯流亡法国时，他仍笔耕不辍。辛辣的社评借由各种笔名发表，就算不认识安东尼奥亲王，人们也一定看过*1797LC*的文章，而这只是他的众多笔名之一。<br><br>安东尼奥和长兄奥斯瓦尔多一样深谙政治手腕，却更愿意走入人群之中。他非常敬重奥斯，很长一段时间，两人是对方唯一信任的对象。<br>在流亡法国期间，他爱上了纯粹而美丽的艺术家洛伦佐，花花公子从此变得死心塌地起来。<br><br>AT 53年安东尼奥入狱服刑，AT 64年传来了他死于狱中暴乱的消息。|Prince Antonio of Madria, first in line to the throne, remains one of the most controversial public figures on the European Peninsula. He has blond hair, dark green eyes, and an irregular, island-shaped burn scar on his right temple—a distinct mark he deliberately chose to retain even on his cybernetic body.<br>He founded his first news agency at the age of twenty. Even while exiled in France as a political dissident, his pen never rested. His scathing social editorials were published under an array of pseudonyms. One might not recognize Prince Antonio, but they have undoubtedly read the sharp critiques of *1797LC* —merely one of his many aliases.<br><br>Though just as adept at political maneuvering as his elder brother Osvaldo, Antonio prefers to immerse himself among the masses. He harbors profound respect for Osvaldo; for the longest time, the brothers were each other's sole confidants.<br>It was during his French exile that he fell deeply for the pure, captivating artist, Lorenzo. From that moment, the notorious playboy became fiercely devoted.<br><br>In AT 53, Antonio was incarcerated. Eleven years later, in AT 64, word spread that he had perished in a prison riot.",
                 "more_imgs": [
@@ -136,9 +130,9 @@
                     "images/pfiles/anto02.jpg",
                     "images/pfiles/anto03.jpg",
                     "images/pfiles/anto04.jpg"
-                                    ]
+                ]
             },
- {
+            {
                 "id": "Lorenzo",
                 "name": "Lorenzo D. Ludovisi<br>洛伦佐 杜兰特 路德维希",
                 "badge": "images/icons/lo_seal.webp",
@@ -148,28 +142,27 @@
                     "IDENTITY": "杜兰特美术馆馆长|Curator of Le Gallerie Degli Durante ",
                     "AUGMENT": "高仿生轻量级生化义体|Hyper-realistic Lightweight Biomimetic Prosthetic"
                 },
-                "desc": "以洛伦佐所经营的业务来看，他本应属于财阀一员。但意在让身处下城的人们也能观赏到艺术品，他将本馆开设在了岩鹨山（戌区）附近的中心地区。据他所说，为了观赏艺术品而乐意踏足地面的人，才值得看到他的收藏和画作。<br>意大利裔的馆长拥有清澈明亮的眼睛和非常贴近真人的生化义体构造。加之他优雅老派的生活习惯，很难让人想象他年前时的经历。洛伦佐虽然很早就进行了电子脑化，却直到53岁才开始运用义体。更换义体的原因更是匪夷所思，据传是因为原本的身体受到了难以挽回的损伤。<br><br>他的资料并未加密，但鲜有人猜到，年轻的洛伦佐曾经受到过黑手党家族的资助，从佛罗伦萨前往巴黎学习艺术品管理。在法国，他结识了安东尼奥 希门内斯 （Antonio Jiménez）亲王。两人的义体皆由希门内斯军事工业制造。且安东尼奥的义体在其入狱期间一直由他保管。<br>八神重英出狱后，（继承亲王的义体）正是洛伦佐资助了他的全部手术和义体改造。<br>虽然作为鉴定师和管理人活跃在艺术届，但洛伦佐从未停止创作。他的画作很少流入市场，所画的内容也非常随性。即便他经常拒绝bogator们的委托，洛伦佐在上城区的人缘依旧很好。也有人说这是拜他那张好看的脸所赐。| By business scale alone, Lorenzobelongs among the bogators. Yet, to bring art to the Lower District, he opened his gallery in the heart of the Orto District near Iwabari Yama. He believes only those willing to step onto the surface for art deserve to see his collection.<br>The Italian curator has clear, bright eyes and a cybernetic body remarkably close to real flesh. This elegant, old-school lifestyle makes his turbulent youth hard to imagine. Though cyberized early, Lorenzo didn’t adopt a full prosthetic body until age 53—following rumors of irreversible damage to his original flesh.<br><br>His files are unencrypted, yet few guess his past: sponsored by a Mafia family, a young Lorenzo moved from Florence to Paris to study art administration. There, he met Prince Antonio Jiménez. The cybernetic bodies of both men were crafted by Jiménez Arsenal; notably, during the Prince's imprisonment, Lorenzo had personally kept Antonio's prosthetic body in his safekeeping.<br>Upon Yagami Shigefusa's release, Lorenzo funded his entire surgical reconstruction and cybernetic overhaul.<br>Though active as an appraiser and curator, Lorenzo never stopped painting. His works rarely hit the market, born of pure spontaneity. Despite regularly snubbing bogators' commissions, his popularity in the Upper District remains unmatched. Some say it is simply thanks to his handsome face."
-             , "more_imgs": [
-                    "images/pfiles/lo01.jpg"        
+                "desc": "以洛伦佐所经营的业务来看，他本应属于财阀一员。但意在让身处下城的人们也能观赏到艺术品，他将本馆开设在了岩鹨山（戌区）附近的中心地区。据他所说，为了观赏艺术品而乐意踏足地面的人，才值得看到他的收藏和画作。<br>意大利裔的馆长拥有清澈明亮的眼睛和非常贴近真人的生化义体构造。加之他优雅老派的生活习惯，很难让人想象他年前时的经历。洛伦佐虽然很早就进行了电子脑化，却直到53岁才开始运用义体。更换义体的原因更是匪夷所思，据传是因为原本的身体受到了难以挽回的损伤。<br><br>他的资料并未加密，但鲜有人猜到，年轻的洛伦佐曾经受到过黑手党家族的资助，从佛罗伦萨前往巴黎学习艺术品管理。在法国，他结识了安东尼奥 希门内斯 （Antonio Jiménez）亲王。两人的义体皆由希门内斯军事工业制造。且安东尼奥的义体在其入狱期间一直由他保管。<br>八神重英出狱后，（继承亲王的义体）正是洛伦佐资助了他的全部手术和义体改造。<br>虽然作为鉴定师和管理人活跃在艺术届，但洛伦佐从未停止创作。他的画作很少流入市场，所画的内容也非常随性。即便他经常拒绝bogator们的委托，洛伦佐在上城区的人缘依旧很好。也有人说这是拜他那张好看的脸所赐。| By business scale alone, Lorenzobelongs among the bogators. Yet, to bring art to the Lower District, he opened his gallery in the heart of the Orto District near Iwabari Yama. He believes only those willing to step onto the surface for art deserve to see his collection.<br>The Italian curator has clear, bright eyes and a cybernetic body remarkably close to real flesh. This elegant, old-school lifestyle makes his turbulent youth hard to imagine. Though cyberized early, Lorenzo didn’t adopt a full prosthetic body until age 53—following rumors of irreversible damage to his original flesh.<br><br>His files are unencrypted, yet few guess his past: sponsored by a Mafia family, a young Lorenzo moved from Florence to Paris to study art administration. There, he met Prince Antonio Jiménez. The cybernetic bodies of both men were crafted by Jiménez Arsenal; notably, during the Prince's imprisonment, Lorenzo had personally kept Antonio's prosthetic body in his safekeeping.<br>Upon Yagami Shigefusa's release, Lorenzo funded his entire surgical reconstruction and cybernetic overhaul.<br>Though active as an appraiser and curator, Lorenzo never stopped painting. His works rarely hit the market, born of pure spontaneity. Despite regularly snubbing bogators' commissions, his popularity in the Upper District remains unmatched. Some say it is simply thanks to his handsome face.",
+                "more_imgs": [
+                    "images/pfiles/lo01.jpg"
                 ]
             },
-{
-  "id": "—— KCPD ——",
-  "name": "极夜城警署",
-  "data-type": "separator",
-  "img": "",
-  "data": {},
-  "desc": ""
-},
-
-{
-  "id": "—— GOVERNMENT ARMED FORCES ——",
-  "name": "政府军",
-  "data-type": "separator",
-  "img": "",
-  "data": {},
-  "desc": ""
-}
+            {
+                "id": "—— KCPD ——",
+                "name": "极夜城警署",
+                "data-type": "separator",
+                "img": "",
+                "data": {},
+                "desc": ""
+            },
+            {
+                "id": "—— GOVERNMENT ARMED FORCES ——",
+                "name": "政府军",
+                "data-type": "separator",
+                "img": "",
+                "data": {},
+                "desc": ""
+            }
         ]
     },
     "The Rhapsody Crew // 狂想曲舰队": {
@@ -186,12 +179,12 @@
                     "CODE": "L.O.S.|Lyra Oasis Solis",
                     "POSITION": "船长|The Captain"
                 },
-           "desc": "狂想曲号的现任船长。在AT 61年瑞亚号坠落事件后，接替失踪的Seth成为了船长。她将瑞亚号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。|Current captain of the Rhapsody. <br>Following the Rhea incident in AT 61 and Seth Remarque’s death, Los inherited command of the vessel. Under her leadership, the once-gray transport ship was transformed into a legitimate astronomical expedition vessel working alongside research institutions and data corporations. <br> <br>Before joining the Astral Lyceum, the young captain lived through experiences she rarely speaks of. <br>And long before she stepped aboard as captain, her fate had already become intertwined with this ship."
-          , "more_imgs": [
+                "desc": "狂想曲号的现任船长。在AT 61年瑞亚号坠落事件后，接替失踪的Seth成为了船长。她将瑞亚号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。|Current captain of the Rhapsody. <br>Following the Rhea incident in AT 61 and Seth Remarque’s death, Los inherited command of the vessel. Under her leadership, the once-gray transport ship was transformed into a legitimate astronomical expedition vessel working alongside research institutions and data corporations. <br> <br>Before joining the Astral Lyceum, the young captain lived through experiences she rarely speaks of. <br>And long before she stepped aboard as captain, her fate had already become intertwined with this ship.",
+                "more_imgs": [
                     "images/pfiles/ariel01.jpg",
                     "images/pfiles/ariel02.jpg",
                     "images/pfiles/ariel03.jpg",
-                    "images/pfiles/ariel04.png"            
+                    "images/pfiles/ariel04.png"
                 ]
             },
             {
@@ -203,7 +196,6 @@
                     "CODE": "ESC|Esclusive Special Commander",
                     "POSITION": "Former Captain|前舰长",
                     "AUGMENT": "电子脑化，加装军用脊髓神经调节模块|Cyberbrain conversion,<br>Military-grade spinal neuro-regulator "
-                    
                 },
                 "desc": "缔造了瑞亚号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——*瑞亚项目*废弃时，赛斯协同其组建的船队一起开走了即将解体的瑞亚号，并成功驾驶她穿越了*天空洋流*。瑞亚号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人的容身之所。至今这艘舰船都是唯一能进入深层磁洋流并稳定航行的存在。<br><br>AT 61年，在遭遇*极镜公司*的埋伏后，赛斯将船长的位置交付给了洛斯，并与连接舱一起从高空坠落。赛斯亲手搭载的舰船AI-*菈薇尼亚*计算后得出了结论：舰长的生还概率为0.|The legendary pilot who forged the myth of the Rhea. <br>Once he was the leader of the Kestrel Test Squadron, Seth Remarque defied the abandonment of the *Rhea Project* — humanity’s failed attempt to traverse the *Aetherial Tide*. <br><br>Before the vessel could be dismantled, Seth and the crew he gathered stole the Rhea and disappeared into the sky currents. <br>Against all expectations, they survived. <br>From that moment onward, the Rhea became a myth within the gray zones of the world.For over a decade, she served as the only refuge for those discarded by society. <br>Even now, she remains the only ship capable of entering the deep layers of the Tide and navigating them safely. <br><br>In AT 61, the Rhea was ambushed by the *Kagami Kiwami Corporation*. Seth entrusted command to Los before falling from the upper atmosphere together with the docking module. <br><br>After calculation, *Lavinia* — the ship AI personally developed by Seth — reached a final conclusion:<br>Probability of Captain Survival: 0%.",
                 "more_imgs": [
@@ -249,7 +241,7 @@
                 },
                 "desc": "他是*希门内斯*王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就从成溪变成了乾宁。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长赛斯 雷马克看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。乾宁留了下来。他说，「我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。」|Third son of the *Jimenéz* royal family. His eldest brother was born to rule. His second brother was born to challenge the world itself. The House of Jimenez had no need for a third ruler. So he left. Joining a polar research flight program, he chose to live under the name given by his mother，instead of the royal family. <br>Most of his comrades could never pronounce his Chinese name properly. Somewhere along the way, “Channing” simply became easier. He claimed not to care.Not about names. Not about inheritance. Not about status. He never asked for anything. Except Seth Remarque saw through him completely. <br> “You do want it,” Seth told him.“Stop lying to yourself. Make your choice.”<br><br>After Seth disappeared, the new captain announced that the ship would continue sailing, but anyone unwilling to remain was free to leave. Channing stayed. <br> “I will repay him,” he said.“Not with his life. With mine. That is my choice.”"
             },
-             {
+            {
                 "id": "Alyosha",
                 "name": "Alexei Ivanovich Davydov<br>阿列克谢 伊万诺维奇 达维多夫",
                 "img": "images/pfiles/aid.jpg",
@@ -260,9 +252,9 @@
                 "desc": "阿列克谢 伊万诺维奇 达维多夫 是狂想曲号上的动力技术官，隶属于核心驾驶组。负责监测推进器和引擎状态。熟悉的人都叫他阿廖沙。<br>阿廖沙曾是红隼试飞队的动力官，更是第一个接受赛斯的小队队员。他虽然是原初的舰队27人之一，但在瑞亚号首次航行成功后，他却离开了。除了核心驾驶组外，没人知道那天发生了什么。<br>时隔16年，洛斯在米尔维劳改营找到了他。<br>最接近家的地方——阿廖沙回到了船上，一切都是如此熟悉，船还记得他，他也记得这里。只是赛斯不在了。<br><br>阿廖沙宽肩细腰，身形高大，看起来就很适合拥抱。虽然样子有些高冷，其实是个热心肠。16年的牢狱也没能改变这一点。据说赛斯曾经偷过他心爱的酒壶，在试飞前把酒换成了水。于是阿廖沙对自己的酒壶看的很紧，就算赛斯这小子不在附近也一样。<br>不论是对自己的家乡，还是对身边的友人，阿廖沙的感情深沉又真挚。谁会不喜欢这样的人呢？|Alexei Ivanovich Davydov is the Propulsion Officer on the Rhapsody, a member of the core flight crew responsible for monitoring the thrusters output and reactor status. To those close to him, he is always just Alyosha.<br>Alyosha was the Propulsion Officer of the Red Kestrel test flight team, and the first member of the crew to accept Seth as one of their own. He was also one of the original twenty-seven members of the fleet, but he left the team after Rhea’s first successful voyage. Aside from the core flight crew, no one knows what happened that day.<br> Sixteen years later, Los found him in the Mirev Labor Camp. <br>The closest thing to home at last—Alyosha returned to the ship. Everything felt so familiar. The ship remembered him, and he remembered it. Everything was as it had been. Except Seth.<br><br>Broad-shouldered with a narrow waist, Alyosha is tall and looks naturally built for hugs. Though he may appear somewhat aloof, he is warm-hearted by nature, and even sixteen years in prison could not change that. It is said that Seth once stole his beloved flask and replaced the liquor with water before a test flight, so Alyosha still keeps a close eye on his flask. Old habits, perhaps. Though Seth is no longer there to test them.<br>Whether toward his homeland or the friends by his side, Alyosha’s feelings run deep and true. Who could fail to love a man like that?",
                 "more_imgs": [
                     "images/pfiles/aid01.jpg"
-                    ]
-                     },
-             {
+                ]
+            },
+            {
                 "id": "Brygg",
                 "name": "Tycho Brygg<br>第谷 布瑞格",
                 "img": "images/pfiles/brygg.jpg",
@@ -272,9 +264,10 @@
                 },
                 "desc": "布瑞格在红隼试飞队时就是个老资历，现在就更老了。没人敢问他的年龄。好吧，其实他6x岁——拉薇尼娅说船员档案是机密 :(<br><br>布瑞格的存在十分特殊，*洋流观测员*是专门为他开设的职位。他教会了赛斯用肉眼观测洋流，还能实时纠正探测器的波峰波谷误差值。也就是说，在驾驶时，舰桥看到的洋流数据都经过了布瑞格的校对。他仍然保留着肉眼和大部分自己的身体。在加入瑞亚项目前，他是一名厉害的狙击手。也是在这个时期，布瑞格为了执行极限任务进行了心肺功能义体化。<br><br>他手上似乎永远拿着咖啡。因为长期猫在观测镜前，布瑞格的身形有些佝偻，活像一只老海狮。新人很容易被他严肃的表情吓到，而且他说话也经常充斥着嘲讽满满的冷笑话。但其实布瑞格喜欢笑，而且笑点很奇怪。|Brygg was already an old hand back in the Red Kestrel test flight team, and he’s even older now. No one dares ask his age. Well, actually, he’s sixty-something—Lavinia says the crew records are classified :(<br><br>Brygg’s presence is rather unique. The position of *Current Watcher* was created specifically for him. He taught Seth how to observe the currents with the naked eye, and could calibrate the probes’ peak and trough readings in real time. In other words, while the ship was flying through the currents, all the current data displayed on the bridge was cross-checked against Brygg’s observations. He still retains his natural eyes and most of his original body. Before joining the Rhea Project, he was an exceptional sniper. It was back then that he had his heart and lungs cybernetically rebuilt to survive extreme ops.<br><br>He always seemed to have a mug of coffee in hand. Decades of hunching over  the observation scope had left him with a stooped back, looking for all the world like an old sea lion. Fresh recruits were easily spooked by his deadpan scowl, and his speech is often peppered with sarcastic, painfully dry jokes. Still, Brygg actually liked a good laugh—even if he laughed at the oddest things.",
                 "more_imgs": [
-                    "images/pfiles/brygg01.jpg" ]   
+                    "images/pfiles/brygg01.jpg"
+                ]
             },
-             {
+            {
                 "id": "Liz",
                 "name": "Elizabeth Ochoa<br>伊丽莎白 奥乔亚",
                 "img": "images/pfiles/liz.jpg",
@@ -284,10 +277,8 @@
                     "AUGMENT": "电子脑化 头部义体化|Cyberbrain conversion，head augmentation"
                 },
                 "desc": "莉兹是建造瑞亚号的大功臣。她不隶属于任何军队，年轻的莉兹凭借着过硬的技术跟师父一起来到了瑞亚项目。在老技师退休后，工程队就全由莉兹负责了。当年对于刚到试飞项目的新人队长赛斯很是照顾。<br><br>现在莉兹是*狂想曲号*的首席工程师、维修部部长。上到舰艇的心脏——能量反应堆，下到丹的机械打火机，她都能修。技术部是核心驾驶组外最重要的部门，莉兹在船上也是一言千金的大姐头。<br>莉兹性格飒爽，还非常护短，维修部的员工们都非常崇拜她。当然，她要操的心也不少。|Liz is one of the pivotal contributors behind the construction of the Rhea. Unaffiliated with the military, young Liz joined the Rhea Project alongside her mentor, backed solely by her exceptional engineering expertise. When the senior technician eventually retired, she took full charge of the entire engineering crew. Back in those early days, she also took great care of Seth, who was then merely a rookie captain new to the flight-testing program.<br><br>Liz now serves as the Chief Engineer and head of the Maintenance Department aboard of *the Rhapsody*. From the vessel’s beating heart—its energy reactor, down to Dan’s mechanical lighter, there is nothing beyond her repair. Outside the core flight crew, the technical division is the most important department on board, and Liz is the unquestioned, formidable big sister of the ship whose word carries absolute weight.<br>Straightforward, decisive, and fiercely protective of her own people, Liz is deeply respected by everyone in the maintenance department. Of course, being the person everyone relies on means she always has plenty to worry about."
-                
-                
             },
-                    {
+            {
                 "id": "Eicher",
                 "name": "Eicher<br>艾赫尔",
                 "img": "images/pfiles/blue.jpg",
@@ -299,31 +290,43 @@
                 "desc": "生态部的负责人Eicher, 但他更常被叫做蓝莓熊——可能是因为体型吧！最后他就直接被简称为「Blue」了。<br>船上的植物种植和偶尔被运输的克隆动物们都是他在饲养。巨大的义体手臂非常有力量，据说可以直接搬动黑豹之类的大型动物。艾赫尔原本只是个生物学家，在加入军队项目后更换了全身义体。虽然提出了相关的功能意见，但样式并非他自己选择的。据说因为脸部太可怕，被小动物们讨厌了，一度十分忧郁。现任船长洛斯给了他一个传感面具，可以随心所欲的播放emoji。<br><br>艾赫尔不爱说话，但其实声音很平常，听起来是温和的中年男人。他不太喜欢疯疯癫癫的人，比如赫克托。<br>在做研究和实验时，会把大功率手臂打开换成正常大小，也方便照顾小体型的生物。|The head of the Life Sciences Department is Eicher, though he is more often known as Blueberry Bear, probably because of his build! The crew just took to calling him Blue for short.<br><br>He is responsible for all the plants grown on the ship, as well as the cloned animals occasionally transported aboard.  His massive cybernetic arms pack immense strength and are rumored to be powerful enough to hoist large beasts like black panthers with ease. <br><br>Eicher was originally just a biologist, but after joining a military project, he underwent full-body cybernetic replacement. Although he submitted functional specifications for the modifications, the actual aesthetic design was not his own choice. Word has it that his face looked so terrifying that small animals wouldn't dare approach him, leaving him deeply dejected for a long time. The current captain, Los, eventually gave him a sensor mask that can display whatever emoji he wants.<br><br>Eicher is a man of few words, but he speaks in a surprisingly ordinary, gentle middle-aged voice. Eicher does not like unhinged people. Hector, for example.When conducting research and experiments, he can open up his heavy-duty cybernetic arms and switch to normal-sized hands, which also makes it easier to handle smaller organisms.",
                 "more_imgs": [
                     "images/pfiles/blue01.png"
-                ] 
-                
+                ]
             },
-             {
+            {
                 "id": "Dan",
                 "name": "Vance D Aston<br>万斯 D 阿斯顿",
                 "img": "images/pfiles/dan.jpg",
                 "data": {
                     "ORIGIN": "万斯 丹 阿斯顿|Vance Dan Aston",
-                    "POSITION": "法律顾问//外交部负责人|Legal consoler / Director of Foreign Affairs",
+                    "POSITION": "法律顾问，外交部负责人|Legal consoler ， Director of Foreign Affairs",
                     "AUGMENT": "电子脑化|Cyberbrain conversion"
                 },
                 "desc": "黑市称他为「腹语师万斯」。正因有这位律师，舰船得以存在且正常航行，可他起初只是一个混迹黑市街头的骗子。<br>丹和赛斯是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找赛斯，想留住东西就去找丹。看来现在依旧如此。<br><br>直到有一天，瑞亚号被『击落』了，丹拒绝查看记录，也不承认赛斯死了。洛斯说要让狂想曲号成为合法的船，丹说好。于是他开始学习真正的法律条款。<br>丹有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受赛斯真的被这个世界吞噬了。|They call him 「Vance the Vent(riloquist)」in the black market. The lawyer responsible for keeping the Rhapsody alive and legally operational was once nothing more than a scam artist wandering the black markets. <br>Dan met Seth in an orphanage.Back then, the children used to say: <br> “If you want something, ask Seth. If you want to keep it, ask Dan.” <br>Apparently, that still holds true. <br>When the Rhea was finally “shot down,” Dan refused to examine the records. He refused to acknowledge Seth’s death. <br><br>Los said she wanted to turn the Rhapsody into a legitimate vessel. Dan answered simply: “Fine.”And so he began studying actual law. <br><br>Dan hides behind endless sarcasm, negotiation tricks, and sharp-tongued humor. He sees the ugliness of the world clearly and survives by walking through its filth. Yet there is one truth he cannot accept: That Seth Remarque was truly swallowed by this world.",
                 "more_imgs": [
                     "images/pfiles/dan01.jpg"
                 ]
+            },
+            {
+                "id": "Dr Mkhize",
+                "name": "Arnold Mkhize<br>阿诺德 穆希泽",
+                "img": "images/pfiles/mkhize.jpg",
+                "data": {
+                    "POSITION": "船医|Ship's Doctor",
+                    "AUGMENT": "电子脑化，心肺功能义体化|Cyberbrain conversion, Cybernetic cardiopulmonary system"
+                },
+                "desc": "阿诺德 穆希泽是狂想曲号上的船医。他曾是一名军医，年轻时参加过无国界医疗救援组织。也是在那时，他在战区救助了一名年仅4岁的女孩并收养了她——*南迪 穆希泽*。<br><br>阿诺德40岁时参加了瑞亚项目，并成为了诺约德基地的医疗主任。他将南迪留在中立城市读书，希望她在安全又和平的地方长大。阿诺德是一名尽职尽责的好医生，为基地里这群年轻人们操碎了心。可能也出于同样的理由，他放心不下这群难以照顾好自己的士兵们，又或者他真的厌倦了战争，也或者...南迪说自己决定去护士学校，以后她要帮助阿诺德，像他一样去全世界行医。<br>阿诺德对计划开走瑞亚号的赛斯说「带上我，你们会需要一个医生的。五年后以后，你还会获得一名优秀的护士。」<br><br>如果说阿诺德对于船员们就像一位可靠的父亲。那么南迪就是瑞亚号自己的南丁格尔。她生气起来，连赛斯都敢批评。而后来上船的洛斯更是和她建立起了亲密的友谊。作为新时代的孩子，不论是和拉薇尼亚交流，还是指挥SPU们打下手，她都很熟练。阿诺德没错，她很优秀。|Arnold Mkhize is the ship’s doctor aboard the Rhapsody. A former military medic, he spent his youth working with Médecins Sans Frontières. During a deployment in a war zone, he rescued and adopted a four-year-old girl — *Nandi Mkhize*. <br><br>At forty, Arnold joined the Rhea Project as the medical director of Njord. He left Nandi in a neutral city for her education, hoping she would grow up somewhere safe and peaceful. Arnold was a dedicated and conscientious doctor, and he worried himself sick over the young people at the base. Perhaps for the same reason, he couldn't abandon a group of soldiers so utterly incapable of looking after themselves. Or perhaps he had simply grown tired of war. Or perhaps... Nandi had decided that she wanted to go to nursing school. One day, she told him, she would help Arnold travel the world and practice medicine, just as he had.<br>When Arnold heard that Seth was planning to take the Rhea out, he told him, 「Take me with you. You’re going to need a doctor. And five years from now, you’ll have an excellent nurse, too.」<br><br>If Arnold is like a reliable father to the crew, then Nandi is the Rhea’s very own Florence Nightingale. When her temper flares, even Seth gets an earful. Later, she and Los become thick as thieves. As a child of the new age, she is completely at ease communicating with Lavinia or directing the SPUs to lend a hand. Arnold was right. She is excellent.",
+                "more_imgs": [
+                    "images/pfiles/mkhize01.jpg"
+                ]
             }
+
         ]
     },
     "Amber Dust // 琥珀之尘": {
         "id": "group_amber",
         "intro": "极夜城周边的卫星城市，与其隔着旧城废墟（已被沙漠气候风化的*茶盘区*）生活方式近乎废土<br><br>A satellite settlement beyond Kaamos City,<br>separated from it by the ruins of the Old Basin（*Saucer District*）<br>— a wasteland long eroded into desert terrain.<br>Life there resembles the remnants of a post-collapse world.",
         "members": []
-     },
-
+    },
     "Eithelon // 艾特隆联邦": {
         "id": "group_eithelon",
         "intro": "*洛特巴德*家族曾经生活的联邦国。由崇尚机械主义的*进化派*掌权期间，曾经大肆清算*HCN*（人类存续网络)组织。<br><br>The former homeland of the *Rothbart* family. <br>During the rule of the Mechanists -*The Evolvers*, <br>the Federation carried out large-scale purges against the *HCN* — Human Continuity Network.",
@@ -338,14 +341,14 @@
                     "STATUS": "已死亡|Deseased",
                     "CODE": "洛夫|Rov"
                 },
-                "desc": "出生于艾特隆联邦的阿法纳西，父母是*人文存续派*的艺术家，祖父是皇家科学家。在机械派掌权后，家族遭到了清洗。<br>追捕中，他目睹了家人的死亡，年仅8岁的他被送往*米尔维*荒原上的劳改监狱。在那里，他受到了囚禁于此的科学家与艺术家们的庇护和教育，读完了监狱中的所有书籍，犯人们尊敬他的家族，称呼他为“*洛夫*”。<br>在十五岁时洛夫被迫编入机械派的军队。三年后，他借助无国界军队的俘虏行动脱离联邦获得了自由。辗转于多年的战争并幸存，他一直以为妹妹早已死亡。退役一年后被旧长官征召成为军事教官，却再次经历了基地被毁，一人幸存的洛夫再也无法忍受残酷的命运，在阿拉斯加的军事基地自尽。<br>恰恰因为他的死亡，洛夫的大脑被秘密用于修复了妹妹洛斯受损的神经系统。使她得以苏醒，重新获得生命。多年后，因为赛斯舰长的离世，同样的幸存者创伤与悲痛令兄妹的意识产生了共鸣。两人的意识第一次在同一具身体内辨识到对方的存在。|Afanasy Rothbart was born in the Eteron Federation to a family tied to the *Human Continuity Network*. His parents were artists, while his grandfather served as a royal scientist. After the Mechanist faction seized power, the Rothbart family became one of the targets of the political purge.<br>During the pursuit, Afanasy witnessed the death of his family. At the age of eight, he was sent to the ALC labor camp in the *Mirev* wastelands. There, he was protected and educated by the imprisoned scientists and artists who respected the legacy of the Rothbart family. Having read every book within the prison, he eventually came to be known among the inmates simply as “*Rov*.”<br>At fifteen, Rov was forcibly conscripted into the Mechanist military. Three years later, he escaped the Federation during a borderless army capture operation and finally obtained his freedom. After surviving years of war and displacement, believing his younger sister had long since died, he was recruited once again by a former commander to serve as a military instructor after retirement. However, after enduring yet another catastrophe in which he became the sole survivor of a destroyed base, Rov could no longer withstand the cruelty of fate and took his own life at a military facility in Alaska.<br>Ironically, it was his death that allowed his brain to be secretly used in the repair of his sister Los’s damaged neural system, enabling her to awaken and live once more. Years later, following the death of Captain Seth, the overwhelming grief and survivor’s trauma shared by both siblings caused their consciousnesses to resonate. For the first time, they became aware of each other’s presence within the same body."
-     , "more_imgs": [
+                "desc": "出生于艾特隆联邦的阿法纳西，父母是*人文存续派*的艺术家，祖父是皇家科学家。在机械派掌权后，家族遭到了清洗。<br>追捕中，他目睹了家人的死亡，年仅8岁的他被送往*米尔维*荒原上的劳改监狱。在那里，他受到了囚禁于此的科学家与艺术家们的庇护和教育，读完了监狱中的所有书籍，犯人们尊敬他的家族，称呼他为“*洛夫*”。<br>在十五岁时洛夫被迫编入机械派的军队。三年后，他借助无国界军队的俘虏行动脱离联邦获得了自由。辗转于多年的战争并幸存，他一直以为妹妹早已死亡。退役一年后被旧长官征召成为军事教官，却再次经历了基地被毁，一人幸存的洛夫再也无法忍受残酷的命运，在阿拉斯加的军事基地自尽。<br>恰恰因为他的死亡，洛夫的大脑被秘密用于修复了妹妹洛斯受损的神经系统。使她得以苏醒，重新获得生命。多年后，因为赛斯舰长的离世，同样的幸存者创伤与悲痛令兄妹的意识产生了共鸣。两人的意识第一次在同一具身体内辨识到对方的存在。|Afanasy Rothbart was born in the Eteron Federation to a family tied to the *Human Continuity Network*. His parents were artists, while his grandfather served as a royal scientist. After the Mechanist faction seized power, the Rothbart family became one of the targets of the political purge.<br>During the pursuit, Afanasy witnessed the death of his family. At the age of eight, he was sent to the ALC labor camp in the *Mirev* wastelands. There, he was protected and educated by the imprisoned scientists and artists who respected the legacy of the Rothbart family. Having read every book within the prison, he eventually came to be known among the inmates simply as “*Rov*.”<br>At fifteen, Rov was forcibly conscripted into the Mechanist military. Three years later, he escaped the Federation during a borderless army capture operation and finally obtained his freedom. After surviving years of war and displacement, believing his younger sister had long since died, he was recruited once again by a former commander to serve as a military instructor after retirement. However, after enduring yet another catastrophe in which he became the sole survivor of a destroyed base, Rov could no longer withstand the cruelty of fate and took his own life at a military facility in Alaska.<br>Ironically, it was his death that allowed his brain to be secretly used in the repair of his sister Los’s damaged neural system, enabling her to awaken and live once more. Years later, following the death of Captain Seth, the overwhelming grief and survivor’s trauma shared by both siblings caused their consciousnesses to resonate. For the first time, they became aware of each other’s presence within the same body.",
+                "more_imgs": [
                     "images/pfiles/rov01.jpg",
                     "images/pfiles/rov02.jpg",
                     "images/pfiles/rov04.jpg",
-                    "images/pfiles/rov05.jpg"     
+                    "images/pfiles/rov05.jpg"
                 ]
             }
-]
+        ]
     }
 }
