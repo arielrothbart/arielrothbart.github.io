@@ -331,10 +331,23 @@
             }
         ]
     },
-    "Amber Dust // 琥珀之尘": {
+   "Amber Dust // 琥珀之尘": {
         "id": "group_amber",
         "intro": "极夜城周边的卫星城市，与其隔着旧城废墟（已被沙漠气候风化的*茶盘区*）生活方式近乎废土<br><br>A satellite settlement beyond Kaamos City,<br>separated from it by the ruins of the Old Basin（*Saucer District*）<br>— a wasteland long eroded into desert terrain.<br>Life there resembles the remnants of a post-collapse world.",
-        "members": []
+        "members": [ {
+                "id": "Kurtmond",
+                "name": "Solomons Kurtmond<br>所罗门斯 科特蒙德",
+                "img": "images/pfiles/solo.jpg",
+                "data": {
+                    "LOCATION":"琥珀之尘|Amber Dust",
+                    "POSITION": "科特蒙德家族首领|Head of the Kurtmond Family",
+                    "AUGMENT": "民用自组装 *类型未知*|Civilian self-assembled *type unknown*"
+                },
+                "desc": "琥珀之尘是极夜城的卫星城市。柯特蒙德家族则是支配着整座城市的集团。不管是暴力，商业或是政治，他们以各种方式渗透进了城市的管理。<br>不满于弹丸之地的柯特蒙德家族早已虎视眈眈地看向了极夜城。贫富差距越发悬殊的上下城区（戌区、卯区）是他们的靶心。但极夜城比他想象的要难以攻克。<br>以自己的力量平衡着戌卯城区的菅原会是所罗门斯向上攀登之路必须铲除的障碍。他毫不掩饰自己的野心，向着菅原真发出了挑战。戌区的财阀们自然将他视为眼中钉。孰知菅原真也早已看出了他的目的。想要避免一场血雨腥风，他和狂想曲号的船长洛斯制造了一座天空中的角斗场。<br><br>所罗门斯 科特蒙德尽管身居高位却十分神秘，关于他的情报和过去鲜为人知。连身为黑客的顾菟也只能获得少量信息。<br>这场没有硝烟的战争究竟谁会胜出呢？隐藏在帷幕中的黑国王，巧妙的将身影隐藏在棋盘的尽头。而魑魅魍魉早已蠢蠢欲动。就让我们拭目以待吧。|Amber Dust is a satellite city of Kaamos. The Kurtmond family is the group that holds sway over the entire city. Through violence, commerce, politics, and every means at their disposal, they have infiltrated every level of the city’s administration.<br>Dissatisfied with their tiny patch of land, the Kurtmond family has long had its eyes fixed hungrily upon Kaamos. The upper and lower districts, known as the Orto and Ocaso Districts, where the divide between rich and poor grows ever wider, are their target. Yet Kaamos has proven far more difficult to conquer than they imagined.<br>Sugahara Shin, who maintains the balance between the Orto and Ocaso Districts through his own power, stands as an obstacle that Solomons must eliminate on his path to the top. He makes no attempt to conceal his ambition and openly challenges Sugahara Shin. The bogators of the Orto District naturally regard him as a thorn in their side. Little does Solomons know that Sugahara Shin has already seen through his intentions. Seeking to avert a bloody conflict, he and Los, captain of the Rhapsody, create an arena in the sky.<br><br>Despite his lofty position, Solomons Kurtmond remains an enigmatic figure. His past is shrouded in mystery, and few details about him have ever come to light. Even Gu Tu, the great hacker, can uncover only fragments of information.<br>Who will emerge victorious from this bloodless war? The Black King hidden behind the curtain has cunningly concealed his figure at the far end of the chessboard. Meanwhile, all manner of specters and monsters are already stirring in the shadows. Let us wait and see."
+            ,"more_imgs": [
+                    "images/pfiles/solo01.jpg"
+                ]
+                }]
     },
     "Eithelon // 艾特隆联邦": {
         "id": "group_eithelon",
