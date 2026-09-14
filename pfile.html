@@ -358,10 +358,32 @@
         #scrollTop.show { opacity: 1; visibility: visible; }
 
         #lightbox {
-            display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95);
-            z-index: 2000; justify-content: center; align-items: center; cursor: zoom-out;
-        }
-        #lightbox img { max-width: 90%; max-height: 90%; }
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    user-select: none;
+    cursor: grab; /* 默认显示手型，支持抓取平移 */
+}
+
+#lightbox.dragging {
+    cursor: grabbing; /* 拖拽时紧抓手势 */
+}
+
+#lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    transform-origin: center center;
+    will-change: transform;
+    pointer-events: auto;
+    /* 缩放平移时的硬件加速 */
+    transition: transform 0.05s linear;
+}
 
         .bg-layers { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; background-color: #050505; }
         .layer { position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; background-repeat: repeat; background-position: center; pointer-events: none; }
@@ -502,13 +524,6 @@
             }
             .char-info h2 { font-size: 1.4rem; }
         }
-
-        /* ======= 新增：限制移动端长按图片弹出菜单和用户选中 ======= */
-        img {
-            -webkit-touch-callout: none; /* iOS Safari 禁用长按呼出菜单 */
-            -webkit-user-select: none;   /* 禁用选择 */
-            user-select: none;
-        }
     </style>
 </head>
 
@@ -531,7 +546,7 @@
 
     <div id="lightbox">
         <div id="prevBtn" class="lightbox-btn" onclick="changeImg(-1); event.stopPropagation();">❮</div>
-       <img id="lightbox-img" src="" onclick="if(window.innerWidth <= 768) event.stopPropagation();">
+        <img id="lightbox-img" src="" onclick="event.stopPropagation();">
         <div id="nextBtn" class="lightbox-btn" onclick="changeImg(1); event.stopPropagation();">❯</div>
     </div>
 
@@ -700,7 +715,7 @@
                 const copyDiv = document.createElement('div');
                 copyDiv.className = 'sidebar-copyright';
                 // 下面用的是选项A的文案，您可以随时修改文字
-                     copyDiv.innerHTML = `> SYS.TXT: ORIGINAL CHARACTERS<br>> PROJECT // RHAPSODY IN NEON<br>> ©Ariel Rothbart. ALL RIGHTS RESERVED.<span class="cn-text">角色设定与编绘：Ariel Rothbart</span><br>/* NON-COMMERCIAL CONCEPT ONLY. FONTS USED FOR STYLE MATCHING. */<br>/* 个人原创概念设计 · 画面字体仅作视觉风格匹配 */`;
+                copyDiv.innerHTML = `> SYS.TXT: ORIGINAL CHARACTERS<br>> PROJECT // RHAPSODY IN NEON<br>> ©Ariel Rothbart. ALL RIGHTS RESERVED.<span class="cn-text">角色设定与编绘：Ariel Rothbart</span><br>/* NON-COMMERCIAL CONCEPT ONLY. FONTS USED FOR STYLE MATCHING. */<br>/* 个人原创概念设计 · 画面字体仅作视觉风格匹配 */`;
                 dirFragment.appendChild(copyDiv);
                 // ----------------------------------------
 
@@ -709,27 +724,124 @@
             } catch (e) { console.error("Data error:", e); }
         }
 
-        function openFull(imgs, index) {
-            currentGallery = imgs;
-            currentIndex = index;
-            document.getElementById('lightbox').style.display = 'flex';
-            updateLightbox();
-        }
+        // ==================== 增强版 Lightbox 交互系统 ====================
+let scale = 1;
+let posX = 0;
+let posY = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let hasDragged = false; // 区别“单击”与“拖拽”
 
-        function updateLightbox() {
-            const lbImg = document.getElementById('lightbox-img');
-            lbImg.src = currentGallery[currentIndex];
-            const showBtns = currentGallery.length > 1 ? 'block' : 'none';
-            document.getElementById('prevBtn').style.display = showBtns;
-            document.getElementById('nextBtn').style.display = showBtns;
-        }
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightbox-img');
 
-        function changeImg(step) {
-            currentIndex = (currentIndex + step + currentGallery.length) % currentGallery.length;
-            updateLightbox();
-        }
+function resetTransform() {
+    scale = 1;
+    posX = 0;
+    posY = 0;
+    applyTransform();
+}
 
-        document.getElementById('lightbox').onclick = function () { this.style.display = 'none'; };
+function applyTransform() {
+    lbImg.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+}
+
+function openFull(imgs, index) {
+    currentGallery = imgs;
+    currentIndex = index;
+    lightbox.style.display = 'flex';
+    resetTransform();
+    updateLightbox();
+}
+
+function updateLightbox() {
+    lbImg.src = currentGallery[currentIndex];
+    const showBtns = currentGallery.length > 1 ? 'block' : 'none';
+    document.getElementById('prevBtn').style.display = showBtns;
+    document.getElementById('nextBtn').style.display = showBtns;
+}
+
+function changeImg(step) {
+    currentIndex = (currentIndex + step + currentGallery.length) % currentGallery.length;
+    resetTransform();
+    updateLightbox();
+}
+
+// 1. 鼠标滚轮缩放（支持 0.6x 到 8x 自由放大缩小）
+lightbox.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const zoomFactor = 0.15;
+    if (e.deltaY < 0) {
+        scale = Math.min(scale + zoomFactor * scale, 8.0); // 向上滚放大
+    } else {
+        scale = Math.max(scale - zoomFactor * scale, 0.6); // 向下滚缩小
+    }
+    
+    // 如果缩小回原大小以下，自动归正中心
+    if (scale <= 1) {
+        posX = 0;
+        posY = 0;
+    }
+    applyTransform();
+}, { passive: false });
+
+// 2. 鼠标拖拽平移
+lightbox.addEventListener('mousedown', (e) => {
+    // 阻止原生拖图事件
+    if (e.target.tagName === 'BUTTON' || e.target.classList.contains('lightbox-btn')) return;
+    
+    isDragging = true;
+    hasDragged = false;
+    startX = e.clientX - posX;
+    startY = e.clientY - posY;
+    lightbox.classList.add('dragging');
+});
+
+window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    hasDragged = true;
+    posX = e.clientX - startX;
+    posY = e.clientY - startY;
+    applyTransform();
+});
+
+window.addEventListener('mouseup', () => {
+    if (isDragging) {
+        isDragging = false;
+        lightbox.classList.remove('dragging');
+    }
+});
+
+// 3. 点击逻辑判断：
+// - 如果处于放大状态：单击图片立刻平滑重置为默认窗口大小；
+// - 如果处于原大小：单击任意区域退出；或者点击背景区域直接退出。
+lightbox.addEventListener('click', (e) => {
+    if (hasDragged) return; // 如果刚才进行了拖动画布，不触发退出或还原
+
+    // 点到左右切换按钮时不退出
+    if (e.target.closest('.lightbox-btn')) return;
+
+    if (scale > 1.05) {
+        // 放大状态下点击图片或背景：重置为全图展示
+        resetTransform();
+    } else {
+        // 原大小下点击：退出灯箱
+        lightbox.style.display = 'none';
+    }
+});
+
+// 键盘事件增强（ESC 退出，左右切图）
+document.addEventListener('keydown', (e) => {
+    if (lightbox.style.display === 'flex') {
+        if (e.key === "ArrowLeft") changeImg(-1);
+        if (e.key === "ArrowRight") changeImg(1);
+        if (e.key === "Escape") {
+            lightbox.style.display = 'none';
+            resetTransform();
+        }
+    }
+});
 
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('lightbox').style.display === 'flex') {
@@ -748,21 +860,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadPersonnel(); // 确保 DOM 骨架一旦就绪就开始读取数据
 });
-
-// ======= 新增：保护图片，防止右键存图与拖拽 =======
-        document.addEventListener('contextmenu', function (e) {
-            // 如果点击的是图片（包含大图、头像、画廊小图等），则阻止右键菜单
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        document.addEventListener('dragstart', function (e) {
-            // 阻止图片被直接拖拽到桌面或新标签页
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        }, { passive: false });
    </script>
 </body>
 
