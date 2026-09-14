@@ -156,6 +156,21 @@
                 "desc": ""
             },
             {
+                "id": "D Sovana",
+                "name": "Denise Sovana<br>D 蒂尼斯 索瓦娜",
+                "img": "images/pfiles/d.jpg",
+                "data": {
+                    "AFFILIATION": "极夜城警局|Kaamos City Police department ",
+                    "IDENTITY": "警官|Police Officer ",
+                    "ORIGIN": "安菲萨 弗拉吉米拉芙娜 索瓦娜|Anfisa “D” Vladimirovna Sovana",
+                    "CODE": "D|Death Horseman"
+                },
+                "desc": "安菲萨代表「盛开」，源自希腊语「花」的斯拉夫语变体。<br>索瓦家是极夜城最大的豪华酒店*史坦达特*的拥有者。可他们家最有资质继承家业的次女安菲萨 索瓦娜却从家里逃了出来，悄悄进入警校，在下城戌区成为了警察。<br><br>黑色的长发总是盘在脑后，紫罗兰色的眼睛非常美丽。原本她比哥哥更有宗族的显性血统，能力也出众，从小就受到了各个方面的严格教育。领域包括艺术，格斗和各种枪械使用......据说她的老师要求安菲萨在穿着礼裙时也能优雅地战斗。她本该继承酒店和随其而来的其他影子家业。但安菲萨厌恶父亲的掌控欲，她在16岁那年逃离。<br>几年前她的哥哥*瓦蒂姆*继承了家业，她才和家里的关系缓和了。<br><br>现在她已经成为了极夜城警局中一名优秀的警官。在警校中，她结识了新的朋友，也认识了一个全新的世界。她也拥有了新的名字——*蒂尼斯*。<br>并非酒神的信徒，但她要纵情生活，如午夜盛开的玫瑰，不论绽放还是凋零，都要自己决定。<br>在警局中，她和同期成为警察的*马克 杰罗姆*是一对欢喜冤家。互相竞争的同时又是默契的搭档。大家都看出来了他们喜欢彼此，可这两位迟钝的家伙最近才确定关系。刚进警局时，他们都是*诺亚 怀慈*的后辈。（诺亚目前已经因伤退役）他们非常敬重诺亚，特别是马克。<br><br>最近局长似乎暗示蒂尼斯有望升职，但马克却在警局中发现了一些鲜为人知的秘密。一向正直且手段强硬的马克会怎么做呢？蒂尼斯会支持他吗？|Anfisa means 「blooming」, derived from a Slavic variant of the Greek word for 「flower」. <br>The Sova family owns *The Grand Hotel Shtandart*, the largest luxury hotel in Kaamos City. Yet Anfisa Sovana, their second daughter and  the most qualified heir to the family enterprise, fled home to secretly enroll in the police academy. Today, she serves as an officer in the Ocaso District.<br><br>Her long black hair is always swept up in an elegant knot, contrasting striking violet eyes. Originally, she carried a stronger manifestation of the clan's pure bloodline than her elder brother, her talents were undeniable from the start. Groomed rigorously since childhood, her education encompassed the arts, combat, and the use of various firearms... Legend has it her tutors demanded she be able to fight gracefully even in an evening gown. She was supposed to inherit the hotel, along with the other shadow businesses that came with it.  But disgusted by her father’s suffocating control, Anfisa walked away at sixteen.<br>It was only a few years ago, when her brother Vadim took the reins, that tensions with her family began to thaw.<br><br>Now, she has become an excellent police officer in the KCPD. At the police academy, she made new friends and discovered an entirely new world. She also gained a new name:*Denise*. <br>Not exactly a follower of the god of wine, but she wants to live life to the fullest, like a rose blooming at midnight. Whether she blooms or withers, the decision will always be hers.<br>At the precinct, she and her academy classmate *Mark Jerome* are classic frenemies: fiercely competitive, yet seamlessly in sync on the job. Everyone in the department knew they were head over heels for each other, but it took these two hopelessly dense partners until recently to finally make it official. Back as rookies, they both cut their teeth under Detective *Noah Waits* (who has since retired due to a duty injury). Both revere Noah deeply, Mark especially.<br><br>Lately, the Chief has dropped hints about Denise's impending promotion. At the same time, Mark has stumbled onto dark, buried secrets inside the department. What will the righteous, tough-as-nails Mark do? Will Denise stand by his side? ",
+                "more_imgs": [
+                    "images/pfiles/police.jpg"
+                ]
+            },
+            {
                 "id": "—— GOVERNMENT ARMED FORCES ——",
                 "name": "政府军",
                 "data-type": "separator",
