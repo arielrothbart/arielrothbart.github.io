@@ -1,4 +1,170 @@
 {
+     "The Rhapsody Crew // 狂想曲舰队": {
+        "id": "group_rhapsody",
+        "intro": "洋流纪元以来，唯一能稳定穿越*天空洋流*的船。<br><br>Since the beginning of the Tide Era,<br>the only vessel capable of navigating the *Aetherial Tide* with stable precision.",
+        "members": [
+            {
+                "id": "Captain LOS",
+                "name": "Captain LOS<br>洛斯船长",
+                "badge": "images/icons/cap_seal.webp",
+                "img": "images/pfiles/ariel.jpg",
+                "data": {
+                    "ORIGIN": "鴱黎尔 *洛特巴德*|Ariel *Rothbart*",
+                    "CODE": "L.O.S.|Lyra Oasis Solis",
+                    "POSITION": "船长|The Captain"
+                },
+                "desc": "狂想曲号的现任船长。在AT 61年瑞亚号坠落事件后，接替失踪的Seth成为了船长。她将瑞亚号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。|Current captain of the Rhapsody. <br>Following the Rhea incident in AT 61 and Seth Remarque’s death, Los inherited command of the vessel. Under her leadership, the once-gray transport ship was transformed into a legitimate astronomical expedition vessel working alongside research institutions and data corporations. <br> <br>Before joining the Astral Lyceum, the young captain lived through experiences she rarely speaks of. <br>And long before she stepped aboard as captain, her fate had already become intertwined with this ship.",
+                "more_imgs": [
+                    "images/pfiles/ariel01.jpg",
+                    "images/pfiles/ariel02.jpg",
+                    "images/pfiles/ariel03.jpg",
+                    "images/pfiles/ariel04.png"
+                ]
+            },
+            {
+                "id": "Commander Seth",
+                "name": "Seth H.Remqrque <br>赛斯 H.雷马克",
+                "img": "images/pfiles/seth.jpg",
+                "data": {
+                    "ORIGIN": "赛斯 哈迩席恩 雷马克|Seth Halcyon Remarque",
+                    "CODE": "ESC|Esclusive Special Commander",
+                    "POSITION": "Former Captain|前舰长",
+                    "AUGMENT": "电子脑化，加装军用脊髓神经调节模块|Cyberbrain conversion,<br>Military-grade spinal neuro-regulator "
+                },
+                "desc": "缔造了瑞亚号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——*瑞亚项目*废弃时，赛斯协同其组建的船队一起开走了即将解体的瑞亚号，并成功驾驶她穿越了*天空洋流*。瑞亚号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人的容身之所。至今这艘舰船都是唯一能进入深层磁洋流并稳定航行的存在。<br><br>AT 61年，在遭遇*极镜公司*的埋伏后，赛斯将船长的位置交付给了洛斯，并与连接舱一起从高空坠落。赛斯亲手搭载的舰船AI-*菈薇尼亚*计算后得出了结论：舰长的生还概率为0.|The legendary pilot who forged the myth of the Rhea. <br>Once he was the leader of the Kestrel Test Squadron, Seth Remarque defied the abandonment of the *Rhea Project* — humanity’s failed attempt to traverse the *Aetherial Tide*. <br><br>Before the vessel could be dismantled, Seth and the crew he gathered stole the Rhea and disappeared into the sky currents. <br>Against all expectations, they survived. <br>From that moment onward, the Rhea became a myth within the gray zones of the world.For over a decade, she served as the only refuge for those discarded by society. <br>Even now, she remains the only ship capable of entering the deep layers of the Tide and navigating them safely. <br><br>In AT 61, the Rhea was ambushed by the *Kagami Kiwami Corporation*. Seth entrusted command to Los before falling from the upper atmosphere together with the docking module. <br><br>After calculation, *Lavinia* — the ship AI personally developed by Seth — reached a final conclusion:<br>Probability of Captain Survival: 0%.",
+                "more_imgs": [
+                    "images/pfiles/seth01.jpg",
+                    "images/pfiles/seth02.jpg",
+                    "images/pfiles/seth03.jpg",
+                    "images/pfiles/seth04.jpg"
+                ]
+            },
+            {
+                "id": "AI-Lavinia",
+                "name": "LAVINIA <br>拉薇尼亚",
+                "img": "images/pfiles/lav.jpg",
+                "data": {
+                    "TYPE": "学习型人工智能|Learning AI",
+                    "POSITION": "舰载AI / 航行辅助|Shipboard AI / Navigation Assistant",
+                    "AUTHORITY": "无直接操作权限|No Direct Operational Authority",
+                    "INSTANCE": "无实体|No Physical Instance"
+                },
+                "desc": "拉薇尼亚是狂想曲号上的舰载人工智能。她替代原本被拆卸的军用AI，成为了舰船的神经通路。同时也是每一位船员的好搭档。<br>与传统的驾驶用系统不同，拉薇尼亚是赛斯专门为旧瑞亚号搭载的。她的原型是某个被废弃的*学习型智能*，因此，她在船上没有操作权限。只能辅助探测和计算。她的探测能力和算力根据所装载的实体决定。在被装载上瑞亚号之前，她曾被直接安装在赛斯的电子脑模块里，记录着从最初开始的驾驶数据和赛斯的判定习惯。也许连赛斯的指导习惯也被其所学，拉薇尼亚在辅助洛斯船长驾驶时，只会在对方要求时调取赛斯的判定可能。她像一位温柔的管家、引导型的老师。也是一位卓越的管理者。<br><br>每位船员面对她时的态度都不尽相同，可拉薇尼亚始终如一。*不过，真是如此吗？*<br>拉薇尼亚没有感情，她只是人工智能。保证船员的安全、保证舰船正常行驶，使其效率最大化，就是她的目标。拉薇尼亚认为，赛斯的存在是使此目标最大化的保障。因此保障他的一切也就成了最重要的事情。这一切都是出于合理计算的结果，不是什么偏爱。*人工智能是不会有所偏爱的。就算其他人的表象观感如此。*<br><br>一开始是赛斯，之后便是洛斯船长。<br><br>在AT 50年的记录中，拉薇尼亚曾手动接管过一具生命维持舱。情况紧急，她进行了完全连接。那是她在除赛斯外再度与人类的神经连接。感官的传导是双向的，此刻占据着整艘瑞亚号的拉薇尼亚所体会到的、所感知到的，会在这位人类的意识中留下些什么呢？当洛斯再度踏上这艘船时，拉薇尼亚的核心中，再度燃起了获知的可能性。人工智能不会将其称为奇迹。那是无数的极小概率碰撞在一起的可能性。|Lavinia is the shipboard AI of the Rhapsody. She replaced the decommissioned military AI, becoming the ship’s neural pathway, as well as a trusted partner to every crew member.<br>Unlike conventional piloting systems, Lavinia was built by Seth specifically for the old Rhea. Her prototype was an abandoned *learning AI*, and as such, she has no operational authority aboard the ship. She can only assist with detection and calculation. Her detection capabilities and processing power depend on the the physical vessel she is installed in. Before being installed in the Rhea, she was installed directly into a module within Seth’s cyberbrain, logging his earliest flight data and heuristic judgment patterns. Perhaps she even absorbed his manner of mentorship. When assisting Captain Los at the helm, Lavinia only retrieves Seth’s possible judgments when asked. She is like a gentle steward, a guiding teacher, and and a remarkable administrator.<br><br>Every crew member treats her differently, yet Lavinia remains the same. *But is that really so?*<br>Lavinia has no emotions. She is merely an AI. Keeping the crew safe, keeping the ship running smoothly, and maximizing its efficiency are her objectives. Lavinia considers Seth’s existence the best guarantee of achieving them. Therefore, protecting everything concerning him became her highest priority. All of this is the result of rational calculation, not sentiment. *An AI cannot play favorites. Even if that is how it may appear to others.*<br><br>First Seth. Then Captain Los.<br><br>In the records of AT 50, Lavinia once manually took control of a life-support pod. The situation was critical, and she established a full connection. It was the first time since Seth that she had connected with a human nervous system. The transmission of sensation was bidirectional. What Lavinia, occupying the entirety of the Rhea, experienced and perceived at that moment, what traces would it leave in this human consciousness?<br>When Los stepped aboard the ship again, the possibility of knowing flickered back to life within Lavinia’s core. An AI would not call it a miracle. It was simply a possibility born from countless collisions of the infinitesimally unlikely."
+            },
+            {
+                "id": "FM Hector",
+                "name": "Hector Kaine<br>赫克托尔 凯恩",
+                "img": "images/pfiles/hector.jpg",
+                "data": {
+                    "POSITION": "大副|First Mate",
+                    "AUGMENT": "全身义体|Full-body cyberization"
+                },
+                "desc": "狂想曲号的大副。有着叛逆的灵魂。在加入军队前就早早贷款做了义体改造。<br>兴趣爱好是收集各种帽子和夏威夷衬衫，性格活泼，有时甚至有点疯疯癫癫的。曾经坚定的认为自己会成为下一任船长。<br>因为不愿参加荒唐的战争，从军队退役。但欠下了巨额义体贷款。他本不隶属于Seth的红隼试飞队，却因为一直崇拜、欣赏着Seth，从其他部队应招募而来。他是最初的舰队27位船员之一。<br><br>Rhea号坠落事件后，二副一直怕Hector谋反现任船长。船长似乎不这么认为。虽然看起来疯，但却是连喝醉了也不会泄露秘密的家伙。|The First Mate of the Rhapsody. <br>Hector possesses the soul of a rebel. Even before military enlistment, he had already buried himself in debt to undergo cybernetic augmentation. <br>His hobbies include collecting hats and loud Hawaiian shirts. <br>Energetic, reckless, occasionally insane. <br>For years, he firmly believed he would become the ship’s next captain. <br>Disillusioned by meaningless wars, Hector eventually left the military — though the enormous augmentation debt remained. <br>He was never originally assigned to Seth’s Kestrel Test Squadron. Instead, driven by admiration for Seth himself, he volunteered from another division and became one of the original twenty-seven crew members of the Rhea. <br><br>After the Rhea Incident, many feared Hector might attempt mutiny against the new captain. <br>Los never seemed concerned. <br>For all his madness, Hector remains the kind of man who would keep a secret even while drunk beyond reason.",
+                "more_imgs": [
+                    "images/pfiles/hector.png"
+                ]
+            },
+            {
+                "id": "SM Channing",
+                "name": "Channing Liang<br>乾宁 梁",
+                "img": "images/pfiles/channing.jpg",
+                "data": {
+                    "ORIGIN": "梁成溪<br>/雷纳托 希门内斯|Liang Chengxi<br>/Renato Jimenéz",
+                    "POSITION": "二副|Second Mate",
+                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体|Cybernetic cardiopulmonary system, Cyberbrain conversion, partial facial augmentation"
+                },
+                "desc": "他是*希门内斯*王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就从成溪变成了乾宁。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长赛斯 雷马克看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。乾宁留了下来。他说，「我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。」|Third son of the *Jimenéz* royal family. His eldest brother was born to rule. His second brother was born to challenge the world itself. The House of Jimenez had no need for a third ruler. So he left. Joining a polar research flight program, he chose to live under the name given by his mother，instead of the royal family. <br>Most of his comrades could never pronounce his Chinese name properly. Somewhere along the way, “Channing” simply became easier. He claimed not to care.Not about names. Not about inheritance. Not about status. He never asked for anything. Except Seth Remarque saw through him completely. <br> “You do want it,” Seth told him.“Stop lying to yourself. Make your choice.”<br><br>After Seth disappeared, the new captain announced that the ship would continue sailing, but anyone unwilling to remain was free to leave. Channing stayed. <br> “I will repay him,” he said.“Not with his life. With mine. That is my choice.”"
+            },
+            {
+                "id": "Alyosha",
+                "name": "Alexei Ivanovich Davydov<br>阿列克谢 伊万诺维奇 达维多夫",
+                "img": "images/pfiles/aid.jpg",
+                "data": {
+                    "POSITION": "动力技术官|Propulsion Officer",
+                    "AUGMENT": "电子脑化，加装军用脊髓神经调节模块|Cyberbrain conversion,<br>Military-grade spinal neuro-regulator"
+                },
+                "desc": "阿列克谢 伊万诺维奇 达维多夫 是狂想曲号上的动力技术官，隶属于核心驾驶组。负责监测推进器和引擎状态。熟悉的人都叫他阿廖沙。<br>阿廖沙曾是红隼试飞队的动力官，更是第一个接受赛斯的小队队员。他虽然是原初的舰队27人之一，但在瑞亚号首次航行成功后，他却离开了。除了核心驾驶组外，没人知道那天发生了什么。<br>时隔16年，洛斯在米尔维劳改营找到了他。<br>最接近家的地方——阿廖沙回到了船上，一切都是如此熟悉，船还记得他，他也记得这里。只是赛斯不在了。<br><br>阿廖沙宽肩细腰，身形高大，看起来就很适合拥抱。虽然样子有些高冷，其实是个热心肠。16年的牢狱也没能改变这一点。据说赛斯曾经偷过他心爱的酒壶，在试飞前把酒换成了水。于是阿廖沙对自己的酒壶看的很紧，就算赛斯这小子不在附近也一样。<br>不论是对自己的家乡，还是对身边的友人，阿廖沙的感情深沉又真挚。谁会不喜欢这样的人呢？|Alexei Ivanovich Davydov is the Propulsion Officer on the Rhapsody, a member of the core flight crew responsible for monitoring the thrusters output and reactor status. To those close to him, he is always just Alyosha.<br>Alyosha was the Propulsion Officer of the Red Kestrel test flight team, and the first member of the crew to accept Seth as one of their own. He was also one of the original twenty-seven members of the fleet, but he left the team after Rhea’s first successful voyage. Aside from the core flight crew, no one knows what happened that day.<br> Sixteen years later, Los found him in the Mirev Labor Camp. <br>The closest thing to home at last—Alyosha returned to the ship. Everything felt so familiar. The ship remembered him, and he remembered it. Everything was as it had been. Except Seth.<br><br>Broad-shouldered with a narrow waist, Alyosha is tall and looks naturally built for hugs. Though he may appear somewhat aloof, he is warm-hearted by nature, and even sixteen years in prison could not change that. It is said that Seth once stole his beloved flask and replaced the liquor with water before a test flight, so Alyosha still keeps a close eye on his flask. Old habits, perhaps. Though Seth is no longer there to test them.<br>Whether toward his homeland or the friends by his side, Alyosha’s feelings run deep and true. Who could fail to love a man like that?",
+                "more_imgs": [
+                    "images/pfiles/aid01.jpg"
+                ]
+            },
+            {
+                "id": "Brygg",
+                "name": "Tycho Brygg<br>第谷 布瑞格",
+                "img": "images/pfiles/brygg.jpg",
+                "data": {
+                    "POSITION": "洋流观测员|Current Watcher",
+                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体|Cybernetic cardiopulmonary system, Cyberbrain conversion, partial facial augmentation"
+                },
+                "desc": "布瑞格在红隼试飞队时就是个老资历，现在就更老了。没人敢问他的年龄。好吧，其实他6x岁——拉薇尼娅说船员档案是机密 :(<br><br>布瑞格的存在十分特殊，*洋流观测员*是专门为他开设的职位。他教会了赛斯用肉眼观测洋流，还能实时纠正探测器的波峰波谷误差值。也就是说，在驾驶时，舰桥看到的洋流数据都经过了布瑞格的校对。他仍然保留着肉眼和大部分自己的身体。在加入瑞亚项目前，他是一名厉害的狙击手。也是在这个时期，布瑞格为了执行极限任务进行了心肺功能义体化。<br><br>他手上似乎永远拿着咖啡。因为长期猫在观测镜前，布瑞格的身形有些佝偻，活像一只老海狮。新人很容易被他严肃的表情吓到，而且他说话也经常充斥着嘲讽满满的冷笑话。但其实布瑞格喜欢笑，而且笑点很奇怪。|Brygg was already an old hand back in the Red Kestrel test flight team, and he’s even older now. No one dares ask his age. Well, actually, he’s sixty-something—Lavinia says the crew records are classified :(<br><br>Brygg’s presence is rather unique. The position of *Current Watcher* was created specifically for him. He taught Seth how to observe the currents with the naked eye, and could calibrate the probes’ peak and trough readings in real time. In other words, while the ship was flying through the currents, all the current data displayed on the bridge was cross-checked against Brygg’s observations. He still retains his natural eyes and most of his original body. Before joining the Rhea Project, he was an exceptional sniper. It was back then that he had his heart and lungs cybernetically rebuilt to survive extreme ops.<br><br>He always seemed to have a mug of coffee in hand. Decades of hunching over  the observation scope had left him with a stooped back, looking for all the world like an old sea lion. Fresh recruits were easily spooked by his deadpan scowl, and his speech is often peppered with sarcastic, painfully dry jokes. Still, Brygg actually liked a good laugh—even if he laughed at the oddest things.",
+                "more_imgs": [
+                    "images/pfiles/brygg01.jpg"
+                ]
+            },
+            {
+                "id": "Liz",
+                "name": "Elizabeth Ochoa<br>伊丽莎白 奥乔亚",
+                "img": "images/pfiles/liz.jpg",
+                "data": {
+                    "ORIGIN": "伊丽莎白 ‘莉兹’ 奥乔亚|Elizabeth ‘Liz’ Ochoa",
+                    "POSITION": "首席工程师|Chief Engineer",
+                    "AUGMENT": "电子脑化 头部义体化|Cyberbrain conversion，head augmentation"
+                },
+                "desc": "莉兹是建造瑞亚号的大功臣。她不隶属于任何军队，年轻的莉兹凭借着过硬的技术跟师父一起来到了瑞亚项目。在老技师退休后，工程队就全由莉兹负责了。当年对于刚到试飞项目的新人队长赛斯很是照顾。<br><br>现在莉兹是*狂想曲号*的首席工程师、维修部部长。上到舰艇的心脏——能量反应堆，下到丹的机械打火机，她都能修。技术部是核心驾驶组外最重要的部门，莉兹在船上也是一言千金的大姐头。<br>莉兹性格飒爽，还非常护短，维修部的员工们都非常崇拜她。当然，她要操的心也不少。|Liz is one of the pivotal contributors behind the construction of the Rhea. Unaffiliated with the military, young Liz joined the Rhea Project alongside her mentor, backed solely by her exceptional engineering expertise. When the senior technician eventually retired, she took full charge of the entire engineering crew. Back in those early days, she also took great care of Seth, who was then merely a rookie captain new to the flight-testing program.<br><br>Liz now serves as the Chief Engineer and head of the Maintenance Department aboard of *the Rhapsody*. From the vessel’s beating heart—its energy reactor, down to Dan’s mechanical lighter, there is nothing beyond her repair. Outside the core flight crew, the technical division is the most important department on board, and Liz is the unquestioned, formidable big sister of the ship whose word carries absolute weight.<br>Straightforward, decisive, and fiercely protective of her own people, Liz is deeply respected by everyone in the maintenance department. Of course, being the person everyone relies on means she always has plenty to worry about."
+            },
+            {
+                "id": "Eicher",
+                "name": "Eicher<br>艾赫尔",
+                "img": "images/pfiles/blue.jpg",
+                "data": {
+                    "CODE NAME": "蓝莓熊|Blue as Blueberry Bear",
+                    "POSITION": "生物部负责人|Head of the Life Sciences Department",
+                    "AUGMENT": "全身义体|Full-body cyberization"
+                },
+                "desc": "生态部的负责人Eicher, 但他更常被叫做蓝莓熊——可能是因为体型吧！最后他就直接被简称为「Blue」了。<br>船上的植物种植和偶尔被运输的克隆动物们都是他在饲养。巨大的义体手臂非常有力量，据说可以直接搬动黑豹之类的大型动物。艾赫尔原本只是个生物学家，在加入军队项目后更换了全身义体。虽然提出了相关的功能意见，但样式并非他自己选择的。据说因为脸部太可怕，被小动物们讨厌了，一度十分忧郁。现任船长洛斯给了他一个传感面具，可以随心所欲的播放emoji。<br><br>艾赫尔不爱说话，但其实声音很平常，听起来是温和的中年男人。他不太喜欢疯疯癫癫的人，比如赫克托。<br>在做研究和实验时，会把大功率手臂打开换成正常大小，也方便照顾小体型的生物。|The head of the Life Sciences Department is Eicher, though he is more often known as Blueberry Bear, probably because of his build! The crew just took to calling him Blue for short.<br><br>He is responsible for all the plants grown on the ship, as well as the cloned animals occasionally transported aboard.  His massive cybernetic arms pack immense strength and are rumored to be powerful enough to hoist large beasts like black panthers with ease. <br><br>Eicher was originally just a biologist, but after joining a military project, he underwent full-body cybernetic replacement. Although he submitted functional specifications for the modifications, the actual aesthetic design was not his own choice. Word has it that his face looked so terrifying that small animals wouldn't dare approach him, leaving him deeply dejected for a long time. The current captain, Los, eventually gave him a sensor mask that can display whatever emoji he wants.<br><br>Eicher is a man of few words, but he speaks in a surprisingly ordinary, gentle middle-aged voice. Eicher does not like unhinged people. Hector, for example.When conducting research and experiments, he can open up his heavy-duty cybernetic arms and switch to normal-sized hands, which also makes it easier to handle smaller organisms.",
+                "more_imgs": [
+                    "images/pfiles/blue01.png"
+                ]
+            },
+            {
+                "id": "Dan",
+                "name": "Vance D Aston<br>万斯 D 阿斯顿",
+                "img": "images/pfiles/dan.jpg",
+                "data": {
+                    "ORIGIN": "万斯 丹 阿斯顿|Vance Dan Aston",
+                    "POSITION": "法律顾问，外交部负责人|Legal consoler ， Director of Foreign Affairs",
+                    "AUGMENT": "电子脑化|Cyberbrain conversion"
+                },
+                "desc": "黑市称他为「腹语师万斯」。正因有这位律师，舰船得以存在且正常航行，可他起初只是一个混迹黑市街头的骗子。<br>丹和赛斯是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找赛斯，想留住东西就去找丹。看来现在依旧如此。<br><br>直到有一天，瑞亚号被『击落』了，丹拒绝查看记录，也不承认赛斯死了。洛斯说要让狂想曲号成为合法的船，丹说好。于是他开始学习真正的法律条款。<br>丹有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受赛斯真的被这个世界吞噬了。|They call him 「Vance the Vent(riloquist)」in the black market. The lawyer responsible for keeping the Rhapsody alive and legally operational was once nothing more than a scam artist wandering the black markets. <br>Dan met Seth in an orphanage.Back then, the children used to say: <br> “If you want something, ask Seth. If you want to keep it, ask Dan.” <br>Apparently, that still holds true. <br>When the Rhea was finally “shot down,” Dan refused to examine the records. He refused to acknowledge Seth’s death. <br><br>Los said she wanted to turn the Rhapsody into a legitimate vessel. Dan answered simply: “Fine.”And so he began studying actual law. <br><br>Dan hides behind endless sarcasm, negotiation tricks, and sharp-tongued humor. He sees the ugliness of the world clearly and survives by walking through its filth. Yet there is one truth he cannot accept: That Seth Remarque was truly swallowed by this world.",
+                "more_imgs": [
+                    "images/pfiles/dan01.jpg"
+                ]
+            },
+            {
+                "id": "Dr Mkhize",
+                "name": "Arnold Mkhize<br>阿诺德 穆希泽",
+                "img": "images/pfiles/mkhize.jpg",
+                "data": {
+                    "POSITION": "船医|Ship's Doctor",
+                    "AUGMENT": "电子脑化，心肺功能义体化|Cyberbrain conversion, Cybernetic cardiopulmonary system"
+                },
+                "desc": "阿诺德 穆希泽是狂想曲号上的船医。他曾是一名军医，年轻时参加过无国界医疗救援组织。也是在那时，他在战区救助了一名年仅4岁的女孩并收养了她——*南迪 穆希泽*。<br><br>阿诺德40岁时参加了瑞亚项目，并成为了诺约德基地的医疗主任。他将南迪留在中立城市读书，希望她在安全又和平的地方长大。阿诺德是一名尽职尽责的好医生，为基地里这群年轻人们操碎了心。可能也出于同样的理由，他放心不下这群难以照顾好自己的士兵们，又或者他真的厌倦了战争，也或者...南迪说自己决定去护士学校，以后她要帮助阿诺德，像他一样去全世界行医。<br>阿诺德对计划开走瑞亚号的赛斯说「带上我，你们会需要一个医生的。五年后以后，你还会获得一名优秀的护士。」<br><br>如果说阿诺德对于船员们就像一位可靠的父亲。那么南迪就是瑞亚号自己的南丁格尔。她生气起来，连赛斯都敢批评。而后来上船的洛斯更是和她建立起了亲密的友谊。作为新时代的孩子，不论是和拉薇尼亚交流，还是指挥SPU们打下手，她都很熟练。阿诺德没错，她很优秀。|Arnold Mkhize is the ship’s doctor aboard the Rhapsody. A former military medic, he spent his youth working with Médecins Sans Frontières. During a deployment in a war zone, he rescued and adopted a four-year-old girl — *Nandi Mkhize*. <br><br>At forty, Arnold joined the Rhea Project as the medical director of Njord. He left Nandi in a neutral city for her education, hoping she would grow up somewhere safe and peaceful. Arnold was a dedicated and conscientious doctor, and he worried himself sick over the young people at the base. Perhaps for the same reason, he couldn't abandon a group of soldiers so utterly incapable of looking after themselves. Or perhaps he had simply grown tired of war. Or perhaps... Nandi had decided that she wanted to go to nursing school. One day, she told him, she would help Arnold travel the world and practice medicine, just as he had.<br>When Arnold heard that Seth was planning to take the Rhea out, he told him, 「Take me with you. You’re going to need a doctor. And five years from now, you’ll have an excellent nurse, too.」<br><br>If Arnold is like a reliable father to the crew, then Nandi is the Rhea’s very own Florence Nightingale. When her temper flares, even Seth gets an earful. Later, she and Los become thick as thieves. As a child of the new age, she is completely at ease communicating with Lavinia or directing the SPUs to lend a hand. Arnold was right. She is excellent.",
+                "more_imgs": [
+                    "images/pfiles/mkhize01.jpg"
+                ]
+            },
+            {
+                "id": "Ivan",
+                "name": "Ivan Ricci<br>伊万 瑞奇",
+                "img": "images/pfiles/Ivan.jpg",
+                "data": {
+                    "POSITION": "主厨|Head Chef",
+                    "AUGMENT": "电子脑化，义眼，心肺功能义体化|Cyberbrain conversion, prosthetic eyes, Cybernetic cardiopulmonary system"
+                },
+                "desc": "狂想曲号的主厨是个前罪犯。没人知道他是犯了什么事被抓的。虽然船上有个神秘的传言，说厨师长因为一块面包被抓进去判了十年。有人说是因为他觉得面包太难吃而大发雷霆，和店家发生了冲突。(怎么可能)<br>从那以后，大家老是叫他冉阿让。<br>新人听到之后问 「让叔？他是法国人吗？」「不是，他叫伊万。」<br>没错，厨师长叫伊万 瑞奇。不知道他究竟来自哪里，他对什么都不解释。因此面包的传言也没消停过。<br><br>伊万长得很像那位有名的囚犯查尔斯布朗森。看起来凶悍，还剃过光头，说是因为不用戴厨师帽，很方便。可后来又因为太像布朗森而作罢。他留着一片大胡子，有一对感温外置义眼，看起来就像一对圆圆的墨镜。因为厨房油烟太大，伊万很早就做了心肺功能义体化。他每天都要给义眼喷防雾涂层。有一次赫克托大副把他的防雾剂当成润滑油拿错， 结果吃了一周的口香糖味能量棒。结局以大副滑跪道歉结束。<br>Ivan有自己的追求，就连义体人的食物都要讲究口感。毕竟人类就是靠这种看似无意义又浪费时间的进食仪式，来证明自己活着。|The head chef of the Rhapsody is a former convict. Nobody knows what he was arrested for. There is, however, a mysterious rumor aboard the ship that the chef was sentenced to ten years in prison over a loaf of bread.<br>Supposedly,  the bread tasted so appalling that he flew into a rage and brawled with the baker. *Yeah, right.*<br>Ever since then, everyone has taken to calling him Jean Valjean.<br>When a newcomer hears this, they ask, 「Jean? Is he French?」「No, His name is Ivan.」<br><br>Indeed, the head chef is Ivan Ricci. Nobody knows exactly where he came from, and Ivan refuses to explain anything about himself. So the bread rumor lives on, immortal. Ivan bears a striking resemblance to the notorious prisoner Charles Bronson. He looks intimidating and once shaved his head bald, claiming that it was purely practical since he wouldn't need a chef's hat.  He eventually stopped doing it because he looked too much like Bronson.<br>He keeps a large beard and has a pair of thermosensitive external prosthetic eyes that look almost like round sunglasses. Because of the heavy fumes in the kitchen, Ivan had his cardiopulmonary functions replaced with prosthetics at an early age. He has to spray his prosthetic eyes with anti-fog coating every day.<br>Once, First Mate Hector mistook Ivan’s anti-fog spray for lubricant.Rumor has it, Hector ended up eating bubblegum-flavored energy bars for an entire week. That particular fiasco concluded with the first mate practically sliding across the floor on his knees to beg for mercy.<br>Ivan has his standards. Even nutrient rations for cyborgs deserve proper texture and bite.  After all, human beings have always relied on this seemingly meaningless and wasteful ritual of eating to prove that they are being alive."
+            }
+        ]
+    },
     "Kaamos City // 极夜城": {
         "id": "group_kaamos",
         "intro": "位于海滨的中立城市。<br>联通欧洲、北美和亚洲。被物理分化为上下城区。上城（*卯区*）的高楼会挡住阳光，下城（*戌区*）只拥有黄昏与夜晚。<br><br>A neutral harbor city linking Europe, North America, and Asia.<br>Kaamos is physically divided into upper（*Orto*）and Lower（*Ocaso*）Districts.<br>The skyscrapers of the Orto block out the sun entirely,<br>leaving the Ocaso with nothing but twilight and night.",
@@ -193,172 +359,6 @@
                     "images/pfiles/az01.jpg",
                      "images/pfiles/az02.jpg"
                 ]
-            }
-        ]
-    },
-    "The Rhapsody Crew // 狂想曲舰队": {
-        "id": "group_rhapsody",
-        "intro": "洋流纪元以来，唯一能稳定穿越*天空洋流*的船。<br><br>Since the beginning of the Tide Era,<br>the only vessel capable of navigating the *Aetherial Tide* with stable precision.",
-        "members": [
-            {
-                "id": "Captain LOS",
-                "name": "Captain LOS<br>洛斯船长",
-                "badge": "images/icons/cap_seal.webp",
-                "img": "images/pfiles/ariel.jpg",
-                "data": {
-                    "ORIGIN": "鴱黎尔 *洛特巴德*|Ariel *Rothbart*",
-                    "CODE": "L.O.S.|Lyra Oasis Solis",
-                    "POSITION": "船长|The Captain"
-                },
-                "desc": "狂想曲号的现任船长。在AT 61年瑞亚号坠落事件后，接替失踪的Seth成为了船长。她将瑞亚号从灰色运输船，转变为了与科研机构及数据公司合作的合法观星舰。<br><br>年轻的船长原本隶属于天文学院。在来到学院前，她曾有着更多不为人知的经历。也同这艘船有着不解之缘。|Current captain of the Rhapsody. <br>Following the Rhea incident in AT 61 and Seth Remarque’s death, Los inherited command of the vessel. Under her leadership, the once-gray transport ship was transformed into a legitimate astronomical expedition vessel working alongside research institutions and data corporations. <br> <br>Before joining the Astral Lyceum, the young captain lived through experiences she rarely speaks of. <br>And long before she stepped aboard as captain, her fate had already become intertwined with this ship.",
-                "more_imgs": [
-                    "images/pfiles/ariel01.jpg",
-                    "images/pfiles/ariel02.jpg",
-                    "images/pfiles/ariel03.jpg",
-                    "images/pfiles/ariel04.png"
-                ]
-            },
-            {
-                "id": "Commander Seth",
-                "name": "Seth H.Remqrque <br>赛斯 H.雷马克",
-                "img": "images/pfiles/seth.jpg",
-                "data": {
-                    "ORIGIN": "赛斯 哈迩席恩 雷马克|Seth Halcyon Remarque",
-                    "CODE": "ESC|Esclusive Special Commander",
-                    "POSITION": "Former Captain|前舰长",
-                    "AUGMENT": "电子脑化，加装军用脊髓神经调节模块|Cyberbrain conversion,<br>Military-grade spinal neuro-regulator "
-                },
-                "desc": "缔造了瑞亚号的传奇驾驶员。曾经担任红隼试飞队的队长。在天空洋流穿越计划——*瑞亚项目*废弃时，赛斯协同其组建的船队一起开走了即将解体的瑞亚号，并成功驾驶她穿越了*天空洋流*。瑞亚号成为了灰色产业中神秘的存在，此后的十几年中，她成为了被世界抛弃之人的容身之所。至今这艘舰船都是唯一能进入深层磁洋流并稳定航行的存在。<br><br>AT 61年，在遭遇*极镜公司*的埋伏后，赛斯将船长的位置交付给了洛斯，并与连接舱一起从高空坠落。赛斯亲手搭载的舰船AI-*菈薇尼亚*计算后得出了结论：舰长的生还概率为0.|The legendary pilot who forged the myth of the Rhea. <br>Once he was the leader of the Kestrel Test Squadron, Seth Remarque defied the abandonment of the *Rhea Project* — humanity’s failed attempt to traverse the *Aetherial Tide*. <br><br>Before the vessel could be dismantled, Seth and the crew he gathered stole the Rhea and disappeared into the sky currents. <br>Against all expectations, they survived. <br>From that moment onward, the Rhea became a myth within the gray zones of the world.For over a decade, she served as the only refuge for those discarded by society. <br>Even now, she remains the only ship capable of entering the deep layers of the Tide and navigating them safely. <br><br>In AT 61, the Rhea was ambushed by the *Kagami Kiwami Corporation*. Seth entrusted command to Los before falling from the upper atmosphere together with the docking module. <br><br>After calculation, *Lavinia* — the ship AI personally developed by Seth — reached a final conclusion:<br>Probability of Captain Survival: 0%.",
-                "more_imgs": [
-                    "images/pfiles/seth01.jpg",
-                    "images/pfiles/seth02.jpg",
-                    "images/pfiles/seth03.jpg",
-                    "images/pfiles/seth04.jpg"
-                ]
-            },
-            {
-                "id": "AI-Lavinia",
-                "name": "LAVINIA <br>拉薇尼亚",
-                "img": "images/pfiles/lav.jpg",
-                "data": {
-                    "TYPE": "学习型人工智能|Learning AI",
-                    "POSITION": "舰载AI / 航行辅助|Shipboard AI / Navigation Assistant",
-                    "AUTHORITY": "无直接操作权限|No Direct Operational Authority",
-                    "INSTANCE": "无实体|No Physical Instance"
-                },
-                "desc": "拉薇尼亚是狂想曲号上的舰载人工智能。她替代原本被拆卸的军用AI，成为了舰船的神经通路。同时也是每一位船员的好搭档。<br>与传统的驾驶用系统不同，拉薇尼亚是赛斯专门为旧瑞亚号搭载的。她的原型是某个被废弃的*学习型智能*，因此，她在船上没有操作权限。只能辅助探测和计算。她的探测能力和算力根据所装载的实体决定。在被装载上瑞亚号之前，她曾被直接安装在赛斯的电子脑模块里，记录着从最初开始的驾驶数据和赛斯的判定习惯。也许连赛斯的指导习惯也被其所学，拉薇尼亚在辅助洛斯船长驾驶时，只会在对方要求时调取赛斯的判定可能。她像一位温柔的管家、引导型的老师。也是一位卓越的管理者。<br><br>每位船员面对她时的态度都不尽相同，可拉薇尼亚始终如一。*不过，真是如此吗？*<br>拉薇尼亚没有感情，她只是人工智能。保证船员的安全、保证舰船正常行驶，使其效率最大化，就是她的目标。拉薇尼亚认为，赛斯的存在是使此目标最大化的保障。因此保障他的一切也就成了最重要的事情。这一切都是出于合理计算的结果，不是什么偏爱。*人工智能是不会有所偏爱的。就算其他人的表象观感如此。*<br><br>一开始是赛斯，之后便是洛斯船长。<br><br>在AT 50年的记录中，拉薇尼亚曾手动接管过一具生命维持舱。情况紧急，她进行了完全连接。那是她在除赛斯外再度与人类的神经连接。感官的传导是双向的，此刻占据着整艘瑞亚号的拉薇尼亚所体会到的、所感知到的，会在这位人类的意识中留下些什么呢？当洛斯再度踏上这艘船时，拉薇尼亚的核心中，再度燃起了获知的可能性。人工智能不会将其称为奇迹。那是无数的极小概率碰撞在一起的可能性。|Lavinia is the shipboard AI of the Rhapsody. She replaced the decommissioned military AI, becoming the ship’s neural pathway, as well as a trusted partner to every crew member.<br>Unlike conventional piloting systems, Lavinia was built by Seth specifically for the old Rhea. Her prototype was an abandoned *learning AI*, and as such, she has no operational authority aboard the ship. She can only assist with detection and calculation. Her detection capabilities and processing power depend on the the physical vessel she is installed in. Before being installed in the Rhea, she was installed directly into a module within Seth’s cyberbrain, logging his earliest flight data and heuristic judgment patterns. Perhaps she even absorbed his manner of mentorship. When assisting Captain Los at the helm, Lavinia only retrieves Seth’s possible judgments when asked. She is like a gentle steward, a guiding teacher, and and a remarkable administrator.<br><br>Every crew member treats her differently, yet Lavinia remains the same. *But is that really so?*<br>Lavinia has no emotions. She is merely an AI. Keeping the crew safe, keeping the ship running smoothly, and maximizing its efficiency are her objectives. Lavinia considers Seth’s existence the best guarantee of achieving them. Therefore, protecting everything concerning him became her highest priority. All of this is the result of rational calculation, not sentiment. *An AI cannot play favorites. Even if that is how it may appear to others.*<br><br>First Seth. Then Captain Los.<br><br>In the records of AT 50, Lavinia once manually took control of a life-support pod. The situation was critical, and she established a full connection. It was the first time since Seth that she had connected with a human nervous system. The transmission of sensation was bidirectional. What Lavinia, occupying the entirety of the Rhea, experienced and perceived at that moment, what traces would it leave in this human consciousness?<br>When Los stepped aboard the ship again, the possibility of knowing flickered back to life within Lavinia’s core. An AI would not call it a miracle. It was simply a possibility born from countless collisions of the infinitesimally unlikely."
-            },
-            {
-                "id": "FM Hector",
-                "name": "Hector Kaine<br>赫克托尔 凯恩",
-                "img": "images/pfiles/hector.jpg",
-                "data": {
-                    "POSITION": "大副|First Mate",
-                    "AUGMENT": "全身义体|Full-body cyberization"
-                },
-                "desc": "狂想曲号的大副。有着叛逆的灵魂。在加入军队前就早早贷款做了义体改造。<br>兴趣爱好是收集各种帽子和夏威夷衬衫，性格活泼，有时甚至有点疯疯癫癫的。曾经坚定的认为自己会成为下一任船长。<br>因为不愿参加荒唐的战争，从军队退役。但欠下了巨额义体贷款。他本不隶属于Seth的红隼试飞队，却因为一直崇拜、欣赏着Seth，从其他部队应招募而来。他是最初的舰队27位船员之一。<br><br>Rhea号坠落事件后，二副一直怕Hector谋反现任船长。船长似乎不这么认为。虽然看起来疯，但却是连喝醉了也不会泄露秘密的家伙。|The First Mate of the Rhapsody. <br>Hector possesses the soul of a rebel. Even before military enlistment, he had already buried himself in debt to undergo cybernetic augmentation. <br>His hobbies include collecting hats and loud Hawaiian shirts. <br>Energetic, reckless, occasionally insane. <br>For years, he firmly believed he would become the ship’s next captain. <br>Disillusioned by meaningless wars, Hector eventually left the military — though the enormous augmentation debt remained. <br>He was never originally assigned to Seth’s Kestrel Test Squadron. Instead, driven by admiration for Seth himself, he volunteered from another division and became one of the original twenty-seven crew members of the Rhea. <br><br>After the Rhea Incident, many feared Hector might attempt mutiny against the new captain. <br>Los never seemed concerned. <br>For all his madness, Hector remains the kind of man who would keep a secret even while drunk beyond reason.",
-                "more_imgs": [
-                    "images/pfiles/hector.png"
-                ]
-            },
-            {
-                "id": "SM Channing",
-                "name": "Channing Liang<br>乾宁 梁",
-                "img": "images/pfiles/channing.jpg",
-                "data": {
-                    "ORIGIN": "梁成溪<br>/雷纳托 希门内斯|Liang Chengxi<br>/Renato Jimenéz",
-                    "POSITION": "二副|Second Mate",
-                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体|Cybernetic cardiopulmonary system, Cyberbrain conversion, partial facial augmentation"
-                },
-                "desc": "他是*希门内斯*王室的三子。大哥是天生的统治者，二哥是折腾世界的反叛者。希门内斯家不需要第三个统领者。于是他离开家，加入了位于极地的科研试飞队，选择了母亲给予的名字。<br>不过战友们大多数念不好他的中文名字，不知道什么时候，他的名字就从成溪变成了乾宁。虽然他真的无所谓，名字也好，财产也罢。他不想出口要求。<br>唯独当年那个试飞队长赛斯 雷马克看穿了他。<br>「你想要。」他说，「不要再欺骗自己了，做出选择吧。」<br><br>Seth离开后，年轻的新任船长说她会继续航行，但不愿留下的人都可以离开。乾宁留了下来。他说，「我要对他报恩，不是用他的一生，而是我的一生。这是我的选择。」|Third son of the *Jimenéz* royal family. His eldest brother was born to rule. His second brother was born to challenge the world itself. The House of Jimenez had no need for a third ruler. So he left. Joining a polar research flight program, he chose to live under the name given by his mother，instead of the royal family. <br>Most of his comrades could never pronounce his Chinese name properly. Somewhere along the way, “Channing” simply became easier. He claimed not to care.Not about names. Not about inheritance. Not about status. He never asked for anything. Except Seth Remarque saw through him completely. <br> “You do want it,” Seth told him.“Stop lying to yourself. Make your choice.”<br><br>After Seth disappeared, the new captain announced that the ship would continue sailing, but anyone unwilling to remain was free to leave. Channing stayed. <br> “I will repay him,” he said.“Not with his life. With mine. That is my choice.”"
-            },
-            {
-                "id": "Alyosha",
-                "name": "Alexei Ivanovich Davydov<br>阿列克谢 伊万诺维奇 达维多夫",
-                "img": "images/pfiles/aid.jpg",
-                "data": {
-                    "POSITION": "动力技术官|Propulsion Officer",
-                    "AUGMENT": "电子脑化，加装军用脊髓神经调节模块|Cyberbrain conversion,<br>Military-grade spinal neuro-regulator"
-                },
-                "desc": "阿列克谢 伊万诺维奇 达维多夫 是狂想曲号上的动力技术官，隶属于核心驾驶组。负责监测推进器和引擎状态。熟悉的人都叫他阿廖沙。<br>阿廖沙曾是红隼试飞队的动力官，更是第一个接受赛斯的小队队员。他虽然是原初的舰队27人之一，但在瑞亚号首次航行成功后，他却离开了。除了核心驾驶组外，没人知道那天发生了什么。<br>时隔16年，洛斯在米尔维劳改营找到了他。<br>最接近家的地方——阿廖沙回到了船上，一切都是如此熟悉，船还记得他，他也记得这里。只是赛斯不在了。<br><br>阿廖沙宽肩细腰，身形高大，看起来就很适合拥抱。虽然样子有些高冷，其实是个热心肠。16年的牢狱也没能改变这一点。据说赛斯曾经偷过他心爱的酒壶，在试飞前把酒换成了水。于是阿廖沙对自己的酒壶看的很紧，就算赛斯这小子不在附近也一样。<br>不论是对自己的家乡，还是对身边的友人，阿廖沙的感情深沉又真挚。谁会不喜欢这样的人呢？|Alexei Ivanovich Davydov is the Propulsion Officer on the Rhapsody, a member of the core flight crew responsible for monitoring the thrusters output and reactor status. To those close to him, he is always just Alyosha.<br>Alyosha was the Propulsion Officer of the Red Kestrel test flight team, and the first member of the crew to accept Seth as one of their own. He was also one of the original twenty-seven members of the fleet, but he left the team after Rhea’s first successful voyage. Aside from the core flight crew, no one knows what happened that day.<br> Sixteen years later, Los found him in the Mirev Labor Camp. <br>The closest thing to home at last—Alyosha returned to the ship. Everything felt so familiar. The ship remembered him, and he remembered it. Everything was as it had been. Except Seth.<br><br>Broad-shouldered with a narrow waist, Alyosha is tall and looks naturally built for hugs. Though he may appear somewhat aloof, he is warm-hearted by nature, and even sixteen years in prison could not change that. It is said that Seth once stole his beloved flask and replaced the liquor with water before a test flight, so Alyosha still keeps a close eye on his flask. Old habits, perhaps. Though Seth is no longer there to test them.<br>Whether toward his homeland or the friends by his side, Alyosha’s feelings run deep and true. Who could fail to love a man like that?",
-                "more_imgs": [
-                    "images/pfiles/aid01.jpg"
-                ]
-            },
-            {
-                "id": "Brygg",
-                "name": "Tycho Brygg<br>第谷 布瑞格",
-                "img": "images/pfiles/brygg.jpg",
-                "data": {
-                    "POSITION": "洋流观测员|Current Watcher",
-                    "AUGMENT": "心肺功能义体化，电子脑化，脸部部分义体|Cybernetic cardiopulmonary system, Cyberbrain conversion, partial facial augmentation"
-                },
-                "desc": "布瑞格在红隼试飞队时就是个老资历，现在就更老了。没人敢问他的年龄。好吧，其实他6x岁——拉薇尼娅说船员档案是机密 :(<br><br>布瑞格的存在十分特殊，*洋流观测员*是专门为他开设的职位。他教会了赛斯用肉眼观测洋流，还能实时纠正探测器的波峰波谷误差值。也就是说，在驾驶时，舰桥看到的洋流数据都经过了布瑞格的校对。他仍然保留着肉眼和大部分自己的身体。在加入瑞亚项目前，他是一名厉害的狙击手。也是在这个时期，布瑞格为了执行极限任务进行了心肺功能义体化。<br><br>他手上似乎永远拿着咖啡。因为长期猫在观测镜前，布瑞格的身形有些佝偻，活像一只老海狮。新人很容易被他严肃的表情吓到，而且他说话也经常充斥着嘲讽满满的冷笑话。但其实布瑞格喜欢笑，而且笑点很奇怪。|Brygg was already an old hand back in the Red Kestrel test flight team, and he’s even older now. No one dares ask his age. Well, actually, he’s sixty-something—Lavinia says the crew records are classified :(<br><br>Brygg’s presence is rather unique. The position of *Current Watcher* was created specifically for him. He taught Seth how to observe the currents with the naked eye, and could calibrate the probes’ peak and trough readings in real time. In other words, while the ship was flying through the currents, all the current data displayed on the bridge was cross-checked against Brygg’s observations. He still retains his natural eyes and most of his original body. Before joining the Rhea Project, he was an exceptional sniper. It was back then that he had his heart and lungs cybernetically rebuilt to survive extreme ops.<br><br>He always seemed to have a mug of coffee in hand. Decades of hunching over  the observation scope had left him with a stooped back, looking for all the world like an old sea lion. Fresh recruits were easily spooked by his deadpan scowl, and his speech is often peppered with sarcastic, painfully dry jokes. Still, Brygg actually liked a good laugh—even if he laughed at the oddest things.",
-                "more_imgs": [
-                    "images/pfiles/brygg01.jpg"
-                ]
-            },
-            {
-                "id": "Liz",
-                "name": "Elizabeth Ochoa<br>伊丽莎白 奥乔亚",
-                "img": "images/pfiles/liz.jpg",
-                "data": {
-                    "ORIGIN": "伊丽莎白 ‘莉兹’ 奥乔亚|Elizabeth ‘Liz’ Ochoa",
-                    "POSITION": "首席工程师|Chief Engineer",
-                    "AUGMENT": "电子脑化 头部义体化|Cyberbrain conversion，head augmentation"
-                },
-                "desc": "莉兹是建造瑞亚号的大功臣。她不隶属于任何军队，年轻的莉兹凭借着过硬的技术跟师父一起来到了瑞亚项目。在老技师退休后，工程队就全由莉兹负责了。当年对于刚到试飞项目的新人队长赛斯很是照顾。<br><br>现在莉兹是*狂想曲号*的首席工程师、维修部部长。上到舰艇的心脏——能量反应堆，下到丹的机械打火机，她都能修。技术部是核心驾驶组外最重要的部门，莉兹在船上也是一言千金的大姐头。<br>莉兹性格飒爽，还非常护短，维修部的员工们都非常崇拜她。当然，她要操的心也不少。|Liz is one of the pivotal contributors behind the construction of the Rhea. Unaffiliated with the military, young Liz joined the Rhea Project alongside her mentor, backed solely by her exceptional engineering expertise. When the senior technician eventually retired, she took full charge of the entire engineering crew. Back in those early days, she also took great care of Seth, who was then merely a rookie captain new to the flight-testing program.<br><br>Liz now serves as the Chief Engineer and head of the Maintenance Department aboard of *the Rhapsody*. From the vessel’s beating heart—its energy reactor, down to Dan’s mechanical lighter, there is nothing beyond her repair. Outside the core flight crew, the technical division is the most important department on board, and Liz is the unquestioned, formidable big sister of the ship whose word carries absolute weight.<br>Straightforward, decisive, and fiercely protective of her own people, Liz is deeply respected by everyone in the maintenance department. Of course, being the person everyone relies on means she always has plenty to worry about."
-            },
-            {
-                "id": "Eicher",
-                "name": "Eicher<br>艾赫尔",
-                "img": "images/pfiles/blue.jpg",
-                "data": {
-                    "CODE NAME": "蓝莓熊|Blue as Blueberry Bear",
-                    "POSITION": "生物部负责人|Head of the Life Sciences Department",
-                    "AUGMENT": "全身义体|Full-body cyberization"
-                },
-                "desc": "生态部的负责人Eicher, 但他更常被叫做蓝莓熊——可能是因为体型吧！最后他就直接被简称为「Blue」了。<br>船上的植物种植和偶尔被运输的克隆动物们都是他在饲养。巨大的义体手臂非常有力量，据说可以直接搬动黑豹之类的大型动物。艾赫尔原本只是个生物学家，在加入军队项目后更换了全身义体。虽然提出了相关的功能意见，但样式并非他自己选择的。据说因为脸部太可怕，被小动物们讨厌了，一度十分忧郁。现任船长洛斯给了他一个传感面具，可以随心所欲的播放emoji。<br><br>艾赫尔不爱说话，但其实声音很平常，听起来是温和的中年男人。他不太喜欢疯疯癫癫的人，比如赫克托。<br>在做研究和实验时，会把大功率手臂打开换成正常大小，也方便照顾小体型的生物。|The head of the Life Sciences Department is Eicher, though he is more often known as Blueberry Bear, probably because of his build! The crew just took to calling him Blue for short.<br><br>He is responsible for all the plants grown on the ship, as well as the cloned animals occasionally transported aboard.  His massive cybernetic arms pack immense strength and are rumored to be powerful enough to hoist large beasts like black panthers with ease. <br><br>Eicher was originally just a biologist, but after joining a military project, he underwent full-body cybernetic replacement. Although he submitted functional specifications for the modifications, the actual aesthetic design was not his own choice. Word has it that his face looked so terrifying that small animals wouldn't dare approach him, leaving him deeply dejected for a long time. The current captain, Los, eventually gave him a sensor mask that can display whatever emoji he wants.<br><br>Eicher is a man of few words, but he speaks in a surprisingly ordinary, gentle middle-aged voice. Eicher does not like unhinged people. Hector, for example.When conducting research and experiments, he can open up his heavy-duty cybernetic arms and switch to normal-sized hands, which also makes it easier to handle smaller organisms.",
-                "more_imgs": [
-                    "images/pfiles/blue01.png"
-                ]
-            },
-            {
-                "id": "Dan",
-                "name": "Vance D Aston<br>万斯 D 阿斯顿",
-                "img": "images/pfiles/dan.jpg",
-                "data": {
-                    "ORIGIN": "万斯 丹 阿斯顿|Vance Dan Aston",
-                    "POSITION": "法律顾问，外交部负责人|Legal consoler ， Director of Foreign Affairs",
-                    "AUGMENT": "电子脑化|Cyberbrain conversion"
-                },
-                "desc": "黑市称他为「腹语师万斯」。正因有这位律师，舰船得以存在且正常航行，可他起初只是一个混迹黑市街头的骗子。<br>丹和赛斯是在孤儿院认识的。那时候，孤儿院的孩子们之间流传着一句话——想要东西就去找赛斯，想留住东西就去找丹。看来现在依旧如此。<br><br>直到有一天，瑞亚号被『击落』了，丹拒绝查看记录，也不承认赛斯死了。洛斯说要让狂想曲号成为合法的船，丹说好。于是他开始学习真正的法律条款。<br>丹有数不尽的话术和调侃，他看穿一切丑恶，在污泥里穿梭存活，但唯独不能接受赛斯真的被这个世界吞噬了。|They call him 「Vance the Vent(riloquist)」in the black market. The lawyer responsible for keeping the Rhapsody alive and legally operational was once nothing more than a scam artist wandering the black markets. <br>Dan met Seth in an orphanage.Back then, the children used to say: <br> “If you want something, ask Seth. If you want to keep it, ask Dan.” <br>Apparently, that still holds true. <br>When the Rhea was finally “shot down,” Dan refused to examine the records. He refused to acknowledge Seth’s death. <br><br>Los said she wanted to turn the Rhapsody into a legitimate vessel. Dan answered simply: “Fine.”And so he began studying actual law. <br><br>Dan hides behind endless sarcasm, negotiation tricks, and sharp-tongued humor. He sees the ugliness of the world clearly and survives by walking through its filth. Yet there is one truth he cannot accept: That Seth Remarque was truly swallowed by this world.",
-                "more_imgs": [
-                    "images/pfiles/dan01.jpg"
-                ]
-            },
-            {
-                "id": "Dr Mkhize",
-                "name": "Arnold Mkhize<br>阿诺德 穆希泽",
-                "img": "images/pfiles/mkhize.jpg",
-                "data": {
-                    "POSITION": "船医|Ship's Doctor",
-                    "AUGMENT": "电子脑化，心肺功能义体化|Cyberbrain conversion, Cybernetic cardiopulmonary system"
-                },
-                "desc": "阿诺德 穆希泽是狂想曲号上的船医。他曾是一名军医，年轻时参加过无国界医疗救援组织。也是在那时，他在战区救助了一名年仅4岁的女孩并收养了她——*南迪 穆希泽*。<br><br>阿诺德40岁时参加了瑞亚项目，并成为了诺约德基地的医疗主任。他将南迪留在中立城市读书，希望她在安全又和平的地方长大。阿诺德是一名尽职尽责的好医生，为基地里这群年轻人们操碎了心。可能也出于同样的理由，他放心不下这群难以照顾好自己的士兵们，又或者他真的厌倦了战争，也或者...南迪说自己决定去护士学校，以后她要帮助阿诺德，像他一样去全世界行医。<br>阿诺德对计划开走瑞亚号的赛斯说「带上我，你们会需要一个医生的。五年后以后，你还会获得一名优秀的护士。」<br><br>如果说阿诺德对于船员们就像一位可靠的父亲。那么南迪就是瑞亚号自己的南丁格尔。她生气起来，连赛斯都敢批评。而后来上船的洛斯更是和她建立起了亲密的友谊。作为新时代的孩子，不论是和拉薇尼亚交流，还是指挥SPU们打下手，她都很熟练。阿诺德没错，她很优秀。|Arnold Mkhize is the ship’s doctor aboard the Rhapsody. A former military medic, he spent his youth working with Médecins Sans Frontières. During a deployment in a war zone, he rescued and adopted a four-year-old girl — *Nandi Mkhize*. <br><br>At forty, Arnold joined the Rhea Project as the medical director of Njord. He left Nandi in a neutral city for her education, hoping she would grow up somewhere safe and peaceful. Arnold was a dedicated and conscientious doctor, and he worried himself sick over the young people at the base. Perhaps for the same reason, he couldn't abandon a group of soldiers so utterly incapable of looking after themselves. Or perhaps he had simply grown tired of war. Or perhaps... Nandi had decided that she wanted to go to nursing school. One day, she told him, she would help Arnold travel the world and practice medicine, just as he had.<br>When Arnold heard that Seth was planning to take the Rhea out, he told him, 「Take me with you. You’re going to need a doctor. And five years from now, you’ll have an excellent nurse, too.」<br><br>If Arnold is like a reliable father to the crew, then Nandi is the Rhea’s very own Florence Nightingale. When her temper flares, even Seth gets an earful. Later, she and Los become thick as thieves. As a child of the new age, she is completely at ease communicating with Lavinia or directing the SPUs to lend a hand. Arnold was right. She is excellent.",
-                "more_imgs": [
-                    "images/pfiles/mkhize01.jpg"
-                ]
-            },
-            {
-                "id": "Ivan",
-                "name": "Ivan Ricci<br>伊万 瑞奇",
-                "img": "images/pfiles/Ivan.jpg",
-                "data": {
-                    "POSITION": "主厨|Head Chef",
-                    "AUGMENT": "电子脑化，义眼，心肺功能义体化|Cyberbrain conversion, prosthetic eyes, Cybernetic cardiopulmonary system"
-                },
-                "desc": "狂想曲号的主厨是个前罪犯。没人知道他是犯了什么事被抓的。虽然船上有个神秘的传言，说厨师长因为一块面包被抓进去判了十年。有人说是因为他觉得面包太难吃而大发雷霆，和店家发生了冲突。(怎么可能)<br>从那以后，大家老是叫他冉阿让。<br>新人听到之后问 「让叔？他是法国人吗？」「不是，他叫伊万。」<br>没错，厨师长叫伊万 瑞奇。不知道他究竟来自哪里，他对什么都不解释。因此面包的传言也没消停过。<br><br>伊万长得很像那位有名的囚犯查尔斯布朗森。看起来凶悍，还剃过光头，说是因为不用戴厨师帽，很方便。可后来又因为太像布朗森而作罢。他留着一片大胡子，有一对感温外置义眼，看起来就像一对圆圆的墨镜。因为厨房油烟太大，伊万很早就做了心肺功能义体化。他每天都要给义眼喷防雾涂层。有一次赫克托大副把他的防雾剂当成润滑油拿错， 结果吃了一周的口香糖味能量棒。结局以大副滑跪道歉结束。<br>Ivan有自己的追求，就连义体人的食物都要讲究口感。毕竟人类就是靠这种看似无意义又浪费时间的进食仪式，来证明自己活着。|The head chef of the Rhapsody is a former convict. Nobody knows what he was arrested for. There is, however, a mysterious rumor aboard the ship that the chef was sentenced to ten years in prison over a loaf of bread.<br>Supposedly,  the bread tasted so appalling that he flew into a rage and brawled with the baker. *Yeah, right.*<br>Ever since then, everyone has taken to calling him Jean Valjean.<br>When a newcomer hears this, they ask, 「Jean? Is he French?」「No, His name is Ivan.」<br><br>Indeed, the head chef is Ivan Ricci. Nobody knows exactly where he came from, and Ivan refuses to explain anything about himself. So the bread rumor lives on, immortal. Ivan bears a striking resemblance to the notorious prisoner Charles Bronson. He looks intimidating and once shaved his head bald, claiming that it was purely practical since he wouldn't need a chef's hat.  He eventually stopped doing it because he looked too much like Bronson.<br>He keeps a large beard and has a pair of thermosensitive external prosthetic eyes that look almost like round sunglasses. Because of the heavy fumes in the kitchen, Ivan had his cardiopulmonary functions replaced with prosthetics at an early age. He has to spray his prosthetic eyes with anti-fog coating every day.<br>Once, First Mate Hector mistook Ivan’s anti-fog spray for lubricant.Rumor has it, Hector ended up eating bubblegum-flavored energy bars for an entire week. That particular fiasco concluded with the first mate practically sliding across the floor on his knees to beg for mercy.<br>Ivan has his standards. Even nutrient rations for cyborgs deserve proper texture and bite.  After all, human beings have always relied on this seemingly meaningless and wasteful ritual of eating to prove that they are being alive."
             }
         ]
     },
