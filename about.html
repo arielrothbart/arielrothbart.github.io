@@ -96,7 +96,16 @@ body {
   position: relative; /* ⭐关键修复 */
    overflow: hidden;   /* ⭐关键 */
 }
-
+/* ⭐ 图片下方的小字提示 */
+.lang-hint {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4); /* 半透明，不会喧宾夺主 */
+  margin-top: 10px;
+  letter-spacing: 2px;
+  font-family: 'Share Tech', 'Inter', sans-serif; 
+  pointer-events: none; /* ⭐ 关键：让鼠标点击穿透，不影响你原本图片的 hover 扫描线和点击效果 */
+}
 .side-image img {
   width: 100%;
   display: block;
@@ -437,6 +446,7 @@ line-height: 2.2;
 
     <div class="side-image">
       <img src="images/about/ari.png" loading="lazy" onclick="openViewer()">
+      <div class="lang-hint">▲ 点击查看中文</div> <!-- ⭐ 仅仅新增这一行 -->
     </div>
 
   </div>
