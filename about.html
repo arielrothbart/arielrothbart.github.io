@@ -21,23 +21,7 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* ⭐ 扫描线（背景） */
-.content-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
 
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.03) 0px,
-    rgba(255,255,255,0.03) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-
-  pointer-events: none;
-  z-index: 2;
-}
 .content-wrapper {
   position: relative;
 }
@@ -162,13 +146,90 @@ body {
   max-width: 520px;
 }
 
-/* ⭐ 右侧图 */
+
+/* ⭐ 右侧图基础布局保持不变 */
 .side-image {
   width: 380px;
   flex-shrink: 0;
   margin-left: auto;
-  position: relative; /* ⭐关键修复 */
-   overflow: hidden;   /* ⭐关键 */
+  position: relative;
+}
+
+/* ⭐ 1. 专门包裹图片的容器，彻底消灭底部1cm的多余空隙 */
+.scanner-container {
+  position: relative;
+  display: block; 
+  line-height: 0; /* 杀掉 HTML 图片底部的幽灵空白 */
+  overflow: hidden; 
+}
+
+/* 原本图片的样式，保证填满容器 */
+.scanner-container img {
+  width: 100%;
+  display: block;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+/* ⭐ 2. 静态遮罩层：用 ari.png 完美镂空形状 */
+.scan-beam-layer {
+  position: absolute;
+  inset: 0; 
+  pointer-events: none; /* 让鼠标能点到图片 */
+  
+  /* 核心魔法：读取原图形状作为遮罩 */
+  -webkit-mask-image: url('images/about/ari.png');
+  -webkit-mask-size: 100% 100%;
+  mask-image: url('images/about/ari.png');
+  mask-size: 100% 100%;
+}
+
+/* ⭐ 3. 静态的细密网格，盖在遮罩层上 (不会溢出人物轮廓) */
+.scan-beam-layer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.05) 0px,
+    rgba(255,255,255,0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ⭐ 4. 真正移动的光束（平时透明，hover时才往下扫） */
+.scan-beam-layer::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 20%; /* 这是光束的厚度 */
+  background: linear-gradient(
+    to bottom, 
+    transparent, 
+    rgba(255,255,255,0.15), 
+    transparent
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ⭐ 5. 交互动画：只有鼠标放上去时光束才会动，图片会提亮 */
+.scanner-container:hover img {
+  filter: brightness(1.2);
+}
+.scanner-container:hover .scan-beam-layer::after {
+  opacity: 1; 
+  animation: scan-drop 1.5s linear infinite; /* 光束下落 */
+}
+
+/* 光束顺着人物扫下的动画 */
+@keyframes scan-drop {
+  0%   { top: -20%; }
+  100% { top: 100%; }
 }
 /* ⭐ 图片下方的小字提示 */
 .lang-hint {
@@ -179,41 +240,6 @@ body {
   letter-spacing: 2px;
   font-family: 'Share Tech', 'Inter', sans-serif; 
   pointer-events: none; /* ⭐ 关键：让鼠标点击穿透，不影响你原本图片的 hover 扫描线和点击效果 */
-}
-.side-image img {
-  width: 100%;
-  display: block;
-  transition: 0.3s;
-}
-.side-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(255,255,255,0.08),  /* ⭐从0.12 → 0.08 */
-    transparent
-  );
-
-  mix-blend-mode: screen;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.side-image:hover img {
-  filter: brightness(1.2);
-}
-/* hover 才出现 */
-.side-image:hover::after {
-  animation: scan 1.5s linear infinite;
-  opacity: 1;
-}
-
-@keyframes scan {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
 }
 /* ⭐ 标题 */
 .name {
@@ -520,9 +546,13 @@ line-height: 2.2;
 
     </div>
 
-    <div class="side-image">
-      <img src="images/about/ari.png" loading="lazy" onclick="openViewer()">
-      <div class="lang-hint">▲ 点击查看中文</div> <!-- ⭐ 仅仅新增这一行 -->
+   <div class="side-image">
+      <!-- ⭐ 新增：专门包裹图片的盒子，隔离下方文字 -->
+      <div class="scanner-container">
+        <img src="images/about/ari.png" loading="lazy" onclick="openViewer()">
+        <div class="scan-beam-layer"></div> <!-- ⭐ 负责显示遮罩和光束 -->
+      </div>
+      <div class="lang-hint">▲ 点击查看中文</div>
     </div>
 
   </div>
