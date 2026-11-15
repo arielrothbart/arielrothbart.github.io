@@ -11,7 +11,7 @@
 img {
   user-select: none;
   -webkit-user-drag: none;
-  pointer-events: auto; /* 确保点击查看功能依然可用 */
+  pointer-events: auto; 
 }
 
         /* 1. 基础全局样式 */
@@ -261,22 +261,22 @@ img {
             .home-logo { top: 20px; right: 20px; }
             .scroll-top { right: 20px; bottom: 20px; }
             .main-title {
-        font-size: clamp(24px, 8vw, 40px); /* 稍微调小一点手机端的字号 */
-        letter-spacing: 6px !important;    /* 强制减小手机端的字间距 */
-        padding: 0 15px;                  /* 增加左右边距，防止贴边 */
+        font-size: clamp(24px, 8vw, 40px); 
+        letter-spacing: 6px !important;   
+        padding: 0 15px;                 
     }
 
     @keyframes titleFadeIn {
         0% { 
             opacity: 0; 
             transform: translateY(20px); 
-            letter-spacing: 12px; /* 动画初始值也要改小，否则动画过程会撑开屏幕 */
+            letter-spacing: 12px; 
             filter: blur(5px); 
         }
         100% { 
             opacity: 0.9; 
             transform: translateY(0); 
-            letter-spacing: 6px;  /* 动画结束值与上方保持一致 */
+            letter-spacing: 6px; 
             filter: blur(0); 
         }
     }
@@ -304,7 +304,7 @@ img {
                 <div class="caption">
                     Achron Nocturne<br>
                     Digital by Procreate<br>
-                    In a assassin universe like 《John Wick》. 
+                    In an assassin universe like 《John Wick》. 
                 </div>
             </figure>
           
